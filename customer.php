@@ -3,9 +3,9 @@
 ?>
 <div class= "container-fluid">
 	<div align="right">
-		<button>Add Customer</button>
+		<button class="button" type="button">Add Customer</button>
 	</div>
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<td>No</td>
 			<td>Customer's Name</td>
