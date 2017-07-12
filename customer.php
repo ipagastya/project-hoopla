@@ -3,7 +3,7 @@
 ?>
 <div class= "container-fluid">
 	<div align="right">
-		<button class="button" type="button">Add Customer</button>
+		<button class="btn" type="button">Add Customer</button>
 	</div>
 	<table class="table table-hover">
 		<tr>

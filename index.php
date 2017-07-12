@@ -11,10 +11,10 @@
 		<div align= "center">
 			<h3>Hoopla Inventory System</h3>
 			<h3>Login Screen</h3>
-			<form>
+			<form class="form">
 				<input type="text" name="id" placeholder="username"><br>
 				<input type="password" name="password" placeholder="password"><br>
-				<button class="button" type="submit">Log In</button>
+				<button class="btn" type="submit">Log In</button>
 			</form>
 		</div>
 	</div>
