@@ -18,10 +18,10 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="index">Customer</a></li>
-				<li><a href="menu">Subscription</a></li>
-				<li><a href="contact">Payment</a></li>
-				<li><a href="contact">Inventory</a></li>
+				<li><a href="#">Customer</a></li>
+				<li><a href="#">Subscription</a></li>
+				<li><a href="#">Payment</a></li>
+				<li><a href="#">Inventory</a></li>
 			</ul>
 		</div>
 	</nav>
