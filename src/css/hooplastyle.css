@@ -83,11 +83,6 @@ nav{
 	margin-top: -40px;
 }
 
-<<<<<<< HEAD
-.img-home{
-	height:50px;
-	width:50px;
-=======
 .align-bottom{
 	position: absolute;
 	margin-left: auto;
@@ -96,5 +91,5 @@ nav{
 	right: 0;
 	display: block;
 	bottom: 0;
->>>>>>> 4de7e571374c209ff49fd6c67a5d09ab90fb3a34
+
 }
