@@ -1,7 +1,7 @@
 <?php 
 	require('header.php');
 ?>
-<div class= "container-fluid">
+<div class= "container">
 	<form class="form">
 		<table class="table">
 			<tr>
@@ -11,30 +11,33 @@
 			</tr>
 			<tr>
 				<td>Final Pick Up Date</td>
-				<td><input type="date" name="final-date"></td>
-				<td><input type="date" name="end-date"></td>
+				<td><input class="form-control" type="date" name="final-date"></td>
+				<td><input class="form-control" type="date" name="end-date"></td>
 			</tr>
 			<tr>
 				<td>Customer Name</td>
-				<td><input type="text" name="name"></td>
+				<td><input class="form-control" type="text" name="name"></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Payment Note</td>
-				<td><input type="text" name="note"></td>
+				<td><input class="form-control" type="text" name="note"></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Subscription Plan</td>
-				<td><input type="number" name="sub-plan"> Month</td>
+				<td><input class="form-control" type="number" name="sub-plan"></td>
+				<td> Month</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<button class="btn btn-primary" id="loginbutton" type="submit"><b>Submit</b></button>
+					<button class="btn btn-primary greenbutton" type="submit"><b>Submit</b></button>
 				</td>
 			</tr>
 		</table>
 	</form>
-	<h5>Subscription Schedule</h5>
+	<h4><b>Subscription Schedule</b></h4>
 	<div class="table-responsive">
 		<table class="table">
 			<tr>

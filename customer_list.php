@@ -4,7 +4,7 @@
 <div class= "container-fluid">
 	<div class="container">
 		<div align="right">
-			<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Customer</button>
+			<button class="btn btn-primary addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Customer</button>
 		</div>
 		<br>
 		<div class="table-responsive">

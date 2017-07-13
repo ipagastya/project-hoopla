@@ -65,3 +65,11 @@ nav{
 	box-shadow: none;
 	border-width: 0px;
 }
+.greenbutton{
+	padding: 10px 25px;
+	background: #2ecc71;
+	color: #fff;
+	border-radius: 10px;
+	box-shadow: none;
+	border-width: 0px;
+}
