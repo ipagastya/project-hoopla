@@ -31,14 +31,13 @@ body, html {
 	background: #e67e22;
 	color: #fff;
 	border-radius: 15px;
-	box-shadow: none;
 	border-width: 0px;
 }
 nav{
 	border-radius: 0px;
 	border-width: 0px;
+	box-shadow: 0px;
 }
-
 .navbar-collapse > .navbar-left > li > a{
 	font-weight: bold;
 	color: #2980b9;
@@ -72,4 +71,14 @@ nav{
 	border-radius: 10px;
 	box-shadow: none;
 	border-width: 0px;
+}
+
+/*Specialization*/
+.welcomepage{
+	background-image: url(../images/background-smaller.png);
+	background-size: cover;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	margin-top: -40px;
 }
