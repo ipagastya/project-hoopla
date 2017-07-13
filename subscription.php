@@ -6,55 +6,69 @@
 		<table>
 			<tr>
 				<td>Customer Name</td>
-				<td>: <input type="text" name="Customer Name"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="Customer Name"></td>
 			</tr>
 			<tr>
 				<td>New/Extension</td>
-				<td>: <input type="text" name="status"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="status"></td>
 			</tr>
 			<tr>
 				<td>Subscription Plan</td>
-				<td>: <input type="number" name="plan"> Month</td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="number" name="plan"></td>
+				<td>&nbsp Month</td>
 			</tr>
 			<tr>
 				<td>No of Toys/Month</td>
-				<td>: <input type="number" name="toypermonth"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="number" name="toypermonth"></td>
 			</tr>
 			<tr>
 				<td>First Delivery Date</td>
-				<td>: <input type="date" name="first-deliv"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="date" name="first-deliv"></td>
 			</tr>
 			<tr>
 				<td>Subscription Price</td>
-				<td>: <input type="number" name="sub-price"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="number" name="sub-price"></td>
 			</tr>
 			<tr>
 				<td>Subsrciption Promo</td>
-				<td>: <input type="text" name="sub-promo"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="sub-promo"></td>
 			</tr>
 			<tr>
 				<td>Delivery Price</td>
-				<td>: <input type="number" name="deliv-price"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="number" name="deliv-price"></td>
 			</tr>
 			<tr>
 				<td>Delivery Promo</td>
-				<td>: <input type="date" name="deliv-promo"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="date" name="deliv-promo"></td>
 			</tr>
 			<tr>
 				<td>Deposit Amount</td>
-				<td>: <input type="number" name="deposit"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="number" name="deposit"></td>
 			</tr>
 			<tr>
 				<td>Payment Terms</td>
-				<td>: <input type="text" name="pay-term"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="pay-term"></td>
 			</tr>
 			<tr>
 				<td>Deposit Refund Date</td>
-				<td>: <input type="text" name="refund-date"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="refund-date"></td>
 			</tr>
 			<tr>
 				<td>Deposit Status</td>
-				<td>: <input type="text" name="deposit-status"></td>
+				<td> &nbsp : &nbsp </td>
+				<td><input type="text" name="deposit-status"></td>
 			</tr>
 		</table><br>
 		<button class="btn" type="submit">Submit</button>
