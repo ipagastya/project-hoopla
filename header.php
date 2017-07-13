@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="src/css/hooplastyle.css">
 </head>
 <body>
-	<nav class="navbar transparent navbar-default navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
@@ -31,7 +31,7 @@
 	</nav>
 
 	<!--ghost navbar-->
-	<nav class="navbar transparent navbar-default navbar-relative" role="navigation">
+	<nav class="navbar navbar-default navbar-relative" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
