@@ -9,6 +9,8 @@
 	<center><img class="img-responsive" src="src/images/logo-1.png"></center>
 	<br>
 	<center><h1>Welcome !</h1></center>
+	<br>
+	<center><img class="img-responsive" src="src/images/mainan.png"></center>
 </div>
 <?php
 	require('footer.php');
