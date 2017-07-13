@@ -10,7 +10,7 @@
 	<br>
 	<center><h1>Welcome To Our Inventory System</h1></center>
 	<br>
-	<center><img class="img-responsive" src="src/images/mainan.png"></center>
+	<center><img class="img-home" src="src/images/mainan.png"></center>
 </div>
 <?php
 	require('footer.php');
