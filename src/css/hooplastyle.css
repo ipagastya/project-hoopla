@@ -10,6 +10,11 @@ body, html {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
+
+.container{
+	margin-top: 5%;
+}
+
 #loginarea{
 	background-color: #fff;
 	padding: 40px 50px;
