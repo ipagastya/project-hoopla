@@ -77,28 +77,30 @@
 		<button class="btn" type="button">Create Delivery</button>
 	</div>
 	<h6>Delivery Schedule</h6>
-	<table class="table table-hover">
-		<tr>
-			<td>No</td>
-			<td>Address</td>
-			<td>City</td>
-			<td>Province</td>
-			<td>Mobile Phone</td>
-			<td>Home Phone</td>
-			<td>Delivery Date</td>
-			<td>Pick Up Date</td>
-			<td>Actual Delivery Charge</td>
-			<td>Actual Pickup Charge</td>
-			<td>Payment Note</td>
-			<td>Note</td>
-			<td>Baby's Age</td>
-			<td>Box Name</td>
-			<td>Details of Toys</td>
-		</tr>
-		<?php 
-			// isi dari database
-		 ?>
-	</table>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<tr>
+				<td>No</td>
+				<td>Address</td>
+				<td>City</td>
+				<td>Province</td>
+				<td>Mobile Phone</td>
+				<td>Home Phone</td>
+				<td>Delivery Date</td>
+				<td>Pick Up Date</td>
+				<td>Actual Delivery Charge</td>
+				<td>Actual Pickup Charge</td>
+				<td>Payment Note</td>
+				<td>Note</td>
+				<td>Baby's Age</td>
+				<td>Box Name</td>
+				<td>Details of Toys</td>
+			</tr>
+			<?php 
+				// isi dari database
+			 ?>
+		</table>
+	</div>
 		<?php 
 			// pagination
 		 ?>

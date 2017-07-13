@@ -35,21 +35,23 @@
 		</table>
 	</form>
 	<h5>Subscription Schedule</h5>
-	<table class="table">
-		<tr>
-			<td>Customer's Name</td>
-			<td>New/Ext</td>
-			<td>Subscription Plan</td>
-			<td>No of Toys / Month</td>
-			<td>First Delivery Date</td>
-			<td>Final Pick Up Date</td>
-			<td>Payment Note</td>
-			<td>Details</td>
-		</tr>
-		<?php 
-			// from content db
-		?>
-	</table>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<td>Customer's Name</td>
+				<td>New/Ext</td>
+				<td>Subscription Plan</td>
+				<td>No of Toys / Month</td>
+				<td>First Delivery Date</td>
+				<td>Final Pick Up Date</td>
+				<td>Payment Note</td>
+				<td>Details</td>
+			</tr>
+			<?php 
+				// from content db
+			?>
+		</table>
+	</div>
 	<div align="right">
 		<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
 	</div>
