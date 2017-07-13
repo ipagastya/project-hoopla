@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Login - Hoopla Inventory System</title>
 	<link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap-theme.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,12 @@
 	<div class= "container-fluid index">
 		<div align= "center">
 			<br>
-			<br>
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-4 col-md-4">
 					</div>
-					<div class="col-sm-4" id="loginarea">
+					<div class="col-sm-4 col-md-4" id="loginarea">
 						<h3>Hoopla Inventory System</h3>
 						<h4>Login Screen</h4>
 						<br>
@@ -27,10 +26,14 @@
 							<button class="btn btn-primary" id="loginbutton" type="submit"><b>LOGIN</b></button>
 						</form>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4 col-md-4">
 					</div>
 				</div>
 			</div>
+			<br>
+			<br>
+			<br>
+			<br>
 		</div>
 	</div>
 </body>
