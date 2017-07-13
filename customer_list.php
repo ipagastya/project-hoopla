@@ -4,7 +4,7 @@
 <div class= "container-fluid">
 	<div class="container">
 		<div align="right">
-			<button class="btn btn-primary addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Customer</button>
+			<button class="btn btn-primary addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Customer</a></button>
 		</div>
 		<br>
 		<div class="table-responsive">

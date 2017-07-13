@@ -82,3 +82,7 @@ nav{
 	background-attachment: fixed;
 	margin-top: -40px;
 }
+#form-row {
+  display: flex; /* 2. display flex to the rescue */
+  flex-direction: row;
+}
