@@ -1,0 +1,58 @@
+.index{
+	background-image: url(../images/background1.png);
+	background-size: cover;
+	background-repeat: ;
+	background-attachment: fixed;
+}
+#loginarea{
+	background-color: #fff;
+	padding: 40px 50px;
+	border-radius: 20px;
+	
+}
+#loginbutton{
+	padding: 10px 45px;
+	background: #2980b9;
+	color: #fff;
+	border-radius: 15px;
+	box-shadow: none;
+	border-width: 0px;
+}
+#loginbutton:hover{
+	background: #e67e22;
+	color: #fff;
+	border-radius: 15px;
+	box-shadow: none;
+	border-width: 0px;
+}
+nav{
+	border-radius: 0px;
+	border-width: 0px;
+}
+
+.navbar-collapse > .navbar-left > li > a{
+	font-weight: bold;
+	color: #2980b9;
+}
+.navbar-collapse > .navbar-left > li > a:hover{
+	color: #f39c12;
+}
+.navbar-collapse > .navbar-right {
+	font-weight: bold;
+	margin-right: 8px;
+}
+.addbutton{
+	padding: 10px 15px;
+	background: #2980b9;
+	color: #fff;
+	border-radius: 15px;
+	box-shadow: none;
+	border-width: 0px;
+}
+.addbutton:hover{
+	background: #e67e22;
+	color: #fff;
+	border-radius: 15px;
+	box-shadow: none;
+	border-width: 0px;
+}
