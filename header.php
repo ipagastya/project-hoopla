@@ -22,7 +22,7 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="customer_list.php">Customer</a></li>
 				<li><a href="subscription_list.php">Subscription</a></li>
-				<li><a href="payment.php">Payment</a></li>
+				<li><a href="#">Payment</a></li>
 				<li><a href="inventory_list.php">Inventory</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
