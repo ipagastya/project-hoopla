@@ -36,12 +36,12 @@
 	</div>
 	<?php
         include "config.php";
-        $query = "SELECT username FROM users";
+        $query = "SELECT username FROM admin";
         $result = pg_query($query);
         if(isset($_POST["loginbutton"])){
         	$username = $_POST["id"];
             $password = $_POST["password"];
-            $query = "SELECT * FROM users WHERE username='".$username."'AND password='".$password."'";
+            $query = "SELECT * FROM admin WHERE username='".$username."'AND password='".$password."'";
             $result = pg_query($query);
             $row = pg_fetch_row($result);
             $count = pg_num_rows($result);
