@@ -20,7 +20,7 @@
 			<br>
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
 			<img class="img-responsive align-center" src="src/images/invent.png">
-			<div class="container">
+			<div>
 				<div class="row">
 					<div class="col-sm-4 col-md-4">
 					</div>
