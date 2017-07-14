@@ -20,7 +20,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#">Customer</a></li>
+				<li><a href="customer_list.php">Customer</a></li>
 				<li><a href="#">Subscription</a></li>
 				<li><a href="#">Payment</a></li>
 				<li><a href="#">Inventory</a></li>
