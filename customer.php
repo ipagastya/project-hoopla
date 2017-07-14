@@ -66,7 +66,12 @@
 			<div id='form-row'>
               <label class="control-label col-sm-4" for="cityID">City :</label>
 			  <div class="col-sm-4">
-				<input type="text" class='form-control' name="date" placeholder="City">
+				<select class="form-control" id="city" name="city">
+						<option value=''>Select city</option>
+						<?php
+							// loop isi city dari db
+						?>
+					</select>
 			  </div>
 			  <div class="col-sm-4"></div>
             </div>
@@ -74,7 +79,12 @@
 			<div id='form-row'>
               <label class="control-label col-sm-4" for="provinceID">Province :</label>
 			  <div class="col-sm-4">
-				<input type="text" class='form-control' name="date" placeholder="Province">
+				<select class="form-control" id="province" name="province">
+						<option value=''>Select province</option>
+						<?php
+							// loop isi province dari db
+						?>
+					</select>
 			  </div>
 			  <div class="col-sm-4"></div>
             </div>
