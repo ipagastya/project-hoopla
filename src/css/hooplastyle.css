@@ -4,9 +4,8 @@ body, html {
 }
 
 .index{
-	background-image: url(../images/background-smaller.png);
+	background-image: url(../images/background1.png);
 	background-size: cover;
-	height: 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
