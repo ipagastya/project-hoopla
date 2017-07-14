@@ -160,6 +160,13 @@
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
+			<div class="form-group">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-5">
+					<button class="btn btn-primary greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
 		</form>
 	</div>
 <?php 
