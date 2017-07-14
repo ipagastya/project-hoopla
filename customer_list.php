@@ -26,7 +26,9 @@
 	<!-- belom ada pagination -->
 	</div>
 </div>
-	
+<br>
+<br>
+<br>
 <?php
 	require('footer.php');
 ?>
