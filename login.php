@@ -14,6 +14,7 @@ if(isset($_POST["loginbutton"])){
   }
   if($username != "" || $password != ""){
     if($count == 1){
+      $_SESSION['username'] = $username;
       header("location: welcome.php ");
     }else{
       echo "<script>alert('Username tidak terdaftar');</script>";

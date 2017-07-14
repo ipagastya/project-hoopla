@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php 
+	session_start();
+	if(!isset($_SESSION['username'])){
+		header("location: index.php ");
+	}
+?>
 <html>
 <head>
 	<title>Hoopla Inventory System</title>
@@ -26,7 +32,7 @@
 				<li><a href="inventory_list.php">Inventory</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -49,7 +55,7 @@
 				<li><a href="#">Inventory</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</nav>
