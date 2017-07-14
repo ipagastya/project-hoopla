@@ -101,3 +101,7 @@ nav{
 	display: block;
 	bottom: 0;
 }
+
+.submit-text{
+	margin: auto;
+}

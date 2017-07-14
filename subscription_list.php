@@ -40,7 +40,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-11"></div>
-			<button class="btn btn-primary greenbutton control-label col-sm-1" type="submit"><b>Submit</b></button>
+			<button class="btn btn-primary greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
 		</div>
 	</form>
 	<h4><b>Subscription Schedule</b></h4>
