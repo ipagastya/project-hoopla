@@ -4,16 +4,16 @@
 <div class="container">
 	<form class="form-horizontal">
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="deliveryID">Date :</label>
+			<label class="control-label col-sm-2" for="dateinventory">Date :</label>
 			<div class="col-sm-3">
-				<input type="date" class="form-control" id="deliveryID" name="deliveryID">
+				<input type="date" class="form-control" id="dateinventory" name="dateinventory">
 			</div>
 			<div class="col-sm-7"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="deliveryID">Inventory Status :</label>
+			<label class="control-label col-sm-2" for="inventorystatus">Inventory Status :</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="deliveryID" name="deliveryID">
+				<input type="text" class="form-control" id="inventorystatus" name="inventorystatus">
 			</div>
 			<div class="col-sm-7"></div>
 		</div>
