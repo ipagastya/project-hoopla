@@ -21,7 +21,6 @@
 					</div>
 					<div class="col-sm-4 col-md-4" id="loginarea">
 						<h3>Hoopla Inventory System</h3>
-						<h4>Login Screen</h4>
 						<br>
 						<form class="form">
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
