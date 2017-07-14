@@ -22,10 +22,10 @@
 					<div class="col-sm-4 col-md-4" id="loginarea">
 						<h3>Hoopla Inventory System</h3>
 						<br>
-						<form class="form">
+						<form class="form" method="post" action="./index.php">
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
 							<input type="password" class="form-control" name="password" placeholder="password"><br>
-							<button  class="btn btn-primary" id="loginbutton" type="submit"><b>LOGIN</b></button>
+							<button  class="btn btn-primary" id="loginbutton" name="loginbutton" type="submit"><b>LOGIN</b></button>
 						</form>
 					</div>
 					<div class="col-sm-4 col-md-4">
@@ -34,6 +34,27 @@
 			</div>
 		</div>
 	</div>
+	<?php
+        include "config.php";
+        $query = "SELECT username FROM users";
+        $result = pg_query($query);
+        if(isset($_POST["loginbutton"])){
+        	$username = $_POST["id"];
+            $password = $_POST["password"];
+            $query = "SELECT * FROM users WHERE username='".$username."'AND password='".$password."'";
+            $result = pg_query($query);
+            $row = pg_fetch_row($result);
+            $count = pg_num_rows($result);
+            if($username == "" || $password == ""){
+                echo "<script>alert('Harap Isi Username atau Password');</script>";
+            }
+            if($username != "" || $password != ""){
+               if($count == 1){
+               		header("location: welcome.php ");
+               }
+            }
+        }
+    ?>
 </body>
 	
 </html>
