@@ -51,6 +51,8 @@
             if($username != "" || $password != ""){
                if($count == 1){
                		header("location: welcome.php ");
+               }else{
+               		echo "<script>alert('Username tidak terdaftar');</script>";
                }
             }
         }
