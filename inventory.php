@@ -176,7 +176,7 @@
 	<br>
 	<br>
 	<div align="right">
-		<button class="btn btn-primary addbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Update Card</a></button>
+		<button class="btn btn-primary addbutton" type="submit"><a href='inventory_card.php' style='text-decoration: none; color:white;'>Update Card</a></button>
 	</div>
 	<br>
 	<h4>Inventory Card</h4>
