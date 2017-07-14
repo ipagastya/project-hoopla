@@ -6,7 +6,7 @@
 	<br>
 	<br>
 	<br>
-	<center><h1>Welcome To Our Inventory System</h1></center>
+	<img class="img-responsive align-center" src="src/images/welcome.png">
 	<img class="img-responsive align-center" src="src/images/mainan-medium.png">
 </div>
 <?php
