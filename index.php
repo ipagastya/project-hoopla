@@ -18,12 +18,13 @@
 		<div align= "center">
 			<br>
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
+			<img class="img-responsive align-center" src="src/images/invent.png">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4 col-md-4">
 					</div>
 					<div class="col-sm-4 col-md-4" id="loginarea">
-						<h3>Hoopla Inventory System</h3>
+						<h3>Login</h3>
 						<br>
 						<form class="form" method="post" action="./index.php">
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
