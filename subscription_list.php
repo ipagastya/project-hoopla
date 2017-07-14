@@ -48,18 +48,18 @@
 	<div align="right">
 		<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
 	</div>
-	<h4><b>Subscription Schedule</b></h4>
+	<h4>Subscription Schedule</h4>
 	<div class="table-responsive">
 		<table class="table">
 			<tr>
-				<td>Customer's Name</td>
-				<td>New/Ext</td>
-				<td>Subscription Plan</td>
-				<td>No of Toys / Month</td>
-				<td>First Delivery Date</td>
-				<td>Final Pick Up Date</td>
-				<td>Payment Note</td>
-				<td>Details</td>
+				<th>Customer's Name</th>
+				<th>New/Ext</th>
+				<th>Subscription Plan</th>
+				<th>No of Toys / Month</th>
+				<th>First Delivery Date</th>
+				<th>Final Pick Up Date</th>
+				<th>Payment Note</th>
+				<th>Details</th>
 			</tr>
 			<?php 
 				// from content db
