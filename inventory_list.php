@@ -20,6 +20,9 @@
 	</form>
 	<br>
 	<br>
+	<div align="right">
+		<button class="btn btn-primary addbutton" type="submit"><a href='inventory.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Inventory</a></button>
+	</div>
 	<br>
 	<h4>Subscription Table</h4>
 	<div class="table-responsive">
@@ -42,9 +45,7 @@
 	<br>
 	<br>
 	<br>
-	<div align="right">
-		<button class="btn btn-primary addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Inventory</a></button>
-	</div>
+	
 </div>
 <?php 
 	require('footer.php');
