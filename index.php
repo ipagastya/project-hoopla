@@ -10,8 +10,8 @@
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script src="libs/bootstrap//dist/js/bootstrap.min.js"></script>
 </head>
-<body>
-	<div class= "container-fluid index">
+<body class="index">
+	<div class= "container-fluid">
 		<div align= "center">
 			<br>
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
