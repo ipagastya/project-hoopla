@@ -165,10 +165,21 @@
 			</div>
 			<div class="col-sm-6"></div>
 		</div>
+		<div class="form-group">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-3">
+				<button class="btn btn-primary greenbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Submit</a></button>
+			</div>
+			<div class="col-sm-6"></div>
+		</div>
 	</form>
 	<br>
 	<br>
 	<h4>Inventory Card</h4>
+	<div align="right">
+		<button class="btn btn-primary addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Update Card</a></button>
+	</div>
+	<br>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<tr>
@@ -184,9 +195,8 @@
 	</div>
 	<br>
 	<br>
-	<div align="right">
-		<button class="btn btn-primary greenbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Update Card</a></button>
-	</div>
+	<br>
+	
 </div>
 <br>
 <br>
