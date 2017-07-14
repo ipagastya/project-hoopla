@@ -44,6 +44,10 @@
 			<div class="col-sm-8"></div>
 		</div>
 	</form>
+	<br>
+	<div align="right">
+		<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
+	</div>
 	<h4><b>Subscription Schedule</b></h4>
 	<div class="table-responsive">
 		<table class="table">
@@ -62,9 +66,7 @@
 			?>
 		</table>
 	</div>
-	<div align="right">
-		<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
-	</div>
+	
 </div>
 <?php
 	require('footer.php');
