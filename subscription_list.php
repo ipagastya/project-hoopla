@@ -39,8 +39,9 @@
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-11"></div>
+			<div class="col-sm-3"></div>
 			<button class="btn btn-primary greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
+			<div class="col-sm-8"></div>
 		</div>
 	</form>
 	<h4><b>Subscription Schedule</b></h4>
