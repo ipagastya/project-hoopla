@@ -165,12 +165,13 @@
 			</div>
 			<div class="col-sm-6"></div>
 		</div>
+		<button class="btn btn-primary greenbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Submit</a></button>
 	</form>
 	<br>
 	<br>
 	<h4>Inventory Card</h4>
 	<div align="right">
-		<button class="btn btn-primary greenbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Update Card</a></button>
+		<button class="btn btn-primary addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'>Update Card</a></button>
 	</div>
 	<br>
 	<div class="table-responsive">
