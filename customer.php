@@ -43,14 +43,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="dobID">Email :</label>
 				<div class="col-sm-5">
-					<input type="email" class="form-control" id="emailID" name="emailID">
+					<input type="email" class="form-control" id="emailID" name="emailID" placeholder="Email">
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="address">Address :</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="address" name="address">
+					<input type="text" class="form-control" id="address" name="address" placeholder="Address">
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
@@ -88,14 +88,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="home">Favorite/Least Favorite Toys :</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="favoriteID" name="favoriteID">
+					<input type="text" class="form-control" id="favoriteID" name="favoriteID" placeholder="Favorite">
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="deliv-date">Milestones to be developed :</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="milestoneID" name="milestoneID">
+					<input type="text" class="form-control" id="milestoneID" name="milestoneID" placeholder="Milestones">
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
