@@ -81,7 +81,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="mobile">ZIP :</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="zipID" name="zipID">
+					<input type="text" class="form-control" id="zipID" name="zipID" placeholder="ZIP Code">
 				</div>
 				<div class="col-sm-5"></div>
 			</div>
