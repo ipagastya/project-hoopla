@@ -163,7 +163,7 @@ require_once('header.php');
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toys">Select Toys :</label>
 			<div class="col-sm-5">
-				<select class="selectpicker" multiple data-selected-text-format="count > 3">
+				<select class="selectpicker" multiple data-selected-text-format="count > 3" data-max-options="5">
 					<option>Item 1</option>
 					<option>Item 2</option>
 					<option>Item 3</option>
