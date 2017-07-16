@@ -9,15 +9,15 @@ if(isset($_POST["loginbutton"])){
   $result = pg_query($query);
   $row = pg_fetch_row($result);
   $count = pg_num_rows($result);
-  if($username == "" || $password == ""){
-    echo "<script>alert('Harap Isi Username atau Password');</script>";
+  if($username == "" && $password == ""){
+    echo "<script>alert('Please enter your username and password');</script>";
   }
   if($username != "" || $password != ""){
     if($count == 1){
       $_SESSION['username'] = $username;
       header("location: welcome.php ");
     }else{
-      echo "<script>alert('Username tidak terdaftar');</script>";
+      echo "<script>alert('The username or password you entered is incorrect');</script>";
     }
   }
 }
