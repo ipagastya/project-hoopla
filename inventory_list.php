@@ -13,7 +13,12 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="inventorystatus">Inventory Status :</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="inventorystatus" name="inventorystatus">
+				<select class="form-control" id="status" name="status">
+				    <option>Available</option>
+					<option>Rented</option>
+				    <option>Broken</option>
+					<option>Missing Part</option>
+				</select>
 			</div>
 			<div class="col-sm-7"></div>
 		</div>

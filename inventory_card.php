@@ -20,7 +20,12 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="status">Status :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="status" name="status">
+				<select class="form-control" id="status" name="status">
+				    <option>Available</option>
+					<option>Rented</option>
+				    <option>Broken</option>
+					<option>Missing Part</option>
+				</select>
 			</div>
 			<div class="col-sm-4"></div>
 		</div>
