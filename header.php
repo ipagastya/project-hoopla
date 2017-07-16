@@ -13,6 +13,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="src/css/hooplastyle.css">
 	<link rel="icon" type="image/png" href="src/images/mainan-smallest.png">
+	<link rel="stylesheet" href="libs/bootstrap-select-1.12.3/dist/css/bootstrap-select.min.css">
+
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
