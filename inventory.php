@@ -47,10 +47,7 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="batteryopt">Battery :</label>
 			<div class="col-sm-3">
-				 <select class="form-control" id="batteryopt" name="batteryopt">
-				    <option>Yes</option>
-				    <option>No</option>
-				  </select>
+				 <input type="checkbox" data-toggle="toggle" data-off="No" data-on="Yes">
 			</div>
 			<div class="col-sm-6"></div>
 		</div>
