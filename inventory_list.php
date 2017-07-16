@@ -14,7 +14,8 @@
 			<label class="control-label col-sm-2" for="inventorystatus">Inventory Status :</label>
 			<div class="col-sm-3">
 				<select class="form-control" id="status" name="status">
-				    <option>Available</option>
+				    <option>--Select Status--</option>
+					<option>Available</option>
 					<option>Rented</option>
 				    <option>Broken</option>
 					<option>Missing Part</option>
