@@ -15,6 +15,9 @@
 	<link rel="icon" type="image/png" href="src/images/mainan-smallest.png">
 	<link rel="stylesheet" href="libs/bootstrap-select-1.12.3/dist/css/bootstrap-select.min.css">
 	<link rel="stylesheet" href="libs/bootstrap-toggle-master/css/bootstrap-toggle.min.css">
+	<link rel="stylesheet" href="libs/bootstrap-toggle-master/css/bootstrap-toggle.css">
+	<link rel="stylesheet" href="libs/bootstrap-toggle-master/css/bootstrap2-toggle.min.css">
+	<link rel="stylesheet" href="libs/bootstrap-toggle-master/css/bootstrap2-toggle.css">
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
