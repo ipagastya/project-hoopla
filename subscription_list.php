@@ -2,7 +2,10 @@
 	require('header.php');
 ?>
 <div class= "container">
-	<form class="form-horizontal">
+	<div align="right">
+		<button class="btn btn-default addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-th"></span> Filter Subscription Table</button>
+	</div>
+	<form class="form-horizontal collapse" id="form-filter">
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="start-date">Final Pickup Date :</label>
 		</div>
@@ -46,9 +49,9 @@
 	</form>
 	<br>
 	<div align="right">
-		<button class="btn btn-default addbutton" type="button" data-toggle="modal" data-target="#modaSubscription"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
+		<button class="btn btn-default addbutton" type="button" data-toggle="modal" data-target="#modalSubscription"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
 	</div>
-	<div class="modal fade" id="modaSubscription" role="dialog">
+	<div class="modal fade" id="modalSubscription" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -152,7 +155,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default addbutton" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 
