@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
 <div class= "container">
-	<button class="btn btn-default addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-th"></span> Filter Subscription Table</button>
+	<button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-th"></span> Filter Subscription Table</button>
 	<form class="form-horizontal collapse" id="form-filter">
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="start-date">Final Pickup Date :</label>
