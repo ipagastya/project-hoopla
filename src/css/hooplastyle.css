@@ -76,6 +76,10 @@ nav{
 	box-shadow: none;
 	border-width: 0px;
 }
+.greenbutton:hover{
+	background: #2980b9;
+	color: #fff;
+}
 
 /*Specialization*/
 .welcomepage{
