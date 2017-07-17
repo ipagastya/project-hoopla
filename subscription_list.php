@@ -46,7 +46,117 @@
 	</form>
 	<br>
 	<div align="right">
-		<button class="btn btn-default addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
+		<button class="btn btn-default addbutton" type="button" data-toggle="modal" data-target="#modaSubscription"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
+	</div>
+	<div class="modal fade" id="modaSubscription" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Create New Subscription</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="customerName" name="customerName">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="status">New/Extension :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="status" name="status">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" id="plan" name="plan">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="plan">No of Toys/Month :</label>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" id="plan" name="plan">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
+							<div class="col-sm-5">
+								<input type="date" class="form-control" id="first-deliv" name="first-deliv">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" id="sub-price" name="sub-price">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="sub-promo" name="sub-promo">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" id="deliv-price" name="deliv-price">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="deliv-promo" name="deliv-promo">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
+							<div class="col-sm-5">
+								<input type="number" class="form-control" id="deposit" name="deposit">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="pay-term" name="pay-term">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="refund-date" name="refund-date">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" id="deposit-status" name="deposit-status">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
 	</div>
 	<h4>Subscription Schedule</h4>
 	<div class="table-responsive">
