@@ -1,5 +1,5 @@
 <?php 
-	require('header.php');
+require('header.php');
 ?>
 <div class= "container">
 	<form class="form-horizontal">
@@ -97,7 +97,7 @@
 	</form>
 	<hr>
 	<div align="right">
-		<button class="btn btn-primary addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Create Delivery</button>
+		<a href="delivery.php" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
 	</div>
 	<h4>Delivery Schedule</h4>
 	<div class="table-responsive">
@@ -121,14 +121,14 @@
 			</tr>
 			<?php 
 				// isi dari database
-			 ?>
+			?>
 		</table>
 	</div>
-		<?php 
+	<?php 
 			// pagination
-		 ?>
+	?>
 </div>
-	
+
 <?php
-	require('footer.php');
+require('footer.php');
 ?>
