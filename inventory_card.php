@@ -40,7 +40,7 @@
 		<div class="form-group">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-3">
-				<button class="btn btn-primary greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+				<button class="greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
 			</div>
 			<div class="col-sm-6"></div>
 		</div>

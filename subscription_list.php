@@ -41,13 +41,13 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-3"></div>
-			<button class="btn btn-primary greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
+			<button class="greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
 			<div class="col-sm-8"></div>
 		</div>
 	</form>
 	<br>
 	<div align="right">
-		<button class="btn btn-default addbutton" type="button" data-toggle="modal" data-target="#modalSubscription"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
+		<button class="addbutton" type="button" data-toggle="modal" data-target="#modalSubscription"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button>
 	</div>
 	<div class="modal fade" id="modalSubscription" role="dialog">
 		<div class="modal-dialog">
