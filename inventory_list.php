@@ -27,7 +27,7 @@
 	<br>
 	<br>
 	<div align="right">
-		<button class="btn btn-primary addbutton" type="submit"><a href='inventory.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Inventory</a></button>
+		<button class="addbutton" type="submit"><a href='inventory.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Inventory</a></button>
 	</div>
 	<br>
 	<h4>Subscription Table</h4>

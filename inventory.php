@@ -169,7 +169,7 @@
 		<div class="form-group">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-3">
-				<button class="btn btn-primary greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+				<button class="greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
 			</div>
 			<div class="col-sm-6"></div>
 		</div>
@@ -177,7 +177,7 @@
 	<br>
 	<br>
 	<div align="right">
-		<button class="btn btn-primary addbutton" type="submit"><a href='inventory_card.php' style='text-decoration: none; color:white;'>Update Card</a></button>
+		<button class="addbutton" type="submit"><a href='inventory_card.php' style='text-decoration: none; color:white;'>Update Card</a></button>
 	</div>
 	<br>
 	<h4>Inventory Card</h4>

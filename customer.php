@@ -101,7 +101,7 @@
 			</div>
 			<div class="form-group">
 			<div class="col-sm-3"></div>
-			<button class="btn btn-primary greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
+			<button class="greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
 			<div class="col-sm-8"></div>
 		</div>
 		</form>
