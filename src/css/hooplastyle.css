@@ -115,3 +115,15 @@ nav{
     margin-left: auto;
     margin-right: auto;
 }
+
+/*filter specialization*/
+#form-filter{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	background-color: #e6e9ed;
+	padding : 15px 40px;
+}
+#form-filter:hover{
+	box-shadow: 10px 10px 5px #d6dbdf;
+}
