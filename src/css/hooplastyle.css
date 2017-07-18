@@ -15,7 +15,7 @@ body, html {
 }
 @font-face {
 	font-family: "Leckerli One";
-	src: url('../fonts/LeckerliOne-Regular.TTF');
+	src: url('../fonts/LeckerliOne-Regular.ttf') format('truetype');
 }
 .leckerli{
 	font-family: "Leckerli One";
