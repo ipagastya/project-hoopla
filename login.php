@@ -5,7 +5,7 @@ $result = mysqli_query($conn, $query);
 if(isset($_POST["loginbutton"])){
   $username = $_POST["id"];
   $password = $_POST["password"];
-  $query = "SELECT * FROM admin WHERE username='".$username."'AND password='".$password."'";
+  $query = "SELECT * FROM ADMIN WHERE username='".$username."'AND password='".$password."'";
   $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_row($result);
   $count = mysqli_num_rows($result);
