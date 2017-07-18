@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <?php
 	session_start();
 	require_once('login.php');
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Login - Hoopla Inventory System</title>
