@@ -47,7 +47,7 @@
 	</form>
 	<br>
 	<div align="right">
-		<a href="subscription_create.php" class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</a>
+		<a href="subscription_create.php"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button></a>
 	</div>
 	<h4>Subscription Schedule</h4>
 	<div class="table-responsive">
