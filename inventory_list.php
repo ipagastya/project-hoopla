@@ -24,6 +24,11 @@
 			</div>
 			<div class="col-sm-7"></div>
 		</div>
+		<div class="form-group">
+			<div class="col-sm-3"></div>
+			<button class="greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
+			<div class="col-sm-8"></div>
+		</div>
 	</form>
 	<br>
 	<br>
