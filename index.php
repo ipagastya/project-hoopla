@@ -17,15 +17,15 @@
 <body class="index">
 	<div class= "container-fluid">
 		<div align= "center">
-			<br>
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
-			<img class="img-responsive align-center" src="src/images/invent.png">
+			<!--img class="img-responsive align-center" src="src/images/invent.png"-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4 col-md-4">
 					</div>
 					<div class="col-sm-4 col-md-4" id="loginarea">
-						<h3>Login</h3>
+						<h3 class="leckerli" id="title-header" style="background-color:#f1592a;color:#fff; padding: 10px 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-top: -60px;">Inventory System</h3>
+						<h4>Login</h4>
 						<br>
 						<form class="form" method="post" action="./index.php">
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
