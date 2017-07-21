@@ -11,7 +11,7 @@
 
          $result = mysqli_query($conn , $sql);
 
-      	echo "<option value=''>Changed</option>";
+      	echo "<option value=''>Select City</option>";
 	      while($row = mysqli_fetch_row($result)){
 	         echo "<option value='".$row[0]."' >".$row[1]."</option>";
 	      }
