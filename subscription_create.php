@@ -12,8 +12,8 @@
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
 		<div class="col-sm-5">
-			<input type="radio" class="form-control" id="status" name="New">
-            <input type="radio" class="form-control" id="status" name="Extension">
+			<input type="radio" class="form-control" id="status" value="new" name="New">
+            <input type="radio" class="form-control" id="status" value="extension" name="Extension">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
