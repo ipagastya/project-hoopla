@@ -69,7 +69,7 @@
 						<option value=''>Select city</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM city order by city_name ASC";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
 						        $result = mysqli_query($conn, $query);
 						        while($row = mysqli_fetch_row($result)){
 					                echo
@@ -88,7 +88,7 @@
 						<option value=''>Select province</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM province order by province_name ASC";
+					            $query = "SELECT * FROM PROVINCE ORDER BY province_name ASC";
 						        $result = mysqli_query($conn, $query);
 						        while($row = mysqli_fetch_row($result)){
 					                echo
@@ -477,7 +477,7 @@
 				$flagZIP = true;
 				$flagFavorite = true;
 				$flagMilestone = true;
-               	$query = "INSERT INTO customer(cust_name,baby_name,baby_dob,phone_home,phone_mobile,line_id,email,address,city_id,province_id,zip_code,favorite_toys,milestones) 
+               	$query = "INSERT INTO CUSTOMER(cust_name,baby_name,baby_dob,phone_home,phone_mobile,line_id,email,address,city_id,province_id,zip_code,favorite_toys,milestones) 
 						VALUES('$customerID','$babyID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
                	if($result = mysqli_query($conn, $query)){
 					print "<script>alert('Customer Telah Berhasil Didaftarkan');</script>";

@@ -69,7 +69,7 @@
 						<option value=''>Select city</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM city order by city_name ASC";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
 						        $result = mysqli_query($conn, $query);
 						        while($row = mysqli_fetch_row($result)){
 					                echo
@@ -88,7 +88,7 @@
 						<option value=''>Select province</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM province order by province_name ASC";
+					            $query = "SELECT * FROM PROVINCE ORDER BY province_name ASC";
 						        $result = mysqli_query($conn, $query);
 						        while($row = mysqli_fetch_row($result)){
 					                echo
@@ -151,7 +151,7 @@
 		{
 			$id = $_POST["view"];
 			$query1 = "SELECT cust_name, baby_name, baby_dob, phone_home, phone_mobile, line_id, email, address, city_id, province_id, zip_code, favorite_toys, milestones
-						FROM customer WHERE cust_id = $id";
+						FROM CUSTOMER WHERE cust_id = $id";
             $result = mysqli_query($conn, $query1);                          
 			if(!$result){
 				print("Couldn't execute query");   
@@ -440,7 +440,7 @@
 					$flagMilestone = true;
 					
 						print "<script>alert('TEST');</script>";
-						$query2 = "UPDATE customer SET cust_name='$customerID', baby_name='$babyID', baby_dob='$dobID', phone_home='$homeNumberID',
+						$query2 = "UPDATE CUSTOMER SET cust_name='$customerID', baby_name='$babyID', baby_dob='$dobID', phone_home='$homeNumberID',
 									phone_mobile='$mobileNumberID', line_id='$lineID', email='$emailID', address='$addressID', city_id='$cityID', 
 									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones'$milestoneID' 
 									WHERE cust_id='$id'";
