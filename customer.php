@@ -86,6 +86,7 @@
 				<div class="col-sm-5">	
 					<select class="form-control" id="cityID" name="cityID">
 						<option value=''>Select city</option>
+								<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 								<script>
 									 $("#provinceID").change(function(){
 									    	$("#cityID").empty();
