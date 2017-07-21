@@ -12,7 +12,7 @@
 
          $result = mysqli_query($conn , $sql);
 
-      	echo "<option value='default'>Select City</option>";
+      	echo "<option value='default'>Changed</option>";
 	      while($row = mysqli_fetch_row($result)){
 	         "<option value='".$row[0]."' >".$row[1]."</option>";
 	      }
