@@ -50,8 +50,8 @@ require_once("header.php");
         <div class="col-sm-5">
             <?php
             require("config.php");
-            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
-            $result = mysqli_query($query);
+//            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+//            $result = mysqli_query($query);
             echo '<p>' + 'tess' +'</p>'
             ?>
         </div>
