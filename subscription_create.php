@@ -10,9 +10,10 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="status">New/Extension :</label>
+		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="status" name="status">
+			<input type="radio" class="form-control" id="status" name="New">
+            <input type="radio" class="form-control" id="status" name="Extension">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
