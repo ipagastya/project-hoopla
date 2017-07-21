@@ -254,8 +254,11 @@
 					$practical_life = false;
 				}
 
+				$cat1_id = mysqli_query($conn, "SELECT category_id from CATEGORY where category_name = '$category_1'");
+				$cat2_id = mysqli_query($conn, "SELECT category_id from CATEGORY where category_name = '$category_2'");
+
 				$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
-						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
+						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$cat1_id','$cat2_id','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
 
 				$result = mysqli_query($conn, $query);
 				echo"<script>alert('Successfully Added Inventory');</script>";
