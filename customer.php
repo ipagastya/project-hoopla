@@ -86,15 +86,20 @@
 				<div class="col-sm-5">	
 					<select class="form-control" id="cityID" name="cityID">
 						<option value=''>Select city</option>
-						<?php
-                            	include "config.php";
-					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
-						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
-					                echo
-					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
-					            }
-				            ?>
+								<script>
+									 $("#provinceID").change(function(){
+									    	$("#cityID").empty
+									    	var currentProvince = $(this).find(':selected').val();
+									    	$.ajax({
+												type: "POST",
+												url: "select_city.php",
+												data: {province: currentProvince},
+												success: function(response){
+													$("#cityID").html(response);
+												}
+											});
+									    });
+								</script>
 					</select>
 				</div>
 				<div id='errorCity' style='color:red;text-align: left;'></div>
