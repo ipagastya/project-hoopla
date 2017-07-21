@@ -33,16 +33,18 @@ require_once("header.php")
 		<div class="col-sm-2"></div>
 	</div>
     <div class="form-group">
-        <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-        <div class="col-sm-5">
-            <input type="number" class="form-control" id="sub-price" name="sub-price">
-        </div>
-        <div class="col-sm-3"></div>
-    </div>
-    <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
         <div class="col-sm-5">
             <input type="text" class="form-control" id="sub-promo" name="sub-promo">
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+<!--    TODO: Price otomatis ke generate ketika subs plan dipilih
+              and (subs promo on hold)-->
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
+        <div class="col-sm-5">
+            <input type="number" class="form-control" id="sub-price" name="sub-price">
         </div>
         <div class="col-sm-3"></div>
     </div>
