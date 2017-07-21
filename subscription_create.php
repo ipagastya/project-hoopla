@@ -17,7 +17,7 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
+		<label class="control-label col-sm-4" for="plan">New/Extension :</label>
 		<div class="col-sm-5">
 			<input type="number" class="form-control" id="plan" name="plan">
 		</div>
