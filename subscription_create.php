@@ -10,7 +10,7 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
+		<label class="radio col-sm-4" for="status">Subscription Type :</label>
 		<div class="col-sm-5">
 			<input type="radio" class="form-control" id="status" name="New">
             <input type="radio" class="form-control" id="status" name="Extension">
