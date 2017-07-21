@@ -16,7 +16,7 @@ $deposit = $_POST['deposit'];
 $pay_term = $_POST['pay-term'];
 $refund_date = $_POST['refund-date'];
 $deposit_status = $_POST['deposit-status'];
-if(($result = mysqli_query($conn, "SELECT * FROM CUSTOMER WHERE CUST_NAME = 'baka'")) === FALSE){
+if(($result = mysqli_query($conn, "SELECT * FROM CUSTOMER WHERE CUST_NAME = '$customer'")) === FALSE){
 	echo 'test';
 	echo mysqli_error($conn);
 	
