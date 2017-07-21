@@ -49,10 +49,10 @@ require_once("header.php");
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
         <div class="col-sm-5">
             <?php
-//            require("config.php");
-//            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
-//            $result = mysqli_query($conn, query);
-            echo 'asdasdsad'
+            require("config.php");
+            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+            $result = mysqli_query($conn, query);
+            echo $result
             ?>
         </div>
         <div class="col-sm-3"></div>
