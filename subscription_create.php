@@ -1,5 +1,5 @@
 <?php
-	require_once("header.php")
+require_once("header.php")
 ?>
 <form class="form-horizontal" action="insertsubscription.php" method="POST">
 	<div class="form-group">
@@ -10,19 +10,27 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="radio col-sm-4" for="status">Subscription Type :</label>
-		<div class="col-sm-5">
-			<input type="radio" class="form-control" id="status" value="new" name="New">
-            <input type="radio" class="form-control" id="status" value="extension" name="Extension">
+		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="new" name="status">New</label>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="extension" name="status">Extension</label>
+		</div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
-		<div class="col-sm-5">
-			<input type="number" class="form-control" id="plan" name="plan">
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="1" name="plan">1 Month</label>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="3" name="plan">3 Months</label>
+		</div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="6" name="plan">6 Months</label>
+		</div>
+		<div class="col-sm-2"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
@@ -103,5 +111,5 @@
 	</div>
 </form>
 <?php
-	require_once("footer.php")
+require_once("footer.php")
 ?>
