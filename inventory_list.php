@@ -38,19 +38,43 @@
 	<h4>Subscription Table</h4>
 	<div class="table-responsive">
 		<table class="table table-hover">
-			<tr>
-				<th>Toy Name</th>
-				<th>Product Code</th>
-				<th>Manufacturer</th>
-				<th>Toy Category 1</th>
-				<th>Toy Category 2</th>
-				<th>Hoopla Age</th>
-				<th>Status</th>
-				<th>Details</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Toy Name</th>
+					<th>Product Code</th>
+					<th>Manufacturer</th>
+					<th>Toy Category 1</th>
+					<th>Toy Category 2</th>
+					<th>Hoopla Age</th>
+					<th>Status</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
 			<?php
-				// loop untuk isi db
+				include "config.php";
+				$query = "SELECT * FROM inventory";
+				$result = mysqli_query($conn,$query);
+				if(!$result){
+	               	echo("Couldn't execute query");
+	                die(mysqli_connect_error());
+	            }
+	            $header=false;
+				while($row = mysqli_fetch_row($result))
+		        {
+		        	echo "<tr>
+		        			<td>".$row[1]."</td>
+		        			<td>".$row[0]."</td>
+		        			<td>".$row[2]."</td>
+		        			<td>".$row[6]."</td>
+		        			<td>".$row[7]."</td>
+		        			<td>".$row[9]."-".$row[10]."</td>
+		        			<td>".$row[3]."</td>
+		        			<td>"."<a method='post' href='inventory.php?productcode=$row[0]' class='btn btn-default' name='edit/view'>View</a>"."</td>
+		        		</tr>";
+		        }
 			?>
+			</tbody>
 		</table>
 	</div>
 	<br>
