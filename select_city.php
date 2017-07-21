@@ -8,7 +8,7 @@
 
          $sql = "SELECT C.city_id, C.city_name
                FROM CITY AS C
-               WHERE C.province_id = $periode";
+               WHERE C.province_id = $province";
 
          $result = mysqli_query($conn , $sql);
 
