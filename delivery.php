@@ -1,5 +1,6 @@
 <?php  
 require_once('header.php');
+include "config.php";
 ?>
 <div class="container">
 	<form class="form-horizontal">
@@ -18,24 +19,33 @@ require_once('header.php');
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="city">City :</label>
+			<label class="control-label col-sm-2" for="province">Province :</label>
 			<div class="col-sm-5">	
-				<select class="form-control" id="city" name="city">
-					<option value=''>Select city</option>
+				<select class="form-control" id="province" name="province">
+					<option value=''>Select province</option>
 					<?php
-							// loop isi city dari db
+					// loop isi province dari db
+					$sql_province = "SELECT province_id, province_name FROM PROVINCE";
+					if(($result_province = mysqli_query($conn, $sql_province)) === FALSE){
+						echo "query failing, can't retrieve data";
+					}
+					else{
+						while ($row = mysqli_fetch_assoc($result_province)) { ?>
+						<option value="<?=$row['province_id']?>"><?=$row['province_name']?></option>
+						<?php }
+					}
 					?>
 				</select>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="province">Province :</label>
+			<label class="control-label col-sm-2" for="city">City :</label>
 			<div class="col-sm-5">	
-				<select class="form-control" id="province" name="province">
-					<option value=''>Select province</option>
+				<select class="form-control" id="city" name="city">
+					<option value=''>Select city</option>
 					<?php
-							// loop isi province dari db
+							// loop isi city dari db
 					?>
 				</select>
 			</div>
@@ -170,7 +180,7 @@ require_once('header.php');
 					<option>Item 1</option>
 					<option>Item 2</option>
 					<option>Item 3</option>
-					</select>
+				</select>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
