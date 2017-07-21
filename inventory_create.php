@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
 				<div class="container">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="post" action="./inventory_create.php">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
@@ -88,7 +88,7 @@
 								<select class="form-control" id="motorskill" name="motorskill">
 								    <option>Yes</option>
 								    <option>No</option>
-								  </select>
+								 </select>
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
@@ -145,36 +145,122 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="acquisition">Acquisition Price :</label>
 							<div class="col-sm-5">
-								<select class="form-control" id="acquisition" name="acquisition">
-								    <option>Yes</option>
-								    <option>No</option>
-								  </select>
+								<input type="text" class="form-control" id="acquisition" name="acquisition">
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="retail">Retail Price :</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="hooplaage" name="hooplaage">
+								<input type="text" class="form-control" id="retail" name="retail">
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="retailstoresource">Retail Store Sourced :</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="hooplaage" name="hooplaage">
+								<input type="text" class="form-control" id="retailstoresource" name="retailstoresource">
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-5">
-								<button class="greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+								<button class="greenbutton" type="submit" name="submit" id="submit">Submit</button>
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
 					</form>
 				</div>
+		<?php
+			include"config.php";
+			if(isset($_POST['submit'])){
+				$toy_name = $_POST["toyname"];
+				$product_code = $_POST["prodcode"];
+				$status = $_POST["status"];
+				$return = $_POST["datereturn"];
+				$manufacturer = $_POST["manufacturer"];
+				$battery = $_POST["batteryopt"];
+				$category_1 = $_POST["cat1"];
+				$category_2 = $_POST["cat2"];
+				$mf_age = $_POST["mfage"];
+				$hoopla_age = $_POST["hooplaage"];
+				$fine_motor = $_POST["motorskill"];
+				$linguistic = $_POST["linguisticskill"];
+				$cognitive = $_POST["cognitiveskill"];
+				$social_emotional = $_POST["socialskill"];
+				$imagination = $_POST["imagination"];
+				$practical_life = $_POST["practicalskill"];
+				$acquisition_price = $_POST["acquisition"];
+				$retail_price = $_POST["retail"];
+				$retail_store = $_POST["retailstoresource"];
+
+				/*Hoopla Age Tokenizer*/
+				$token = strtok($hoopla_age, "-");
+				$count = 0;
+				$age_lower = "";
+				$age_upper = "";
+				while ($token !== false){
+					if($age_lower == ""){
+						$age_lower = "$token";
+					}
+					$token = strtok("-");
+					if($age_upper == ""){
+						$age_upper = "$token";
+					}
+						
+				}
+
+				/*boolean*/
+				if($battery =="Yes"){
+					$battery = true;
+				}else{
+					$battery = false;
+				}
+
+				if($fine_motor =="Yes"){
+					$fine_motor = true;
+				}else{
+					$fine_motor = false;
+				}
+
+				if($linguistic =="Yes"){
+					$linguistic = true;
+				}else{
+					$linguistic = false;
+				}
+
+				if($cognitive =="Yes"){
+					$cognitive = true;
+				}else{
+					$cognitive = false;
+				}
+
+				if($social_emotional =="Yes"){
+					$social_emotional = true;
+				}else{
+					$social_emotional = false;
+				}
+
+				if($imagination =="Yes"){
+					$imagination = true;
+				}else{
+					$imagination = false;
+				}
+
+				if($practical_life =="Yes"){
+					$practical_life = true;
+				}else{
+					$practical_life = false;
+				}
+
+				$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
+						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
+
+				$result = mysqli_query($conn, $query);
+				echo"<script>alert('Successfully Added Inventory');</script>";
+			}
+		?>
 
 <?php 
 	require('footer.php');
