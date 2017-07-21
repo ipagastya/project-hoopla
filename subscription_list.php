@@ -62,7 +62,28 @@
 				<th>Payment Note</th>
 				<th>Details</th>
 			</tr>
-			<?php 
+			<?php
+				include "config.php";
+				$sql = "SELECT subs_id, cust_name, status, subs_plan, num_ofToys, first_deliv, final_pickup, payment_terms FROM SUBSCRIPTION AS S JOIN CUSTOMER AS C ON S.cust_id = C.cust_id ";
+				if (($result = mysqli_query($conn, $sql)) === FALSE){
+					echo "query failing";
+				}
+				else {
+					if (mysqli_num_rows($result) > 0) {
+						while($row = mysqli_fetch_assoc($result)) { ?>
+							<tr>
+								<td><?=$row['cust_name']?></td>
+								<td><?=$row['status']?></td>
+								<td><?=$row['subs_plan']?></td>
+								<td><?=$row['num_ofToys']?></td>
+								<td><?=$row['first_deliv']?></td>
+								<td><?=$row['final_pickup']?></td>
+								<td><?=$row['payment_terms']?></td>
+								<td><a class='btn btn-default' href="subscription.php?subs_id=<?=$row['subs_id']?>"></a></td>
+							</tr>
+						<?php }
+					}
+				}
 				// from content db
 			?>
 		</table>

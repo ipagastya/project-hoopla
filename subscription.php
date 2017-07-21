@@ -1,6 +1,10 @@
 <?php 
-require('header.php');
-
+	require('header.php');
+	if(!isset($_GET['subs_id'])){
+		header("location: subscription_list.php ");
+	}else{
+		$subs_id = $_GET['subs_id'];
+	}
 ?>
 <div class= "container">
 	<form class="form-horizontal">
