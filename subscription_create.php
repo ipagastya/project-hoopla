@@ -1,5 +1,5 @@
 <?php
-	require_once("header.php")
+require_once("header.php")
 ?>
 <form class="form-horizontal" action="insertsubscription.php" method="POST">
 	<div class="form-group">
@@ -10,19 +10,44 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="status">New/Extension :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="status" name="status">
+		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="new" name="status">New</label>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="extension" name="status">Extension</label>
+		</div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
-		<div class="col-sm-5">
-			<input type="number" class="form-control" id="plan" name="plan">
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="1" name="plan">1 Month</label>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="3" name="plan">3 Months</label>
+		</div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="6" name="plan">6 Months</label>
+		</div>
+		<div class="col-sm-2"></div>
 	</div>
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="sub-promo" name="sub-promo">
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+<!--    TODO: Price otomatis ke generate ketika subs plan dipilih
+              and (subs promo on hold)-->
+    <div class="form-group">
+        <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
+        <div class="col-sm-5">
+            <input type="number" class="form-control" id="sub-price" name="sub-price">
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 		<div class="col-sm-5">
@@ -34,20 +59,6 @@
 		<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
 		<div class="col-sm-5">
 			<input type="date" class="form-control" id="first-deliv" name="first-deliv">
-		</div>
-		<div class="col-sm-3"></div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-		<div class="col-sm-5">
-			<input type="number" class="form-control" id="sub-price" name="sub-price">
-		</div>
-		<div class="col-sm-3"></div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="sub-promo" name="sub-promo">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
@@ -102,5 +113,6 @@
 	</div>
 </form>
 <?php
-	require_once("footer.php")
+require_once("footer.php")
+#sdsd
 ?>
