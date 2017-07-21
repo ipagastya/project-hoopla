@@ -52,7 +52,7 @@ require_once("header.php");
 //            require("config.php");
 //            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
 //            $result = mysqli_query($conn, query);
-            echo 'asdasdasd'
+            echo 'asdasdsad'
             ?>
         </div>
         <div class="col-sm-3"></div>
