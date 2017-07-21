@@ -63,25 +63,6 @@
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="city">City :</label>
-				<div class="col-sm-5">	
-					<select class="form-control" id="cityID" name="cityID">
-						<option value=''>Select city</option>
-						<?php
-                            	include "config.php";
-					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
-						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
-					                echo
-					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
-					            }
-				            ?>
-					</select>
-				</div>
-				<div id='errorCity' style='color:red;text-align: left;'></div>
-				<div class="col-sm-5"></div>
-			</div>
-			<div class="form-group">
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
 					<select class="form-control" id="provinceID" name="provinceID">
@@ -98,6 +79,25 @@
 					</select>
 				</div>
 				<div id='errorProvince' style='color:red;text-align: left;'></div>
+				<div class="col-sm-5"></div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="city">City :</label>
+				<div class="col-sm-5">	
+					<select class="form-control" id="cityID" name="cityID">
+						<option value=''>Select city</option>
+						<?php
+                            	include "config.php";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
+						        $result = mysqli_query($conn, $query);
+						        while($row = mysqli_fetch_row($result)){
+					                echo
+					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
+					            }
+				            ?>
+					</select>
+				</div>
+				<div id='errorCity' style='color:red;text-align: left;'></div>
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
@@ -481,6 +481,7 @@
 						VALUES('$customerID','$babyID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
                	if($result = mysqli_query($conn, $query)){
 					print "<script>alert('Customer Telah Berhasil Didaftarkan');</script>";
+					header :
 
                	}
                 	

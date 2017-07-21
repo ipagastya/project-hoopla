@@ -35,7 +35,7 @@
                                 
 								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
 											<tr>
-												<td><h6 name= 'selectKode'>" . $row[0] . "</h6><br></td>";
+												<td>" . $row[0] . "</td>";
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
