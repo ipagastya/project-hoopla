@@ -1,5 +1,6 @@
 <?php 
 	require('header.php');
+	require('footer.php');
 ?>
  <div class="container">
 		<form class="form-horizontal" method="post" action="./customer.php">
