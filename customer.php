@@ -88,7 +88,7 @@
 						<option value=''>Select city</option>
 								<script>
 									 $("#provinceID").change(function(){
-									    	$("#cityID").empty
+									    	$("#cityID").empty();
 									    	var currentProvince = $(this).find(':selected').val();
 									    	$.ajax({
 												type: "POST",
