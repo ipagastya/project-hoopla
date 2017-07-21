@@ -1,7 +1,7 @@
 <?php
 	require_once("header.php")
 ?>
-<form class="form-horizontal">
+<form class="form-horizontal" action="insertsubscription.php" method="POST">
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 		<div class="col-sm-5">
@@ -24,9 +24,9 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="plan">No of Toys/Month :</label>
+		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="plan" name="plan">
+			<input type="number" class="form-control" id="toypermonth" name="toypermonth">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
@@ -96,7 +96,7 @@
 	<div class="form-group">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-5">
-			<button class="btn btn-primary greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+			<button class="btn btn-primary greenbutton" type="submit">Submit</button>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
