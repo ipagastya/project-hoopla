@@ -1,8 +1,8 @@
 <?php 
 	require('header.php');
-	require('footer.php');
 ?>
- <div class="container">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container">
 		<form class="form-horizontal" method="post" action="./customer.php">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="customerID">Customer's Name :</label>
