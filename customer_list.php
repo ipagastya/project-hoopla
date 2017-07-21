@@ -19,10 +19,33 @@
 				</tr>
 				<?php
 					// loop untuk isi db
+					include "config.php";
+					
+                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_dob FROM customer c";
+                            $result = mysqli_query($conn, $query);                          
+						   if(!$result){
+                                print("Couldn't execute query");
+                                die(mysqli_connect_error());
+                            }
+                            while($row = mysqli_fetch_row($result)){
+
+								$from = new DateTime($row[3]);
+								$to   = new DateTime('today');
+								$id = $row[0];
+                                
+								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
+											<tr>
+												<td><h6 name= 'selectKode'>" . $row[0] . "</h6><br></td>";
+											echo"<td>" . $row[1] . "<br></td>";
+											echo"<td>" . $row[2] . "<br></td>";
+											echo"<td>" . $row[3] . "<br></td>";
+											echo"<td>" . $from->diff($to)->y . "<br></td>";
+											echo"<td><button name='view' value='". $id . "' class='addbutton' type='submit' style='text-decoration: none; color:white;'><span class='glyphicon glyphicon-eye-open'></span> View </button></td></tr></tbody>
+										</form>";
+                            } 
 				?>
 			</table>
 		</div>
-
 	<!-- belom ada pagination -->
 	</div>
 </div>
