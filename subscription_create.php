@@ -10,16 +10,19 @@
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="status">New/Extension :</label>
+		<label class="radio col-sm-4" for="status">Subscriber Type :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="status" name="status">
+			<input type="radio" id="newStatus" name="New">
+            <input type="radio" id="extStatus" name="Extension">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="plan">New/Extension :</label>
+		<label class="radio col-sm-4" for="plan">Subscription Plan :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="plan" name="plan">
+            <input type="radio" id="1month" name="1 Month">
+			<input type="radio" id="3month" name="3 Months">
+            <input type="radio" id="6month" name="6 Months">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
