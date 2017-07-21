@@ -21,7 +21,7 @@
 					// loop untuk isi db
 					include "config.php";
 					
-                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_dob FROM customer c";
+                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_dob FROM CUSTOMER AS c";
                             $result = mysqli_query($conn, $query);                          
 						   if(!$result){
                                 print("Couldn't execute query");
