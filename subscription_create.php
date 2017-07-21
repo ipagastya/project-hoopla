@@ -1,6 +1,7 @@
 <?php
-require_once("header.php")
+require_once("header.php");
 ?>
+
 <form class="form-horizontal" action="insertsubscription.php" method="POST">
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
@@ -31,6 +32,9 @@ require_once("header.php")
 			<label><input type="radio" value="6" name="plan">6 Months</label>
 		</div>
 		<div class="col-sm-2"></div>
+        <?php
+        $subs_type = "3 Months";
+        ?>
 	</div>
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
@@ -44,7 +48,12 @@ require_once("header.php")
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
         <div class="col-sm-5">
-            <input type="number" class="form-control" id="sub-price" name="sub-price">
+            <?php
+            require("config.php");
+            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+            $result = mysqli_query($query);
+            echo '<p>' + $result + '</p>'
+            ?>
         </div>
         <div class="col-sm-3"></div>
     </div>
