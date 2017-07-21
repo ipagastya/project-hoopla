@@ -1,7 +1,6 @@
 <?php
    session_start();
    include "config.php";
-   require('header.php');
    
       if(isset($_POST['province'])){
          $province = $_POST['province'];
@@ -18,10 +17,3 @@
 	      }
       }
 ?>
-<html>
-<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-</body>
-</html>
