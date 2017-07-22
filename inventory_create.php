@@ -59,7 +59,7 @@
 								<select class="form-control" id="cat1" name="cat1">
 								<?php
 									include "config.php";
-									$query = "SELECT category_name FROM category";
+									$query = "SELECT category_name FROM CATEGORY";
 									$result = mysqli_query($conn,$query);
 									while($row = mysqli_fetch_row($result))
 							        {
