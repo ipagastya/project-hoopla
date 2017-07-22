@@ -10,7 +10,7 @@
                WHERE id = $plan";
          $result = mysqli_query($conn , $sql);
 	       $row = mysqli_fetch_row($result);
-	       $price = $row[0] - $promo;
+	       $price = (int)$row[0] - $promo;
 	       echo "Rp. $price";
       }
 ?>
