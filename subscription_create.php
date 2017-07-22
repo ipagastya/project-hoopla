@@ -56,7 +56,7 @@ require_once("header.php");
              	?>
 		<script src="libs/jquery/dist/jquery.min.js"></script>
 		<script>
-			$("input[name=plan]:radio).change(function () {
+			$("input[name=plan]:radio").change(function () {
 				$("#sub-price").empty();
 				var currentPlan = $("input[name='plan']:checked").val();
 				var currentPromo = $("#sub-promo").val();
