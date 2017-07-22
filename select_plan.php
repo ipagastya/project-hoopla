@@ -4,7 +4,7 @@
    
       if(isset($_POST['plan']) && isset($_POST['promo')){
          $plan = $_POST['plan'];
-	 $promo = $_POST['plan'];
+	 $promo = (int)$_POST['promo'];
          $sql = "SELECT price
                FROM SUBSCRIPTION_TYPE
                WHERE id = $plan";
