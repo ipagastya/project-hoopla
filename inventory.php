@@ -24,10 +24,10 @@
 							<label class="control-label col-sm-4" for="status">Inventory Status :</label>
 							<div class="col-sm-5">
 								 <select class="form-control" id="status" name="status">
-									<option>Available</option>
-									<option>Rented</option>
-								    <option>Broken</option>
-									<option>Missing Part</option>
+									<option value="Available">Available</option>
+									<option value="Rented">Rented</option>
+								    <option value="Broken">Broken</option>
+									<option value="Missing Part">Missing Part</option>
 								  </select>
 							</div>
 							<div class="col-sm-3"></div>
@@ -199,11 +199,11 @@
 					<br>
 					<?php
 						include "config.php";
-						$product_code = $_GET['productcode'];
+						$product_code = $_GET['pcode'];
 						/*QUERY AND ECHO FOR INPUT AND DROPDOWN FORM*/
 						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store 
 						FROM INVENTORY 
-						WHERE product_code=".$product_code."";
+						WHERE product_code='$product_code'";
 						
 						$result = mysqli_query($conn, $query);
 						$row = mysqli_fetch_row($result);
@@ -229,7 +229,7 @@
 						/*QUERY AND ECHO FOR YES/NO FORM*/
 						$query2 = "SELECT battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical 
 						FROM INVENTORY 
-						WHERE product_code=".$product_code."";
+						WHERE product_code='$product_code'";
 						
 						$result2 = mysqli_query($conn, $query2);
 						$row2 = mysqli_fetch_row($result2);
@@ -248,7 +248,7 @@
 						/***************************************************************/
 
 						if(isset($_POST['update'])){
-
+							$product_code = $_POST['prodcode'];
 							$toy_name = $_POST["toyname"];
 							$status = $_POST["status"];
 							$return = $_POST["datereturn"];
@@ -267,7 +267,6 @@
 							$acquisition_price = $_POST["acquisition"];
 							$retail_price = $_POST["retail"];
 							$retail_store = $_POST["retailstoresource"];
-
 							/*Hoopla Age Tokenizer*/
 							$token = strtok($hoopla_age, "-");
 							$count = 0;
@@ -343,27 +342,8 @@
 							}else{
 								$practical_life = false;
 							}
-
 							$updtquery = "	UPDATE INVENTORY
-											SET toy_name= '$toy_name', 
-												manufacturer= '$manufacturer',
-												status = '$status',
-												return_date = '$return',
-												battery = '$battery',
-												category_1 = '$category_1',
-												category_2 = '$category_2',
-												manufacturing_age = '$mf_age',
-												age_lower = '$age_lower',
-												age_upper = '$age_upper',
-												fine_motor = '$fine_motor',
-												linguistic = '$linguistic',
-												cognitive = '$cognitive',
-												social_emotional = '$social_emotional',
-												imagination = '$imagination',
-												practical = '$practical_life',
-												acquisition_price = '$acquisition_price',
-												retail_price = '$retail_price',
-												retail_store = '$retail_store'
+											SET toy_name= '$toy_name', manufacturer= '$manufacturer', status= '$status', return_date= '$return', battery= '$battery', category_1= '$category_1', category_2= '$category_2', manufacturing_age= '$mf_age', age_lower= '$age_lower', age_upper= '$age_upper', fine_motor= '$fine_motor', linguistic= '$linguistic',cognitive= '$cognitive', social_emotional= '$social_emotional', imagination= '$imagination', practical= '$practical_life', acquisition_price= '$acquisition_price', retail_price= '$retail_price', retail_store= '$retail_store'
 											WHERE product_code= '$product_code'";
 
 							$updtresult = mysqli_query($conn, $updtquery);
