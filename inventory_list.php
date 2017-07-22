@@ -2,8 +2,11 @@
 	require('header.php');
 ?>
 <div class="container">
-	<button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> filter</button>
+	<center><h3>Inventory List</h3></center>
+	<br>
+	<div class="filterbox"><button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> Filter Subscription Table</button></div>
 	<form class="form-horizontal collapse" id="form-filter">
+		<br>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="dateinventory">Date :</label>
 			<div class="col-sm-3">
@@ -23,10 +26,11 @@
 			</div>
 			<div class="col-sm-7"></div>
 		</div>
+		<br>
 		<div class="form-group">
-			<div class="col-sm-3"></div>
-			<button class="greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
-			<div class="col-sm-8"></div>
+			<div class="col-sm-4"></div>
+			<button class="greenbutton control-label col-sm-4" type="submit"><center>Submit</center></button>
+			<div class="col-sm-4"></div>
 		</div>
 	</form>
 	<br>
@@ -52,7 +56,7 @@
 			<tbody>
 			<?php
 				include "config.php";
-				$query = "SELECT * FROM INVENTORY";
+				$query = "SELECT * FROM inventory";
 				$result = mysqli_query($conn,$query);
 				if(!$result){
 	               	echo("Couldn't execute query");
@@ -61,12 +65,18 @@
 	            $header=false;
 				while($row = mysqli_fetch_row($result))
 		        {
+		        	$queryName1 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[6]."'";
+		        	$resultName1 = mysqli_query($conn, $queryName1);
+		        	$rowName1 = mysqli_fetch_row($resultName1);
+		        	$queryName2 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[7]."'";
+		        	$resultName2 = mysqli_query($conn, $queryName2);
+		        	$rowName2 = mysqli_fetch_row($resultName2);
 		        	echo "<tr>
 		        			<td>".$row[1]."</td>
 		        			<td>".$row[0]."</td>
 		        			<td>".$row[2]."</td>
-		        			<td>".$row[6]."</td>
-		        			<td>".$row[7]."</td>
+		        			<td>".$rowName1[0]."</td>
+		        			<td>".$rowName2[0]."</td>
 		        			<td>".$row[9]."-".$row[10]."</td>
 		        			<td>".$row[3]."</td>
 		        			<td>"."<a method='post' href='inventory.php?productcode=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
