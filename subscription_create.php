@@ -59,11 +59,11 @@ require_once("header.php");
 			$("input[name=plan]:radio,#sub-promo").change(function () {
 				$("#sub-price").empty();
 				var currentPlan = $("input[name='plan']:checked").val();
-				//var currentPromo = $("#sub-promo").val();
+				var currentPromo = $("#sub-promo").val();
 				$.ajax({
 					type: "POST",
 					url: "select_plan.php",
-					data: {plan: currentPlan/*, promo: currentPromo*/},
+					data: {plan: currentPlan,promo: currentPromo},
 					success: function(response){
 						$("#sub-price").html(response);
 					}
