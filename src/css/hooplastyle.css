@@ -84,6 +84,9 @@ nav{
 	box-shadow: none;
 	border-width: 0px;
 }
+.greenbutton:hover{
+	background: #1abc9c;
+}
 
 /*Specialization*/
 .welcomepage{
@@ -127,6 +130,7 @@ nav{
 	background-color: #e6e9ed;
 	padding : 15px 40px;
 }
-#form-filter:hover{
-	box-shadow: 10px 10px 5px #d6dbdf;
+.filterbox{
+	background-color: #34495e;
+	border-radius: 15px;
 }
