@@ -56,7 +56,7 @@
 			<tbody>
 			<?php
 				include "config.php";
-				$query = "SELECT * FROM inventory";
+				$query = "SELECT * FROM INVENTORY";
 				$result = mysqli_query($conn,$query);
 				if(!$result){
 	               	echo("Couldn't execute query");
