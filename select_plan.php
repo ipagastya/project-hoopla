@@ -11,6 +11,6 @@
          $result = mysqli_query($conn , $sql);
 	       $row = mysqli_fetch_row($result);
 	       $price = $row[0] - $promo;
-	       echo "$price";
+	       echo "Rp. $price";
       }
 ?>
