@@ -2,7 +2,7 @@
    session_start();
    include "config.php";
    
-      if(isset($_POST['plan'])/* && isset($_POST['promo')*/){
+      if(isset($_POST['plan']) && isset($_POST['promo')){
          $plan = $_POST['plan'];
 	 $promo = $_POST['promo'];
          $sql = "SELECT price
