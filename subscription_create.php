@@ -26,10 +26,10 @@ require_once("header.php");
 			<label><input type="radio" value="1" name="plan">1 Month</label>
 		</div>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="3" name="plan">3 Months</label>
+			<label><input type="radio" value="2" name="plan">3 Months</label>
 		</div>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="6" name="plan">6 Months</label>
+			<label><input type="radio" value="3" name="plan">6 Months</label>
 		</div>
 		<div class="col-sm-2"></div>
         <?php
@@ -39,7 +39,7 @@ require_once("header.php");
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="sub-promo" name="sub-promo">
+            <input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0">
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -47,13 +47,29 @@ require_once("header.php");
               and (subs promo on hold)-->
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-        <div class="col-sm-5">
-            <?php
-            require("config.php");
-            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
-            $result = "guna";//mysqli_query($conn, $query);
-            echo $result
-            ?>
+        <div id="sub-price" class="col-sm-5">
+           	<?php
+          //  require("config.php");
+          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+          //  $result = "guna";//mysqli_query($conn, $query);
+          //  echo $result
+             	?>
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+		<script>
+			$("input[name=plan]:radio, #sub-promo").change(function () {
+				$("#sub-price").empty();
+				var currentPlan = $("input[name='plan']:checked").val();
+				var currentPromo = $("#sub-promo").val();
+				$.ajax({
+					type: "POST",
+					url: "select_plan.php",
+					data: {plan: currentPlan, promo: currentPromo},
+					success: function(response){
+						$("#sub-price").html(response);
+					}
+				});
+			});
+		</script>
         </div>
         <div class="col-sm-3"></div>
     </div>
