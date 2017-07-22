@@ -76,11 +76,11 @@
 								<select class="form-control" id="cat2" name="cat2">
 								<?php
 									include "config.php";
-									$query = "SELECT category_name FROM category";
+									$query = "SELECT category_name FROM CATEGORY";
 									$result = mysqli_query($conn,$query);
 									while($row = mysqli_fetch_row($result))
 							        {
-							        	echo "<select>".$row[0]."</select>";
+							        	echo "<option value='".$row[0]."</option>";
 							        }
 								?>
 								</select>
