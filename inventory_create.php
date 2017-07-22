@@ -2,6 +2,8 @@
 	require('header.php');
 ?>
 				<div class="container">
+					<center><h3>Create Inventory</h3></center>
+					<br>
 					<form class="form-horizontal" method="post" action="./inventory_create.php">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
@@ -59,11 +61,11 @@
 								<select class="form-control" id="cat1" name="cat1">
 								<?php
 									include "config.php";
-									$query = "SELECT category_name FROM CATEGORY";
+									$query = "SELECT category_name FROM category";
 									$result = mysqli_query($conn,$query);
 									while($row = mysqli_fetch_row($result))
 							        {
-							        	echo "<option value='".$row[0]."</option>";
+							        	echo "<option>".$row[0]."</option>";
 							        }
 								?>
 								</select>
@@ -76,11 +78,11 @@
 								<select class="form-control" id="cat2" name="cat2">
 								<?php
 									include "config.php";
-									$query = "SELECT category_name FROM CATEGORY";
+									$query = "SELECT category_name FROM category";
 									$result = mysqli_query($conn,$query);
 									while($row = mysqli_fetch_row($result))
 							        {
-							        	echo "<option value='".$row[0]."</option>";
+							        	echo "<option>".$row[0]."</option>";
 							        }
 								?>
 								</select>
@@ -183,12 +185,13 @@
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
+						<br>
 						<div class="form-group">
 							<div class="col-sm-4"></div>
-							<div class="col-sm-5">
+							<div class="col-sm-4">
 								<button class="greenbutton" type="submit" name="submit" id="submit">Submit</button>
 							</div>
-							<div class="col-sm-3"></div>
+							<div class="col-sm-4"></div>
 						</div>
 					</form>
 				</div>
@@ -229,6 +232,23 @@
 						$age_upper = "$token";
 					}
 						
+				}
+				/*Category Id Search*/
+				if($category_1 != ""){
+					$searchqueryCat1 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_1."'";
+					$resultCat1 = mysqli_query($conn, $searchqueryCat1);
+					//$idcat1 = mysqli_fetch_assoc($resultCat1);
+					while($row1 = mysqli_fetch_row($resultCat1)){
+						$category_1 = $row1[0];
+					}
+				}
+				if($category_2 != ""){
+					$searchqueryCat2 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_2."'";
+					$resultCat2 = mysqli_query($conn, $searchqueryCat2);
+					while($row2 = mysqli_fetch_row($resultCat2)){
+						$category_2 = $row2[0];
+					}
+					
 				}
 
 				/*boolean*/
@@ -274,14 +294,12 @@
 					$practical_life = false;
 				}
 
-				$cat1_id = mysqli_query($conn, "SELECT category_id from CATEGORY where category_name = '$category_1'");
-				$cat2_id = mysqli_query($conn, "SELECT category_id from CATEGORY where category_name = '$category_2'");
-
 				$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
-						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$cat1_id','$cat2_id','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
+						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
 
 				$result = mysqli_query($conn, $query);
 				echo"<script>alert('Successfully Added Inventory');</script>";
+				
 			}
 		?>
 
