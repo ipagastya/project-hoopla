@@ -57,14 +57,35 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="cat1">Toy Category 1 :</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="cat1" name="cat1">
+								<select class="form-control" id="cat1" name="cat1">
+								<?php
+									include "config.php";
+									$query = "SELECT category_name FROM category";
+									$result = mysqli_query($conn,$query);
+									while($row = mysqli_fetch_row($result))
+							        {
+							        	echo "<select>".$row[0]."</select>";
+							        }
+								?>
+								</select>
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="cat2">Toy Category 2 :</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="cat2" name="cat2">
+								<select class="form-control" id="cat2" name="cat2">
+								<?php
+									include "config.php";
+									$query = "SELECT category_name FROM category";
+									$result = mysqli_query($conn,$query);
+									while($row = mysqli_fetch_row($result))
+							        {
+							        	echo "<select>".$row[0]."</select>";
+							        }
+								?>
+								</select>
+							
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
