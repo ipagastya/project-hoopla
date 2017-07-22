@@ -63,7 +63,7 @@
 									$result = mysqli_query($conn,$query);
 									while($row = mysqli_fetch_row($result))
 							        {
-							        	echo "<select>".$row[0]."</select>";
+							        	echo "<option value='".$row[0]."</option>";
 							        }
 								?>
 								</select>
