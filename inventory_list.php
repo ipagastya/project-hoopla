@@ -79,7 +79,7 @@
 		        			<td>".$rowName2[0]."</td>
 		        			<td>".$row[9]."-".$row[10]."</td>
 		        			<td>".$row[3]."</td>
-		        			<td>"."<a method='post' href='inventory.php?productcode=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
+		        			<td>"."<a method='post' href='inventory.php?pcode=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 		        		</tr>";
 		        }
 			?>
