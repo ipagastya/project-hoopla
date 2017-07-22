@@ -5,7 +5,7 @@
 				<div class="container">
 					<center><h3>View Inventory</h3></center>
 					<br>
-					<form class="form-horizontal" method="post" action="./inventory_create.php">
+					<form class="form-horizontal" method="post" action="./inventory.php">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
@@ -190,7 +190,7 @@
 						<div class="form-group">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-4">
-								<button class="greenbutton" type="submit" name="submit" id="submit">Update</button>
+								<button class="greenbutton" type="submit" name="update" id="update">Update</button>
 							</div>
 							<div class="col-sm-4"></div>
 						</div>
@@ -200,7 +200,6 @@
 					<?php
 						include "config.php";
 						$product_code = $_GET['productcode'];
-
 						/*QUERY AND ECHO FOR INPUT AND DROPDOWN FORM*/
 						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store 
 						FROM INVENTORY 
@@ -212,7 +211,7 @@
 						echo"
 						<script>
 							document.getElementById('toyname').value='".$row[0]."';
-							document.getElementById('prodcode').value='".$product_code."';
+							document.getElementById('prodcode').value=".$product_code.";
 							document.getElementById('status').value='".$row[1]."';
 							document.getElementById('datereturn').value='".$row[2]."';
 							document.getElementById('manufacturer').value='".$row[3]."';
@@ -248,7 +247,8 @@
 
 						/***************************************************************/
 
-						if(isset($_POST['submit'])){
+						if(isset($_POST['update'])){
+
 							$toy_name = $_POST["toyname"];
 							$status = $_POST["status"];
 							$return = $_POST["datereturn"];
@@ -386,7 +386,7 @@
 							</tr>
 							<?php
 								include"config.php";
-								
+
 							?>
 						</table>
 					</div>
