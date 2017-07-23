@@ -33,7 +33,7 @@
 								$to   = new DateTime('today');
 								$id = $row[0];
 								$diff = $from->diff($to);
-                                $months = $diff->format('%m') + 12 * $diff->format('%y');
+                                $months = $diff->format('m') + 12 * $diff->format('y');
 								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
 											<tr>
 												<td>" . $row[0] . "</td>";
