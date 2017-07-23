@@ -39,7 +39,7 @@
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
-											echo"<td>" . $from->diff($to)->m . "<br></td>";
+											echo"<td>" . $from->diff($to)->format('%m') + 12 * $diff->format('%y'); . "<br></td>";
 											echo"<td><button name='view' value='". $id . "' class='addbutton' type='submit' style='text-decoration: none; color:white;'><span class='glyphicon glyphicon-eye-open'></span> View </button></td></tr></tbody>
 										</form>";
                             } 
