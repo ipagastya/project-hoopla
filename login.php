@@ -15,7 +15,7 @@ if(isset($_POST["loginbutton"])){
   if($username != "" || $password != ""){
     if($count == 1){
       $_SESSION['username'] = $username;
-      header("location: welcome.php ");
+      header("location: welcome");
     }else{
       echo "<script>alert('The username or password you entered is incorrect');</script>";
     }
