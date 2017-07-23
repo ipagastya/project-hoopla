@@ -301,7 +301,7 @@
 							}
 
 							/*boolean*/
-							if($battery =="Yes"){
+							if($battery =="1"){
 								$battery = true;
 							}else{
 								$battery = false;
