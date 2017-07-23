@@ -354,7 +354,11 @@
 						}
 					?>
 					<div align="right">
-						<button class="addbutton" type="submit"><a href='inventory_card.php?productcode=$product_code' style='text-decoration: none; color:white;'>Update Card</a></button>
+						<?php
+							include "config.php";
+							$product_code = $_GET['pcode'];
+							echo "<a method='post' href='inventory_card.php?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
+						?>
 					</div>
 					<br>
 					<h4>Inventory Card</h4>
@@ -369,7 +373,25 @@
 							</tr>
 							<?php
 								include"config.php";
-
+								$product_code = $_GET['pcode'];
+								$query = "SELECT * FROM INVENTORY_CARD WHERE product_code = '$product_code'";
+								$result = mysqli_query($conn,$query);
+								if(!$result){
+					               	echo("Couldn't execute query");
+					                die(mysqli_connect_error());
+					            }
+								while($row = mysqli_fetch_row($result))
+		        				{
+		        					$queryAct = "SELECT activity_name FROM INVENTORY_ACTIVITY WHERE activity_id = '".$row[2]."'";
+		        					$resultAct = mysqli_query($conn, $queryAct);
+		        					$rowAct = mysqli_fetch_row($resultAct);
+		        					echo "<tr>
+						        			<td>".$row[1]."</td>
+						        			<td>".$rowAct[0]."</td>
+						        			<td>".$row[3]."</td>
+						        			<td>".$row[4]."</td>
+						        		</tr>";
+		        				}
 							?>
 						</table>
 					</div>
