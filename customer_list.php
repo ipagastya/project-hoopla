@@ -32,14 +32,15 @@
 								$from = new DateTime($row[3]);
 								$to   = new DateTime('today');
 								$id = $row[0];
-                                
+								$diff = $from->diff($to);
+                                $months = $diff->format('%m') + 12 * $diff->format('%y');
 								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
 											<tr>
 												<td>" . $row[0] . "</td>";
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
-											echo"<td>" . $from->diff($to)->format('%m') + 12 * $diff->format('%y'); . "<br></td>";
+											echo"<td>" . $months . "<br></td>";
 											echo"<td><button name='view' value='". $id . "' class='addbutton' type='submit' style='text-decoration: none; color:white;'><span class='glyphicon glyphicon-eye-open'></span> View </button></td></tr></tbody>
 										</form>";
                             } 
