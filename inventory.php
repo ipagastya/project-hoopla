@@ -307,37 +307,37 @@
 								$battery = false;
 							}
 
-							if($fine_motor =="Yes"){
+							if($fine_motor =="1"){
 								$fine_motor = true;
 							}else{
 								$fine_motor = false;
 							}
 
-							if($linguistic =="Yes"){
+							if($linguistic =="1"){
 								$linguistic = true;
 							}else{
 								$linguistic = false;
 							}
 
-							if($cognitive =="Yes"){
+							if($cognitive =="1"){
 								$cognitive = true;
 							}else{
 								$cognitive = false;
 							}
 
-							if($social_emotional =="Yes"){
+							if($social_emotional =="1"){
 								$social_emotional = true;
 							}else{
 								$social_emotional = false;
 							}
 
-							if($imagination =="Yes"){
+							if($imagination =="1"){
 								$imagination = true;
 							}else{
 								$imagination = false;
 							}
 
-							if($practical_life =="Yes"){
+							if($practical_life =="1"){
 								$practical_life = true;
 							}else{
 								$practical_life = false;
