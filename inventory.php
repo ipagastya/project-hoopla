@@ -349,7 +349,7 @@
 							$updtresult = mysqli_query($conn, $updtquery);
 							echo"<script>
 									alert('Update Inventory Success');
-									window.location.href='inventory_list.php';
+									window.location.href='inventory_list';
 								</script>";
 						}
 					?>
