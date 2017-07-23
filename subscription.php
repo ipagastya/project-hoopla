@@ -102,7 +102,7 @@
 	</form>
 	<hr>
 	<div align="right">
-		<a href="delivery.php" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
+		<a href="delivery" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
 	</div>
 	<h4>Delivery Schedule</h4>
 	<div class="table-responsive">
