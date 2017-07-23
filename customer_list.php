@@ -30,9 +30,7 @@
                             while($row = mysqli_fetch_row($result)){
 
 								$from = new DateTime($row[3]);
-								$from -> format("m");
 								$to   = new DateTime('today');
-								$to -> format("m");
 								$id = $row[0];
                                 
 								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
@@ -41,7 +39,7 @@
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
-											echo"<td>" . $from->diff($to)->y . "<br></td>";
+											echo"<td>" . $from->diff($to)->m . "<br></td>";
 											echo"<td><button name='view' value='". $id . "' class='addbutton' type='submit' style='text-decoration: none; color:white;'><span class='glyphicon glyphicon-eye-open'></span> View </button></td></tr></tbody>
 										</form>";
                             } 
