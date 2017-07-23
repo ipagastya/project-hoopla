@@ -62,7 +62,6 @@
 	               	echo("Couldn't execute query");
 	                die(mysqli_connect_error());
 	            }
-	            $header=false;
 				while($row = mysqli_fetch_row($result))
 		        {
 		        	$queryName1 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[6]."'";
