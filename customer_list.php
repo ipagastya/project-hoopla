@@ -30,7 +30,9 @@
                             while($row = mysqli_fetch_row($result)){
 
 								$from = new DateTime($row[3]);
+								$from -> format("m");
 								$to   = new DateTime('today');
+								$to -> format("m");
 								$id = $row[0];
                                 
 								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
