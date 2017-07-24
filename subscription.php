@@ -18,102 +18,148 @@ if(!isset($_GET['subs_id'])){
 			$row = mysqli_fetch_assoc($result);
 			?>
 			<div class= "container">
-				<form class="form-horizontal">
+				<form class="form-horizontal" action="insertsubscription.php" method="POST">
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="customerName">Customer Name :</label>
+						<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="customerName" name="customerName" value="<?=$row['cust_name']?>" disabled>
+							<input type="text" class="form-control" id="customerName" name="customerName" value="<?=$row['cust_name']?>" readonly>
+							</select>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="status">New/Extension :</label>
-						<div class="col-sm-5">
-							<input type="text" class="form-control" id="status" name="status" value="<?="test"?>">
+						<label class="control-label col-sm-4" for="status">Subscription Type :</label>
+						<div class="col-sm-2 radio">
+							<label><input type="radio" value="new" name="status" required>New</label>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-2 radio">
+							<label><input type="radio" value="extension" name="status">Extension</label>
+						</div>
+						<div class="col-sm-4"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="plan">Subscription Plan :</label>
-						<div class="col-sm-5">
-							<input type="number" class="form-control" id="plan" name="plan" value="<?="test"?>">
+						<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
+						<div class="col-sm-2 radio">
+							<label><input type="radio" value="1" name="plan" required>1 Month</label>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-2 radio">
+							<label><input type="radio" value="2" name="plan">3 Months</label>
+						</div>
+						<div class="col-sm-2 radio">
+							<label><input type="radio" value="3" name="plan">6 Months</label>
+						</div>
+						<div class="col-sm-2"></div>
+						<?php
+						$subs_type = "3 Months";
+						?>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="plan">No of Toys/Month :</label>
+						<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="plan" name="plan" value="<?="test"?>">
+							<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
+					</div>
+					<!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
+						<div class="col-sm-1">
+							<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
+							<?php
+          //  require("config.php");
+          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+          //  $result = "guna";//mysqli_query($conn, $query);
+          //  echo $result
+							?>
+							<script src="libs/jquery/dist/jquery.min.js"></script>
+							<script>
+								$("input[name=plan]:radio,#sub-promo").change(function () {
+									$("#sub-price").empty();
+									var currentPlan = $("input[name='plan']:checked").val();
+									var currentPromo = $("#sub-promo").val();
+									$.ajax({
+										type: "POST",
+										url: "select_plan.php",
+										data: {plan: currentPlan,promo: currentPromo},
+										success: function(response){
+											$("#sub-price").val(response);
+										}
+									});
+								});
+							</script>
+						</div>
+						<div class="col-sm-1">
+							<h4>Rupiah</h4>
+						</div>
+						<div class="col-sm-6"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="first-deliv">First Delivery Date :</label>
+						<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 						<div class="col-sm-5">
-							<input type="date" class="form-control" id="first-deliv" name="first-deliv" value="<?="test"?>">
+							<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="0" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="sub-price">Subscription Price :</label>
+						<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="sub-price" name="sub-price" value="<?="test"?>">
+							<input type="date" class="form-control" id="first-deliv" name="first-deliv" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="sub-promo">Subscription Promo :</label>
+						<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="<?="test"?>">
+							<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deliv-price">Delivery Price :</label>
+						<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="deliv-price" name="deliv-price" value="<?="test"?>">
+							<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deliv-promo">Delivery Promo :</label>
+						<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" value="<?="test"?>">
+							<input type="number" class="form-control" id="deposit" name="deposit" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deposit">Deposit Amount :</label>
+						<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="deposit" name="deposit" value="<?="test"?>">
+							<input type="text" class="form-control" id="pay-term" name="pay-term" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="pay-term">Payment Terms :</label>
+						<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="pay-term" name="pay-term" value="<?="test"?>">
+							<input type="date" class="form-control" id="refund-date" name="refund-date" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="refund-date">Deposit Refund Date :</label>
+						<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="refund-date" name="refund-date" value="<?="test"?>">
+							<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="deposit-status">Deposit Status :</label>
+						<div class="col-sm-4"></div>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="deposit-status" name="deposit-status" value="<?="test"?>">
+							<button class="btn btn-primary greenbutton" type="submit">Submit</button>
 						</div>
-						<div class="col-sm-5"></div>
+						<div class="col-sm-3"></div>
 					</div>
 				</form>
 				<hr>
 				<div align="right">
-					<a href="delivery?cust_id" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
+					<a href="delivery?cust_id=<?=$row['cust_id']?>" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
 				</div>
 				<h4>Delivery Schedule</h4>
 				<div class="table-responsive">
