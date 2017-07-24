@@ -5,7 +5,7 @@
 				<div class="container">
 					<center><h3>View Inventory</h3></center>
 					<br>
-					<form class="form-horizontal" method="post" action="./inventory.php">
+					<form class="form-horizontal" method="post" action="./inventory">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
@@ -204,7 +204,6 @@
 						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store 
 						FROM INVENTORY 
 						WHERE product_code='$product_code'";
-						
 						$result = mysqli_query($conn, $query);
 						$row = mysqli_fetch_row($result);
 						
@@ -357,7 +356,7 @@
 						<?php
 							include "config.php";
 							$product_code = $_GET['pcode'];
-							echo "<a method='post' href='inventory_card.php?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
+							echo "<a method='post' href='inventory_card?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
 						?>
 					</div>
 					<br>

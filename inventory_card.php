@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
 <div class="container">
-	<form class="form-horizontal" method="post" action="./inventory_card.php">
+	<form class="form-horizontal" method="post" action="./inventory_card">
 		<!-- helper div to insert product code to database-->
 		<div class="form-group" style="display:none;">
 			<label class="control-label col-sm-3" for="prodcode">Product Code :</label>
@@ -79,7 +79,7 @@
 		echo"
 		<script>
 			alert('Successfully Updated Inventory Card');
-			window.location.href='inventory.php?pcode=$product_code';
+			window.location.href='inventory?pcode=$product_code';
 		</script>";
 	}
 ?>
