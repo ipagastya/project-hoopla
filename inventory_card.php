@@ -79,7 +79,7 @@
 		echo"
 		<script>
 			alert('Successfully Updated Inventory Card');
-			window.location.href='inventory?pcode=$product_code';
+			window.location.href='inventory.php?pcode=$product_code';
 		</script>";
 	}
 ?>

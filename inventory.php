@@ -357,7 +357,7 @@
 						<?php
 							include "config.php";
 							$product_code = $_GET['pcode'];
-							echo "<a method='post' href='inventory_card?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
+							echo "<a method='post' href='inventory_card.php?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
 						?>
 					</div>
 					<br>
