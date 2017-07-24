@@ -57,11 +57,11 @@ include "config.php";
         </div>
         <div class="col-sm-3"></div>
     </div>
-<!--    TODO: Price otomatis ke generate ketika subs plan dipilih
-              and (subs promo on hold)-->
+    <!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-        <div id="sub-price" class="col-sm-5">
+        <div class="col-sm-1">
+        	<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
            	<?php
           //  require("config.php");
           //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
@@ -79,13 +79,16 @@ include "config.php";
 					url: "select_plan.php",
 					data: {plan: currentPlan,promo: currentPromo},
 					success: function(response){
-						$("#sub-price").html(response);
+						$("#sub-price").val(response);
 					}
 				});
 			});
 		</script>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-1">
+        	<h4>Rupiah</h4>
+        </div>
+        <div class="col-sm-6"></div>
     </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
@@ -132,7 +135,7 @@ include "config.php";
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="refund-date" name="refund-date" required>
+			<input type="date" class="form-control" id="refund-date" name="refund-date" required>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
