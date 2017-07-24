@@ -38,7 +38,7 @@
 	<!--============================-->
 	<br>
 	<div align="right">
-		<a href="inventory_create.php"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Inventory</button></a>
+		<a href="inventory_create"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Inventory</button></a>
 	</div>
 	<br>
 	<h4>Subscription Table</h4>
@@ -59,6 +59,7 @@
 			<tbody>
 			<?php
 				include "config.php";
+				/*FILTER FUNCTION*/
 				if(isset($_POST['filtersubmit'])){
 					$date = $_POST['dateinventory'];
 					$status = $_POST['status'];
@@ -84,6 +85,8 @@
 	               	echo("Couldn't execute query");
 	                die(mysqli_connect_error());
 	            }
+	            /********************/
+	            /*LOAD DB FUNCTION*/
 				while($row = mysqli_fetch_row($result))
 		        {
 		        	$queryName1 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[6]."'";
@@ -100,7 +103,7 @@
 		        			<td>".$rowName2[0]."</td>
 		        			<td>".$row[9]."-".$row[10]."</td>
 		        			<td>".$row[3]."</td>
-		        			<td>"."<a method='post' href='inventory.php?pcode=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
+		        			<td>"."<a method='post' href='inventory?pcode=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 		        		</tr>";
 		        }
 			?>

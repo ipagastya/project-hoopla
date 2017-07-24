@@ -4,7 +4,7 @@
 				<div class="container">
 					<center><h3>Create Inventory</h3></center>
 					<br>
-					<form class="form-horizontal" method="post" action="./inventory_create.php">
+					<form class="form-horizontal" method="post" action="./inventory_create">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
