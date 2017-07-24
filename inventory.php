@@ -3,7 +3,7 @@
 ?>
 
 				<div class="container">
-					<center><h3>View Inventory</h3></center>
+					<center><h3>Edit / View Inventory</h3></center>
 					<br>
 					<form class="form-horizontal" method="post" action="./inventory">
 						<div class="form-group">
@@ -199,17 +199,17 @@
 					<br>
 					<?php
 						include "config.php";
-						$product_code = $_GET['pcode'];
+						$inventory_id = $_GET['id'];
 						/*QUERY AND ECHO FOR INPUT AND DROPDOWN FORM*/
-						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store,battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical
+						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store,battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,product_code
 						FROM INVENTORY 
-						WHERE product_code='$product_code'";
+						WHERE inventory_id=$inventory_id";
 						$result = mysqli_query($conn, $query);
 						$row = mysqli_fetch_row($result);
 						echo"
 						<script>
 							document.getElementById('toyname').value='".$row[0]."';
-							document.getElementById('prodcode').value=".$product_code.";
+							document.getElementById('prodcode').value='".$row[19]."';
 							document.getElementById('status').value='".$row[1]."';
 							document.getElementById('datereturn').value='".$row[2]."';
 							document.getElementById('manufacturer').value='".$row[3]."';
@@ -339,8 +339,8 @@
 					<div align="right">
 						<?php
 							include "config.php";
-							$product_code = $_GET['pcode'];
-							echo "<a method='post' href='inventory_card?productcode=$product_code' class='btn btn-default addbutton' name='card'>Update Card</a>";
+							$inventory_id = $_GET['id'];
+							echo "<a method='post' href='inventory_card?id=$inventory_id' class='btn btn-default addbutton' name='card'>Update Card</a>";
 						?>
 					</div>
 					<br>
@@ -356,7 +356,12 @@
 							</tr>
 							<?php
 								include"config.php";
-								$product_code = $_GET['pcode'];
+								$inventory_id = $_GET['id'];
+								$queryhelper = "SELECT product_code FROM INVENTORY WHERE inventory_id = $inventory_id";
+								$resulthelper = mysqli_query($conn,$queryhelper);
+								$rowhelper = mysqli_fetch_row($resulthelper);
+								$product_code = $rowhelper[0];
+			
 								$query = "SELECT * FROM INVENTORY_CARD WHERE product_code = '$product_code'";
 								$result = mysqli_query($conn,$query);
 								if(!$result){

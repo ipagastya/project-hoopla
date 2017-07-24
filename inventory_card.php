@@ -63,10 +63,14 @@
 </div>
 <?php
 	include "config.php";
-	$product_code = $_GET['productcode'];
+	$inventory_id = $_GET['id'];
+	$queryhelper = "SELECT product_code FROM INVENTORY WHERE inventory_id = $inventory_id";
+	$resulthelper = mysqli_query($conn,$queryhelper);
+	$rowhelper = mysqli_fetch_row($resulthelper);
+	$product_code = $rowhelper[0];
 	echo"
 		<script>
-			document.getElementById('prodcode').value=".$product_code.";
+			document.getElementById('prodcode').value='".$product_code."';
 		</script>";
 	if(isset($_POST['cardsubmit'])){
 		$product_code = $_POST['prodcode'];
@@ -79,7 +83,7 @@
 		echo"
 		<script>
 			alert('Successfully Updated Inventory Card');
-			window.location.href='inventory?pcode=$product_code';
+			window.location.href='inventory_list';
 		</script>";
 	}
 ?>

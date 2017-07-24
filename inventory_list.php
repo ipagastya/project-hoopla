@@ -100,7 +100,7 @@
 		        			<td>".$rowName2[0]."</td>
 		        			<td>".$row[10]."-".$row[11]."</td>
 		        			<td>".$row[4]."</td>
-		        			<td>"."<a method='post' href='inventory?pcode=$row[1]' class='btn btn-default' name='view'>View</a>"."</td>
+		        			<td>"."<a method='post' href='inventory?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 		        		</tr>";
 		        }
 			?>
