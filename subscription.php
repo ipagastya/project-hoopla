@@ -1,7 +1,7 @@
 <?php 
 	require('header.php');
 	if(!isset($_GET['subs_id'])){
-		header("location: subscription_list.php ");
+		header("location: subscription_list");
 	}else{
 		$subs_id = $_GET['subs_id'];
 	}
