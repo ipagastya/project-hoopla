@@ -1,10 +1,10 @@
 <?php  
 require_once('header.php');
 include "config.php";
-if(!isset($_GET['subs_id'])){
+if(!isset($_GET['cust_id'])){
 	header("location: subscription_list");
 }else{
-	$subs_id = $_GET['subs_id'];
+	$cust_id = $_GET['cust_id'];
 }
 ?>
 <div class="container">
@@ -12,7 +12,7 @@ if(!isset($_GET['subs_id'])){
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliveryID">Delivery ID :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deliveryID" name="deliveryID">
+				<input type="text" class="form-control" id="deliveryID" name="deliveryID" disabled>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
