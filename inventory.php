@@ -201,12 +201,11 @@
 						include "config.php";
 						$product_code = $_GET['pcode'];
 						/*QUERY AND ECHO FOR INPUT AND DROPDOWN FORM*/
-						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store 
+						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store,battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical
 						FROM INVENTORY 
 						WHERE product_code='$product_code'";
 						$result = mysqli_query($conn, $query);
 						$row = mysqli_fetch_row($result);
-						
 						echo"
 						<script>
 							document.getElementById('toyname').value='".$row[0]."';
@@ -221,29 +220,14 @@
 							document.getElementById('acquisition').value='".$row[9]."';
 							document.getElementById('retail').value='".$row[10]."';
 							document.getElementById('retailstoresource').value='".$row[11]."';
+							document.getElementById('batteryopt').value='".$row[12]."';
+							document.getElementById('motorskill').value='".$row[13]."';
+							document.getElementById('linguisticskill').value='".$row[14]."';
+							document.getElementById('cognitiveskill').value='".$row[15]."';
+							document.getElementById('socialskill').value='".$row[16]."';
+							document.getElementById('imagination').value='".$row[17]."';
+							document.getElementById('practicalskill').value='".$row[18]."';
 						</script>";
-
-						/***************************************************************/
-						 
-						/*QUERY AND ECHO FOR YES/NO FORM*/
-						$query2 = "SELECT battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical 
-						FROM INVENTORY 
-						WHERE product_code='$product_code'";
-						
-						$result2 = mysqli_query($conn, $query2);
-						$row2 = mysqli_fetch_row($result2);
-
-						echo"
-						<script>
-							document.getElementById('batteryopt').value='".$row2[0]."';
-							document.getElementById('motorskill').value='".$row2[1]."';
-							document.getElementById('linguisticskill').value='".$row2[2]."';
-							document.getElementById('cognitiveskill').value='".$row2[3]."';
-							document.getElementById('socialskill').value='".$row2[4]."';
-							document.getElementById('imagination').value='".$row2[5]."';
-							document.getElementById('practicalskill').value='".$row2[6]."';
-						</script>";
-
 						/***************************************************************/
 
 						if(isset($_POST['update'])){
