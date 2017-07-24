@@ -26,7 +26,7 @@ if(!isset($_GET['subs_id'])){
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="province">Province :</label>
 			<div class="col-sm-5">	
-				<select class="form-control" id="province" name="province">
+				<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="province">
 					<option value=''>Select province</option>
 					<?php
 					// loop isi province dari db
@@ -47,11 +47,8 @@ if(!isset($_GET['subs_id'])){
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="city">City :</label>
 			<div class="col-sm-5">	
-				<select class="form-control" id="city" name="city">
+				<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
 					<option value=''>Select city</option>
-					<?php
-							// loop isi city dari db
-					?>
 				</select>
 			</div>
 			<div class="col-sm-5"></div>
@@ -200,6 +197,21 @@ if(!isset($_GET['subs_id'])){
 </div>
 <br>
 <br>
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<script>
+	$("#provinceID").change(function(){
+		$("#cityID").empty();
+		var currentProvince = $(this).find(':selected').val();
+		$.ajax({
+			type: "POST",
+			url: "select_city.php",
+			data: {province: currentProvince},
+			success: function(response){
+				$("#cityID").html(response).selectpicker('refresh');
+			}
+		});
+	});
+</script>
 <?php 
 require_once('footer.php');
 ?>
