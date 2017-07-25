@@ -83,7 +83,7 @@
 		echo"
 		<script>
 			alert('Successfully Updated Inventory Card');
-			header.location='inventory_list?id=$inventory_id';
+			window.location.href='inventory?id=$inventory_id';
 		</script>";
 	}
 ?>
