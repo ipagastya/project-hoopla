@@ -1,5 +1,7 @@
 <?php 
 	require('header.php');
+	header('Cache-Control: no cache'); //no cache
+	session_cache_limiter('private_no_expire'); // works
 ?>
 <div class="container">
 	<center><h3>Inventory List</h3></center>
@@ -58,7 +60,9 @@
 			</thead>
 			<tbody>
 			<?php
+
 				include "config.php";
+
 				if(isset($_POST['filtersubmit'])){
 					$date = $_POST['dateinventory'];
 					$status = $_POST['status'];
