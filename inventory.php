@@ -59,7 +59,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="cat1">Toy Category 1 :</label>
 							<div class="col-sm-5">
-								<select class="form-control" id="cat1" name="cat1">
+								<select class="form-control selectpicker" data-live-search="true" id="cat1" name="cat1">
 								<?php
 									include "config.php";
 									$query = "SELECT * FROM CATEGORY";
@@ -76,7 +76,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="cat2">Toy Category 2 :</label>
 							<div class="col-sm-5">
-								<select class="form-control" id="cat2" name="cat2">
+								<select class="form-control selectpicker" data-live-search="true" id="cat2" name="cat2">
 								<?php
 									include "config.php";
 									$query = "SELECT * FROM CATEGORY";
