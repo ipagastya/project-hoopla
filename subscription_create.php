@@ -40,10 +40,10 @@ include "config.php";
 			<label><input type="radio" value="1" name="plan" required>1 Month</label>
 		</div>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="2" name="plan">3 Months</label>
+			<label><input type="radio" value="3" name="plan">3 Months</label>
 		</div>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="3" name="plan">6 Months</label>
+			<label><input type="radio" value="6" name="plan">6 Months</label>
 		</div>
 		<div class="col-sm-2"></div>
         <?php
