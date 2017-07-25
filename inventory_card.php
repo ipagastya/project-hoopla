@@ -83,7 +83,7 @@
 		$result=mysqli_query($conn,$query);
 		echo"
 		<script>
-			alert('Successfully Updated Inventory Card');
+			alert('$inventory_id');
 			window.location.href='inventory?id=$inventory_id';
 		</script>";
 	}
