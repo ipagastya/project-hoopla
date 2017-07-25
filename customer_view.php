@@ -157,19 +157,72 @@
 				die(mysqli_connect_error());
             }
 			$row = mysqli_fetch_row($result);
-			$customerID = $row[0];
-			$babyID = $row[1];
-			$dobID = $row[2];
-			$homeNumberID = $row[3];
-			$mobileNumberID = $row[4];
-			$lineID = $row[5];
-			$emailID = $row[6];
-			$addressID = $row[7];
-			$cityID = $row[8];
-			$provinceID = $row[9];
-			$zipID = $row[10];
-			$favoriteID = $row[11];
-			$milestoneID = $row[12];
+			print"<script>
+								document.getElementById('customerID').value=
+										'".$row[0]."'
+								</script>";
+						print"<script>
+								document.getElementById('babyID').value=
+										'".$row[1]."'
+								</script>";
+						print"<script>
+								document.getElementById('dobID').value=
+										'".$row[2]."'
+								</script>";
+						print"<script>
+								document.getElementById('homeNumberID').value=
+										'".$row[3]."'
+								</script>";
+						print"<script>
+								document.getElementById('mobileNumberID').value=
+										'".$row[4]."'
+								</script>";
+						print"<script>
+								document.getElementById('lineID').value=
+										'".$row[5]."'
+								</script>";
+						print"<script>
+								document.getElementById('emailID').value=
+										'".$row[6]."'
+								</script>";
+						print"<script>
+								document.getElementById('addressID').value=
+										'".$row[7]."'
+								</script>";
+						print"<script>
+								document.getElementById('cityID').value=
+										'".$row[8]."'
+								</script>";
+						print"<script>
+								document.getElementById('provinceID').value=
+										'".$row[9]."'
+								</script>";
+						print"<script>
+								document.getElementById('zipID').value=
+										'".$row[10]."'
+								</script>";
+						print"<script>
+								document.getElementById('favoriteID').value=
+										'".$row[11]."'
+								</script>";
+						print"<script>
+								document.getElementById('milestoneID').value=
+										'".$row[12]."'
+								</script>";
+			if(isset($_POST['update'])){
+			$customerID = $_POST['customerID'];
+			$babyID = $_POST['babyID'];
+			$dobID = $_POST['dobID'];
+			$homeNumberID = $_POST['homeNumberID'];
+			$mobileNumberID = $_POST['mobileNumberID'];
+			$lineID = $_POST['lineID'];
+			$emailID = $_POST['emailID'];
+			$addressID = $_POST['addressID'];
+			$cityID = $_POST['cityID'];
+			$provinceID = $_POST['provinceID'];
+			$zipID = $_POST['zipID'];
+			$favoriteID = $_POST['favoriteID'];
+			$milestoneID = $_POST['milestoneID'];
 			print"<script>
 								document.getElementById('customerID').value=
 										'".$customerID."'
@@ -222,7 +275,6 @@
 								document.getElementById('milestoneID').value=
 										'".$milestoneID."'
 								</script>";
-			if(isset($_POST['update'])){
 			
 				if($flagName == false || 
 						$flagBabyName == false || 
@@ -495,8 +547,9 @@
 									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones='$milestoneID' 
 									WHERE cust_id='$id'";
 						if($result = mysqli_query($conn, $query2)){
-							print "<script>alert('Customer Telah Berhasil Diperbaharui');</script>";
-
+							print "<script>alert('Customer Telah Berhasil Diperbaharui');
+							window.location.href='customer_list.php';
+							</script>";
 						}
 						print "<script>alert('".$query2."');</script>";
 					}
