@@ -73,6 +73,7 @@
 			document.getElementById('prodcode').value='".$product_code."';
 		</script>";
 	if(isset($_POST['cardsubmit'])){
+		$inventory_id = $_GET['id'];
 		$product_code = $_POST['prodcode'];
 		$date = $_POST['dateCard'];
 		$activities = $_POST['activities'];
