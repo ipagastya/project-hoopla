@@ -60,7 +60,7 @@ include "config.php";
     <!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
         	<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
            	<?php
           //  require("config.php");
@@ -88,7 +88,7 @@ include "config.php";
         <div class="col-sm-1">
         	<h4>Rupiah</h4>
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-5"></div>
     </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
@@ -105,16 +105,16 @@ include "config.php";
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
+		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
+			<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
+		<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
+			<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>

@@ -30,23 +30,23 @@ if(!isset($_GET['subs_id'])){
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="status">Subscription Type :</label>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="new" name="status" required>New</label>
+							<label><input type="radio" value="new" name="status" required <?php if($row['status'] == 'new') echo "checked" ?>>New</label>
 						</div>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="extension" name="status">Extension</label>
+							<label><input type="radio" value="extension" name="status" <?php if($row['status'] == 'extension') echo "checked" ?>>Extension</label>
 						</div>
 						<div class="col-sm-4"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="1" name="plan" required>1 Month</label>
+							<label><input type="radio" value="1" name="plan" required <?php if($row['subs_plan'] == 1) echo "checked" ?>>1 Month</label>
 						</div>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="2" name="plan">3 Months</label>
+							<label><input type="radio" value="2" name="plan" <?php if($row['subs_plan'] == 2) echo "checked" ?>>3 Months</label>
 						</div>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="3" name="plan">6 Months</label>
+							<label><input type="radio" value="3" name="plan" <?php if($row['subs_plan'] == 3) echo "checked" ?>>6 Months</label>
 						</div>
 						<div class="col-sm-2"></div>
 						<?php
@@ -56,15 +56,15 @@ if(!isset($_GET['subs_id'])){
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0" required>
+							<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="<?=$row['subs_promo']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-						<div class="col-sm-1">
-							<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="sub-price" name="sub-price" value="<?=$row['subs_price']?>" readonly>
 							<?php
           //  require("config.php");
           //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
@@ -91,61 +91,61 @@ if(!isset($_GET['subs_id'])){
 						<div class="col-sm-1">
 							<h4>Rupiah</h4>
 						</div>
-						<div class="col-sm-6"></div>
+						<div class="col-sm-5"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="0" required>
+							<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="<?=$row['num_ofToys']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
 						<div class="col-sm-5">
-							<input type="date" class="form-control" id="first-deliv" name="first-deliv" required>
-						</div>
-						<div class="col-sm-3"></div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
-						<div class="col-sm-5">
-							<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
+							<input type="date" class="form-control" id="first-deliv" name="first-deliv" value=<?php echo date('Y-m-d',strtotime($row['first_deliv'])) ?> required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
+							<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" value="<?=$row['deliv_promo']?>" required>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
+						<div class="col-sm-5">
+							<input type="number" class="form-control" id="deliv-price" name="deliv-price" value="<?=$row['deliv_price']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 						<div class="col-sm-5">
-							<input type="number" class="form-control" id="deposit" name="deposit" required>
+							<input type="number" class="form-control" id="deposit" name="deposit" value="<?=$row['deposit']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="pay-term" name="pay-term" required>
+							<input type="text" class="form-control" id="pay-term" name="pay-term" value="<?=$row['payment_terms']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 						<div class="col-sm-5">
-							<input type="date" class="form-control" id="refund-date" name="refund-date" required>
+							<input type="date" class="form-control" id="refund-date" name="refund-date" value=<?php echo date('Y-m-d',strtotime($row['deposit_refund'])) ?> required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
+							<input type="text" class="form-control" id="deposit-status" name="deposit-status" value="<?=$row['deposit_status']?>" required>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
