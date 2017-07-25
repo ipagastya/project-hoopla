@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
  <div class="container">
-		<form class="form-horizontal" method="post" action="./customer_view.php">
+		<form class="form-horizontal" method="post" action="./customer_view?id=<?=$_GET['id']?>">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="customerID">Customer's Name :</label>
 				<div class="col-sm-5">
@@ -149,7 +149,6 @@
 			$flagMilestone = false;
 			
 			$id = $_GET['id'];
-			print "<script>alert('".$id."');</script>";
 			$query1 = "SELECT cust_name, baby_name, baby_dob, phone_home, phone_mobile, line_id, email, address, city_id, province_id, zip_code, favorite_toys, milestones
 						FROM CUSTOMER WHERE cust_id = $id";
             $result = mysqli_query($conn, $query1);                          
@@ -157,7 +156,7 @@
 				print("Couldn't execute query");   
 				die(mysqli_connect_error());
             }
-            $row = mysqli_fetch_row($result);
+			$row = mysqli_fetch_row($result);
 			$customerID = $row[0];
 			$babyID = $row[1];
 			$dobID = $row[2];
@@ -171,6 +170,59 @@
 			$zipID = $row[10];
 			$favoriteID = $row[11];
 			$milestoneID = $row[12];
+			print"<script>
+								document.getElementById('customerID').value=
+										'".$customerID."'
+								</script>";
+						print"<script>
+								document.getElementById('babyID').value=
+										'".$babyID."'
+								</script>";
+						print"<script>
+								document.getElementById('dobID').value=
+										'".$dobID."'
+								</script>";
+						print"<script>
+								document.getElementById('homeNumberID').value=
+										'".$homeNumberID."'
+								</script>";
+						print"<script>
+								document.getElementById('mobileNumberID').value=
+										'".$mobileNumberID."'
+								</script>";
+						print"<script>
+								document.getElementById('lineID').value=
+										'".$lineID."'
+								</script>";
+						print"<script>
+								document.getElementById('emailID').value=
+										'".$emailID."'
+								</script>";
+						print"<script>
+								document.getElementById('addressID').value=
+										'".$addressID."'
+								</script>";
+						print"<script>
+								document.getElementById('cityID').value=
+										'".$cityID."'
+								</script>";
+						print"<script>
+								document.getElementById('provinceID').value=
+										'".$provinceID."'
+								</script>";
+						print"<script>
+								document.getElementById('zipID').value=
+										'".$zipID."'
+								</script>";
+						print"<script>
+								document.getElementById('favoriteID').value=
+										'".$favoriteID."'
+								</script>";
+						print"<script>
+								document.getElementById('milestoneID').value=
+										'".$milestoneID."'
+								</script>";
+			if(isset($_POST['update'])){
 			
 				if($flagName == false || 
 						$flagBabyName == false || 
@@ -438,16 +490,18 @@
 					$flagZIP = true;
 					$flagFavorite = true;
 					$flagMilestone = true;
-					
 						$query2 = "UPDATE CUSTOMER SET cust_name='$customerID', baby_name='$babyID', baby_dob='$dobID', phone_home='$homeNumberID',
 									phone_mobile='$mobileNumberID', line_id='$lineID', email='$emailID', address='$addressID', city_id='$cityID', 
-									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones'$milestoneID' 
+									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones='$milestoneID' 
 									WHERE cust_id='$id'";
 						if($result = mysqli_query($conn, $query2)){
 							print "<script>alert('Customer Telah Berhasil Diperbaharui');</script>";
 
 						}
+						print "<script>alert('".$query2."');</script>";
 					}
+			}
+				
         ?>
 		<script src="libs/jquery/dist/jquery.min.js"></script>
 								<script>
