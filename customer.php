@@ -471,9 +471,9 @@
                	$query = "INSERT INTO CUSTOMER(cust_name,baby_name,baby_dob,phone_home,phone_mobile,line_id,email,address,city_id,province_id,zip_code,favorite_toys,milestones) 
 						VALUES('$customerID','$babyID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
                	if($result = mysqli_query($conn, $query)){
-					print "<script>alert('Customer Telah Berhasil Didaftarkan');</script>";
-					header :
-
+					print "<script>alert('Customer Telah Berhasil Didaftarkan');
+					window.location.href='customer_list.php';
+					</script>";
                	}
                 	
         	}
