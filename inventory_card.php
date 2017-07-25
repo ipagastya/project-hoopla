@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
 <div class="container">
-	<form class="form-horizontal" method="post" action="./inventory_card">
+	<form class="form-horizontal" method="post" action="./inventory_card?id=<?=$_GET['id']?>">
 		<!-- helper div to insert product code to database-->
 		<div class="form-group" style="display:none;">
 			<label class="control-label col-sm-3" for="prodcode">Product Code :</label>
