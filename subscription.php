@@ -18,7 +18,7 @@ if(!isset($_GET['subs_id'])){
 			$row = mysqli_fetch_assoc($result);
 			?>
 			<div class= "container">
-				<form class="form-horizontal" action="insertsubscription.php" method="POST">
+				<form class="form-horizontal" action="editsubscription" method="POST">
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 						<div class="col-sm-5">
