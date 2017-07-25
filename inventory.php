@@ -60,6 +60,7 @@
 							<label class="control-label col-sm-4" for="cat1">Toy Category 1 :</label>
 							<div class="col-sm-5">
 								<select class="form-control selectpicker" data-live-search="true" id="cat1" name="cat1">
+									<option>--No Category--</option>
 								<?php
 									include "config.php";
 									$query = "SELECT * FROM CATEGORY";
@@ -77,6 +78,7 @@
 							<label class="control-label col-sm-4" for="cat2">Toy Category 2 :</label>
 							<div class="col-sm-5">
 								<select class="form-control selectpicker" data-live-search="true" id="cat2" name="cat2">
+									<option>--No Category--</option>
 								<?php
 									include "config.php";
 									$query = "SELECT * FROM CATEGORY";
@@ -265,8 +267,15 @@
 								}
 									
 							}
+							if($category_1 == "--No Category--"){
+								$category_1 = NULL;
+							}
+							if($category_2 == "--No Category--"){
+								$category_1 = NULL;
+							}
+
 							/*Category Id Search*/
-							if($category_1 != ""){
+							if($category_1 != "--No Category--"){
 								$searchqueryCat1 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_1."'";
 								$resultCat1 = mysqli_query($conn, $searchqueryCat1);
 								//$idcat1 = mysqli_fetch_assoc($resultCat1);
@@ -274,7 +283,7 @@
 									$category_1 = $row1[0];
 								}
 							}
-							if($category_2 != ""){
+							if($category_2 != "--No Category--"){
 								$searchqueryCat2 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_2."'";
 								$resultCat2 = mysqli_query($conn, $searchqueryCat2);
 								while($row2 = mysqli_fetch_row($resultCat2)){
