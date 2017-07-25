@@ -79,7 +79,7 @@
 								<td><?=$row['first_deliv']?></td>
 								<td><?=$row['final_pickup']?></td>
 								<td><?=$row['payment_terms']?></td>
-								<td><a class='btn btn-default' href="subscription.php?subs_id=<?=$row['subs_id']?>"></a></td>
+								<td><a class='btn btn-default' href="subscription.php?subs_id=<?=$row['subs_id']?>">Details</a></td>
 							</tr>
 						<?php }
 					}
