@@ -18,7 +18,7 @@ if(!isset($_GET['subs_id'])){
 			$row = mysqli_fetch_assoc($result);
 			?>
 			<div class= "container">
-				<form class="form-horizontal" action="editsubscription" method="POST">
+				<form class="form-horizontal" action="editsubscription?subs_id=<?=$subs_id?>" method="POST">
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 						<div class="col-sm-5">
@@ -43,10 +43,10 @@ if(!isset($_GET['subs_id'])){
 							<label><input type="radio" value="1" name="plan" required <?php if($row['subs_plan'] == 1) echo "checked" ?>>1 Month</label>
 						</div>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="2" name="plan" <?php if($row['subs_plan'] == 2) echo "checked" ?>>3 Months</label>
+							<label><input type="radio" value="3" name="plan" <?php if($row['subs_plan'] == 3) echo "checked" ?>>3 Months</label>
 						</div>
 						<div class="col-sm-2 radio">
-							<label><input type="radio" value="3" name="plan" <?php if($row['subs_plan'] == 3) echo "checked" ?>>6 Months</label>
+							<label><input type="radio" value="6" name="plan" <?php if($row['subs_plan'] == 6) echo "checked" ?>>6 Months</label>
 						</div>
 						<div class="col-sm-2"></div>
 						<?php

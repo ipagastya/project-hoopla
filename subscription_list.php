@@ -74,7 +74,9 @@
 							<tr>
 								<td><?=$row['cust_name']?></td>
 								<td><?=$row['status']?></td>
-								<td><?=$row['subs_plan']?></td>
+								<td>
+									<?=$row['subs_plan']." Months"?>
+								</td>
 								<td><?=$row['num_ofToys']?></td>
 								<td><?=$row['first_deliv']?></td>
 								<td><?=$row['final_pickup']?></td>
