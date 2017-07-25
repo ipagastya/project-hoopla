@@ -65,7 +65,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
-					<select class="form-control" id="provinceID" name="provinceID">
+					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
 						<option value=''>Select province</option>
 						<?php
                             	include "config.php";
@@ -84,7 +84,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="city">City :</label>
 				<div class="col-sm-5">	
-					<select class="form-control" id="cityID" name="cityID">
+					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
 						<option value=''>Select city</option>
 					</select>
 				</div>
@@ -489,7 +489,7 @@
 												url: "select_city.php",
 												data: {province: currentProvince},
 												success: function(response){
-													$("#cityID").html(response);
+													$("#cityID").html(response).selectpicker('refresh');
 												}
 											});
 									    });

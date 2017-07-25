@@ -63,28 +63,9 @@
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="city">City :</label>
-				<div class="col-sm-5">	
-					<select class="form-control" id="cityID" name="cityID">
-						<option value=''>Select city</option>
-						<?php
-                            	include "config.php";
-					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
-						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
-					                echo
-					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
-					            }
-				            ?>
-					</select>
-				</div>
-				<div id='errorCity' style='color:red;text-align: left;'></div>
-				<div class="col-sm-5"></div>
-			</div>
-			<div class="form-group">
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
-					<select class="form-control" id="provinceID" name="provinceID">
+					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
 						<option value=''>Select province</option>
 						<?php
                             	include "config.php";
@@ -98,6 +79,25 @@
 					</select>
 				</div>
 				<div id='errorProvince' style='color:red;text-align: left;'></div>
+				<div class="col-sm-5"></div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="city">City :</label>
+				<div class="col-sm-5">	
+					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
+						<option value=''>Select city</option>
+						<?php
+                            	include "config.php";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
+						        $result = mysqli_query($conn, $query);
+						        while($row = mysqli_fetch_row($result)){
+					                echo
+					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
+					            }
+				            ?>
+					</select>
+				</div>
+				<div id='errorCity' style='color:red;text-align: left;'></div>
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
@@ -147,9 +147,9 @@
 			$flagZIP = false;
 			$flagFavorite = false;
 			$flagMilestone = false;
-		if (isset($_POST["view"])) 
-		{
-			$id = $_POST["view"];
+			
+			$id = $_GET['id'];
+			print "<script>alert('".$id."');</script>";
 			$query1 = "SELECT cust_name, baby_name, baby_dob, phone_home, phone_mobile, line_id, email, address, city_id, province_id, zip_code, favorite_toys, milestones
 						FROM CUSTOMER WHERE cust_id = $id";
             $result = mysqli_query($conn, $query1);                          
@@ -439,7 +439,6 @@
 					$flagFavorite = true;
 					$flagMilestone = true;
 					
-						print "<script>alert('TEST');</script>";
 						$query2 = "UPDATE CUSTOMER SET cust_name='$customerID', baby_name='$babyID', baby_dob='$dobID', phone_home='$homeNumberID',
 									phone_mobile='$mobileNumberID', line_id='$lineID', email='$emailID', address='$addressID', city_id='$cityID', 
 									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones'$milestoneID' 
@@ -448,9 +447,23 @@
 							print "<script>alert('Customer Telah Berhasil Diperbaharui');</script>";
 
 						}
-			}
-		}
+					}
         ?>
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+								<script>
+									 $("#provinceID").change(function(){
+									    	$("#cityID").empty();
+									    	var currentProvince = $(this).find(':selected').val();
+									    	$.ajax({
+												type: "POST",
+												url: "select_city.php",
+												data: {province: currentProvince},
+												success: function(response){
+													$("#cityID").html(response).selectpicker('refresh');
+												}
+											});
+									    });
+		</script>
 <?php
 	require('footer.php');
 ?>
