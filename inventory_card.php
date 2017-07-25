@@ -73,6 +73,7 @@
 			document.getElementById('prodcode').value='".$product_code."';
 		</script>";
 	if(isset($_POST['cardsubmit'])){
+		$inventory_id = $_GET['id'];
 		$product_code = $_POST['prodcode'];
 		$date = $_POST['dateCard'];
 		$activities = $_POST['activities'];
@@ -83,7 +84,7 @@
 		echo"
 		<script>
 			alert('Successfully Updated Inventory Card');
-			window.location.href='inventory?id=$_GET["id"]';
+			window.location.href='inventory?id=$inventory_id';
 		</script>";
 	}
 ?>
