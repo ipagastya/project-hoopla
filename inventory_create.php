@@ -17,7 +17,7 @@
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="prodcode" name="prodcode">
 							</div>
-							<div class="col-sm-3"></div>
+							<div class="col-sm-3" id = "errorcode" style='color:red;text-align: left;'></div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="status">Inventory Status :</label>
@@ -218,87 +218,105 @@
 				$retail_price = $_POST["retail"];
 				$retail_store = $_POST["retailstoresource"];
 
-				/*Hoopla Age Tokenizer*/
-				$token = strtok($hoopla_age, "-");
-				$count = 0;
-				$age_lower = "";
-				$age_upper = "";
-				while ($token !== false){
-					if($age_lower == ""){
-						$age_lower = "$token";
+				$check = false;
+				$queryCheckProduct = "SELECT count(product_code) FROM INVENTORY WHERE product_code = '".$product_code."'";
+				$resultCheckProduct = mysqli_query($conn, $queryCheckProduct);
+				$row = mysqli_fetch_row($resultCheckProduct);
+				if($row[0] == 1 || $product_code == ""){
+					$check = false;
+					if($row[0] == 1){
+						echo"<script>document.getElementById('errorcode').innerHTML='<h5>Product code is already exists</h5>'</script>";
+					}else{
+						echo"<script>document.getElementById('errorcode').innerHTML='<h5>Product code is not valid</h5>'</script>";
 					}
-					$token = strtok("-");
-					if($age_upper == ""){
-						$age_upper = "$token";
+				}else{
+					$check = true;
+				}
+
+				if($check == true){
+					/*Hoopla Age Tokenizer*/
+					$token = strtok($hoopla_age, "-");
+					$count = 0;
+					$age_lower = "";
+					$age_upper = "";
+					while ($token !== false){
+						if($age_lower == ""){
+							$age_lower = "$token";
+						}
+						$token = strtok("-");
+						if($age_upper == ""){
+							$age_upper = "$token";
+						}
+							
 					}
+					/*Category Id Search*/
+					if($category_1 != ""){
+						$searchqueryCat1 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_1."'";
+						$resultCat1 = mysqli_query($conn, $searchqueryCat1);
+						//$idcat1 = mysqli_fetch_assoc($resultCat1);
+						while($row1 = mysqli_fetch_row($resultCat1)){
+							$category_1 = $row1[0];
+						}
+					}
+					if($category_2 != ""){
+						$searchqueryCat2 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_2."'";
+						$resultCat2 = mysqli_query($conn, $searchqueryCat2);
+						while($row2 = mysqli_fetch_row($resultCat2)){
+							$category_2 = $row2[0];
+						}
 						
-				}
-				/*Category Id Search*/
-				if($category_1 != ""){
-					$searchqueryCat1 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_1."'";
-					$resultCat1 = mysqli_query($conn, $searchqueryCat1);
-					//$idcat1 = mysqli_fetch_assoc($resultCat1);
-					while($row1 = mysqli_fetch_row($resultCat1)){
-						$category_1 = $row1[0];
 					}
-				}
-				if($category_2 != ""){
-					$searchqueryCat2 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_2."'";
-					$resultCat2 = mysqli_query($conn, $searchqueryCat2);
-					while($row2 = mysqli_fetch_row($resultCat2)){
-						$category_2 = $row2[0];
+
+					/*boolean*/
+					if($battery =="Yes"){
+						$battery = true;
+					}else{
+						$battery = false;
 					}
-					
+
+					if($fine_motor =="Yes"){
+						$fine_motor = true;
+					}else{
+						$fine_motor = false;
+					}
+
+					if($linguistic =="Yes"){
+						$linguistic = true;
+					}else{
+						$linguistic = false;
+					}
+
+					if($cognitive =="Yes"){
+						$cognitive = true;
+					}else{
+						$cognitive = false;
+					}
+
+					if($social_emotional =="Yes"){
+						$social_emotional = true;
+					}else{
+						$social_emotional = false;
+					}
+
+					if($imagination =="Yes"){
+						$imagination = true;
+					}else{
+						$imagination = false;
+					}
+
+					if($practical_life =="Yes"){
+						$practical_life = true;
+					}else{
+						$practical_life = false;
+					}
+
+					$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
+							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
+
+					$result = mysqli_query($conn, $query);
+					echo"<script>alert('Successfully Added Inventory');</script>";
 				}
-
-				/*boolean*/
-				if($battery =="Yes"){
-					$battery = true;
-				}else{
-					$battery = false;
-				}
-
-				if($fine_motor =="Yes"){
-					$fine_motor = true;
-				}else{
-					$fine_motor = false;
-				}
-
-				if($linguistic =="Yes"){
-					$linguistic = true;
-				}else{
-					$linguistic = false;
-				}
-
-				if($cognitive =="Yes"){
-					$cognitive = true;
-				}else{
-					$cognitive = false;
-				}
-
-				if($social_emotional =="Yes"){
-					$social_emotional = true;
-				}else{
-					$social_emotional = false;
-				}
-
-				if($imagination =="Yes"){
-					$imagination = true;
-				}else{
-					$imagination = false;
-				}
-
-				if($practical_life =="Yes"){
-					$practical_life = true;
-				}else{
-					$practical_life = false;
-				}
-
-				$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
-						VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
-
-				$result = mysqli_query($conn, $query);
-				echo"<script>alert('Successfully Added Inventory');</script>";
+				
 				
 			}
 		?>
