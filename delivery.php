@@ -48,7 +48,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="address">Address :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="address" value="<?=$customer['address']?>" name="address" readonly="">
+				<input type="text" class="form-control" id="address" value="<?=$customer['address']?>" name="address">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
