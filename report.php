@@ -1,5 +1,6 @@
 <?php
 require('header.php');
+include "config.php";
 ?>
 <div class= "container">
     <h4>Subscription Report</h4>
@@ -25,9 +26,37 @@ require('header.php');
                 <th>6 MO</th>
                 <th>Total</th>
             </tr>
+            <?php
+                $query = "SELECT * FROM MONTH";
+                $result = mysqli_query($conn, $query);                          
+				if(!$result) {
+                    print("Couldn't execute query");
+                    die(mysqli_connect_error());
+                }
+            
+                while($row = mysqli_fetch_row($result)) {
+                    $currentMonth = $row[2];
+                    $currentYear = $row[3];
+                    
+                    $query3 = "SELECT COUNT(*)
+                                FROM SUBSCRIPTION
+                                WHERE EXTRACT(MONTH FROM date_added) = $currentMonth
+                                    EXTRACT(YEAR FROM date_added) = $currentYear
+                                    AND subs_plan = 3";
+                    
+                    $result3 = mysqli_query($conn, $query3);
+                    if(!$result3) {
+                        print("Couldn't execute query3");
+                        die(mysqli_connect_error());
+                    }
+                    $row3 = mysqli_fetch_row($result3);
+                    echo"<tr><td>" . $row3[0] . "</td></td>";
+                    
+                }
+            ?>
         </table>
     </div>
 </div>
 <?php
-require('footer.php');
+    require('footer.php');
 ?>
