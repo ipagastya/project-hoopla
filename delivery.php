@@ -197,16 +197,32 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="select-toys">Select Toys :</label>
+			<label class="control-label col-sm-2" for="select-category">Select Category :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 3" data-max-options="5">
-					<option value="" disabled>Select Toys</option>
+				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
+					<option value="" disabled>Select Category</option>
 					<?php 
-						$sql_toy = "SELECT * FROM INVENTORY";
-						$result = mysqli_query($conn, $sql_toy);
-						while ($row = mysqli_fetch_assoc($result)) { ?>
-						<option value="<?=$row['product_code']?>"><?=$row['toy_name']?></option>
-						<?php }
+					$sql_category = "SELECT * FROM CATEGORY";
+					$result = mysqli_query($conn, $sql_category);
+					while ($row = mysqli_fetch_assoc($result)) { ?>
+					<option value="<?=$row['category_id']?>"><?=$row['category_name']?></option>
+					<?php }
+					?>
+				</select>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
+			<div class="col-sm-5">
+				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-selected-text-format="count > 3">
+					<option value="" disabled>Select Toy</option>
+					<?php 
+					$sql_toy = "SELECT * FROM INVENTORY";
+					$result = mysqli_query($conn, $sql_toy);
+					while ($row = mysqli_fetch_assoc($result)) { ?>
+					<option value="<?=$row['inventory_id']?>"><?=$row['toy_name']?></option>
+					<?php }
 					?>
 				</select>
 			</div>
@@ -237,7 +253,18 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 	// 		}
 	// 	});
 	// });
-	$
+	$("#select-category").change(function(){
+		$("#select-toy").empty().selectpicker('refresh');
+		var category = $("#select-category").selectpicker('val');
+		$.ajax({
+			type: "POST",
+			data: {category:category},
+			url: "select_category.php",
+			success: function(response){
+				$("#select-toy").html(response).selectpicker('refresh');
+			}
+		});
+	})
 </script>
 <?php 
 require_once('footer.php');
