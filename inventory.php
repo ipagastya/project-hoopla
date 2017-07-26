@@ -271,7 +271,7 @@
 								$category_1 = NULL;
 							}
 							if($category_2 == "--No Category--"){
-								$category_1 = NULL;
+								$category_2 = NULL;
 							}
 
 							/*Category Id Search*/
