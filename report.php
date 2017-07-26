@@ -37,7 +37,10 @@ include "config.php";
                 while($row = mysqli_fetch_row($result)) {
                     $currentMonth = $row[2];
                     $currentYear = $row[3];
-                    
+                    echo "<script>alert('";
+			echo "$currentMonth $currentYear";
+			echo "');</script>;
+			
                     $query3 = "SELECT COUNT(*)
                                 FROM SUBSCRIPTION
                                 WHERE EXTRACT(MONTH FROM date_added) = $currentMonth
