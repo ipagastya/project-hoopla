@@ -57,7 +57,7 @@ include "config.php";
 			
 			    $query3new = "SELECT COUNT(*)
 					FROM SUBSCRIPTION
-					    AND subs_plan = 3
+					WHERE subs_plan = 3
 					    AND LOWER(status) = 'new'";
 			
 			    $query6new = "SELECT COUNT(*)
