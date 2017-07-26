@@ -1,8 +1,9 @@
 <?php
 include "config.php";
 $arr = $_POST['category'];
+$age = $_POST['age'];
 $count = 0;
-$sql = "SELECT * FROM INVENTORY WHERE";
+$sql = "SELECT * FROM INVENTORY WHERE ($age BETWEEN age_lower AND age_upper) AND (";
 foreach ($arr as &$value) {
 	if ($count >= 1 ) {
 		$sql = $sql." OR";
@@ -11,7 +12,7 @@ foreach ($arr as &$value) {
 	}
 	$sql = $sql." category_1 = '$value' OR category_2 = '$value'";
 }
-$sql = $sql." ORDER BY toy_name ASC;";
+$sql = $sql.") ORDER BY toy_name ASC;";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
