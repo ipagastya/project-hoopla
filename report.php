@@ -57,8 +57,6 @@ include "config.php";
 			
 			    $query3new = "SELECT COUNT(*)
 					FROM SUBSCRIPTION
-					WHERE EXTRACT(MONTH FROM date_added) = '$currentMonth'
-					    AND EXTRACT(YEAR FROM date_added) = '$currentYear'
 					    AND subs_plan = 3
 					    AND LOWER(status) = 'new'";
 			
