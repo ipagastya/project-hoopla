@@ -1,27 +1,62 @@
 <?php  
 require_once('header.php');
 include "config.php";
+if(!isset($_GET['cust_id'])){
+	header("location: subscription_list");
+}else{
+	$cust_id = $_GET['cust_id'];
+}
+
+$sql = "SELECT * FROM DELIVERY_LIST";
+if(($result_delivery = mysqli_query($conn, $sql))===FALSE){
+	echo "sql fail";
+}
+else{
+	$id = mysqli_num_rows($result_delivery);
+}
+
+$sql = "SELECT * FROM CUSTOMER WHERE cust_id = '$cust_id'";
+if(($result_customer = mysqli_query($conn, $sql))===FALSE){
+	echo "sql fail";
+}
+else{
+	$customer = mysqli_fetch_assoc($result_customer);
+	$city_id = $customer['city_id'];
+	$province_id = $customer['province_id'];
+}
+
+$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
+$result_province = mysqli_query($conn, $sql);
+$province = mysqli_fetch_assoc($result_province)['province_name'];
+
+$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
+$result_city = mysqli_query($conn, $sql);
+$city = mysqli_fetch_assoc($result_city)['city_name'];
+
+$dob= $customer['baby_dob'];
+$baby_age = (date('Y') - date('Y',strtotime($dob)));
 ?>
 <div class="container">
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id ?>">
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliveryID">Delivery ID :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deliveryID" name="deliveryID">
+				<input type="text" class="form-control" id="deliveryID" name="deliveryID" value="<?=$id?>" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="address">Address :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="address" name="address">
+				<input type="text" class="form-control" id="address" value="<?=$customer['address']?>" name="address">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="province">Province :</label>
-			<div class="col-sm-5">	
-				<select class="form-control" id="province" name="province">
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="provinceID" name="provinceID" value="<?=$province?>" readonly>
+				<!-- <select class="form-control selectpicker" data-live-search="true" value="<?=$province?>" id="provinceID" name="province">
 					<option value=''>Select province</option>
 					<?php
 					// loop isi province dari db
@@ -35,33 +70,31 @@ include "config.php";
 						<?php }
 					}
 					?>
-				</select>
+				</select> -->
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="city">City :</label>
-			<div class="col-sm-5">	
-				<select class="form-control" id="city" name="city">
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="cityID" name="cityID" value="<?=$city?>" readonly>
+				<!-- <select class="form-control selectpicker" data-live-search="true" id="cityID" value="<?=$city?>" name="cityID">
 					<option value=''>Select city</option>
-					<?php
-							// loop isi city dari db
-					?>
-				</select>
+				</select> -->
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="mobile">Mobile Number :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="mobile" name="mobile">
+				<input type="text" class="form-control" id="mobile" value="<?=$customer['phone_mobile']?>" name="mobile" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="home">Home Number :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="home" name="home">
+				<input type="text" class="form-control" id="home" value="<?=$customer['phone_home']?>" name="home" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -110,21 +143,14 @@ include "config.php";
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="age">Baby's Age :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="age" name="age">
+				<input type="number" class="form-control" id="age" value="<?=$baby_age?>" name="age" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="name">Baby's Name :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="name" name="name">
-			</div>
-			<div class="col-sm-5"></div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="toy">Toys :</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="toy" name="toy">
+				<input type="text" class="form-control" id="name" value="<?=$customer['baby_name']?>" name="name" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -166,20 +192,22 @@ include "config.php";
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-schedule">Delivery Schedule :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deliv-schedule" name="deliv-schedule">
+				<input type="date" class="form-control" id="deliv-schedule" name="deliv-schedule">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toys">Select Toys :</label>
 			<div class="col-sm-5">
-				<select class="selectpicker" multiple data-selected-text-format="count > 3" data-max-options="5">
-					<option>Item 1</option>
-					<option>Item 2</option>
-					<option>Item 3</option>
-					<option>Item 1</option>
-					<option>Item 2</option>
-					<option>Item 3</option>
+				<select class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 3" data-max-options="5">
+					<option value="" disabled>Select Toys</option>
+					<?php 
+						$sql_toy = "SELECT * FROM INVENTORY";
+						$result = mysqli_query($conn, $sql_toy);
+						while ($row = mysqli_fetch_assoc($result)) { ?>
+						<option value="<?=$row['product_code']?>"><?=$row['toy_name']?></option>
+						<?php }
+					?>
 				</select>
 			</div>
 			<div class="col-sm-5"></div>
@@ -187,7 +215,7 @@ include "config.php";
 		<div class="form-group">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-5">
-				<button class="btn btn-primary greenbutton" type="submit"><a href='#' style='text-decoration: none; color:white;'>Submit</a></button>
+				<button class="btn btn-primary greenbutton" type="submit">Submit</button>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -195,6 +223,22 @@ include "config.php";
 </div>
 <br>
 <br>
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<script>
+	// $("#provinceID").change(function(){
+	// 	$("#cityID").empty();
+	// 	var currentProvince = $(this).find(':selected').val();
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		url: "select_city.php",
+	// 		data: {province: currentProvince},
+	// 		success: function(response){
+	// 			$("#cityID").html(response).selectpicker('refresh');
+	// 		}
+	// 	});
+	// });
+	$
+</script>
 <?php 
 require_once('footer.php');
 ?>

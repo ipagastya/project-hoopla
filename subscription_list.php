@@ -47,7 +47,7 @@
 	</form>
 	<br>
 	<div align="right">
-		<a href="subscription_create.php"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button></a>
+		<a href="subscription_create"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button></a>
 	</div>
 	<h4>Subscription Schedule</h4>
 	<div class="table-responsive">
@@ -74,12 +74,14 @@
 							<tr>
 								<td><?=$row['cust_name']?></td>
 								<td><?=$row['status']?></td>
-								<td><?=$row['subs_plan']?></td>
+								<td>
+									<?=$row['subs_plan']." Months"?>
+								</td>
 								<td><?=$row['num_ofToys']?></td>
 								<td><?=$row['first_deliv']?></td>
 								<td><?=$row['final_pickup']?></td>
 								<td><?=$row['payment_terms']?></td>
-								<td><a class='btn btn-default' href="subscription.php?subs_id=<?=$row['subs_id']?>"></a></td>
+								<td><a class='btn btn-default' href="subscription.php?subs_id=<?=$row['subs_id']?>">Details</a></td>
 							</tr>
 						<?php }
 					}

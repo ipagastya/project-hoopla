@@ -31,17 +31,14 @@
 
 								$from = new DateTime($row[3]);
 								$to   = new DateTime('today');
-								$id = $row[0];
-                                
-								echo "<form method='post' action='customer_view.php' class='form_group'><tbody>
-											<tr>
-												<td>" . $row[0] . "</td>";
+								$diff = $from->diff($to);
+                                $months = ($diff-> m) + 12 * $diff-> y ;
+								echo "<tbody><tr><td>" . $row[0] . "</td>";
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
-											echo"<td>" . $from->diff($to)->y . "<br></td>";
-											echo"<td><button name='view' value='". $id . "' class='addbutton' type='submit' style='text-decoration: none; color:white;'><span class='glyphicon glyphicon-eye-open'></span> View </button></td></tr></tbody>
-										</form>";
+											echo"<td>" . $months . " months<br></td>";
+											echo"<td>"."<a method='get' href='customer_view?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td></tr></tbody>";
                             } 
 				?>
 			</table>

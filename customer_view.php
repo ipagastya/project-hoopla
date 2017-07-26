@@ -2,7 +2,7 @@
 	require('header.php');
 ?>
  <div class="container">
-		<form class="form-horizontal" method="post" action="./customer_view.php">
+		<form class="form-horizontal" method="post" action="./customer_view?id=<?=$_GET['id']?>">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="customerID">Customer's Name :</label>
 				<div class="col-sm-5">
@@ -63,28 +63,9 @@
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="city">City :</label>
-				<div class="col-sm-5">	
-					<select class="form-control" id="cityID" name="cityID">
-						<option value=''>Select city</option>
-						<?php
-                            	include "config.php";
-					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
-						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
-					                echo
-					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
-					            }
-				            ?>
-					</select>
-				</div>
-				<div id='errorCity' style='color:red;text-align: left;'></div>
-				<div class="col-sm-5"></div>
-			</div>
-			<div class="form-group">
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
-					<select class="form-control" id="provinceID" name="provinceID">
+					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
 						<option value=''>Select province</option>
 						<?php
                             	include "config.php";
@@ -98,6 +79,25 @@
 					</select>
 				</div>
 				<div id='errorProvince' style='color:red;text-align: left;'></div>
+				<div class="col-sm-5"></div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="city">City :</label>
+				<div class="col-sm-5">	
+					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
+						<option value=''>Select city</option>
+						<?php
+                            	include "config.php";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
+						        $result = mysqli_query($conn, $query);
+						        while($row = mysqli_fetch_row($result)){
+					                echo
+					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
+					            }
+				            ?>
+					</select>
+				</div>
+				<div id='errorCity' style='color:red;text-align: left;'></div>
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
@@ -147,9 +147,8 @@
 			$flagZIP = false;
 			$flagFavorite = false;
 			$flagMilestone = false;
-		if (isset($_POST["view"])) 
-		{
-			$id = $_POST["view"];
+			
+			$id = $_GET['id'];
 			$query1 = "SELECT cust_name, baby_name, baby_dob, phone_home, phone_mobile, line_id, email, address, city_id, province_id, zip_code, favorite_toys, milestones
 						FROM CUSTOMER WHERE cust_id = $id";
             $result = mysqli_query($conn, $query1);                          
@@ -157,20 +156,125 @@
 				print("Couldn't execute query");   
 				die(mysqli_connect_error());
             }
-            $row = mysqli_fetch_row($result);
-			$customerID = $row[0];
-			$babyID = $row[1];
-			$dobID = $row[2];
-			$homeNumberID = $row[3];
-			$mobileNumberID = $row[4];
-			$lineID = $row[5];
-			$emailID = $row[6];
-			$addressID = $row[7];
-			$cityID = $row[8];
-			$provinceID = $row[9];
-			$zipID = $row[10];
-			$favoriteID = $row[11];
-			$milestoneID = $row[12];
+			$row = mysqli_fetch_row($result);
+			print"<script>
+								document.getElementById('customerID').value=
+										'".$row[0]."'
+								</script>";
+						print"<script>
+								document.getElementById('babyID').value=
+										'".$row[1]."'
+								</script>";
+						print"<script>
+								document.getElementById('dobID').value=
+										'".$row[2]."'
+								</script>";
+						print"<script>
+								document.getElementById('homeNumberID').value=
+										'".$row[3]."'
+								</script>";
+						print"<script>
+								document.getElementById('mobileNumberID').value=
+										'".$row[4]."'
+								</script>";
+						print"<script>
+								document.getElementById('lineID').value=
+										'".$row[5]."'
+								</script>";
+						print"<script>
+								document.getElementById('emailID').value=
+										'".$row[6]."'
+								</script>";
+						print"<script>
+								document.getElementById('addressID').value=
+										'".$row[7]."'
+								</script>";
+						print"<script>
+								document.getElementById('cityID').value=
+										'".$row[8]."'
+								</script>";
+						print"<script>
+								document.getElementById('provinceID').value=
+										'".$row[9]."'
+								</script>";
+						print"<script>
+								document.getElementById('zipID').value=
+										'".$row[10]."'
+								</script>";
+						print"<script>
+								document.getElementById('favoriteID').value=
+										'".$row[11]."'
+								</script>";
+						print"<script>
+								document.getElementById('milestoneID').value=
+										'".$row[12]."'
+								</script>";
+			if(isset($_POST['update'])){
+			$customerID = $_POST['customerID'];
+			$babyID = $_POST['babyID'];
+			$dobID = $_POST['dobID'];
+			$homeNumberID = $_POST['homeNumberID'];
+			$mobileNumberID = $_POST['mobileNumberID'];
+			$lineID = $_POST['lineID'];
+			$emailID = $_POST['emailID'];
+			$addressID = $_POST['addressID'];
+			$cityID = $_POST['cityID'];
+			$provinceID = $_POST['provinceID'];
+			$zipID = $_POST['zipID'];
+			$favoriteID = $_POST['favoriteID'];
+			$milestoneID = $_POST['milestoneID'];
+			print"<script>
+								document.getElementById('customerID').value=
+										'".$customerID."'
+								</script>";
+						print"<script>
+								document.getElementById('babyID').value=
+										'".$babyID."'
+								</script>";
+						print"<script>
+								document.getElementById('dobID').value=
+										'".$dobID."'
+								</script>";
+						print"<script>
+								document.getElementById('homeNumberID').value=
+										'".$homeNumberID."'
+								</script>";
+						print"<script>
+								document.getElementById('mobileNumberID').value=
+										'".$mobileNumberID."'
+								</script>";
+						print"<script>
+								document.getElementById('lineID').value=
+										'".$lineID."'
+								</script>";
+						print"<script>
+								document.getElementById('emailID').value=
+										'".$emailID."'
+								</script>";
+						print"<script>
+								document.getElementById('addressID').value=
+										'".$addressID."'
+								</script>";
+						print"<script>
+								document.getElementById('cityID').value=
+										'".$cityID."'
+								</script>";
+						print"<script>
+								document.getElementById('provinceID').value=
+										'".$provinceID."'
+								</script>";
+						print"<script>
+								document.getElementById('zipID').value=
+										'".$zipID."'
+								</script>";
+						print"<script>
+								document.getElementById('favoriteID').value=
+										'".$favoriteID."'
+								</script>";
+						print"<script>
+								document.getElementById('milestoneID').value=
+										'".$milestoneID."'
+								</script>";
 			
 				if($flagName == false || 
 						$flagBabyName == false || 
@@ -438,19 +542,35 @@
 					$flagZIP = true;
 					$flagFavorite = true;
 					$flagMilestone = true;
-					
-						print "<script>alert('TEST');</script>";
 						$query2 = "UPDATE CUSTOMER SET cust_name='$customerID', baby_name='$babyID', baby_dob='$dobID', phone_home='$homeNumberID',
 									phone_mobile='$mobileNumberID', line_id='$lineID', email='$emailID', address='$addressID', city_id='$cityID', 
-									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones'$milestoneID' 
+									province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones='$milestoneID' 
 									WHERE cust_id='$id'";
 						if($result = mysqli_query($conn, $query2)){
-							print "<script>alert('Customer Telah Berhasil Diperbaharui');</script>";
-
+							print "<script>alert('Customer Telah Berhasil Diperbaharui');
+							window.location.href='customer_list.php';
+							</script>";
 						}
+						print "<script>alert('".$query2."');</script>";
+					}
 			}
-		}
+				
         ?>
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+								<script>
+									 $("#provinceID").change(function(){
+									    	$("#cityID").empty();
+									    	var currentProvince = $(this).find(':selected').val();
+									    	$.ajax({
+												type: "POST",
+												url: "select_city.php",
+												data: {province: currentProvince},
+												success: function(response){
+													$("#cityID").html(response).selectpicker('refresh');
+												}
+											});
+									    });
+		</script>
 <?php
 	require('footer.php');
 ?>
