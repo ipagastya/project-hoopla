@@ -4,7 +4,7 @@ require('header.php');
 <div class= "container">
     <h4>Report</h4>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th rowspan="2">Month/Year</th>
                 <th colspan="3">New Customer</th>
