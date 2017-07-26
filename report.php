@@ -41,7 +41,7 @@ include "config.php";
                     $query3 = "SELECT COUNT(*)
                                 FROM SUBSCRIPTION
                                 WHERE EXTRACT(MONTH FROM date_added) = $currentMonth
-                                    EXTRACT(YEAR FROM date_added) = $currentYear
+                                    AND EXTRACT(YEAR FROM date_added) = $currentYear
                                     AND subs_plan = 3";
                     
                     $result3 = mysqli_query($conn, $query3);
