@@ -339,10 +339,12 @@
 											WHERE product_code= '$product_code'";
 
 							$updtresult = mysqli_query($conn, $updtquery);
-							echo"<script>
+							if($updtresult){
+								echo"<script>
 									alert('Update Inventory Success');
 									window.location.href='inventory_list';
 								</script>";
+							}
 						}
 					?>
 					<div align="right">

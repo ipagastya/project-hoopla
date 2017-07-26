@@ -325,7 +325,9 @@
 							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
 
 					$result = mysqli_query($conn, $query);
-					echo"<script>alert('Successfully Added Inventory');</script>";
+					if($result){
+						echo"<script>alert('Successfully Added Inventory');</script>";
+					}
 				}
 				
 				
