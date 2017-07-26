@@ -8,7 +8,7 @@ if(isset($_POST['plan']) && isset($_POST['promo'])){
 
    $sql = "SELECT price
    FROM SUBSCRIPTION_TYPE
-   WHERE id = $plan";
+   WHERE month = $plan";
 
    $result = mysqli_query($conn ,$sql);
    $row = mysqli_fetch_row($result);
