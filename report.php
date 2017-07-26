@@ -2,7 +2,7 @@
 require('header.php');
 ?>
 <div class= "container">
-    <h4>Report</h4>
+    <h4>Subscription Report</h4>
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
