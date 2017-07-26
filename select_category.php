@@ -11,12 +11,11 @@ foreach ($arr as &$value) {
 	}
 	$sql = $sql." category_1 = '$value' OR category_2 = '$value'";
 }
-
+$sql = $sql." ORDER BY toy_name ASC;";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
 	while($row = mysqli_fetch_assoc($result)){
-		echo "string";
 		echo "<option value='".$row['inventory_id']."' >".$row['toy_name']."</option>";
 	}
 }
