@@ -36,8 +36,11 @@ include "config.php";
                 }
             
                 while($row = mysqli_fetch_row($result)) {
-			    $currentMonth = $row[2];
-			    $currentYear = $row[3];
+			    $currentMonth = $row[1];
+			    $currentYear = $row[2];
+			    
+			    echo "<tr><td>$currentMonth - $currentYear</td>";
+			
 			    $new1month = 0;
 			    $new3month = 0;
 			    $new6month = 0;
@@ -57,7 +60,8 @@ include "config.php";
 			
 			    $query3new = "SELECT COUNT(*)
 					FROM SUBSCRIPTION
-					WHERE subs_plan = 3
+					WHERE EXTRACT(MONTH FROM date_added) = '$currentMonth'
+					    AND EXTRACT(YEAR FROM date_added) = '$currentYear' subs_plan = 3
 					    AND LOWER(status) = 'new'";
 			
 			    $query6new = "SELECT COUNT(*)
@@ -91,9 +95,8 @@ include "config.php";
 			    $row6new = mysqli_fetch_row($result6new);
 			    $new6month = $row6new[0];
 				        
-			    $totalnew = $new1month + $newmonth + $new6month;
-			    echo"	<tr>
-			    			<td>$totalnew</td>
+			    $totalnew = $new1month + $new3month + $new6month;
+			    echo"		<td>$totalnew</td>
 			    			<td>$new1month</td>
 						<td>$new3month</td>
 						<td>$new6month</td>
