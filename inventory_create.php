@@ -17,7 +17,7 @@
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="prodcode" name="prodcode">
 							</div>
-							<div class="col-sm-3" id = "errorcode" style='color:red;text-align: left;'></div>
+							<div class="col-sm-3" id = "errorcode" style="background-color:#e74c3c; color:#fff;display: none;border-radius: 5px;padding:1px 3px;text-align: center;"></div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="status">Inventory Status :</label>
@@ -227,9 +227,11 @@
 				if($row[0] == 1 || $product_code == ""){
 					$check = false;
 					if($row[0] == 1){
-						echo"<script>document.getElementById('errorcode').innerHTML='<h5>Product code is already exists</h5>'</script>";
+						echo"<script>document.getElementById('errorcode').innerHTML='<h6>Product code is already exists</h6>'</script>";
+						echo"<script>document.getElementById('errorcode').style.display='block'</script>";
 					}else{
-						echo"<script>document.getElementById('errorcode').innerHTML='<h5>Product code is not valid</h5>'</script>";
+						echo"<script>document.getElementById('errorcode').innerHTML='<h6>Product code is not valid</h6>'</script>";
+						echo"<script>document.getElementById('errorcode').style.display='block'</script>";
 					}
 				}else{
 					$check = true;
@@ -255,7 +257,7 @@
 						$category_1 = NULL;
 					}
 					if($category_2 == "--No Category--"){
-						$category_1 = NULL;
+						$category_2 = NULL;
 					}
 
 					/*Category Id Search*/
@@ -323,7 +325,9 @@
 							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
 
 					$result = mysqli_query($conn, $query);
-					echo"<script>alert('Successfully Added Inventory');</script>";
+					if($result){
+						echo"<script>alert('Successfully Added Inventory');</script>";
+					}
 				}
 				
 				

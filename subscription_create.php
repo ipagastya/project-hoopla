@@ -1,33 +1,20 @@
 <?php
 require_once("header.php");
-include "config.php";
+require("config.php");
 ?>
 
 <form class="form-horizontal" action="insertsubscription.php" method="POST">
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 		<div class="col-sm-5">
-			<select class="form-control selectpicker" data-live-search="true" id="customerName" name="customerName" required>
-				<option value=''>Select Customer</option>
-				<?php
-					$sql_customer = "SELECT cust_id, cust_name FROM CUSTOMER";
-					if(($result_customer = mysqli_query($conn, $sql_customer)) === FALSE){
-						echo "query failing, can't retrieve data";
-					}
-					else{
-						while ($row = mysqli_fetch_assoc($result_customer)) { ?>
-						<option value="<?=$row['cust_id']?>"><?=$row['cust_name']?></option>
-						<?php }
-					}
-				?>
-			</select>
+			<input type="text" class="form-control" id="customerName" name="customerName">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="status">Subscription Type :</label>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="new" name="status" required>New</label>
+			<label><input type="radio" value="new" name="status">New</label>
 		</div>
 		<div class="col-sm-2 radio">
 			<label><input type="radio" value="extension" name="status">Extension</label>
@@ -37,7 +24,7 @@ include "config.php";
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
 		<div class="col-sm-2 radio">
-			<label><input type="radio" value="1" name="plan" required>1 Month</label>
+			<label><input type="radio" value="1" name="plan">1 Month</label>
 		</div>
 		<div class="col-sm-2 radio">
 			<label><input type="radio" value="3" name="plan">3 Months</label>
@@ -53,96 +40,76 @@ include "config.php";
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0" required>
+            <input type="text" class="form-control" id="sub-promo" name="sub-promo">
         </div>
         <div class="col-sm-3"></div>
     </div>
-    <!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
+<!--    TODO: Price otomatis ke generate ketika subs plan dipilih
+              and (subs promo on hold)-->
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
-        <div class="col-sm-2">
-        	<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
-           	<?php
-          //  require("config.php");
-          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
-          //  $result = "guna";//mysqli_query($conn, $query);
-          //  echo $result
-             	?>
-		<script src="libs/jquery/dist/jquery.min.js"></script>
-		<script>
-			$("input[name=plan]:radio,#sub-promo").change(function () {
-				$("#sub-price").empty();
-				var currentPlan = $("input[name='plan']:checked").val();
-				var currentPromo = $("#sub-promo").val();
-				$.ajax({
-					type: "POST",
-					url: "select_plan.php",
-					data: {plan: currentPlan,promo: currentPromo},
-					success: function(response){
-						$("#sub-price").val(response);
-					}
-				});
-			});
-		</script>
+        <div class="col-sm-5">
+            <?php
+            $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
+            $result = "guna";//mysqli_query($conn, $query);
+            echo $result
+            ?>
         </div>
-        <div class="col-sm-1">
-        	<h4>Rupiah</h4>
-        </div>
-        <div class="col-sm-5"></div>
+        <div class="col-sm-3"></div>
     </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="0" required>
+			<input type="number" class="form-control" id="toypermonth" name="toypermonth">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
 		<div class="col-sm-5">
-			<input type="date" class="form-control" id="first-deliv" name="first-deliv" required>
-		</div>
-		<div class="col-sm-3"></div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
+			<input type="date" class="form-control" id="first-deliv" name="first-deliv">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
+			<input type="number" class="form-control" id="deliv-price" name="deliv-price">
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
+		<div class="col-sm-5">
+			<input type="text" class="form-control" id="deliv-promo" name="deliv-promo">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 		<div class="col-sm-5">
-			<input type="number" class="form-control" id="deposit" name="deposit" required>
+			<input type="number" class="form-control" id="deposit" name="deposit">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="pay-term" name="pay-term" required>
+			<input type="text" class="form-control" id="pay-term" name="pay-term">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 		<div class="col-sm-5">
-			<input type="date" class="form-control" id="refund-date" name="refund-date" required>
+			<input type="text" class="form-control" id="refund-date" name="refund-date">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
 		<div class="col-sm-5">
-			<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
+			<input type="text" class="form-control" id="deposit-status" name="deposit-status">
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
