@@ -234,6 +234,19 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-2" for="select-skill">Select Skill :</label>
+			<div class="col-sm-5">
+				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3">
+					<option value="" disabled>Select Category</option>
+					<option value="fine_motor">Fine Motor</option>
+					<option value="linguistic">Linguistic</option>
+					<option value="cognitive">Cognitive</option>
+					<option value="social_emotional">Social Emotional</option>
+				</select>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
 			<div class="col-sm-5">
 				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-selected-text-format="count > 3">
@@ -267,13 +280,14 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 	// 		}
 	// 	});
 	// });
-	$("#select-category").change(function(){
+	$("#select-category, #select-skill").change(function(){
 		$("#select-toy").empty().selectpicker('refresh');
 		var category = $("#select-category").selectpicker('val');
+		var skill = $("#select-skill").selectpicker('val');
 		var age = $("#age").val();
 		$.ajax({
 			type: "POST",
-			data: {category:category, age:age, cust_id:<?=$cust_id?>},
+			data: {category:category, skill:skill, age:age, cust_id:<?=$cust_id?>},
 			url: "select_category.php",
 			success: function(response){
 				$("#select-toy").html(response).selectpicker('refresh');
