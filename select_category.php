@@ -2,8 +2,9 @@
 include "config.php";
 $arr = $_POST['category'];
 $age = $_POST['age'];
+$cust_id = $_POST['cust_id'];
 $count = 0;
-$sql = "SELECT * FROM INVENTORY WHERE ($age BETWEEN age_lower AND age_upper) AND (";
+$sql = "SELECT * FROM INVENTORY WHERE ('$age' BETWEEN age_lower AND age_upper) AND (";
 foreach ($arr as &$value) {
 	if ($count >= 1 ) {
 		$sql = $sql." OR";
@@ -12,7 +13,8 @@ foreach ($arr as &$value) {
 	}
 	$sql = $sql." category_1 = '$value' OR category_2 = '$value'";
 }
-$sql = $sql.") ORDER BY toy_name ASC;";
+$sql = $sql.") AND NOT EXISTS (SELECT * FROM TOYS_TRACKING WHERE customer_id = '$cust_id') ORDER BY toy_name ASC;";
+echo "<option value='".$row['inventory_id']."' >".$sql."</option>";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{

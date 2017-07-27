@@ -273,7 +273,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		var age = $("#age").val();
 		$.ajax({
 			type: "POST",
-			data: {category:category, age:age},
+			data: {category:category, age:age, cust_id:<?=$cust_id?>},
 			url: "select_category.php",
 			success: function(response){
 				$("#select-toy").html(response).selectpicker('refresh');
