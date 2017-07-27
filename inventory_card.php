@@ -1,6 +1,10 @@
 <?php 
 	require('header.php');
 ?>
+<div class="jumbotron">
+	<br><br>
+	<center><h2 class="leckerli">Update Inventory Card</h2></center>
+</div>
 <div class="container">
 	<form class="form-horizontal" method="post" action="./inventory_card?id=<?=$_GET['id']?>">
 		<!-- helper div to insert product code to database-->
@@ -53,7 +57,8 @@
 		<div class="form-group">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-3">
-				<button class="greenbutton" type="submit" name ="cardsubmit" id="cardsubmit">Submit</button>
+				<button class="addbutton" type="submit" name ="cardsubmit" id="cardsubmit"><span class="
+				glyphicon glyphicon-ok"></span> Submit</button>
 			</div>
 			<div class="col-sm-6"></div>
 		</div>

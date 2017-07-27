@@ -1,10 +1,11 @@
 <?php 
 	require('header.php');
 ?>
-
+				<div class="jumbotron">
+					<br><br>
+					<center><h2 class="leckerli">View Inventory</h2></center>
+				</div>
 				<div class="container">
-					<center><h3>Edit / View Inventory</h3></center>
-					<br>
 					<form class="form-horizontal" method="post" action="./inventory">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
@@ -192,7 +193,8 @@
 						<div class="form-group">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-4">
-								<button class="greenbutton" type="submit" name="update" id="update">Update</button>
+								<button class="addbutton" type="submit" name="update" id="update"><span class="
+								glyphicon glyphicon-ok"></span> Update</button>
 							</div>
 							<div class="col-sm-4"></div>
 						</div>
@@ -351,7 +353,7 @@
 						<?php
 							include "config.php";
 							$inventory_id = $_GET['id'];
-							echo "<a method='post' href='inventory_card?id=$inventory_id' class='btn btn-default addbutton' name='card'>Update Card</a>";
+							echo "<a method='post' href='inventory_card?id=$inventory_id' class='addbutton' name='card'>Update Card</a>";
 						?>
 					</div>
 					<br>
