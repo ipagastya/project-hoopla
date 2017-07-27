@@ -28,82 +28,33 @@ include "config.php";
 			<th>Total</th>
             </tr>
             <?php
-                $query = "SELECT * FROM MONTH";
+                $query = "SELECT * FROM CUSTOMER_REPORT";
                 $result = mysqli_query($conn, $query);                          
-				if(!$result) {
+		
+		if(!$result) {
                     print("Couldn't execute query");
                     die(mysqli_connect_error());
                 }
             
                 while($row = mysqli_fetch_row($result)) {
-			    $currentMonth = $row[1];
-			    $currentYear = $row[2];
-			    
-			    echo "<tr><td>$currentMonth - $currentYear</td>";
-			
-			    $new1month = 0;
-			    $new3month = 0;
-			    $new6month = 0;
-			    $exp1month = 0;
-			    $exp3month = 0;
-			    $exp6month = 0;
-			    $ext1month = 0;
-			    $ext3month = 0;
-			    $ext6month = 0;
-
-			    $query1new = "SELECT COUNT(*)
-					FROM SUBSCRIPTION
-					WHERE EXTRACT(MONTH FROM date_added) = '$currentMonth'
-					    AND EXTRACT(YEAR FROM date_added) = '$currentYear'
-					    AND subs_plan = 1
-					    AND LOWER(status) = 'new'";
-			
-			    $query3new = "SELECT COUNT(*)
-					FROM SUBSCRIPTION
-					WHERE EXTRACT(MONTH FROM date_added) = '$currentMonth'
-					    AND EXTRACT(YEAR FROM date_added) = '$currentYear' 
-					    AND subs_plan = 3
-					    AND LOWER(status) = 'new'";
-			
-			    $query6new = "SELECT COUNT(*)
-					FROM SUBSCRIPTION
-					WHERE EXTRACT(MONTH FROM date_added) = '$currentMonth'
-					    AND EXTRACT(YEAR FROM date_added) = '$currentYear'
-					    AND subs_plan = 6
-					    AND LOWER(status) = 'new'";
-
-		   	    $result1new = mysqli_query($conn, $query1new);
-			    if(!$result1new) {
-				print("Couldn't execute query1new");
-				die(mysqli_connect_error());
-			    }
-			    $row1new = mysqli_fetch_row($result1new);
-			    $new1month = $row1new[0];
-
-			    $result3new = mysqli_query($conn, $query3new);
-			    if(!$result3new) {
-				print("Couldn't execute query3new");
-				die(mysqli_connect_error());
-			    }
-			    $row3new = mysqli_fetch_row($result3new);
-			    $new3month = $row3new[0];
-			
-			    $result6new = mysqli_query($conn, $query6new);
-			    if(!$result6new) {
-				print("Couldn't execute query6new");
-				die(mysqli_connect_error());
-			    }
-			    $row6new = mysqli_fetch_row($result6new);
-			    $new6month = $row6new[0];
-				        
-			    $totalnew = $new1month + $new3month + $new6month;
-			    echo"		<td>$totalnew</td>
-			    			<td>$new1month</td>
-						<td>$new3month</td>
-						<td>$new6month</td>
-			    		</tr>";
-                    
-                }
+			echo "	<tr>
+					<td>".$row[0]."/".$row[1]."</td>
+					<td>".$row[2]."</td>
+					<td>".$row[3]."</td>
+					<td>".$row[4]."</td>
+					<td>".$row[5]."</td>
+					<td>".$row[6]."</td>
+					<td>".$row[7]."</td>
+					<td>".$row[8]."</td>
+					<td>".$row[9]."</td>
+					<td>".$row[10]."</td>
+					<td>".$row[11]."</td>
+					<td>".$row[12]."</td>
+					<td>".$row[13]."</td>
+					<td>".$row[14]."</td>
+					<td>".$row[15]."</td>
+				</tr>";
+		}
             ?>
         </table>
     </div>
