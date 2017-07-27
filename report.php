@@ -96,6 +96,26 @@ include "config.php";
 			</tbody>
 		 </table>
 	    </div>
+	
+	<h4>Delivery Report</h4>
+	    <div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th colspan="2">Customer</th>
+					<th rowspan="2">Toys</th>
+					<th rowspan="2">Delivery Date</th>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		 </table>
+	    </div>
 </div>
 <?php
     require('footer.php');
