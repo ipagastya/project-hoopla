@@ -133,7 +133,7 @@ include "config.php";
 						$address = $row[3];
 						
 						$querySub = "SELECT I.toy_name
-								FROM DT.DELIVERY_TOYS, INVENTORY AS I
+								FROM DELIVERY_TOYS AS DT, INVENTORY AS I
 								WHERE DT.delivery_id = '$deliveryid'
 									AND DT.product_code = I.product_code";
 						
