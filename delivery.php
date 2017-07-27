@@ -12,7 +12,7 @@ if(($result_delivery = mysqli_query($conn, $sql))===FALSE){
 	echo "sql fail";
 }
 else{
-	$id = mysqli_num_rows($result_delivery);
+	$id = mysqli_num_rows($result_delivery) + 1;
 }
 
 $sql = "SELECT * FROM CUSTOMER WHERE cust_id = '$cust_id'";
@@ -200,6 +200,13 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 			<label class="control-label col-sm-2" for="favorite">Favorite Toys :</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="fav-toy" value="<?=$customer['favorite_toys']?>" name="favorite-toys" readonly>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="box-name">Box Name :</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="box-name" name="box-name" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
