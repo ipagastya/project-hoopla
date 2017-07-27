@@ -197,6 +197,20 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-2" for="favorite">Favorite Toys :</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="fav-toy" value="<?=$customer['favorite_toys']?>" name="favorite-toys" readonly>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="milestones">Favorite Toys :</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="milestones" value="<?=$customer['milestones']?>" name="milestones" readonly>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-category">Select Category :</label>
 			<div class="col-sm-5">
 				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
