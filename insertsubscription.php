@@ -22,7 +22,9 @@ echo $sql;
 $result = mysqli_query($conn, $sql);
 if($result === false){
 	die("Query Fail");
-	header( "refresh:5;url=subscription_list.php" );
+	
+}else{
+	header( "refresh:1;url=subscription_list.php" );
 }
-
 ?>
+<h1>Please Wait, we updating the info to database......</h1>
