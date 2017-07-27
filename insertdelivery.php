@@ -22,6 +22,17 @@ echo $sql_deliv."<br>";
 
 $arr = $_POST['select-toy'];
 
+//insert table Invent_card
+$today = date("Y-m-d");
+$sql = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Rented';";
+$row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+$activity_name = $row['activity_name'];
+$activity_id = $row['activity_id'];
+foreach ($arr as &$value) {
+	$sql_card = "INSERT INTO INVENTORY_CARD (date, activity_id, Status, note) VALUES ('$today', '$activity_id', '$activity_name');";
+	echo $sql_card."<br>";
+}
+
 //insert table delivery_toys
 $sql = "SELECT delivery_id FROM DELIVERY_LIST ORDER BY delivery_id DESC";
 if (mysqli_num_rows(mysqli_query($conn, $sql)) == 0) {
@@ -39,17 +50,6 @@ foreach ($arr as &$value) {
 foreach ($arr as &$value) {
 	$sql_track = "INSERT INTO TOYS_TRACKING (cust_id, city_id) VALUES ('$cust_id', '$value');";
 	echo $sql_track."<br>";
-}
-
-//insert table Invent_card
-$today = date("Y-m-d");
-$sql = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Aquisition';";
-$row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-$activity_name = $row['activity_name'];
-$activity_id = $row['activity_id'];
-foreach ($arr as &$value) {
-	$sql_card = "INSERT INTO INVENTORY_CARD (date, activity_id, Status, note) VALUES ('$today', '$activity_id', '$activity_name');";
-	echo $sql_card."<br>";
 }
 
 // update table inventory
