@@ -5,20 +5,23 @@ body, html{height:100%;margin:0;}
 .leckerli{font-family:"Leckerli One";}
 #loginarea{background-color:#fff;padding:40px 50px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;border-width:10px;border-color:#e67e22;}
 #loginarea:hover{box-shadow:10px 10px 5px #d6dbdf;}
-#loginbutton{padding:10px 45px;background:#2980b9;color:#fff;border-radius:15px;box-shadow:none;border-width:0px;}
-#loginbutton:hover{background:#e67e22;color:#fff;border-radius:15px;border-width:0px;}
+#loginbutton{padding:10px 45px;background:#2980b9;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;}
+#loginbutton:hover{background:#e67e22;}
 nav{border-radius:0px;border-width:0px;box-shadow:0px;}
 .navbar-collapse > .navbar-left > li > a{font-weight:bold;color:#2980b9;}
 .navbar-collapse > .navbar-left > li > a:hover{color:#f39c12;}
 .navbar-collapse > .navbar-right{font-weight:bold;margin-right:8px;}
-.addbutton{padding:10px 15px;background:#2980b9;color:#fff;border-radius:15px;box-shadow:none;border-width:0px;}
-.addbutton:hover{background:#e67e22;color:#fff;border-radius:15px;box-shadow:none;border-width:0px;}
-.greenbutton{padding:10px 25px;background:#2ecc71;color:#fff;border-radius:10px;box-shadow:none;border-width:0px;}
-.greenbutton:hover{background:#1abc9c;}
+.addbutton{padding:10px 15px;background:#2980b9;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;text-decoration:none;}
+.addbutton:hover{background:#398790;text-decoration:none;color:#fff;}
+.greenbutton{padding:10px 25px;background:#89ce4d;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;}
+.greenbutton:hover{background:#78b940;}
 .welcomepage{background-image:url(../images/background-smaller.png);background-size:cover;height:100%;background-repeat:no-repeat;background-attachment:fixed;margin-top:-40px;}
 #form-row{display:flex;flex-direction:row;}
 .align-bottom{position:absolute;margin-left:auto;margin-right:auto;left:0;right:0;display:block;bottom:0;}
 .submit-text{margin:auto;}
 .align-center{display:block;margin-left:auto;margin-right:auto;}
-#form-filter{margin-top:10px;margin-bottom:10px;border-radius:10px;background-color:#e6e9ed;padding:15px 40px;}
-.filterbox{background-color:#34495e;border-radius:15px;}
+#form-filter{margin-top:10px;margin-bottom:10px;border-radius:5px;background-color:#398790;padding:15px 40px;color:#fff;}
+.filterbtn{padding:10px 15px;background:#ed265a;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;}
+.filterbtn:hover{background:#c91d4a;}
+.obj{background:#fff;border:2px solid #d6dbdf;border-radius:5px;padding:10px 10px;}
+.jumbotron{margin-top:-80px;background-image:url(../images/walljumbo.png);background-size:cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff;}
