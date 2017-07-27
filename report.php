@@ -112,7 +112,55 @@ include "config.php";
 				</tr>
 			</thead>
 			<tbody>
+				<?php
+					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address
+							FROM DELIVERY_LIST AS DL, CUSTOMER AS C
+							WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
+								AND DL.cust_id = C.cust_id
+							ORDER BY DL.delivery_date ASC";
 				
+					$result = mysqli_query($conn, $query);                          
+
+					if(!$result) {
+					    print("Couldn't execute delivery report 1 query");
+					    die(mysqli_connect_error());
+					}
+
+					while($row = mysqli_fetch_row($result)) {
+						$deliveryid = $row[0];
+						$date = $row[1];
+						$name = $row[2];
+						$address = $row[3];
+						
+						$querySub = "SELECT I.toy_name
+								FROM DT.DELIVERY_TOYS, INVENTORY AS I
+								WHERE DT.delivery_id = '$deliveryid'
+									AND DT.product_code = I.product_code";
+						
+						$resultSub = mysqli_query($conn, $querySub);
+						
+						if(!$resultSub) {
+						    print("Couldn't execute delivery report 2 query");
+						    die(mysqli_connect_error());
+						}
+						
+						echo "<tr>
+							<td>$name</td>
+							<td>$address</td>
+							<td>";
+						
+						$flag = TRUE;
+						while($rowSub = mysqli_fetch_row($resultSub)) {
+							if($flag) {
+								echo $rowSub[0];
+								$flag = FALSE;
+							} else {
+								echo ", ".$rowSub[0]."";
+							}
+						}
+						echo "</td><td>$date</td></tr>";
+					}
+				?>
 			</tbody>
 		 </table>
 	    </div>
