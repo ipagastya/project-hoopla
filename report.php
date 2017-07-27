@@ -5,7 +5,7 @@ include "config.php";
 <div class= "container">
    	 <h4>Subscription Report</h4>
 	    <div class="table-responsive">
-		<table class="table table-hover">
+		<table class="table table-bordered">
 			<thead>
 			    <tr>
 					<th rowspan="2">Month/Year</th>
@@ -67,7 +67,7 @@ include "config.php";
 	
 	<h4>Expiring Subscriptions</h4>
 	    <div class="table-responsive">
-		<table class="table table-hover">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Customer Name</th>
@@ -99,7 +99,7 @@ include "config.php";
 	
 	<h4>Delivery Report</h4>
 	    <div class="table-responsive">
-		<table class="table table-hover">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th colspan="2">Customer</th>
