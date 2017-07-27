@@ -23,15 +23,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="welcome.php"><img class="img-responsive" src="src/images/logo-1.png" style="height:50px"></a>
+			<a href="welcome"><img class="img-responsive" src="src/images/logo-1.png" style="height:50px"></a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="customer_list.php">Customer</a></li>
-				<li><a href="subscription_list.php">Subscription</a></li>
+				<li><a href="customer_list">Customer</a></li>
+				<li><a href="subscription_list">Subscription</a></li>
 				<li><a href="#">Payment</a></li>
-				<li><a href="inventory_list.php">Inventory</a></li>
-                <li><a href="report.php">Report</a></li>
+				<li><a href="inventory_list">Inventory</a></li>
+                		<li><a href="report">Report</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
