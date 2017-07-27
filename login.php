@@ -10,14 +10,16 @@ if(isset($_POST["loginbutton"])){
   $row = mysqli_fetch_row($result);
   $count = mysqli_num_rows($result);
   if($username == "" && $password == ""){
-    echo "<script>alert('Please enter your username and password');</script>";
+    echo "<h5 id='errorLogin'><span class='glyphicon glyphicon-warning-sign'></span> Enter Username and Password</h5>";
+    echo"<script>alert('Login Failed !');</script>";
   }
   if($username != "" || $password != ""){
     if($count == 1){
       $_SESSION['username'] = $username;
       header("location: welcome");
     }else{
-      echo "<script>alert('The username or password you entered is incorrect');</script>";
+      echo "<h5 id='errorLogin'><span class='glyphicon glyphicon-warning-sign'></span> Username or Password is Incorrect</h5>";
+      echo"<script>alert('Login Failed !');</script>";
     }
   }
 }
