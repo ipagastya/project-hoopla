@@ -85,10 +85,10 @@ require_once("config.php");
 			});
 		</script>
         </div>
-        <div class="col-sm-1">
-        	<h4>Rupiah</h4>
+        <div class="col-sm-2">
+        	<h4>Rupiah / Month</h4>
         </div>
-        <div class="col-sm-5"></div>
+        <div class="col-sm-4"></div>
     </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
