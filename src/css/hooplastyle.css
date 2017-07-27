@@ -4,9 +4,11 @@ body, html{height:100%;margin:0;}
 @font-face{font-family:"Leckerli One";src:url('../fonts/LeckerliOne-Regular.ttf') format('truetype');}
 .leckerli{font-family:"Leckerli One";}
 #loginarea{background-color:#fff;padding:40px 50px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;border-width:10px;border-color:#e67e22;}
-#loginarea:hover{box-shadow:10px 10px 5px #d6dbdf;}
+#loginarea:hover{box-shadow:8px 8px 5px #d6dbdf;}
 #loginbutton{padding:10px 45px;background:#2980b9;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;}
 #loginbutton:hover{background:#e67e22;}
+#errorLogin{background:#dc2755;color:#fff;padding:10px 10px;border-radius:5px;}
+#errorLogin:hover{background:#c91d4a;cursor:pointer;}
 nav{border-radius:0px;border-width:0px;box-shadow:0px;}
 .navbar-collapse > .navbar-left > li > a{font-weight:bold;color:#2980b9;}
 .navbar-collapse > .navbar-left > li > a:hover{color:#f39c12;}
