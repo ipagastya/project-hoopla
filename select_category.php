@@ -46,7 +46,6 @@ foreach ($arr as &$value) {
 
 //customer and ascending
 $sql = $sql.") AND NOT EXISTS (SELECT * FROM TOYS_TRACKING WHERE customer_id = '$cust_id') AND status = 'available' ORDER BY toy_name ASC;";
-echo "<option value='".$sql."' >".$sql."</option>";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
