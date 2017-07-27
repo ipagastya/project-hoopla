@@ -231,13 +231,6 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 			<div class="col-sm-5">
 				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Toy</option>
-					<?php 
-					$sql_toy = "SELECT * FROM INVENTORY";
-					$result = mysqli_query($conn, $sql_toy);
-					while ($row = mysqli_fetch_assoc($result)) { ?>
-					<option value="<?=$row['inventory_id']?>"><?=$row['toy_name']?></option>
-					<?php }
-					?>
 				</select>
 			</div>
 			<div class="col-sm-5"></div>
