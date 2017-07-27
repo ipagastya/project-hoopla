@@ -18,7 +18,7 @@ if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
 	while($row = mysqli_fetch_assoc($result)){
-		echo "<option value='".$row['inventory_id']."' >".$row['toy_name']."</option>";
+		echo "<option value='".$row['product_code']."' >".$row['toy_name']."</option>";
 	}
 }
 ?>
