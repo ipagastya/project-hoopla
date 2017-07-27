@@ -22,7 +22,9 @@ include "config.php";
 			<th>Total</th>
 			<th>1 MO</th>
 			<th>3 MO</th>
+			<th>6 MO</th>
 			<th>Total</th>
+		    	<th>1 MO</th>
 			<th>3 MO</th>
 			<th>6 MO</th>
 			<th>Total</th>
