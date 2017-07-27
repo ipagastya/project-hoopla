@@ -185,67 +185,36 @@ if(!isset($_GET['subs_id'])){
 					$cust_id = $row['cust_id'];
 					$sql = "SELECT * FROM DELIVERY_LIST WHERE cust_id = '$cust_id'";
 					$result = mysqli_query($conn, $sql);
-					while ($row_deliv = mysqli_fetch_assoc($result)) {
-						?> 
-					<tr>
-						<td>
-							<?=$row_deliv['delivery_id']?>
-						</td>
-						<td>
-							<?=$row_deliv['address']?>
-						</td>
-						<td>
-							<?php
-								$city_id =$row_deliv['city_id'];
-								$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
-								$result = mysqli_query($conn, $sql);
-								$row_city = mysqli_fetch_assoc($result);
-								echo $row_city['city_name'];
-							?>
-						</td>
-						<td>
-							<?php
-								$province_id = $row_deliv['province_id'];
-								$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
-								$result = mysqli_query($conn, $sql);
-								$row_province = mysqli_fetch_assoc($result);
-								echo $row_city['province_name'];
-							?>
-						</td>
-						<td>
-							<?=$row_deliv['mobile_phone']?>
-						</td>
-						<td>
-							<?=$row_deliv['home_phone']?>
-						</td>
-						<td>
-							<?=$row_deliv['delivery_date']?>
-						</td>
-						<td>
-							<?=$row_deliv['pickup_date']?>
-						</td>
-						<td>
-							<?=$row_deliv['actual_delivery_charge']?>
-						</td>
-						<td>
-							<?=$row_deliv['actual_pickup_charge']?>
-						</td>
-						<td>
-							<?=$row_deliv['payment_note']?>
-						</td>
-						<td>
-							<?=$row_deliv['note']?>
-						</td>
-						<td>
-							<?=$row_deliv['baby_age']?>
-						</td>
-						<td>
-							<?=$row_deliv['box_name']?>
-						</td>
-					</tr>
-						<?php
-					}
-					?>
+					while ($row_deliv = mysqli_fetch_assoc($result)) { ?> 
+						<tr>
+							<td><?=$row_deliv['delivery_id']?></td>
+							<td><?=$row_deliv['address']?></td>
+							<td><?php
+									$city_id =$row_deliv['city_id'];
+									$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
+									$result_city = mysqli_query($conn, $sql);
+									$row_city = mysqli_fetch_assoc($result_city);
+									echo $row_city['city_name'];
+								?></td>
+							<td><?php
+									$province_id = $row_deliv['province_id'];
+									$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
+									$result_province = mysqli_query($conn, $sql);
+									$row_province = mysqli_fetch_assoc($result_province);
+									echo $row_city['province_name'];
+								?></td>
+							<td><?=$row_deliv['mobile_phone']?></td>
+							<td><?=$row_deliv['home_phone']?></td>
+							<td><?=$row_deliv['delivery_date']?></td>
+							<td><?=$row_deliv['pickup_date']?></td>
+							<td><?=$row_deliv['actual_delivery_charge']?></td>
+							<td><?=$row_deliv['actual_pickup_charge']?></td>
+							<td><?=$row_deliv['payment_note']?></td>
+							<td><?=$row_deliv['note']?></td>
+							<td><?=$row_deliv['baby_age']?></td>
+							<td><?=$row_deliv['box_name']?></td>
+						</tr>
+						<?php } ?>
 				</table>
 			</div>
 			<?php 
