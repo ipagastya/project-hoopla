@@ -13,8 +13,7 @@ foreach ($arr as &$value) {
 	}
 	$sql = $sql." category_1 = '$value' OR category_2 = '$value'";
 }
-$sql = $sql.") AND NOT EXISTS (SELECT * FROM TOYS_TRACKING WHERE customer_id = '$cust_id') ORDER BY toy_name ASC;";
-echo "<option value='".$row['inventory_id']."' >".$sql."</option>";
+$sql = $sql.") AND NOT EXISTS (SELECT * FROM TOYS_TRACKING WHERE customer_id = '$cust_id') AND status = 'available' ORDER BY toy_name ASC;";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
