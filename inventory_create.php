@@ -1,9 +1,11 @@
 <?php 
 	require('header.php');
-?>
+?>				
+				<div class="jumbotron">
+					<br><br>
+					<center><h2 class="leckerli">Create Inventory</h2></center>
+				</div>
 				<div class="container">
-					<center><h3>Create Inventory</h3></center>
-					<br>
 					<form class="form-horizontal" method="post" action="./inventory_create">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
@@ -191,7 +193,8 @@
 						<div class="form-group">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-4">
-								<button class="greenbutton" type="submit" name="submit" id="submit">Submit</button>
+								<button class="addbutton" type="submit" name="submit" id="submit"><span class="
+								glyphicon glyphicon-ok"></span> Submit</button>
 							</div>
 							<div class="col-sm-4"></div>
 						</div>

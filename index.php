@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	require_once('login.php');
 	if(isset($_SESSION['username'])){
 		header("location: welcome");
 	}
@@ -34,14 +33,26 @@
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
 							<input type="password" class="form-control" name="password" placeholder="password"><br>
 							<button  class="btn btn-primary" id="loginbutton" name="loginbutton" type="submit"><b>LOGIN</b></button>
+							<br>
 						</form>
 					</div>
 					<div class="col-sm-4 col-md-4">
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-4 col-md-4"></div>
+				<div class="col-sm-4 col-md-4">
+					<center><div id="errorArea">
+						<?php
+							require_once('login.php');
+						?>
+					</div></center>
+				</div>
+				<div class="col-sm-4 col-md-4"></div>
+			</div>
+			
 		</div>
 	</div>
 </body>
-	
 </html>
