@@ -48,7 +48,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="address">Address :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="address" value="<?=$customer['address']?>" name="address">
+				<input type="text" class="form-control" id="address" value="<?=$customer['address']?>" name="address" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -101,42 +101,42 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-date">Delivery Date :</label>
 			<div class="col-sm-5">
-				<input type="date" class="form-control" id="deliv-date" name="deliv-date">
+				<input type="date" class="form-control" id="deliv-date" name="deliv-date" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pick-date">Pickup Date :</label>
 			<div class="col-sm-5">
-				<input type="date" class="form-control" id="pick-date" name="pick-date">
+				<input type="date" class="form-control" id="pick-date" name="pick-date" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-charge">Actual Delivery Charge :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="deliv-charge" name="deliv-charge">
+				<input type="number" class="form-control" id="deliv-charge" name="deliv-charge" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pick-charge">Actual Pickup Charge :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="pick-charge" name="pick-charge">
+				<input type="number" class="form-control" id="pick-charge" name="pick-charge" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pay-note">Payment Note :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="pay-note" name="pay-note">
+				<input type="text" class="form-control" id="pay-note" name="pay-note" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="note">Note :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="note" name="note">
+				<input type="text" class="form-control" id="note" name="note" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -171,7 +171,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pay-term">Payment Terms :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="pay-term" name="pay-term">
+				<input type="text" class="form-control" id="pay-term" name="pay-term" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -185,14 +185,14 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deposit-status">Deposit Status :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deposit-status" name="deposit-status">
+				<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-schedule">Delivery Schedule :</label>
 			<div class="col-sm-5">
-				<input type="date" class="form-control" id="deliv-schedule" name="deliv-schedule">
+				<input type="date" class="form-control" id="deliv-schedule" name="deliv-schedule" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -220,7 +220,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-category">Select Category :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
+				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3" required>
 					<option value="" disabled>Select Category</option>
 					<?php 
 					$sql_category = "SELECT * FROM CATEGORY";
@@ -236,7 +236,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-skill">Select Skill :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3">
+				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3" required>
 					<option value="" disabled>Select Category</option>
 					<option value="fine_motor">Fine Motor</option>
 					<option value="linguistic">Linguistic</option>
@@ -249,7 +249,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-selected-text-format="count > 3">
+				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-selected-text-format="count > 3" required>
 					<option value="" disabled>Select Toy</option>
 				</select>
 			</div>
