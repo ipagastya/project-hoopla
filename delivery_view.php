@@ -33,7 +33,7 @@
 				$count = $count + 1;
 			}
 			else{
-				$toy = $toy." ";
+				$toy = $toy.", ";
 			}
 			$toy = $toy.$row['toy_name'];
 		}
