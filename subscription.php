@@ -201,7 +201,7 @@ if(!isset($_GET['subs_id'])){
 									$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
 									$result_province = mysqli_query($conn, $sql);
 									$row_province = mysqli_fetch_assoc($result_province);
-									echo $row_city['province_name'];
+									echo $row_province['province_name'];
 								?></td>
 							<td><?=$row_deliv['mobile_phone']?></td>
 							<td><?=$row_deliv['home_phone']?></td>
