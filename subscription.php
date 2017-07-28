@@ -213,6 +213,7 @@ if(!isset($_GET['subs_id'])){
 							<td><?=$row_deliv['note']?></td>
 							<td><?=$row_deliv['baby_age']?></td>
 							<td><?=$row_deliv['box_name']?></td>
+							<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>" target="_blank">Details</a></td>
 						</tr>
 						<?php } ?>
 				</table>
