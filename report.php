@@ -185,6 +185,38 @@
 			</tbody>
 		 </table>
 	    </div>
+	<h4>Available Inventory (This Week)</h4>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Product Code</th>
+						<th>Toy Name</th>
+						<th>Availability</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						$query = "SELECT * FROM INVENTORY_AVAILABLE";
+						$result = mysqli_query($conn, $query);                          
+
+						if(!$result) {
+						    print("Couldn't execute inventory query");
+						    die(mysqli_connect_error());
+						}
+						
+						while($row = mysqli_fetch_row($result)) {
+							echo "	<tr>
+									<td>".$row[0]."</td>
+									<td>".$row[1]."</td>
+									<td>".$row[2]."</td>
+								</tr>";
+						}
+					?>
+				</tbody>
+			    </table>
+		</div>
+			
 </div>
 <?php
     require('footer.php');
