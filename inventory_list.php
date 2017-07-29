@@ -61,7 +61,6 @@
 						<th>Toy Category 2</th>
 						<th>Hoopla Age</th>
 						<th>Status</th>
-						<th>Return</th>
 						<th>Details</th>
 					</tr>
 				</thead>
@@ -114,7 +113,6 @@
 			        			<td>".$rowName2[0]."</td>
 			        			<td>".$row[10]."-".$row[11]."</td>
 			        			<td>".$row[4]."</td>
-			        			<td>".$row[5]."</td>
 			        			<td>"."<a method='get' href='inventory?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        		</tr>";
 			        }
