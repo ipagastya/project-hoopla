@@ -1,4 +1,7 @@
 <?php
+	require('header.php');
+	include "config.php";
+	
 	$query = "SELECT * FROM CUSTOMER";
 	$result = $db->query($query);
 	if (!$result) die('Couldn\'t fetch records');
