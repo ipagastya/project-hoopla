@@ -1,10 +1,5 @@
 <?php
-	//error_reporting(E_ALL);
-	//ini_set('display_errors', 'On');
-	require('header.php');
 	include "config.php";
-
-	ob_start();
   
 	$query = 'SELECT * FROM INVENTORY_AVAILABLE';
 	$result = mysqli_query($conn, $query);                          
@@ -28,8 +23,7 @@
 	     while ($row = mysqli_fetch_array($result)) {
 		fputcsv($fp, array_values($row));
 	     }
-	     
+	     die;
 	 }
-	 require('footer.php');
-	 die;
+	
 ?>
