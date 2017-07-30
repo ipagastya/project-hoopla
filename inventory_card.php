@@ -43,7 +43,14 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="status">Status :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="statustext" name="statustext">
+				<!--input type="text" class="form-control" id="statustext" name="statustext"-->
+				<select class="form-control" id="statustext" name="statustext">
+					<option>Active</option>
+					<option>Missing Parts</option>
+					<option>Under Service</option>
+					<option>Permanent Damaged</option>
+					<option>Donated</option>
+				</select>
 			</div>
 			<div class="col-sm-4"></div>
 		</div>
