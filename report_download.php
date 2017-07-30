@@ -24,7 +24,7 @@
 	     while ($row = mysqli_fetch_array($result)) {
 		fputcsv($fp, array_values($row));
 	     }
-	     die;
+	     //die;
 	 }
 
 	 require('footer.php');
