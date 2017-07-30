@@ -20,10 +20,10 @@
 	    while ($row = $result->fetch_array(MYSQLI_NUM)) {
 		fputcsv($fp, array_values($row));
 	    }
-	    die;
 	}
 ?>
 
 <?php
 	 require('footer.php');
+	 die;
 ?>
