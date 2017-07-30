@@ -14,7 +14,7 @@
 	 $num_fields = mysqli_num_fields($result);
 	 $headers = array();
 	 for ($i = 0; $i < $num_fields; $i++) {
-	     $headers[] = mysqli_field_name($result , $i);
+	     $headers[] = mysqli_fetch_field_direct($result, $i)->name;
 	 }
 	 $fp = fopen('php://output', 'w');
 	 if ($fp && $result) {
