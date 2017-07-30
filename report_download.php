@@ -26,6 +26,8 @@
 	     }
 	     //die;
 	 }
+?>
 
+<?php
 	 require('footer.php');
 ?>
