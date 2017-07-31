@@ -1,10 +1,11 @@
 <?php  
 require_once('header.php');
 include "config.php";
-if(!isset($_GET['cust_id'])){
+if(!isset($_GET['cust_id']) && !isset($_GET['subs_id'])){
 	header("location: subscription_list");
 }else{
 	$cust_id = $_GET['cust_id'];
+	$subs_id = $_GET['subs_id'];
 }
 
 $sql = "SELECT * FROM DELIVERY_LIST";
@@ -32,6 +33,10 @@ $province = mysqli_fetch_assoc($result_province)['province_name'];
 $sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
 $result_city = mysqli_query($conn, $sql);
 $city = mysqli_fetch_assoc($result_city)['city_name'];
+
+$sql_subs = "SELECT * FROM SUBSCRIPTION WHERE subs_id = $subs_id";
+$result_subs = mysqli_query($conn, $sql_subs);
+$subscription = mysqli_fetch_assoc($result_subs);
 
 $dob= $customer['baby_dob'];
 $baby_age = (date('Y') - date('Y',strtotime($dob)));
@@ -127,14 +132,14 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-charge">Actual Delivery Charge :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="deliv-charge" name="deliv-charge" required>
+				<input type="text" class="form-control nominal-number" id="deliv-charge" value="0" name="deliv-charge" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pick-charge">Actual Pickup Charge :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="pick-charge" name="pick-charge" required>
+				<input type="text" class="form-control nominal-number" id="pick-charge" value="0" name="pick-charge" required>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -169,35 +174,35 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deliv-promo">Delivery Promo :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deliv-promo" name="deliv-promo">
+				<input type="text" class="form-control" id="deliv-promo" value="<?=number_format($subscription['deliv_promo'],2) ?>" name="deliv-promo" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deposit">Deposit Amount :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="deposit" name="deposit">
+				<input type="text" class="form-control" id="deposit" value="<?=number_format($subscription['deposit'],2) ?>" name="deposit" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pay-term">Payment Terms :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="pay-term" name="pay-term" required>
+				<input type="text" class="form-control" id="pay-term" name="pay-term" value="<?=$subscription['payment_terms'] ?>" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="refund-date">Deposit Refund Date :</label>
 			<div class="col-sm-5">
-				<input type="date" class="form-control" id="refund-date" name="refund-date">
+				<input type="date" class="form-control" id="refund-date" value="<?=$subscription['deposit_refund'] ?>" name="refund-date" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="deposit-status">Deposit Status :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
+				<input type="text" class="form-control" id="deposit-status" value="<?=$subscription['deposit_status'] ?>" name="deposit-status" readonly>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -308,7 +313,26 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 				$("#select-toy").html(response).selectpicker('refresh');
 			}
 		});
-	})
+	});
+	$(".nominal-number").change(function(){
+		$value = $(this).val()
+		if(!isNaN($value) && $value){
+			$tag = this;
+			$.ajax({
+				type: "POST",
+				data: {nominal: $value},
+				url: "libs/nominal.php",
+				success: function(response){
+					$value = response;
+					$($tag).val(response);
+				}
+			});
+		}
+		else{
+			$(this).val("");
+			$(this).attr("placeholder", "Please input number")
+		}
+	});
 </script>
 <?php 
 require_once('footer.php');
