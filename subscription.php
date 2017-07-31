@@ -56,7 +56,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="<?=$row['subs_promo']?>" required>
+						<input type="number" class="form-control" id="sub-promo" name="sub-promo" value="<?=$row['subs_promo']?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -113,7 +113,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" value="<?=$row['deliv_promo']?>" required>
+						<input type="number" class="form-control" id="deliv-promo" name="deliv-promo" value="<?=$row['deliv_promo']?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>

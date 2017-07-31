@@ -110,7 +110,7 @@ require_once("config.php");
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="deliv-promo" value="0" name="deliv-promo" required>
+			<input type="number" class="form-control" id="deliv-promo" value="0" name="deliv-promo" required>
 		</div>
 		<div class="col-sm-2">
         	<h4>Rupiah</h4>
