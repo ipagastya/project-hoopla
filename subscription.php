@@ -56,7 +56,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
 					<div class="col-sm-2">
-						<input type="number" class="form-control" id="sub-promo" name="sub-promo" value="<?=$row['subs_promo']?>" required>
+						<input type="text" class="form-control nominal-number" id="sub-promo" name="sub-promo" value="<?=number_format($row['subs_promo'],2)?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -67,7 +67,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="sub-price" name="sub-price" value="<?=$row['subs_price']?>" readonly>
+						<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="<?=number_format($row['subs_price'],2)?>" readonly>
 						<?php
           //  require("config.php");
           //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
@@ -80,9 +80,11 @@ if(!isset($_GET['subs_id'])){
 								$("#sub-price").empty();
 								var currentPlan = $("input[name='plan']:checked").val();
 								var currentPromo = $("#sub-promo").val();
+								if(isNaN(currentPlan)) currentPlan = 0;
+								if(isNaN(currentPromo)) currentPromo = 0;
 								$.ajax({
 									type: "POST",
-									url: "select_plan.php",
+									url: "select_plan_delimiter.php",
 									data: {plan: currentPlan,promo: currentPromo},
 									success: function(response){
 										$("#sub-price").val(response);
@@ -113,7 +115,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 					<div class="col-sm-2">
-						<input type="number" class="form-control" id="deliv-promo" name="deliv-promo" value="<?=$row['deliv_promo']?>" required>
+						<input type="text" class="form-control nominal-number" id="deliv-promo" name="deliv-promo" value="<?=number_format($row['deliv_promo'],2)?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -123,7 +125,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 					<div class="col-sm-2">
-						<input type="number" class="form-control" id="deliv-price" name="deliv-price" value="<?=$row['deliv_price']?>" required>
+						<input type="text" class="form-control nominal-number" id="deliv-price" name="deliv-price" value="<?=number_format($row['deliv_price'],2)?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -133,7 +135,7 @@ if(!isset($_GET['subs_id'])){
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 					<div class="col-sm-2">
-						<input type="number" class="form-control" id="deposit" name="deposit" value="<?=$row['deposit']?>" required>
+						<input type="text" class="form-control nominal-number" id="deposit" name="deposit" value="<?=number_format($row['deposit'],2)?>" required>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -169,9 +171,6 @@ if(!isset($_GET['subs_id'])){
 							<option value="Refunded" <?php if($deposit_status == 'Refunded') echo "selected" ?>>Refunded</option>
 							<option value="Refunded-Partially" <?php if($deposit_status == 'Refunded-Partially') echo "selected" ?>>Refunded-Partially</option>
 							<option value="Void" <?php if($deposit_status == 'Void') echo "selected" ?>>Void</option>
-							<script type="text/javascript">
-								$('.selectpicker').selectpicker();
-							</script>
 						</select>
 					</div>
 					<div class="col-sm-6"></div>
@@ -249,7 +248,27 @@ if(!isset($_GET['subs_id'])){
 
 					?>
 				</div>
-
+				<script>
+					$(".nominal-number").change(function(){
+						$value = $(this).val()
+						if(!isNaN($value)){
+							$tag = this;
+							$.ajax({
+								type: "POST",
+								data: {nominal: $value},
+								url: "libs/nominal.php",
+								success: function(response){
+									$value = response;
+									$($tag).val(response);
+								}
+							});
+						}
+						else{
+							$(this).val("");
+							$(this).attr("placeholder", "Please input number")
+						}
+					})
+				</script>
 				<?php
 			}
 		}
