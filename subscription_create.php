@@ -157,7 +157,7 @@ require_once("config.php");
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
 		<div class="col-sm-2">
-			<select class="form-control selectpicker" id="deposit-status" name="deposit-status" required>
+			<select class="form-control selectpicker show-tick" id="deposit-status" name="deposit-status" required>
 			<option value="Waiting">Waiting</option>
 			<option value="Paid" disabled>Paid</option>
 			<option value="Cancelled" disabled>Cancelled</option>

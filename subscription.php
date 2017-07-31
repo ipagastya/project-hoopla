@@ -159,10 +159,22 @@ if(!isset($_GET['subs_id'])){
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" id="deposit-status" name="deposit-status" value="<?=$row['deposit_status']?>" required>
+					<div class="col-sm-2">
+						<select class="form-control selectpicker show-tick" id="deposit-status" name="deposit-status" required>
+							<?php $deposit_status = $row['deposit_status']; ?>
+							<option value="Waiting" <?php if($deposit_status == 'Waiting') echo "selected" ?>>Waiting</option>
+							<option value="Paid" <?php if($deposit_status == 'Paid') echo "selected" ?>>Paid</option>
+							<option value="Cancelled" <?php if($deposit_status == 'Cancelled') echo "selected" ?>>Cancelled</option>
+							<option value="Extended" <?php if($deposit_status == 'Extended') echo "selected" ?>>Extended</option>
+							<option value="Refunded" <?php if($deposit_status == 'Refunded') echo "selected" ?>>Refunded</option>
+							<option value="Refunded-Partially" <?php if($deposit_status == 'Refunded-Partially') echo "selected" ?>>Refunded-Partially</option>
+							<option value="Void" <?php if($deposit_status == 'Void') echo "selected" ?>>Void</option>
+							<script type="text/javascript">
+								$('.selectpicker').selectpicker();
+							</script>
+						</select>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-6"></div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-4"></div>
