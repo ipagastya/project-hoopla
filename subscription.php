@@ -185,7 +185,7 @@ if(!isset($_GET['subs_id'])){
 			</form>
 			<hr>
 			<div align="right">
-				<a href="delivery?cust_id=<?=$row['cust_id']?>" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
+				<a href="delivery?cust_id=<?=$row['cust_id']?>&subs_id=<?=$subs_id?>" class="btn btn-primary addbutton"><span class="glyphicon glyphicon-plus"></span> Create Delivery</a>
 			</div>
 			<h4>Delivery Schedule</h4>
 			<div class="table-responsive">
@@ -239,7 +239,7 @@ if(!isset($_GET['subs_id'])){
 								<td><?=$row_deliv['note']?></td>
 								<td><?=$row_deliv['baby_age']?></td>
 								<td><?=$row_deliv['box_name']?></td>
-								<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>" target="_blank">Details</a></td>
+								<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a></td>
 							</tr>
 							<?php } ?>
 						</table>
@@ -251,7 +251,7 @@ if(!isset($_GET['subs_id'])){
 				<script>
 					$(".nominal-number").change(function(){
 						$value = $(this).val()
-						if(!isNaN($value)){
+						if(!isNaN($value) && $value){
 							$tag = this;
 							$.ajax({
 								type: "POST",
