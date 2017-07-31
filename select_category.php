@@ -30,6 +30,12 @@ if (isset($_POST['skill']) && $_POST['skill']) {
 		elseif ($value == "social_emotional") {
 			$sql = $sql." social_emotional = '1'";
 		}
+		elseif ($value == "imagination") {
+			$sql = $sql." imagination = '1'";
+		}
+		elseif ($value == "practical") {
+			$sql = $sql." practical = '1'";
+		}
 	}
 	$sql = $sql.") AND (";
 }
