@@ -55,8 +55,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="province">Province :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="provinceID" name="provinceID" value="<?=$province?>" readonly>
-				<!-- <select class="form-control selectpicker" data-live-search="true" value="<?=$province?>" id="provinceID" name="province">
+				<select class="form-control selectpicker show-tick" data-live-search="true" value="<?=$province?>" id="provinceID" name="province">
 					<option value=''>Select province</option>
 					<?php
 					// loop isi province dari db
@@ -66,35 +65,48 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 					}
 					else{
 						while ($row = mysqli_fetch_assoc($result_province)) { ?>
-						<option value="<?=$row['province_id']?>"><?=$row['province_name']?></option>
+						<option value="<?=$row['province_id']?>" <?php if($row['province_name'] == $province) echo "selected"; ?>><?=$row['province_name']?></option>
 						<?php }
 					}
 					?>
-				</select> -->
+				</select>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="city">City :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="cityID" name="cityID" value="<?=$city?>" readonly>
-				<!-- <select class="form-control selectpicker" data-live-search="true" id="cityID" value="<?=$city?>" name="cityID">
+				<select class="form-control selectpicker show-tick" data-live-search="true" id="cityID" name="cityID">
 					<option value=''>Select city</option>
-				</select> -->
+					<?php
+					$sql_city = "SELECT C.city_id, C.city_name
+					FROM CITY AS C
+					WHERE C.province_id = $province_id";
+
+					if(($result_city = mysqli_query($conn, $sql_city)) === FALSE){
+						echo "<option>query failing, can't retrieve data</option>";
+					}
+					else{
+						while ($row = mysqli_fetch_assoc($result_city)) { ?>
+						<option value="<?=$row['city_id']?>" <?php if($row['city_name'] == $city) echo "selected"; ?>><?=$row['city_name']?></option>
+						<?php }
+					}
+					?>
+				</select>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="mobile">Mobile Number :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="mobile" value="<?=$customer['phone_mobile']?>" name="mobile" readonly>
+				<input type="number" class="form-control" id="mobile" value="<?=$customer['phone_mobile']?>" name="mobile">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="home">Home Number :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="home" value="<?=$customer['phone_home']?>" name="home" readonly>
+				<input type="number" class="form-control" id="home" value="<?=$customer['phone_home']?>" name="home">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
@@ -268,18 +280,19 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 <br>
 <script src="libs/jquery/dist/jquery.min.js"></script>
 <script>
-	// $("#provinceID").change(function(){
-	// 	$("#cityID").empty();
-	// 	var currentProvince = $(this).find(':selected').val();
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "select_city.php",
-	// 		data: {province: currentProvince},
-	// 		success: function(response){
-	// 			$("#cityID").html(response).selectpicker('refresh');
-	// 		}
-	// 	});
-	// });
+	$("#provinceID").change(function(){
+		$("#cityID").empty();
+		var currentProvince = $(this).find(':selected').val();
+		var currentCity = "<?=$city ?>";
+		$.ajax({
+			type: "POST",
+			url: "select_city.php",
+			data: {province: currentProvince, delivery_city: currentCity},
+			success: function(response){
+				$("#cityID").html(response).selectpicker('refresh');
+			}
+		});
+	});
 	$("#select-category, #select-skill").change(function(){
 		$("#select-toy").empty().selectpicker('refresh');
 		var category = $("#select-category").selectpicker('val');
@@ -287,7 +300,7 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 		var age = $("#age").val();
 		$.ajax({
 			type: "POST",
-			data: {category:category, skill:skill, age:age, cust_id:<?=$cust_id?>},
+			data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>},
 			url: "select_category.php",
 			success: function(response){
 				$("#select-toy").html(response).selectpicker('refresh');
