@@ -254,6 +254,8 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 					<option value="linguistic">Linguistic</option>
 					<option value="cognitive">Cognitive</option>
 					<option value="social_emotional">Social Emotional</option>
+					<option value="imagination">Imagination</option>
+					<option value="practical">Practical</option>
 				</select>
 			</div>
 			<div class="col-sm-5"></div>
