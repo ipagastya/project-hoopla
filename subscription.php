@@ -55,10 +55,13 @@ if(!isset($_GET['subs_id'])){
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="sub-promo" name="sub-promo" value="<?=$row['subs_promo']?>" required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				<!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
 				<div class="form-group">
@@ -95,52 +98,64 @@ if(!isset($_GET['subs_id'])){
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="<?=$row['num_ofToys']?>" required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-6"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="date" class="form-control" id="first-deliv" name="first-deliv" value=<?php echo date('Y-m-d',strtotime($row['first_deliv'])) ?> required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-6"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" value="<?=$row['deliv_promo']?>" required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="number" class="form-control" id="deliv-price" name="deliv-price" value="<?=$row['deliv_price']?>" required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="number" class="form-control" id="deposit" name="deposit" value="<?=$row['deposit']?>" required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" id="pay-term" name="pay-term" value="<?=$row['payment_terms']?>" required>
+					<div class="col-sm-2 radio">
+						<label><input type="radio" value="Upfront" name="pay-term" required <?php if($row['payment_terms'] == 'Upfront') echo "checked" ?>>Upfront</label>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2 radio">
+						<label><input type="radio" value="Monthly" name="pay-term" <?php if($row['payment_terms'] == 'Monthly') echo "checked" ?>>Monthly</label>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
-					<div class="col-sm-5">
+					<div class="col-sm-2">
 						<input type="date" class="form-control" id="refund-date" name="refund-date" value=<?php echo date('Y-m-d',strtotime($row['deposit_refund'])) ?> required>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-6"></div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
@@ -186,46 +201,46 @@ if(!isset($_GET['subs_id'])){
 					$sql = "SELECT * FROM DELIVERY_LIST WHERE cust_id = '$cust_id'";
 					$result = mysqli_query($conn, $sql);
 					while ($row_deliv = mysqli_fetch_assoc($result)) { ?> 
-						<tr>
-							<td><?=$row_deliv['delivery_id']?></td>
-							<td><?=$row_deliv['address']?></td>
+					<tr>
+						<td><?=$row_deliv['delivery_id']?></td>
+						<td><?=$row_deliv['address']?></td>
+						<td><?php
+							$city_id =$row_deliv['city_id'];
+							$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
+							$result_city = mysqli_query($conn, $sql);
+							$row_city = mysqli_fetch_assoc($result_city);
+							echo $row_city['city_name'];
+							?></td>
 							<td><?php
-									$city_id =$row_deliv['city_id'];
-									$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
-									$result_city = mysqli_query($conn, $sql);
-									$row_city = mysqli_fetch_assoc($result_city);
-									echo $row_city['city_name'];
+								$province_id = $row_deliv['province_id'];
+								$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
+								$result_province = mysqli_query($conn, $sql);
+								$row_province = mysqli_fetch_assoc($result_province);
+								echo $row_province['province_name'];
 								?></td>
-							<td><?php
-									$province_id = $row_deliv['province_id'];
-									$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
-									$result_province = mysqli_query($conn, $sql);
-									$row_province = mysqli_fetch_assoc($result_province);
-									echo $row_province['province_name'];
-								?></td>
-							<td><?=$row_deliv['mobile_phone']?></td>
-							<td><?=$row_deliv['home_phone']?></td>
-							<td><?=$row_deliv['delivery_date']?></td>
-							<td><?=$row_deliv['pickup_date']?></td>
-							<td><?=$row_deliv['actual_delivery_charge']?></td>
-							<td><?=$row_deliv['actual_pickup_charge']?></td>
-							<td><?=$row_deliv['payment_note']?></td>
-							<td><?=$row_deliv['note']?></td>
-							<td><?=$row_deliv['baby_age']?></td>
-							<td><?=$row_deliv['box_name']?></td>
-							<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>" target="_blank">Details</a></td>
-						</tr>
-						<?php } ?>
-				</table>
-			</div>
-			<?php 
+								<td><?=$row_deliv['mobile_phone']?></td>
+								<td><?=$row_deliv['home_phone']?></td>
+								<td><?=$row_deliv['delivery_date']?></td>
+								<td><?=$row_deliv['pickup_date']?></td>
+								<td><?=$row_deliv['actual_delivery_charge']?></td>
+								<td><?=$row_deliv['actual_pickup_charge']?></td>
+								<td><?=$row_deliv['payment_note']?></td>
+								<td><?=$row_deliv['note']?></td>
+								<td><?=$row_deliv['baby_age']?></td>
+								<td><?=$row_deliv['box_name']?></td>
+								<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>" target="_blank">Details</a></td>
+							</tr>
+							<?php } ?>
+						</table>
+					</div>
+					<?php 
 
-			?>
-		</div>
+					?>
+				</div>
 
-		<?php
+				<?php
+			}
+		}
 	}
-}
-}
-require('footer.php');
-?>
+	require('footer.php');
+	?>

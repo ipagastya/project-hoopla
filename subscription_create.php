@@ -52,10 +52,13 @@ require_once("config.php");
 	</div>
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
-        <div class="col-sm-5">
+        <div class="col-sm-2">
             <input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0" required>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+        	<h4>Rupiah</h4>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
     <!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
     <div class="form-group">
@@ -92,59 +95,79 @@ require_once("config.php");
     </div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
-		<div class="col-sm-5">
+		<div class="col-sm-2">
 			<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="0" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-6"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="first-deliv">First Delivery Date :</label>
-		<div class="col-sm-5">
+		<div class="col-sm-2">
 			<input type="date" class="form-control" id="first-deliv" name="first-deliv" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-6"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="deliv-promo" name="deliv-promo" required>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" id="deliv-promo" value="0" name="deliv-promo" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2">
+        	<h4>Rupiah</h4>
+        </div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
-		<div class="col-sm-5">
-			<input type="number" class="form-control" id="deliv-price" name="deliv-price" required>
+		<div class="col-sm-2">
+			<input type="number" class="form-control" id="deliv-price" value="0" name="deliv-price" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2">
+        	<h4>Rupiah</h4>
+        </div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
-		<div class="col-sm-5">
-			<input type="number" class="form-control" id="deposit" name="deposit" required>
+		<div class="col-sm-2">
+			<input type="number" class="form-control" id="deposit" value="0" name="deposit" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2">
+        	<h4>Rupiah</h4>
+        </div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="pay-term">Payment Terms :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="pay-term" name="pay-term" required>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="Upfront" name="pay-term" required>Upfront</label>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2 radio">
+			<label><input type="radio" value="Monthly" name="pay-term">Monthly</label>
+		</div>
+		<div class="col-sm-4"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
-		<div class="col-sm-5">
+		<div class="col-sm-2">
 			<input type="date" class="form-control" id="refund-date" name="refund-date" required>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-6"></div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit-status">Deposit Status :</label>
-		<div class="col-sm-5">
-			<input type="text" class="form-control" id="deposit-status" name="deposit-status" required>
+		<div class="col-sm-2">
+			<select class="form-control selectpicker" id="deposit-status" name="deposit-status" required>
+			<option value="Waiting">Waiting</option>
+			<option value="Paid" disabled>Paid</option>
+			<option value="Cancelled" disabled>Cancelled</option>
+			<option value="Extended" disabled>Extended</option>
+			<option value="Refunded" disabled>Refunded</option>
+			<option value="Refunded-Partially" disabled>Refunded-Partially</option>
+			<option value="Void" disabled>Void</option>
+			</select>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-6"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-4"></div>
