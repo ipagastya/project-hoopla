@@ -1,9 +1,10 @@
 <?php 
-	require('header.php');
+require('header.php');
 ?>
 <div class= "container">
 	<button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> filter</button>
-	<form class="form-horizontal collapse" id="form-filter" method="post" action="subscription_list">
+	<form class="form-horizontal collapse" id="form-filter" method="get" action="subscription_list">
+		<input type="hidden" name="page" value="1" /> 
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="start-date">Final Pickup Date :</label>
 		</div>
@@ -63,80 +64,144 @@
 				<th>Details</th>
 			</tr>
 			<?php
-				include "config.php";
-				$sql = "SELECT subs_id, cust_name, status, subs_plan, num_ofToys, first_deliv, final_pickup, payment_terms FROM SUBSCRIPTION AS S JOIN CUSTOMER AS C ON S.cust_id = C.cust_id ";
-				if(isset($_POST['filtersubmit'])){
-					$ada = false;
-					$condition = "";
-					$condition_date = "";
-					$condition_customer = "";
-					$condition_payment = "";
-					$condition_plan = "";
-					if(isset($_POST['start-date']) && isset($_POST['end-date']) && $_POST['start-date'] && $_POST['end-date']){
-						$start_date = $_POST['start-date'];
-						$end_date = $_POST['end-date'];
-						$condition_date = "(final_pickup BETWEEN '$start_date' AND '$end_date')";
-						$ada = true;
+			include "config.php";
+			$sql = "SELECT subs_id, cust_name, status, subs_plan, num_ofToys, first_deliv, final_pickup, payment_terms FROM SUBSCRIPTION AS S JOIN CUSTOMER AS C ON S.cust_id = C.cust_id ";
+			if(isset($_GET['filtersubmit'])){
+				$ada = false;
+				$condition = "";
+				$condition_date = "";
+				$condition_customer = "";
+				$condition_payment = "";
+				$condition_plan = "";
+				if(isset($_GET['start-date']) && $_GET['start-date']){
+					$start_date = $_GET['start-date'];
+					$condition_date = $condition_date."(final_pickup >= '$start_date')";
+					$ada = true;
+				}
+				if (isset($_GET['end-date']) && $_GET['end-date']) {
+					if ($ada) {
+						$condition_date = $condition_date." AND ";
 					}
-					if (isset($_POST['name']) && $_POST['name']) {
-						if ($ada) {
-							$condition_customer = $condition_customer." AND ";
-						}
-						$name = $_POST['name'];
-						$condition_customer = "(cust_name LIKE '%$name%')";
-						$ada = TRUE;
+					$end_date = $_GET['end-date'];
+					$condition_date = $condition_date."(final_pickup <= '$end_date')";
+				}
+				if (isset($_GET['name']) && $_GET['name']) {
+					if ($ada) {
+						$condition_customer = $condition_customer." AND ";
 					}
-					if (isset($_POST['note']) && $_POST['note']) {
-						if ($ada) {
-							$condition_payment = $condition_payment." AND ";
-						}
-						$payment = $_POST['note'];
-						$condition_payment = "(payment_terms LIKE '%$payment%')";
-						$ada = TRUE;
+					$name = $_GET['name'];
+					$condition_customer = "(cust_name LIKE '%$name%')";
+					$ada = TRUE;
+				}
+				if (isset($_GET['note']) && $_GET['note']) {
+					if ($ada) {
+						$condition_payment = $condition_payment." AND ";
 					}
+					$payment = $_GET['note'];
+					$condition_payment = "(payment_terms LIKE '%$payment%')";
+					$ada = TRUE;
+				}
 
-					if (isset($_POST['sub-plan']) && $_POST['sub-plan']) {
-						if ($ada) {
-							$condition_plan = $condition_plan." AND ";
-						}
-						$plan = $_POST['sub-plan'];
-						$condition_plan = "(subs_plan = '$plan')";
-						$ada = TRUE;
+				if (isset($_GET['sub-plan']) && $_GET['sub-plan']) {
+					if ($ada) {
+						$condition_plan = $condition_plan." AND ";
 					}
+					$plan = $_GET['sub-plan'];
+					$condition_plan = "(subs_plan = '$plan')";
+					$ada = TRUE;
+				}
 
-					if($ada){
-						$condition = $condition." WHERE ".$condition_date.$condition_customer.$condition_payment.$condition_plan;
-						$sql = $sql.$condition;
-					}
-					
+				if($ada){
+					$condition = $condition." WHERE ".$condition_date.$condition_customer.$condition_payment.$condition_plan;
+					$sql = $sql.$condition;
 				}
-				if (($result = mysqli_query($conn, $sql)) === FALSE){
-					echo "query failing";
+
+			}
+			$offset = ($_GET['page'] - 1) * 10;
+			if (($result = mysqli_query($conn, "$sql LIMIT 10 OFFSET $offset")) === FALSE){
+				echo "query failing";
+			}
+			else {
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_assoc($result)) { ?>
+					<tr>
+						<td><?=$row['cust_name']?></td>
+						<td><?=$row['status']?></td>
+						<td>
+							<?=$row['subs_plan']." Months"?>
+						</td>
+						<td><?=$row['num_ofToys']?></td>
+						<td><?=$row['first_deliv']?></td>
+						<td><?=$row['final_pickup']?></td>
+						<td><?=$row['payment_terms']?></td>
+						<td><a class='btn btn-default' href="subscription?subs_id=<?=$row['subs_id']?>">Details</a></td>
+					</tr>
+					<?php }
 				}
-				else {
-					if (mysqli_num_rows($result) > 0) {
-						while($row = mysqli_fetch_assoc($result)) { ?>
-							<tr>
-								<td><?=$row['cust_name']?></td>
-								<td><?=$row['status']?></td>
-								<td>
-									<?=$row['subs_plan']." Months"?>
-								</td>
-								<td><?=$row['num_ofToys']?></td>
-								<td><?=$row['first_deliv']?></td>
-								<td><?=$row['final_pickup']?></td>
-								<td><?=$row['payment_terms']?></td>
-								<td><a class='btn btn-default' href="subscription?subs_id=<?=$row['subs_id']?>">Details</a></td>
-							</tr>
-						<?php }
-					}
-				}
+			}
+			$resultFull = mysqli_query($conn , $sql);
 				// from content db
 			?>
 		</table>
 	</div>
+	<div>
+		<ul class="pagination pagination-sm">
+			<?php
+			$rows = mysqli_num_rows($resultFull);
+			$pages = 0;
+			$count = 1;
+			if($rows <= 10) {
+				$pages = 1;
+			} else if (($rows % 10 ) == 0) {
+				$pages = $rows / 10;
+			} else {
+				$pages = floor($rows / 10) + 1;
+			}
+			$pageNow = $_GET['page'];
+			if ($pageNow > 1) {
+				if (isset($_GET['filtersubmit'])) {
+					$start_date = $_GET['start-date'];
+					$end_date = $_GET['end-date'];
+					$name = $_GET['name'];
+					$note=$_GET['note'];
+					$sub_plan=$_GET['sub-plan'];
+					$pageBefore = $pageNow - 1;
+					echo "<li><a href='subscription_list?page=$pageBefore&start-date=$start_date&end-date=$end_date&name=$name&note=$note&sub-plan=$sub_plan&filtersubmit='>Previous</a></li>";
+				}else{
+					echo "<li><a href='subscription_list?page=$pageBefore'>Previous</a></li>";
+				}
+			}
+			while ($count <= $pages && $count <= 5) {
+				if (isset($_GET['filtersubmit'])) {
+					$start_date = $_GET['start-date'];
+					$end_date = $_GET['end-date'];
+					$name = $_GET['name'];
+					$note=$_GET['note'];
+					$sub_plan=$_GET['sub-plan'];
+					echo "<li><a href='subscription_list?page=$count&start-date=$start_date&end-date=$end_date&name=$name&note=$note&sub-plan=$sub_plan&filtersubmit='>$count</a></li>";
+				}else{
+					echo "<li><a href='subscription_list?page=$count'>$count</a></li>";
+				}
+				$count = $count + 1;
+			}
+			if ($pageNow < $pages) {
+				if (isset($_GET['filtersubmit'])) {
+					$start_date = $_GET['start-date'];
+					$end_date = $_GET['end-date'];
+					$name = $_GET['name'];
+					$note=$_GET['note'];
+					$sub_plan=$_GET['sub-plan'];
+					$pageNext = $pageNow + 1;
+					echo "<li><a href='subscription_list?page=$pageNext&start-date=$start_date&end-date=$end_date&name=$name&note=$note&sub-plan=$sub_plan&filtersubmit='>Next</a></li>";
+				}else{
+					echo "<li><a href='subscription_list?page=$pageNext'>Next</a></li>";
+				}
+			}
+			?>
+		</ul>
+	</div>
 	
 </div>
 <?php
-	require('footer.php');
+require('footer.php');
 ?>
