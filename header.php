@@ -27,7 +27,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="customer_list">Customer</a></li>
+				<li><a href="customer_list?page=1">Customer</a></li>
 				<li><a href="subscription_list">Subscription</a></li>
 				<li><a href="#">Payment</a></li>
 				<li><a href="inventory_list">Inventory</a></li>

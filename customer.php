@@ -454,7 +454,7 @@
 						VALUES('$customerID','$babyID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
                	if($result = mysqli_query($conn, $query)){
 					print "<script>alert('Customer Telah Berhasil Didaftarkan');
-					window.location.href='customer_list.php';
+					window.location.href='customer_list?page=1';
 					</script>";
                	}
                 	

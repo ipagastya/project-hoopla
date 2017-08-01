@@ -569,7 +569,7 @@
 									WHERE cust_id='$id'";
 						if($result = mysqli_query($conn, $query2)){
 							print "<script>alert('Customer Telah Berhasil Diperbaharui');
-							window.location.href='customer_list.php';
+							window.location.href='customer_list?page=1';
 							</script>";
 						}
 						print "<script>alert('".$query2."');</script>";
