@@ -31,7 +31,16 @@
 				<li id="subsNav"><a href="subscription_list?page=1">Subscription</a></li>
 				<li id="payNav"><a href="#">Payment</a></li>
 				<li id="inventNav"><a href="inventory_list?page=1">Inventory</a></li>
-                <li id="reportNav"><a href="report">Report</a></li>
+                <li id ="reportNav" class="dropdown">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
+			        <span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="report_subscription">Subscription Report</a></li>
+			          <li><a href="report_expiry">Upcoming Expiry Report</a></li>
+			          <li><a href="report_delivery">Delivery Report</a></li>
+			          <li><a href="report_inventory">Inventory Report</a></li>
+		       		</ul>
+		      	</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
