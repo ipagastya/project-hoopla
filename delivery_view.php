@@ -5,6 +5,7 @@ if (!isset($_GET['deliv_id'])) {
 	require_once('header.php');
 	require_once('config.php');
 	$deliv_id = $_GET['deliv_id'];
+	$subs_id = $_GET['subs_id'];
 	$sql = "SELECT * FROM DELIVERY_LIST AS D JOIN CITY AS C ON D.city_id = C.city_id JOIN PROVINCE AS P ON P.province_id = C.province_id WHERE delivery_id = '$deliv_id'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
@@ -35,7 +36,7 @@ if (!isset($_GET['deliv_id'])) {
 	$province_id = "";
 	?>
 	<div class="container">
-		<form class="form-horizontal" method="POST" action="insertdelivery">
+		<form class="form-horizontal" method="POST" action="insertdelivery?subs_id=<?=$subs_id ?>">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="deliveryID">Delivery ID :</label>
 				<div class="col-sm-5">
