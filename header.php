@@ -70,7 +70,7 @@
 			</ul>
 		</div>
 	</nav-->
-	<br><br><br><br><br>
+	<br><br><br><br>
 
 	<?php
 		$dir = basename($_SERVER['SCRIPT_NAME']);
