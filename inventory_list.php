@@ -8,7 +8,7 @@
 		<center><h2 class="leckerli">Inventory List</h2></center>
 		<div class="container">
 			<!--FILTER AREA-->
-			<form class="form-horizontal collapse" id="form-filter" method="post" action="inventory_list"><br>
+			<form class="form-horizontal collapse" id="form-filter" method="post"><br>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="dateinventory">Date :</label>
 					<div class="col-sm-3">
@@ -66,14 +66,11 @@
 				</thead>
 				<tbody>
 				<?php
-
 					include "config.php";
-
 					if(isset($_POST['filtersubmit'])){
 						$date = $_POST['dateinventory'];
 						$status = $_POST['status'];
 						$today = date("Y-m-d");
-
 						if($date != "" && $status != "--All Status--"){
 							$query = "SELECT * FROM INVENTORY WHERE 
 									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%'";
@@ -92,7 +89,9 @@
 					if(!(isset($_POST['filtersubmit']))){
 						$query = "SELECT * FROM INVENTORY";
 					}
-					$result = mysqli_query($conn,$query);
+					$offset = ($_GET['page'] - 1) * 10;
+					$result = mysqli_query($conn,"$query LIMIT 10 OFFSET $offset");
+					$resultFull = mysqli_query($conn , $query);
 					if(!$result){
 		               	echo("Couldn't execute query");
 		                die(mysqli_connect_error());
@@ -119,6 +118,26 @@
 				?>
 				</tbody>
 			</table>
+			<div>
+				<ul class="pagination pagination-sm">
+					<?php
+					 $rows = mysqli_num_rows($resultFull);
+					 $pages = 0;
+					 $count = 1;
+						if($rows <= 10) {
+							$pages = 1;
+						} else if (($rows % 10 ) == 0) {
+							$pages = $rows / 10;
+						} else {
+							$pages = floor($rows / 10) + 1;
+						}
+						while ($count <= $pages) {
+							echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
+							$count = $count + 1;
+						}
+					?>
+				</ul>
+			</div>
 		</div>
 		<br><br><br>
 	</div>

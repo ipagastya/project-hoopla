@@ -344,7 +344,7 @@
 							if($updtresult){
 								echo"<script>
 									alert('Update Inventory Success');
-									window.location.href='inventory_list';
+									window.location.href='inventory_list?page=1';
 								</script>";
 							}
 						}
