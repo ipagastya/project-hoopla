@@ -31,7 +31,7 @@
 				<li id="subsNav"><a href="subscription_list?page=1">Subscription</a></li>
 				<li id="payNav"><a href="#">Payment</a></li>
 				<li id="inventNav"><a href="inventory_list?page=1">Inventory</a></li>
-                <li id ="reportNav" class="dropdown">
+             			<li id="reportNav" class="dropdown">
 			        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
 			        <span class="caret"></span></a>
 			        <ul class="dropdown-menu">
