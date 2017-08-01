@@ -51,7 +51,7 @@ foreach ($arr as &$value) {
 }
 
 //customer and ascending
-$sql = $sql.") AND NOT EXISTS (SELECT * FROM TOYS_TRACKING WHERE customer_id = '$cust_id') AND status = 'available' ORDER BY toy_name ASC;";
+$sql = $sql.") AND product_code NOT IN (SELECT product_code FROM TOYS_TRACKING WHERE customer_id = '$cust_id') AND status = 'available' ORDER BY toy_name ASC;";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
@@ -59,4 +59,5 @@ if(($result = mysqli_query($conn, $sql)) === FALSE){
 		echo "<option value='".$row['product_code']."' >".$row['toy_name']."</option>";
 	}
 }
+echo "<option value='".$sql."' >".$sql."</option>";
 ?>
