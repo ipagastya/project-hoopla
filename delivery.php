@@ -64,7 +64,14 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 					<option value=''>Select province</option>
 					<?php
 					// loop isi province dari db
-					$sql_province = "SELECT province_id, province_name FROM PROVINCE";
+					$sql_province = "SELECT * FROM PROVINCE ORDER BY
+						CASE province_name
+							WHEN 'DKI Jakarta' THEN 1
+							WHEN 'Jawa Barat' THEN 2
+							WHEN 'Banten' THEN 3
+							WHEN 'Bali' THEN 4
+							ELSE 5
+						END;";
 					if(($result_province = mysqli_query($conn, $sql_province)) === FALSE){
 						echo "query failing, can't retrieve data";
 					}
