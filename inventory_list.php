@@ -8,7 +8,8 @@
 		<center><h2 class="leckerli">Inventory List</h2></center>
 		<div class="container">
 			<!--FILTER AREA-->
-			<form class="form-horizontal collapse" id="form-filter" method="post"><br>
+			<form class="form-horizontal collapse" id="form-filter" method="get" action="inventory_list"><br>
+				<input type="hidden" name="page" value="1" /> 
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="dateinventory">Date :</label>
 					<div class="col-sm-3">
@@ -67,9 +68,9 @@
 				<tbody>
 				<?php
 					include "config.php";
-					if(isset($_POST['filtersubmit'])){
-						$date = $_POST['dateinventory'];
-						$status = $_POST['status'];
+					if(isset($_GET['filtersubmit'])){
+						$date = $_GET['dateinventory'];
+						$status = $_GET['status'];
 						$today = date("Y-m-d");
 						if($date != "" && $status != "--All Status--"){
 							$query = "SELECT * FROM INVENTORY WHERE 
@@ -84,14 +85,12 @@
 						if($date == "" && $status == "--All Status--"){
 							$query = "SELECT * FROM INVENTORY";
 						}
-
 					}
-					if(!(isset($_POST['filtersubmit']))){
+					else{
 						$query = "SELECT * FROM INVENTORY";
 					}
 					$offset = ($_GET['page'] - 1) * 10;
 					$result = mysqli_query($conn,"$query LIMIT 10 OFFSET $offset");
-					$resultFull = mysqli_query($conn , $query);
 					if(!$result){
 		               	echo("Couldn't execute query");
 		                die(mysqli_connect_error());
@@ -115,15 +114,16 @@
 			        			<td>"."<a method='get' href='inventory?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        		</tr>";
 			        }
+			        $resultFull = mysqli_query($conn , $query);
 				?>
 				</tbody>
 			</table>
 			<div>
 				<ul class="pagination pagination-sm">
 					<?php
-					 $rows = mysqli_num_rows($resultFull);
-					 $pages = 0;
-					 $count = 1;
+						$rows = mysqli_num_rows($resultFull);
+						$pages = 0;
+						$count = 1;
 						if($rows <= 10) {
 							$pages = 1;
 						} else if (($rows % 10 ) == 0) {
@@ -131,10 +131,43 @@
 						} else {
 							$pages = floor($rows / 10) + 1;
 						}
-						while ($count <= $pages) {
+						/*while ($count <= $pages) {
 							echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
 							$count = $count + 1;
+						}*/
+						$pageNow = $_GET['page'];
+						/*echo"<h1>$pageNow</h1>";
+						echo"<h1>$pages</h1>";*/
+						/*if ($pageNow > 1) {
+							if (isset($_GET['filtersubmit'])) {
+								$date = $_GET['dateinventory'];
+								$status = $_GET['status'];
+								$pageBefore = $pageNow - 1;
+								echo "<li><a href='inventory_list?page=$pageBefore&dateinventory=$date&status=$status&filtersubmit='>Previous</a></li>";
+							}else{
+								echo "<li><a href='inventory_list?page=$pageBefore'>Previous</a></li>";
+							}
+						}*/
+						while ($count <= $pages && $count <= 5) {
+							if (isset($_GET['filtersubmit'])) {
+								$date = $_GET['dateinventory'];
+								$status = $_GET['status'];
+								echo "<li><a href='inventory_list?page=$count&filtersubmit='>$count</a></li>";
+							}else{
+								echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
+							}
+							$count = $count + 1;
 						}
+						/*if ($pageNow < $pages) {
+							if (isset($_GET['filtersubmit'])) {
+								$date = $_GET['dateinventory'];
+								$status = $_GET['status'];
+								$pageNext = $pageNow+1;
+								echo "<li><a href='inventory_list?page=$pageNext&dateinventory=$date&status=$status&filtersubmit='>Next</a></li>";
+							}else{
+								echo "<li><a href='inventory_list?page=$pageNext'>Next</a></li>";
+							}
+						}*/
 					?>
 				</ul>
 			</div>
