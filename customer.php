@@ -66,12 +66,33 @@
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
 					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
-						<option value=''>Select province</option>
+						<option value='' >Select Province</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM PROVINCE ORDER BY province_name ASC";
+					            $query = "SELECT * FROM PROVINCE WHERE province_name LIKE '%DKI JAKARTA%'";
 						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
+						        $row = mysqli_fetch_row($result);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+				            
+					            $query2 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%JAWA BARAT%'";
+						        $result2 = mysqli_query($conn, $query2);
+						        $row = mysqli_fetch_row($result2);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query3 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%BANTEN%'";
+						        $result3 = mysqli_query($conn, $query3);
+						        $row = mysqli_fetch_row($result3);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query4 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%BALI%'";
+						        $result4 = mysqli_query($conn, $query4);
+						        $row = mysqli_fetch_row($result4);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query5 = "SELECT * FROM PROVINCE WHERE province_name !='DKI JAKARTA' && province_name != 'JAWA BARAT' &&
+											province_name != 'BANTEN' && province_name != 'BALI' ORDER BY province_name ASC";
+						        $result5 = mysqli_query($conn, $query5);
+						        while($row = mysqli_fetch_row($result5)){
 					                echo
 					                "<option value='".$row[0]."' >".$row[1]."</option>" ;
 					            }
@@ -85,7 +106,16 @@
 				<label class="control-label col-sm-2" for="city">City :</label>
 				<div class="col-sm-5">	
 					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
-						<option value=''>Select city</option>
+						<option value=''>Select City</option>
+						<?php
+                            	include "config.php";
+					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
+						        $result = mysqli_query($conn, $query);
+						        while($row = mysqli_fetch_row($result)){
+					                echo
+					                "<option value='".$row[0]."' >".$row[2]."</option>" ;
+					            }
+				            ?>
 					</select>
 				</div>
 				<div id='errorCity' style='color:red;text-align: left;'></div>
@@ -407,54 +437,6 @@
 				$favoriteID != "" &&
 				$milestoneID != "")
 				{
-
-               		/*if($lamaKirim != ""){
-               			if(preg_match('/^[0-9-]{1,10}$/', $lamaKirim)){
-               				if($lamaKirim == "0"){
-               					print "<script>
-		        					document.getElementById('errorLama').innerHTML=
-		       						'<h6>* Lama Kirim Harus Berupa Angka > 0 (Contoh : 1 atau 1-2)</h6>'
-	        						</script>";
-	        					print "<style>
-	        						#lamaKirim{
-	        							border-color:red;
-	        							border-width:3px;
-	        						}
-	        						</style>";
-               				}else{
-               					$flagKirim = true;
-               				}
-               				
-               			}else{
-               				print "<script>
-	        					document.getElementById('errorLama').innerHTML=
-	       						'<h6>* Lama Kirim Harus Berupa Angka > 0 (Contoh : 1 atau 1-2)</h6>'
-        						</script>";
-        					print "<style>
-        						#lamaKirim{
-        							border-color:red;
-        							border-width:3px;
-        						}
-        						</style>";
-               			}
-	               	}
-	               	if($tarif != ""){
-	               		if(preg_match('/^[0-9]{1,10}$/', $tarif) && intval($tarif) > 0){
-	               			$flagTarif = true;
-               			}else{
-               				print "<script>
-	        					document.getElementById('errorTarif').innerHTML=
-	       						'<h6>* Tarif Harus Berupa Angka > 0</h6>'
-        						</script>";
-
-        					print "<style>
-        						#tarif{
-        							border-color:red;
-        							border-width:3px;
-        						}
-        						</style>";
-               			}
-	               	}*/
 				$flagName = true;
 				$flagBabyName = true;
 				$flagDOB = true;

@@ -66,12 +66,33 @@
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
 					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
-						<option value=''>Select province</option>
+						<option value=''>Select Province</option>
 						<?php
                             	include "config.php";
-					            $query = "SELECT * FROM PROVINCE ORDER BY province_name ASC";
+					            $query = "SELECT * FROM PROVINCE WHERE province_name LIKE '%DKI JAKARTA%'";
 						        $result = mysqli_query($conn, $query);
-						        while($row = mysqli_fetch_row($result)){
+						        $row = mysqli_fetch_row($result);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+				            
+					            $query2 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%JAWA BARAT%'";
+						        $result2 = mysqli_query($conn, $query2);
+						        $row = mysqli_fetch_row($result2);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query3 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%BANTEN%'";
+						        $result3 = mysqli_query($conn, $query3);
+						        $row = mysqli_fetch_row($result3);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query4 = "SELECT * FROM PROVINCE WHERE province_name LIKE '%BALI%'";
+						        $result4 = mysqli_query($conn, $query4);
+						        $row = mysqli_fetch_row($result4);
+					            echo "<option value='".$row[0]."' >".$row[1]."</option>";
+								
+								$query5 = "SELECT * FROM PROVINCE WHERE province_name !='DKI JAKARTA' && province_name != 'JAWA BARAT' &&
+											province_name != 'BANTEN' && province_name != 'BALI' ORDER BY province_name ASC";
+						        $result5 = mysqli_query($conn, $query5);
+						        while($row = mysqli_fetch_row($result5)){
 					                echo
 					                "<option value='".$row[0]."' >".$row[1]."</option>" ;
 					            }
@@ -85,7 +106,7 @@
 				<label class="control-label col-sm-2" for="city">City :</label>
 				<div class="col-sm-5">	
 					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
-						<option value=''>Select city</option>
+						<option value=''>Select City</option>
 						<?php
                             	include "config.php";
 					            $query = "SELECT * FROM CITY ORDER BY city_name ASC";
