@@ -24,6 +24,10 @@ else{
 	$customer = mysqli_fetch_assoc($result_customer);
 	$city_id = $customer['city_id'];
 	$province_id = $customer['province_id'];
+	$from = new DateTime($customer['baby_dob']);
+	$to   = new DateTime('today');
+	$diff = $from->diff($to);
+	$baby_age = ($diff-> m) + 12 * $diff-> y ;
 }
 
 $sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
@@ -38,8 +42,8 @@ $sql_subs = "SELECT * FROM SUBSCRIPTION WHERE subs_id = $subs_id";
 $result_subs = mysqli_query($conn, $sql_subs);
 $subscription = mysqli_fetch_assoc($result_subs);
 
-$dob= $customer['baby_dob'];
-$baby_age = (date('Y') - date('Y',strtotime($dob)));
+
+
 ?>
 <div class="container">
 	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id ?>">
@@ -65,13 +69,13 @@ $baby_age = (date('Y') - date('Y',strtotime($dob)));
 					<?php
 					// loop isi province dari db
 					$sql_province = "SELECT * FROM PROVINCE ORDER BY
-						CASE province_name
-							WHEN 'DKI Jakarta' THEN 1
-							WHEN 'Jawa Barat' THEN 2
-							WHEN 'Banten' THEN 3
-							WHEN 'Bali' THEN 4
-							ELSE 5
-						END;";
+					CASE province_name
+					WHEN 'DKI Jakarta' THEN 1
+					WHEN 'Jawa Barat' THEN 2
+					WHEN 'Banten' THEN 3
+					WHEN 'Bali' THEN 4
+					ELSE 5
+					END;";
 					if(($result_province = mysqli_query($conn, $sql_province)) === FALSE){
 						echo "query failing, can't retrieve data";
 					}

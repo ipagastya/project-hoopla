@@ -20,9 +20,11 @@
 				<?php
 					// loop untuk isi db
 					include "config.php";
+					$offset = ($_GET['page'] - 1) * 10;
 					
                             $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_dob FROM CUSTOMER AS c";
-                            $result = mysqli_query($conn, $query);                          
+                            $result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");                          
+							$resultFull = mysqli_query($conn , $query);
 						   if(!$result){
                                 print("Couldn't execute query");
                                 die(mysqli_connect_error());
@@ -44,6 +46,26 @@
 			</table>
 		</div>
 	<!-- belom ada pagination -->
+		<div>
+			<ul class="pagination pagination-sm">
+				<?php
+				 $rows = mysqli_num_rows($resultFull);
+				 $pages = 0;
+				 $count = 1;
+					if($rows <= 10) {
+						$pages = 1;
+					} else if (($rows % 10 ) == 0) {
+						$pages = $rows / 10;
+					} else {
+						$pages = floor($rows / 10) + 1;
+					}
+					while ($count <= $pages) {
+						echo "<li><a href='customer_list?page=$count'>$count</a></li>";
+						$count = $count + 1;
+					}
+				?>
+			</ul>
+		</div>
 	</div>
 </div>
 <br>

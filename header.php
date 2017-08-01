@@ -27,7 +27,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li id="custNav"><a href="customer_list">Customer</a></li>
+				<li id="custNav"><a href="customer_list?page=1">Customer</a></li>
 				<li id="subsNav"><a href="subscription_list">Subscription</a></li>
 				<li id="payNav"><a href="#">Payment</a></li>
 				<li id="inventNav"><a href="inventory_list">Inventory</a></li>
@@ -38,7 +38,6 @@
 			</ul>
 		</div>
 	</nav>
-
 	<!--ghost navbar-->
 	<!--nav class="navbar navbar-default navbar-relative" role="navigation">
 		<div class="navbar-header">
