@@ -1,5 +1,6 @@
 <?php
 require("config.php");
+$subs_id = $_GET['subs_id'];
 if (isset($_POST['submit-edit'])) {
 	$deliv_id = $_POST['deliveryID'];
 	$address = $_POST['address'];
@@ -19,7 +20,7 @@ if (isset($_POST['submit-edit'])) {
 	if($result === false){
 		die("Query Fail");
 	}else{
-		header( "refresh:1;url=subscription_list.php" );
+		header( "refresh:1;url=subscription?subs_id=$subs_id" );
 	}
 }
 else{
@@ -27,7 +28,7 @@ else{
 	$cust_id = $_GET['cust_id'];
 	$address = $_POST['address'];
 	$city_id = $_POST['cityID'];
-	$province_id = $_POST['provinceID'];
+	$province_id = $_POST['province'];
 	$mobile_phone = $_POST['mobile'];
 	$home_phone = $_POST['home'];
 	$delivery_date = $_POST['deliv-date'];
@@ -49,7 +50,7 @@ else{
 
 	$arr = $_POST['select-toy'];
 
-	//insert table Invent_card
+	// insert table Invent_card
 	$today = date("Y-m-d");
 	$sql = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Rented';";
 	$row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -92,7 +93,7 @@ else{
 			echo "query to update inventory fail";
 		}
 	}
-	header( "refresh:1;url=subscription_list.php" );
+	// header( "refresh:1;url=subscription?subs_id=$subs_id" );
 }
 
 ?>

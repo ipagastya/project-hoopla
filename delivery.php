@@ -46,14 +46,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 
 ?>
 <div class="container">
-	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id ?>">
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="deliveryID">Delivery ID :</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="deliveryID" name="deliveryID" value="<?=$id?>" readonly>
-			</div>
-			<div class="col-sm-5"></div>
-		</div>
+	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id."&subs_id=".$subs_id ?>">
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="address">Address :</label>
 			<div class="col-sm-5">
@@ -248,7 +241,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-category">Select Category :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3" required>
+				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Category</option>
 					<?php 
 					$sql_category = "SELECT * FROM CATEGORY";
@@ -264,7 +257,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-skill">Select Skill :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3" required>
+				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Category</option>
 					<option value="fine_motor">Fine Motor</option>
 					<option value="linguistic">Linguistic</option>
