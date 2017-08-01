@@ -59,5 +59,4 @@ if(($result = mysqli_query($conn, $sql)) === FALSE){
 		echo "<option value='".$row['product_code']."' >".$row['toy_name']."</option>";
 	}
 }
-echo "<option value='".$sql."' >".$sql."</option>";
 ?>
