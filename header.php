@@ -27,11 +27,11 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="customer_list">Customer</a></li>
-				<li><a href="subscription_list">Subscription</a></li>
-				<li><a href="#">Payment</a></li>
-				<li><a href="inventory_list">Inventory</a></li>
-                		<li><a href="report">Report</a></li>
+				<li id="custNav"><a href="customer_list">Customer</a></li>
+				<li id="subsNav"><a href="subscription_list">Subscription</a></li>
+				<li id="payNav"><a href="#">Payment</a></li>
+				<li id="inventNav"><a href="inventory_list">Inventory</a></li>
+                <li id="reportNav"><a href="report">Report</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -40,7 +40,7 @@
 	</nav>
 
 	<!--ghost navbar-->
-	<nav class="navbar navbar-default navbar-relative" role="navigation">
+	<!--nav class="navbar navbar-default navbar-relative" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="icon-bar"></span>
@@ -61,4 +61,24 @@
 				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
-	</nav>
+	</nav-->
+	<br><br><br><br><br>
+
+	<?php
+		$dir = basename($_SERVER['SCRIPT_NAME']);
+		if($dir == "customer_list.php"){
+			echo"<script>document.getElementById('custNav').classList.toggle('active');</script>";
+		}
+		if($dir == "subscription_list.php"){
+			echo"<script>document.getElementById('subsNav').classList.toggle('active');</script>";
+		}
+		if($dir == "payment.php"){
+			echo"<script>document.getElementById('payNav').classList.toggle('active');</script>";
+		}
+		if($dir == "inventory_list.php"){
+			echo"<script>document.getElementById('inventNav').classList.toggle('active');</script>";
+		}
+		if($dir == "report.php"){
+			echo"<script>document.getElementById('reportNav').classList.toggle('active');</script>";
+		}
+	?>
