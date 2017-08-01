@@ -65,7 +65,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="province">Province :</label>
 				<div class="col-sm-5">	
-					<select class="form-control selectpicker" data-live-search="true" id="provinceID" name="provinceID">
+					<select class="form-control selectpicker show-tick" data-live-search="true" id="provinceID" name="provinceID">
 						<option value='' >Select Province</option>
 						<?php
                             	include "config.php";
@@ -105,7 +105,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="city">City :</label>
 				<div class="col-sm-5">	
-					<select class="form-control selectpicker" data-live-search="true" id="cityID" name="cityID">
+					<select class="form-control selectpicker show-tick" data-live-search="true" id="cityID" name="cityID">
 						<option value=''>Select City</option>
 						<?php
                             	include "config.php";
