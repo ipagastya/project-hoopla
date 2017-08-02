@@ -53,8 +53,8 @@
 			}*/
 			$outputsub[] = implode(", ", $rowSub);
 		}
-		$outputsub[] $date;
-		echo "</td><td>$date</td></tr>";
+		$outputsub[] = $date;
+		//echo "</td><td>$date</td></tr>";
 
 		$output[] = $outputsub;
 	}
