@@ -53,7 +53,7 @@ require_once("config.php");
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
         <div class="col-sm-2">
-            <input type="text" class="form-control" id="sub-promo" name="sub-promo" value="0" required>
+            <input type="text" class="form-control nominal-number" id="sub-promo" name="sub-promo" value="0" required>
         </div>
         <div class="col-sm-2">
         	<h4>Rupiah</h4>
@@ -64,7 +64,7 @@ require_once("config.php");
     <div class="form-group">
         <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
         <div class="col-sm-2">
-        	<input type="text" class="form-control" id="sub-price" name="sub-price" value="0" readonly>
+        	<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="0" readonly>
            	<?php
           //  require("config.php");
           //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
@@ -76,7 +76,9 @@ require_once("config.php");
 			$("input[name=plan]:radio,#sub-promo").change(function () {
 				$("#sub-price").empty();
 				var currentPlan = $("input[name='plan']:checked").val();
+				currentPlan = currentPlan.replace(",", "");
 				var currentPromo = $("#sub-promo").val();
+				currentPromo = currentPromo.replace(",", "");
 				$.ajax({
 					type: "POST",
 					url: "select_plan.php",
@@ -110,7 +112,7 @@ require_once("config.php");
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 		<div class="col-sm-2">
-			<input type="number" class="form-control" id="deliv-promo" value="0" name="deliv-promo" required>
+			<input type="text" class="form-control nominal-number" id="deliv-promo" value="0" name="deliv-promo" required>
 		</div>
 		<div class="col-sm-2">
         	<h4>Rupiah</h4>
@@ -120,7 +122,7 @@ require_once("config.php");
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 		<div class="col-sm-2">
-			<input type="number" class="form-control" id="deliv-price" value="0" name="deliv-price" required>
+			<input type="text" class="form-control nominal-number" id="deliv-price" value="0" name="deliv-price" required>
 		</div>
 		<div class="col-sm-2">
         	<h4>Rupiah</h4>
@@ -130,7 +132,7 @@ require_once("config.php");
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 		<div class="col-sm-2">
-			<input type="number" class="form-control" id="deposit" value="0" name="deposit" required>
+			<input type="text" class="form-control nominal-number" id="deposit" value="0" name="deposit" required>
 		</div>
 		<div class="col-sm-2">
         	<h4>Rupiah</h4>
@@ -177,6 +179,29 @@ require_once("config.php");
 		<div class="col-sm-3"></div>
 	</div>
 </form>
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<script>
+	$(".nominal-number").change(function(){
+		$value = $(this).val()
+		if(!isNaN($value) && $value){
+			$tag = this;
+			$.ajax({
+				type: "POST",
+				data: {nominal: $value},
+				url: "libs/nominal.php",
+				success: function(response){
+					$value = response;
+					$($tag).val(response);
+				}
+			});
+		}
+		else{
+			$(this).val("");
+			$(this).attr("placeholder", "Please input number")
+		}
+	});
+</script>
+
 <?php
 require_once("footer.php")
 #sdsd
