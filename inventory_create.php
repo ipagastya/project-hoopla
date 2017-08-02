@@ -1,7 +1,7 @@
 <?php 
 	require('header.php');
 ?>				
-				<div class="jumbotron">
+				<div class="jumbotron create">
 					<br><br>
 					<center><h2 class="leckerli">Create Inventory</h2></center>
 				</div>
