@@ -76,14 +76,15 @@
 							<td>$address</td>
 							<td>";
 						
-						$flag = TRUE;
-						while($rowSub = mysqli_fetch_row($resultSub)) {
-							if($flag) {
-								echo $rowSub[0];
-								$flag = FALSE;
-							} else {
-								echo ", ".$rowSub[0]."";
-							}
+						//$flag = TRUE;
+						while($rowSub = $resultSub->fetch_array(MYSQLI_NUM)) {
+								/*	if($flag) {
+										echo $rowSub[0];
+										$flag = FALSE;
+									} else {
+										echo ", ".$rowSub[0]."";
+									}*/
+							echo implode(", ", $rowSub);
 						}
 						echo "</td><td>$date</td></tr>";
 					}
