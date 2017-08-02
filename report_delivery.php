@@ -58,6 +58,7 @@
 						$date = $row[1];
 						$name = $row[2];
 						$address = $row[3];
+						$resultArr = [];
 						
 						$querySub = "SELECT I.toy_name
 								FROM DELIVERY_TOYS AS DT, INVENTORY AS I
@@ -76,18 +77,10 @@
 							<td>$address</td>
 							<td>";
 						
-						//$flag = TRUE;
-						/*while($rowSub = mysqli_fetch_row($resultSub)) {
-							if($flag) {
-								echo $rowSub[0];
-								$flag = FALSE;
-							} else {
-								echo ", ".$rowSub[0]."";
-							}
-							$tempstr = implode(", ", $rowSub);
-							echo $tempstr;
-						}*/
-						echo implode (", ", mysqli_fetch_all($resultSub));
+						while($rowSub = mysqli_fetch_row($resultSub)) {
+							$resultArr[] = $rowSub[0];
+						}
+						echo implode (", ", $resultArr);
 
 						echo "</td><td>$date</td></tr>";
 					}
