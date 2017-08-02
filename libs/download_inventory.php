@@ -9,7 +9,7 @@
 	}
  
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Product Code, Toy Name Availability");
+	$headers = array("Product Code", "Toy Name", "Availability");
 	//for ($i = 0; $i < $num_fields; $i++) {
 	//    $headers[] = mysqli_fetch_field_direct($result, $i)->name;
 	//}
