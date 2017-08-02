@@ -1,5 +1,5 @@
 <?php
-	include "config.php";
+	include "../config.php";
   
 	$query = 'SELECT * FROM INVENTORY_AVAILABLE';
 	$result = mysqli_query($conn, $query);                          
