@@ -94,7 +94,7 @@
 		$query="INSERT INTO INVENTORY_CARD(product_code,date,activity_id,Status,note) VALUES('$product_code','$date','$activities','$status','$notes')";
 		$result=mysqli_query($conn,$query);
 		?>
-		<script>alert('Successfully Updated Inventory Card');window.location.href='inventory?id=<?=$inventory_id?>';</script>";
+		<script>alert('Successfully Updated Inventory Card');window.location.href='inventory?page=1&id=<?=$inventory_id?>';</script>";
 		<?php
 	}
 ?>
