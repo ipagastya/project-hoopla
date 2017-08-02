@@ -250,7 +250,8 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							<?php
 							$rows = mysqli_num_rows($resultFull);
 							$pages = 0;
-							$count = 1;
+							$pageNow = $_GET['page'];
+							$count = $pageNow;
 							if($rows <= 10) {
 								$pages = 1;
 							} else if (($rows % 10 ) == 0) {
@@ -258,18 +259,19 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							} else {
 								$pages = floor($rows / 10) + 1;
 							}
-							$pageNow = $_GET['page'];
+							$x = 1;
 							if ($pageNow > 1) {
-									$pageBefore = $pageNow - 1;
-									echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
+								$pageBefore = $pageNow - 1;
+								echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
 							}
-							while ($count <= $pages && $count <= 5) {
-									echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
+							while ($count <= $pages && $x <= 5) {
+								echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
 								$count = $count + 1;
+								$x = $x + 1;
 							}
 							if ($pageNow < $pages) {
-									$pageNext = $pageNow + 1;
-									echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
+								$pageNext = $pageNow + 1;
+								echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
 							}
 							?>
 						</ul>
