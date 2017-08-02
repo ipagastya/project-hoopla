@@ -125,7 +125,6 @@
 					<?php
 						$rows = mysqli_num_rows($resultFull);
 						$pages = 0;
-						
 						if($rows <= 10) {
 							$pages = 1;
 						} else if (($rows % 10 ) == 0) {
@@ -159,7 +158,6 @@
 							$count = $count + 1;
 							$x = $x + 1;
 						}
-
 						if ($pageNow < $pages) {
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
