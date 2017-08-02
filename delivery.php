@@ -106,16 +106,16 @@ $subscription = mysqli_fetch_assoc($result_subs);
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="mobile">Mobile Number :</label>
+			<label class="control-label col-sm-2" for="home">Home Number :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="mobile" value="<?=$customer['phone_mobile']?>" name="mobile">
+				<input type="number" class="form-control" id="home" value="<?=$customer['phone_home']?>" name="home">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="home">Home Number :</label>
+			<label class="control-label col-sm-2" for="mobile">Mobile Number :</label>
 			<div class="col-sm-5">
-				<input type="number" class="form-control" id="home" value="<?=$customer['phone_home']?>" name="home">
+				<input type="number" class="form-control" id="mobile" value="<?=$customer['phone_mobile']?>" name="mobile">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
