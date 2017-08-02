@@ -46,7 +46,6 @@
 		</div>
 
 	</div>
-
 	<!--============================-->
 	<div class="container">
 		<h4>Subscription Table</h4>
