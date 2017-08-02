@@ -44,7 +44,7 @@
 			<td>";*/
 		
 		//$flag = TRUE;
-		while($rowSub = mysqli_fetch_row($resultSub)) {
+		while($rowSub = $resultSub->fetch_array(MYSQLI_NUM)) {
 		/*	if($flag) {
 				echo $rowSub[0];
 				$flag = FALSE;
