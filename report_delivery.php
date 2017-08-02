@@ -85,7 +85,7 @@
 								echo ", ".$rowSub[0]."";
 							}*/
 
-							echo implode(", ", $rowSub);
+							echo gettype(implode(", ", $rowSub));
 						}
 						echo "</td><td>$date</td></tr>";
 					}
