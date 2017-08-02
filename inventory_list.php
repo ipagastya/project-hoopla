@@ -118,6 +118,7 @@
 				?>
 				</tbody>
 			</table>
+			<center>
 			<div>
 				<ul class="pagination pagination-sm">
 					<?php
@@ -171,6 +172,7 @@
 					?>
 				</ul>
 			</div>
+			</center>
 		</div>
 		<br><br><br>
 	</div>
