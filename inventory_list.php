@@ -111,7 +111,7 @@
 			        			<td>".$rowName2[0]."</td>
 			        			<td>".$row[10]."-".$row[11]."</td>
 			        			<td>".$row[4]."</td>
-			        			<td>"."<a method='get' href='inventory?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
+			        			<td>"."<a method='get' href='inventory?page=1&id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        		</tr>";
 			        }
 			        $resultFull = mysqli_query($conn , $query);

@@ -349,6 +349,7 @@
 							}
 						}
 					?>
+					<hr>
 					<div align="right">
 						<?php
 							include "config.php";
@@ -374,9 +375,10 @@
 								$resulthelper = mysqli_query($conn,$queryhelper);
 								$rowhelper = mysqli_fetch_row($resulthelper);
 								$product_code = $rowhelper[0];
-			
 								$query = "SELECT * FROM INVENTORY_CARD WHERE product_code = '$product_code'";
-								$result = mysqli_query($conn,$query);
+								$offset = ($_GET['page'] - 1) * 10;
+								$result = mysqli_query($conn,"$query LIMIT 10 OFFSET $offset");
+								//$result = mysqli_query($conn,$query);
 								if(!$result){
 					               	echo("Couldn't execute query");
 					                die(mysqli_connect_error());
@@ -393,9 +395,43 @@
 						        			<td>".$row[4]."</td>
 						        		</tr>";
 		        				}
+		        				$resultFull = mysqli_query($conn , $query);
 							?>
 						</table>
 					</div>
+					<center><div>
+						<ul class="pagination pagination-sm">
+							<?php
+								$id = $_GET['id'];
+								$rows = mysqli_num_rows($resultFull);
+								$pages = 0;
+								
+								if($rows <= 10) {
+									$pages = 1;
+								} else if (($rows % 10 ) == 0) {
+									$pages = $rows / 10;
+								} else {
+									$pages = floor($rows / 10) + 1;
+								}
+								$pageNow = $_GET['page'];
+								$count = $pageNow;
+								$pageBefore = $pageNow - 1;
+								$pageNext = $pageNow + 1;
+								if ($pageNow > 1) {
+									echo "<li><a href='inventory?page=$pageBefore&id=$id'>Previous</a></li>";
+								}
+								$x = 1;
+								while ($count <= $pages && $x <= 5) {
+									echo "<li><a href='inventory?page=$count&id=$id'>$count</a></li>";
+									$count = $count + 1;
+									$x = $x + 1;
+								}
+								if ($pageNow < $pages) {
+									echo "<li><a href='inventory?page=$pageNext&id=$id'>Next</a></li>";
+								}
+							?>
+						</ul>
+					</div></center>
 					<br>
 					<br>
 					<br>
