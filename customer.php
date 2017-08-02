@@ -1,6 +1,10 @@
 <?php 
 	require('header.php');
 ?>
+<div class="jumbotron">
+	<br><br>
+	<center><h2 class="leckerli">Create Customer</h2></center>
+</div>
 <div class="container">
 		<form class="form-horizontal" method="post" action="./customer.php">
 			<div class="form-group">
@@ -146,10 +150,14 @@
 				<div class="col-sm-5"></div>
 			</div>
 			<div class="form-group">
-			<div class="col-sm-3"></div>
-			<button name="submit" class="greenbutton control-label col-sm-1" type="submit"><b class="submit-text">Submit</b></button>
-			<div class="col-sm-8"></div>
-		</div>
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					<button name="submit" class="addbutton" type="submit"><span class="
+									glyphicon glyphicon-ok"></span> Submit</button>
+				</div>
+				
+				<div class="col-sm-4"></div>
+			</div>
 		</form>
 	</div>
         <?php
