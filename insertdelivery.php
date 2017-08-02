@@ -22,7 +22,7 @@ if (isset($_POST['submit-edit'])) {
 	if($result === false){
 		die("Query Fail");
 	}else{
-		header( "refresh:1;url=subscription?subs_id=$subs_id" );
+		header( "refresh:1;url=subscription?page=1&subs_id=$subs_id" );
 	}
 }
 else{
@@ -95,7 +95,7 @@ else{
 			echo "query to update inventory fail";
 		}
 	}
-	// header( "refresh:1;url=subscription?subs_id=$subs_id" );
+	header( "refresh:1;url=subscription?page=1&subs_id=$subs_id" );
 }
 
 ?>

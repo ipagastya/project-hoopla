@@ -1,7 +1,7 @@
 <?php  
 require_once('header.php');
 include "config.php";
-if(!isset($_GET['cust_id']) && !isset($_GET['subs_id'])){
+if(!isset($_GET['cust_id']) || !isset($_GET['subs_id'])){
 	header("location: subscription_list");
 }else{
 	$cust_id = $_GET['cust_id'];

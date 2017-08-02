@@ -1,7 +1,7 @@
 <?php 
 require('header.php');
-if(!isset($_GET['subs_id'])){
-	header("location: subscription_list");
+if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET['subs_id']){
+	header("location: subscription_list?page=1");
 }else{
 	$subs_id = $_GET['subs_id'];
 	include "config.php";
@@ -210,7 +210,9 @@ if(!isset($_GET['subs_id'])){
 					<?php 
 					$cust_id = $row['cust_id'];
 					$sql = "SELECT * FROM DELIVERY_LIST WHERE cust_id = '$cust_id'";
-					$result = mysqli_query($conn, $sql);
+					$offset = ($_GET['page'] - 1) * 10;
+					$result = mysqli_query($conn, "$sql LIMIT 10 OFFSET $offset");
+					$resultFull = mysqli_query($conn, $sql);
 					while ($row_deliv = mysqli_fetch_assoc($result)) { ?> 
 					<tr>
 						<td><?=$row_deliv['delivery_id']?></td>
@@ -220,7 +222,6 @@ if(!isset($_GET['subs_id'])){
 							$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
 							$result_city = mysqli_query($conn, $sql);
 							$row_city = mysqli_fetch_assoc($result_city);
-							echo $row_city['city_name'];
 							?></td>
 							<td><?php
 								$province_id = $row_deliv['province_id'];
@@ -243,6 +244,35 @@ if(!isset($_GET['subs_id'])){
 							</tr>
 							<?php } ?>
 						</table>
+					</div>
+					<div>
+						<ul class="pagination pagination-sm">
+							<?php
+							$rows = mysqli_num_rows($resultFull);
+							$pages = 0;
+							$count = 1;
+							if($rows <= 10) {
+								$pages = 1;
+							} else if (($rows % 10 ) == 0) {
+								$pages = $rows / 10;
+							} else {
+								$pages = floor($rows / 10) + 1;
+							}
+							$pageNow = $_GET['page'];
+							if ($pageNow > 1) {
+									$pageBefore = $pageNow - 1;
+									echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
+							}
+							while ($count <= $pages && $count <= 5) {
+									echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
+								$count = $count + 1;
+							}
+							if ($pageNow < $pages) {
+									$pageNext = $pageNow + 1;
+									echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
+							}
+							?>
+						</ul>
 					</div>
 					<?php 
 

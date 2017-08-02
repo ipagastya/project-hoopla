@@ -1,5 +1,8 @@
 <?php 
 require('header.php');
+if (!isset($_GET['page'])) {
+	header("location: welcome");
+}
 ?>
 <div class= "container">
 	<button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> filter</button>
@@ -134,7 +137,7 @@ require('header.php');
 						<td><?=$row['first_deliv']?></td>
 						<td><?=$row['final_pickup']?></td>
 						<td><?=$row['payment_terms']?></td>
-						<td><a class='btn btn-default' href="subscription?subs_id=<?=$row['subs_id']?>">Details</a></td>
+						<td><a class='btn btn-default' href="subscription?page=1&subs_id=<?=$row['subs_id']?>">Details</a></td>
 					</tr>
 					<?php }
 				}
