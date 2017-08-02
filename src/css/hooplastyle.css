@@ -11,8 +11,8 @@ body, html{height:100%;margin:0;}
 #errorLogin:hover{background:#c91d4a;cursor:pointer;}
 nav{border-radius:0px;border-width:0px;box-shadow:0px;background: #fff !important;opacity: 0.92 !important;}
 .navbar-collapse > .navbar-left > li > a{font-weight:bold;color:#2980b9;}
-.navbar-collapse > .navbar-left > li > a:hover{color:#f39c12;}
-.active a{color:#f39c12 !important;background:none !important;box-shadow:none !important;border-width:0px !important;}
+.navbar-collapse > .navbar-left > li > a:hover{color:#ed6e26;}
+.active a{color:#ed6e26 !important;background:none !important;box-shadow:none !important;border-width:0px !important;}
 .navbar-collapse > .navbar-right{font-weight:bold;margin-right:8px;}
 .addbutton{padding:10px 15px;background:#2980b9;color:#fff;border-radius:5px;box-shadow:none;border-width:0px;text-decoration:none;}
 .addbutton:hover{background:#398790;text-decoration:none;color:#fff;}
