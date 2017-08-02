@@ -405,7 +405,6 @@
 								$id = $_GET['id'];
 								$rows = mysqli_num_rows($resultFull);
 								$pages = 0;
-								
 								if($rows <= 10) {
 									$pages = 1;
 								} else if (($rows % 10 ) == 0) {
@@ -429,19 +428,17 @@
 								if ($pageNow < $pages) {
 									echo "<li><a href='inventory?page=$pageNext&id=$id'>Next</a></li>";
 								}
+								echo"<br><br><h6>($pageNow / $pages)</h6>";
 							?>
 						</ul>
 					</div></center>
 					<br>
 					<br>
 					<br>
-	
 				</div>
 				<br>
 				<br>
 				<br>
-
-
 <?php
 	require_once('footer.php');
 ?>

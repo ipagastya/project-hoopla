@@ -118,6 +118,7 @@
 				?>
 				</tbody>
 			</table>
+			<hr>
 			<center>
 			<div>
 				<ul class="pagination pagination-sm">
@@ -169,6 +170,7 @@
 								echo "<li><a href='inventory_list?page=$pageNext'>Next</a></li>";
 							}
 						}
+						echo"<br><br><h6>($pageNow / $pages)</h6>";
 					?>
 				</ul>
 			</div>
