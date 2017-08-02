@@ -131,13 +131,7 @@
 						} else {
 							$pages = floor($rows / 10) + 1;
 						}
-						/*while ($count <= $pages) {
-							echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
-							$count = $count + 1;
-						}*/
 						$pageNow = $_GET['page'];
-						/*echo"<h1>$pageNow</h1>";
-						echo"<h1>$pages</h1>";*/
 						/*if ($pageNow > 1) {
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
@@ -152,7 +146,7 @@
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								echo "<li><a href='inventory_list?page=$count&filtersubmit='>$count</a></li>";
+								echo "<li><a href='inventory_list?page=$count&dateinventory=$date&status=$status&filtersubmit='>$count</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
 							}
