@@ -123,7 +123,7 @@
 					<?php
 						$rows = mysqli_num_rows($resultFull);
 						$pages = 0;
-						$count = 1;
+						
 						if($rows <= 10) {
 							$pages = 1;
 						} else if (($rows % 10 ) == 0) {
@@ -132,17 +132,21 @@
 							$pages = floor($rows / 10) + 1;
 						}
 						$pageNow = $_GET['page'];
-						/*if ($pageNow > 1) {
+						$count = $pageNow;
+						$pageBefore = $pageNow - 1;
+						$pageNext = $pageNow + 1;
+						if ($pageNow > 1) {
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								$pageBefore = $pageNow - 1;
+								
 								echo "<li><a href='inventory_list?page=$pageBefore&dateinventory=$date&status=$status&filtersubmit='>Previous</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageBefore'>Previous</a></li>";
 							}
-						}*/
-						while ($count <= $pages && $count <= 5) {
+						}
+						$x = 1;
+						while ($count <= $pages && $x <= 5) {
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
@@ -151,17 +155,19 @@
 								echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
 							}
 							$count = $count + 1;
+							$x = $x + 1;
 						}
-						/*if ($pageNow < $pages) {
+
+						if ($pageNow < $pages) {
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								$pageNext = $pageNow+1;
+								
 								echo "<li><a href='inventory_list?page=$pageNext&dateinventory=$date&status=$status&filtersubmit='>Next</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageNext'>Next</a></li>";
 							}
-						}*/
+						}
 					?>
 				</ul>
 			</div>
