@@ -2,7 +2,7 @@
 require_once("header.php");
 require_once("config.php");
 ?>
-<div class="jumbotron">
+<div class="jumbotron create">
 	<br><br>
 	<center><h2 class="leckerli">Create Subscription</h2></center>
 </div>
