@@ -4,55 +4,64 @@ if (!isset($_GET['page'])) {
 	header("location: welcome");
 }
 ?>
-<div class= "container">
-	<button class="addbutton" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> filter</button>
-	<form class="form-horizontal collapse" id="form-filter" method="get" action="subscription_list">
-		<input type="hidden" name="page" value="1" /> 
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="start-date">Final Pickup Date :</label>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="start-date">Start Date</label>
-			<div class="col-sm-3">
-				<input type="date" class="form-control" id="start-date" name="start-date">
+<div class="jumbotron">
+	<br><br>
+	<center><h2 class="leckerli">Subscription List</h2></center>
+	<div class="container">
+		<form class="form-horizontal collapse" id="form-filter" method="get" action="subscription_list">
+			<input type="hidden" name="page" value="1" /> 
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="start-date">Final Pickup Date :</label>
 			</div>
-			<label class="control-label col-sm-3" for="end-date">End Date</label>
-			<div class="col-sm-3">
-				<input type="date" class="form-control" id="end-date" name="end-date">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="start-date">Start Date</label>
+				<div class="col-sm-3">
+					<input type="date" class="form-control" id="start-date" name="start-date">
+				</div>
+				<label class="control-label col-sm-3" for="end-date">End Date</label>
+				<div class="col-sm-3">
+					<input type="date" class="form-control" id="end-date" name="end-date">
+				</div>
 			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="name">Customer Name :</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="name" name="name">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="name">Customer Name :</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="name" name="name">
+				</div>
+				<div class="col-sm-6"></div>
 			</div>
-			<div class="col-sm-6"></div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="note">Payment Note :</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="note" name="note">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="note">Payment Note :</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="note" name="note">
+				</div>
+				<div class="col-sm-6"></div>
 			</div>
-			<div class="col-sm-6"></div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="sub-plan">Subscription Plan :</label>
-			<div class="col-sm-3">
-				<input type="number" class="form-control" id="sub-plan" name="sub-plan">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="sub-plan">Subscription Plan :</label>
+				<div class="col-sm-3">
+					<input type="number" class="form-control" id="sub-plan" name="sub-plan">
+				</div>
+				<label class="control-label col-sm-1" for="sub-plan">Month</label>
+				<div class="col-sm-5"></div>
 			</div>
-			<label class="control-label col-sm-1" for="sub-plan">Month</label>
-			<div class="col-sm-5"></div>
+			<div class="form-group">
+				<div class="col-sm-4"></div>
+				<button class="greenbutton control-label col-sm-4" type="submit" name="filtersubmit" id="filtersubmit"><center>Submit</center></button>
+				<div class="col-sm-4"></div>
+			</div>
+		</form>
+		<br>
+		<div align="right">
+			<div class="btn-group" >
+				<button class="filterbtn" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+				<a href="subscription_create"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button></a>
+			</div>
+			
 		</div>
-		<div class="form-group">
-			<div class="col-sm-3"></div>
-			<button class="greenbutton control-label col-sm-1" type="submit" name="filtersubmit" id="filtersubmit"><center>Submit</center></button>
-			<div class="col-sm-8"></div>
-		</div>
-	</form>
-	<br>
-	<div align="right">
-		<a href="subscription_create"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Subscription</button></a>
 	</div>
+</div>
+<div class= "container">
 	<h4>Subscription Schedule</h4>
 	<div class="table-responsive">
 		<table class="table">
@@ -147,6 +156,7 @@ if (!isset($_GET['page'])) {
 			?>
 		</table>
 	</div>
+	<center>
 	<div>
 		<ul class="pagination pagination-sm">
 			<?php
@@ -174,7 +184,7 @@ if (!isset($_GET['page'])) {
 					echo "<li><a href='subscription_list?page=$pageBefore'>Previous</a></li>";
 				}
 			}
-			$x = 1
+			$x = 1;
 			while ($count <= $pages && $x <= 5) {
 				if (isset($_GET['filtersubmit'])) {
 					$start_date = $_GET['start-date'];
@@ -205,7 +215,7 @@ if (!isset($_GET['page'])) {
 			?>
 		</ul>
 	</div>
-	
+	</center>
 </div>
 <?php
 require('footer.php');

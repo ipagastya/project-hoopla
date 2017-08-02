@@ -17,6 +17,10 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 		else{
 			$row = mysqli_fetch_assoc($result);
 			?>
+			<div class="jumbotron">
+				<br><br>
+				<center><h2 class="leckerli">Subscription</h2></center>
+			</div>
 			<div class= "container">
 				<form class="form-horizontal" action="editsubscription?subs_id=<?=$subs_id?>" method="POST">
 					<div class="form-group">
@@ -177,10 +181,11 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 				</div>
 				<div class="form-group">
 					<div class="col-sm-4"></div>
-					<div class="col-sm-5">
-						<button class="btn btn-primary greenbutton" type="submit">Submit</button>
+					<div class="col-sm-4">
+						<button class="addbutton" type="submit"><span class="
+								glyphicon glyphicon-ok"></span> Update</button>
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-4"></div>
 				</div>
 			</form>
 			<hr>
@@ -245,6 +250,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							<?php } ?>
 						</table>
 					</div>
+					<center>
 					<div>
 						<ul class="pagination pagination-sm">
 							<?php
@@ -276,6 +282,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							?>
 						</ul>
 					</div>
+					</center>
 					<?php 
 
 					?>
