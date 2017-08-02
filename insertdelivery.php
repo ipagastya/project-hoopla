@@ -11,7 +11,9 @@ if (isset($_POST['submit-edit'])) {
 	$deliv_date = $_POST['deliv-date'];
 	$pick_date = $_POST['pick-date'];
 	$deliv_charge = $_POST['deliv-charge'];
+	$deliv_charge = str_replace(",", "", $deliv_charge);
 	$pick_charge = $_POST['pick-charge'];
+	$pick_charge = str_replace(",", "", $pick_charge);
 	$payment_note = $_POST['pay-note'];
 	$note = $_POST['note'];
 
