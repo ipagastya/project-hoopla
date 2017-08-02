@@ -28,3 +28,4 @@ nav{border-radius:0px;border-width:0px;box-shadow:0px;background: #fff !importan
 .filterbtn:hover{background:#c91d4a;}
 .obj{background:#fff;border:2px solid #d6dbdf;border-radius:5px;padding:10px 10px;}
 .jumbotron{margin-top:-80px;background-image:url(../images/walljumbo.png);background-size:cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff;}
+.create{margin-top:-80px;background-image:url(../images/walljumbocreate.png);background-size:cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff;}
