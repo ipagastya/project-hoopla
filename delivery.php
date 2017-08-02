@@ -241,7 +241,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-category">Select Category :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
+				<select class="form-control selectpicker" data-live-search="true" data-actions-box="true" id="select-category" name="select-category[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Category</option>
 					<?php 
 					$sql_category = "SELECT * FROM CATEGORY";
@@ -257,7 +257,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-skill">Select Skill :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-skill" name="select-skill[]" multiple data-selected-text-format="count > 3">
+				<select class="form-control selectpicker" data-live-search="true" id="select-skill" data-actions-box="true" name="select-skill[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Category</option>
 					<option value="fine_motor">Fine Motor</option>
 					<option value="linguistic">Linguistic</option>
