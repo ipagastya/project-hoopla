@@ -43,35 +43,31 @@
 		      	</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a data-toggle="modal" data-target="#myModal" class="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</nav>
-	<!--ghost navbar-->
-	<!--nav class="navbar navbar-default navbar-relative" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand">Hoopla Inventory System</a>
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#">Customer</a></li>
-				<li><a href="#">Subscription</a></li>
-				<li><a href="#">Payment</a></li>
-				<li><a href="#">Inventory</a></li>
-                <li><a href="#">Report</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</ul>
-		</div>
-	</nav-->
+	<div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog modal-md">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        </div>
+	        <div class="modal-body"><center>
+	          <p>Are you sure want to logout Hoopla! Inventory System ?<br> Any unsaved data will be lost.</p></center>
+	        </div>
+	        <div class="modal-footer">
+	        	<center>
+	        	<div class="btn-group">
+	        		<a href="logout.php"><button type="button" class="addbutton"><span class="glyphicon glyphicon-ok"></span> Yes</button></a>
+	        		<button type="button" class="filterbtn" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+	        	</div>
+	        	</center>
+	        </div>
+	      </div>
+	    </div>
+	</div>
 	<br><br><br><br>
-
 	<?php
 		$dir = basename($_SERVER['SCRIPT_NAME']);
 		if($dir == "customer_list.php"){
