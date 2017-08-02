@@ -87,7 +87,7 @@
 							$tempstr = implode(", ", $rowSub);
 							echo $tempstr;
 						}*/
-						echo implode (", ", mysqli_fetch_array($resultSub));
+						echo implode (", ", mysqli_fetch_all($resultSub));
 
 						echo "</td><td>$date</td></tr>";
 					}
