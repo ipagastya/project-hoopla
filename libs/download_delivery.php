@@ -84,7 +84,7 @@
 	    /*while ($row = $result->fetch_array(MYSQLI_NUM)) {
 			fputcsv($fp, array_values($row));
 	    }*/
-	    while ($output as $row) {
+	    foreach ($output as $row) {
 			fputcsv($fp, array_values($row));
 	    }
 	    die;
