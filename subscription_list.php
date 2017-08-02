@@ -152,7 +152,8 @@ if (!isset($_GET['page'])) {
 			<?php
 			$rows = mysqli_num_rows($resultFull);
 			$pages = 0;
-			$count = 1;
+			$pageNow = $_GET['page'];
+			$count = $pageNow;
 			if($rows <= 10) {
 				$pages = 1;
 			} else if (($rows % 10 ) == 0) {
@@ -160,21 +161,21 @@ if (!isset($_GET['page'])) {
 			} else {
 				$pages = floor($rows / 10) + 1;
 			}
-			$pageNow = $_GET['page'];
 			if ($pageNow > 1) {
+				$pageBefore = $pageNow - 1;
 				if (isset($_GET['filtersubmit'])) {
 					$start_date = $_GET['start-date'];
 					$end_date = $_GET['end-date'];
 					$name = $_GET['name'];
 					$note=$_GET['note'];
 					$sub_plan=$_GET['sub-plan'];
-					$pageBefore = $pageNow - 1;
 					echo "<li><a href='subscription_list?page=$pageBefore&start-date=$start_date&end-date=$end_date&name=$name&note=$note&sub-plan=$sub_plan&filtersubmit='>Previous</a></li>";
 				}else{
 					echo "<li><a href='subscription_list?page=$pageBefore'>Previous</a></li>";
 				}
 			}
-			while ($count <= $pages && $count <= 5) {
+			$x = 1
+			while ($count <= $pages && $x <= 5) {
 				if (isset($_GET['filtersubmit'])) {
 					$start_date = $_GET['start-date'];
 					$end_date = $_GET['end-date'];
@@ -186,15 +187,16 @@ if (!isset($_GET['page'])) {
 					echo "<li><a href='subscription_list?page=$count'>$count</a></li>";
 				}
 				$count = $count + 1;
+				$x = $x + 1;
 			}
 			if ($pageNow < $pages) {
+				$pageNext = $pageNow + 1;
 				if (isset($_GET['filtersubmit'])) {
 					$start_date = $_GET['start-date'];
 					$end_date = $_GET['end-date'];
 					$name = $_GET['name'];
 					$note=$_GET['note'];
 					$sub_plan=$_GET['sub-plan'];
-					$pageNext = $pageNow + 1;
 					echo "<li><a href='subscription_list?page=$pageNext&start-date=$start_date&end-date=$end_date&name=$name&note=$note&sub-plan=$sub_plan&filtersubmit='>Next</a></li>";
 				}else{
 					echo "<li><a href='subscription_list?page=$pageNext'>Next</a></li>";
