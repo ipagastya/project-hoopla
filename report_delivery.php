@@ -77,16 +77,18 @@
 							<td>";
 						
 						//$flag = TRUE;
-						while($rowSub = mysqli_fetch_row($resultSub)) {
-							/*if($flag) {
+						/*while($rowSub = mysqli_fetch_row($resultSub)) {
+							if($flag) {
 								echo $rowSub[0];
 								$flag = FALSE;
 							} else {
 								echo ", ".$rowSub[0]."";
-							}*/
+							}
 							$tempstr = implode(", ", $rowSub);
 							echo $tempstr;
-						}
+						}*/
+						echo implode (", ", mysqli_fetch_array($resultSub));
+
 						echo "</td><td>$date</td></tr>";
 					}
 				?>
