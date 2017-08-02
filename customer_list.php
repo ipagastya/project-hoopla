@@ -1,11 +1,16 @@
 <?php 
 	require('header.php');
 ?>
-<div class= "container-fluid">
+<div class="jumbotron">
+	<br><br><center><h2 class="leckerli">Customer List</h2></center>
 	<div class="container">
 		<div align="right">
 			<button class="addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Customer</a></button>
 		</div>
+	</div>
+</div>
+<div class= "container-fluid">
+	<div class="container">
 		<br>
 		<div class="table-responsive">
 			<table class="table table-hover">
