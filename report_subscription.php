@@ -20,10 +20,15 @@
 			die(mysqli_connect_error());
                	}
 	}
-
-	
 ?>
 <div class= "container">
+	<form action="libs/download_subscription">
+		<div class='form-group'>
+			<button class="greenbutton control-label" type="submit" name="download-sub">
+				<center>Download Report</center>
+			</button>
+		</div>
+	</form>
    	<h4>Subscription Report</h4>
 	<div class="table-responsive">
 		<table class="table table-bordered">
@@ -54,13 +59,25 @@
 			</thead>
 			<tbody>
 			    <?php
-				$query = "SELECT * FROM CUSTOMER_REPORT";
-				$result = mysqli_query($conn, $query);                          
+					if(!isset($_GET['page'])) {
+						$offset = 0;
+						$page = 1;
+					} else {
+						$page = $_GET['page'];
+						$offset = ($page - 1) * 10;
+					}
 
-				if(!$result) {
-				    print("Couldn't execute customer report query");
-				    die(mysqli_connect_error());
-				}
+					$query = "SELECT * FROM CUSTOMER_REPORT";
+					$result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");
+					$resultFull = mysqli_query($conn, $query);                          
+
+					if(!$result) {
+					    print("Couldn't execute subscription query");
+					    die(mysqli_connect_error());
+					} else if(!$resultFull) {
+					    print("Couldn't execute complete subscription query");
+					    die(mysqli_connect_error());
+					}
 
 				while($row = mysqli_fetch_row($result)) {
 					echo "	<tr>
@@ -85,6 +102,53 @@
 			</tbody>
 		</table>
 	</div>
+	<div>
+		<ul class="pagination pagination-sm">
+			<?php
+            	$rows = mysqli_num_rows($resultFull);
+                $pages = 0;
+                if($page > 2) {
+                	$count = $page - 2;
+           		} else {
+           			$count = 1;
+           		}
+
+                if($rows <= 10) {
+               		$pages = 1;
+                } else if (($rows % 10 ) == 0) {
+                	$pages = $rows / 10;
+                } else {
+                	$pages = floor($rows / 10) + 1;
+            	}
+
+            	if($pages > 1 && $page != 1) {
+            		$prev = $page - 1;
+            		echo "<li><a href='report_subscription?page=$prev'><</a></li>";
+            	} 
+
+            	if($count != 1) {
+            		echo "<li><a>...</a></li>";
+            	}
+            	while ($count <= $pages && $count <= ($page + 2)) {
+            		if($count == $page) {
+            			echo "<li class='active'><a href='report_subscription?page=$page'>$count</a></li>";
+            		} else {
+                		echo "<li><a href='report_subscription?page=$count'>$count</a></li>";
+              		}
+                	$count = $count + 1;
+                }
+
+                if($count != $pages + 1) {
+                	echo "<li><a>...</a></li>";
+                }
+
+                if($pages > 1 && $page < $pages) {
+            		$next = $page + 1;
+            		echo "<li><a href='report_subscription?page=$next'>></a></li>";
+            	}
+            ?>
+        </ul>
+    </div>	
 </div>
 <?php
     require('footer.php');

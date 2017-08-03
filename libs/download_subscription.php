@@ -1,7 +1,7 @@
 <?php
 	include "../config.php";
   
-	$query = 'SELECT * FROM INVENTORY_AVAILABLE';
+	$query = 'SELECT * FROM CUSTOMER_REPORT';
 	$result = mysqli_query($conn, $query);                          
 	if(!$result) {
 		print("Couldn't execute query");
@@ -9,10 +9,13 @@
 	}
  
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Product Code", "Toy Name", "Availability");
-	$type = array("Type", "Inventory Availability Report");
+	$headers = [];
+	for ($i = 0; $i < $num_fields; $i++) {
+	    $headers[] = mysqli_fetch_field_direct($result, $i)->name;
+	}
+	$type = array("Type", "Subscription Report");
 	$date = array("Date", "".date("Y-m-d"));
-	$name = "inventory_report_".date("Y-m-d");
+	$name = "subscription_report_".date("Y-m-d");
 
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {

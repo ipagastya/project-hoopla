@@ -1,7 +1,7 @@
 <?php
 	include "../config.php";
   
-	$query = 'SELECT * FROM INVENTORY_AVAILABLE';
+	$query = 'SELECT * FROM CUSTOMER_EXPIRY';
 	$result = mysqli_query($conn, $query);                          
 	if(!$result) {
 		print("Couldn't execute query");
@@ -9,10 +9,10 @@
 	}
  
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Product Code", "Toy Name", "Availability");
-	$type = array("Type", "Inventory Availability Report");
+	$headers = array("Customer Name", "Expiry Date", "Subscription Status");
+	$type = array("Type", "Upcoming Expiry Report");
 	$date = array("Date", "".date("Y-m-d"));
-	$name = "inventory_report_".date("Y-m-d");
+	$name = "expiry_report_".date("Y-m-d");
 
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {

@@ -22,6 +22,7 @@
 		$date = $row[1];
 		$name = $row[2];
 		$address = $row[3];
+		$resultArr = [];
 		
 		$querySub = "SELECT I.toy_name
 				FROM DELIVERY_TOYS AS DT, INVENTORY AS I
@@ -37,53 +38,30 @@
 		
 		$outputsub[] = $name;
 		$outputsub[] = $address;
-
-		/*echo "<tr>
-			<td>$name</td>
-			<td>$address</td>
-			<td>";*/
-		
-		//$flag = TRUE;
-		while($rowSub = $resultSub->fetch_array(MYSQLI_NUM)) {
-		/*	if($flag) {
-				echo $rowSub[0];
-				$flag = FALSE;
-			} else {
-				echo ", ".$rowSub[0]."";
-			}*/
-			$outputsub[] = implode(", ", $rowSub);
+		while($rowSub = mysqli_fetch_row($resultSub)) {
+			$resultArr[] = $rowSub[0];
 		}
+		$outputsub[] = implode (", ", $resultArr);
 		$outputsub[] = $date;
-		//echo "</td><td>$date</td></tr>";
-
 		$output[] = $outputsub;
 	}
 
-
-
-
-	/*$query = 'SELECT * FROM INVENTORY_AVAILABLE';
-	$result = mysqli_query($conn, $query);                          
-	if(!$result) {
-		print("Couldn't execute query");
-		die(mysqli_connect_error());
-	}*/
- 
 	$num_fields = mysqli_num_fields($result);
 	$headers = array("Name", "Address", "Toys", "Delivery Date");
-	/*for ($i = 0; $i < $num_fields; $i++) {
-	    $headers[] = mysqli_fetch_field_direct($result, $i)->name;
-	}*/
+	$type = array("Type", "Delivery Report");
+	$date = array("Date", "".date("Y-m-d"));
+	$name = "delivery_report_".date("Y-m-d");
+
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {
 	    header('Content-Type: text/csv');
-	    header('Content-Disposition: attachment; filename="report.csv"');
+	    header('Content-Disposition: attachment; filename='.$name.'.csv');
 	    header('Pragma: no-cache');
 	    header('Expires: 0');
+	    fputcsv($fp, $type);
+	    fputcsv($fp, $date);
+	    fputcsv($fp, array());
 	    fputcsv($fp, $headers);
-	    /*while ($row = $result->fetch_array(MYSQLI_NUM)) {
-			fputcsv($fp, array_values($row));
-	    }*/
 	    foreach ($output as $row) {
 			fputcsv($fp, array_values($row));
 	    }
