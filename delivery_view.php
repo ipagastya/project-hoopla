@@ -35,6 +35,9 @@ if (!isset($_GET['deliv_id'])) {
 	}
 	$province_id = "";
 	?>
+	<div class="jumbotron">
+		<br><br><center><h2 class="leckerli">View Delivery</h2></center>
+	</div>
 	<div class="container">
 		<form class="form-horizontal" method="POST" action="insertdelivery?subs_id=<?=$subs_id ?>">
 			<div class="form-group">
@@ -187,7 +190,8 @@ if (!isset($_GET['deliv_id'])) {
 			<div class="form-group">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-5">
-				<button class="btn btn-primary greenbutton" name="submit-edit" type="submit">Submit</button>
+				<button class="addbutton" name="submit-edit" type="submit"><span class="
+				glyphicon glyphicon-ok"></span> Submit</button>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
