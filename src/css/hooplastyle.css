@@ -13,7 +13,7 @@ nav{border-radius:0px;border-width:0px;box-shadow:0px;background: #fff !importan
 .navbar-collapse > .navbar-left > li > a{font-weight:bold;color:#2980b9;}
 .navbar-collapse > .navbar-left > li > a:hover{color:#ed6e26;}
 #drop > li > a{color:#2980b9;}
-#drop > li > a:hover{background:#2980b9!important;color:#fff;}
+#drop > li > a:hover{background:#ecf0f1!important;color:#ed6e26;}
 .active a{color:#ed6e26 !important;background:none !important;box-shadow:none !important;border-width:0px !important;}
 .navbar-collapse > .navbar-right{font-weight:bold;margin-right:8px;}
 .logout{cursor:pointer;}
