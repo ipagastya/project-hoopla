@@ -45,6 +45,9 @@ $subscription = mysqli_fetch_assoc($result_subs);
 
 
 ?>
+<div class="jumbotron">
+	<br><br><center><h2 class="leckerli">Create Delivery</h2></center>
+</div>
 <div class="container">
 	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id."&subs_id=".$subs_id ?>">
 		<div class="form-group">
@@ -281,7 +284,8 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-5">
-				<button class="btn btn-primary greenbutton" type="submit">Submit</button>
+				<button class="addbutton" type="submit"><span class="
+				glyphicon glyphicon-ok"></span> Submit</button>
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
