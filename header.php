@@ -34,7 +34,7 @@
              	<li id="reportNav" class="dropdown">
 			        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;">Report
 			        <span class="caret"></span></a>
-			        <ul class="dropdown-menu">
+			        <ul class="dropdown-menu" id="drop">
 			          <li id="subsreport"><a href="report_subscription">Subscription Report</a></li>
 			          <li id="upreport"><a href="report_expiry">Upcoming Expiry Report</a></li>
 			          <li id="delivreport"><a href="report_delivery">Delivery Report</a></li>
