@@ -32,6 +32,12 @@
 		</div>
 	</form>
 	<h4>Expiring Subscriptions</h4>
+	<ul class="nav nav-tabs">
+		<li val ="0" class="weeknav active"><a href="#">Week 1</a></li>
+		<li val ="1" class="weeknav"><a href="#">Week 2</a></li>
+		<li val ="2" class="weeknav"><a href="#">Week 3</a></li>
+		<li val ="3" class="weeknav"><a href="#">Week 4</a></li>
+	</ul>
 	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
@@ -41,7 +47,7 @@
 					<th>Subscription Status</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="expbody">
 				<?php
 					if(!isset($_GET['page'])) {
 						$offset = 0;
@@ -122,6 +128,41 @@
         </ul>
     </div>		
 </div>
+<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script>
+		$(".weeknav").click(function(){
+			$(".weeknav").removeClass("active");
+			$(this).addClass("active");
+			var week = $(this).attr('val');
+
+			$.ajax({
+				type: "POST",
+				data: {week: week},
+				url: "libs/repexp.php",
+				success: function(response){
+					$("#expbody").html(response);
+				}
+			});
+
+			/*$value = $(this).val();
+			if(!isNaN($value) && $value){
+				$tag = this;
+				$.ajax({
+					type: "POST",
+					data: {nominal: $value},
+					url: "libs/nominal.php",
+					success: function(response){
+						$value = response;
+						$($tag).val(response);
+					}
+				});
+			}
+			else{
+				$(this).val("");
+				$(this).attr("placeholder", "Please input number")
+			}*/
+		});
+	</script>
 <?php
     require('footer.php');
 ?>
