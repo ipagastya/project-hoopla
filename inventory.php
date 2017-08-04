@@ -383,16 +383,16 @@
 					               	echo("Couldn't execute query");
 					                die(mysqli_connect_error());
 					            }
-								while($row = mysqli_fetch_row($result))
+								while($row = mysqli_fetch_assoc($result))
 		        				{
-		        					$queryAct = "SELECT activity_name FROM INVENTORY_ACTIVITY WHERE activity_id = '".$row[2]."'";
+		        					$queryAct = "SELECT activity_name FROM INVENTORY_ACTIVITY WHERE activity_id = '".$row['activity_id']."'";
 		        					$resultAct = mysqli_query($conn, $queryAct);
 		        					$rowAct = mysqli_fetch_row($resultAct);
 		        					echo "<tr>
-						        			<td>".$row[1]."</td>
+						        			<td>".$row['date']."</td>
 						        			<td>".$rowAct[0]."</td>
-						        			<td>".$row[3]."</td>
-						        			<td>".$row[4]."</td>
+						        			<td>".$row['Status']."</td>
+						        			<td>".$row['note']."</td>
 						        		</tr>";
 		        				}
 		        				$resultFull = mysqli_query($conn , $query);
