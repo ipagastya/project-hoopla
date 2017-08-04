@@ -16,8 +16,8 @@
 
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {
-	    header('Content-Type: text/csv');
-	    header('Content-Disposition: attachment; filename='.$name.'.csv');
+	    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	    header('Content-Disposition: attachment; filename='.$name.'.xlsx');
 	    header('Pragma: no-cache');
 	    header('Expires: 0');
 	    fputcsv($fp, $type);
