@@ -5,12 +5,13 @@ if (!isset($_GET['deliv_id'])) {
 	require_once('../config.php');
 	$deliv_id = $_GET['deliv_id'];
 	$subs_id = $_GET['subs_id'];
-	$sql = "SELECT product_code FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
+	$sql = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
+	$prod_code = $row['product_code']
 
-	foreach ($row as &$value) {
-		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$value'";
+	while($row = mysqli_fetch_assoc($result)){
+		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$prod_code'";
 		if (($result = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
 		}
