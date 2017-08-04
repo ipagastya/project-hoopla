@@ -183,7 +183,7 @@ require_once("config.php");
 		<div class="form-group">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<button class="addbutton" type="button" id="submit"><span class="
+				<button class="addbutton" type="submit" id="submit"><span class="
 					glyphicon glyphicon-ok"></span> Submit</button>
 				</div>
 				<div class="col-sm-4"></div>
