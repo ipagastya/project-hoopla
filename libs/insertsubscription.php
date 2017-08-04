@@ -1,5 +1,5 @@
 <?php
-require("config.php");
+require("../config.php");
 $customer = $_POST['customerName'];
 $status = $_POST['status'];
 $plan = $_POST['plan'];
