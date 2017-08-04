@@ -57,7 +57,7 @@
 						$offset = ($page - 1) * 10;
 					}
 
-					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address
+					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile
 							FROM DELIVERY_LIST AS DL, CUSTOMER AS C
 							WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
 								AND DL.cust_id = C.cust_id
@@ -78,6 +78,8 @@
 						$date = $row[1];
 						$name = $row[2];
 						$address = $row[3];
+						$home= $row[4];
+						$mobile = $row[5];
 						$resultArr = [];
 						
 						$querySub = "SELECT I.toy_name
@@ -95,6 +97,8 @@
 						echo "<tr>
 							<td>$name</td>
 							<td>$address</td>
+							<td>$home</td>
+							<td>$mobile</td>
 							<td>";
 						
 						while($rowSub = mysqli_fetch_row($resultSub)) {
