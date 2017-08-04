@@ -8,7 +8,7 @@ if (!isset($_GET['deliv_id'])) {
 	$sql = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
-	$prod_code = $row['product_code']
+	$prod_code = $row['product_code'];
 
 	while($row = mysqli_fetch_assoc($result)){
 		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$prod_code'";
