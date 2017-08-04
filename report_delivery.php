@@ -36,13 +36,15 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th colspan="4">Customer</th>
+					<th colspan="6">Customer</th>
 					<th rowspan="2">Toys</th>
 					<th rowspan="2">Delivery Date</th>
 				</tr>
 				<tr>
 					<th>Name</th>
 					<th>Address</th>
+					<th>City</th>
+					<th>Province</th>
 					<th>Home</th>
 					<th>Mobile</th>
 				</tr>
