@@ -28,6 +28,6 @@ $result = mysqli_query($conn, $sql);
 if($result === false){
 	die("Query Fail");
 }
-header( "refresh:1;url=subscription_list?page=1" );
+header( "refresh:1;url=../subscription_list?page=1" );
 ?>
 <h1>Please Wait, we updating the info to database......</h1>
