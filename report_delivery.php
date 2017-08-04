@@ -36,7 +36,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th class="text-center" colspan="6">Customer</th>
+					<th class="text-center" colspan="4">Customer</th>
 					<th class="text-center" rowspan="2">Toys</th>
 					<th class="text-center" rowspan="2">Delivery Date</th>
 				</tr>
