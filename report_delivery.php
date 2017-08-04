@@ -101,10 +101,10 @@
 						echo "<tr>
 							<td>$name</td>
 							<td>$address</td>
-							<td>$home</td>
-							<td>$mobile</td>
 							<td>$city</td>
 							<td>$province</td>
+							<td>$home</td>
+							<td>$mobile</td>
 							<td>";
 						
 						while($rowSub = mysqli_fetch_row($resultSub)) {
