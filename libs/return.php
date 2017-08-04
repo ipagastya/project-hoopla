@@ -2,7 +2,7 @@
 if (!isset($_GET['deliv_id'])) {
 	header('Location: susbscription_list');
 }else{
-	require_once('config.php');
+	require_once('../config.php');
 	$deliv_id = $_GET['deliv_id'];
 	$subs_id = $_GET['subs_id'];
 	$sql = "SELECT product_code FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
