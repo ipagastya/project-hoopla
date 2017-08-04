@@ -245,7 +245,10 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								<td><?=$row_deliv['note']?></td>
 								<td><?=$row_deliv['baby_age']?></td>
 								<td><?=$row_deliv['box_name']?></td>
-								<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a></td>
+								<td><a href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a> 
+								<?php if($row_deliv['status'] == 'rented'){ 
+									?> <a href="return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>"Return</a>
+								<?php } ?> </td>
 							</tr>
 							<?php } ?>
 						</table>
