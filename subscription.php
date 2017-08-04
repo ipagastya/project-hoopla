@@ -88,7 +88,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								if(isNaN(currentPromo)) currentPromo = 0;
 								$.ajax({
 									type: "POST",
-									url: "select_plan_delimiter.php",
+									url: "libs/select_plan.php",
 									data: {plan: currentPlan,promo: currentPromo},
 									success: function(response){
 										$("#sub-price").val(response);

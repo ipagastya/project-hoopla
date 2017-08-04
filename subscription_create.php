@@ -87,7 +87,7 @@ require_once("config.php");
 						currentPromo = currentPromo.replace(",", "");
 						$.ajax({
 							type: "POST",
-							url: "select_plan.php",
+							url: "libs/select_plan.php",
 							data: {plan: currentPlan,promo: currentPromo},
 							success: function(response){
 								$("#sub-price").val(response);
