@@ -24,6 +24,11 @@
 		$date = $row[1];
 		$name = $row[2];
 		$address = $row[3];
+		$home= $row[4];
+		$mobile = $row[5];
+		$city = $row[6];
+		$province = $row[7];
+
 		$resultArr = [];
 		
 		$querySub = "SELECT I.toy_name
@@ -40,6 +45,10 @@
 		
 		$outputsub[] = $name;
 		$outputsub[] = $address;
+		$outputsub[] = $city;
+		$outputsub[] = $province;
+		$outputsub[] = "'".$home."'";
+		$outputsub[] = "'".$mobile."'";
 		while($rowSub = mysqli_fetch_row($resultSub)) {
 			$resultArr[] = $rowSub[0];
 		}
