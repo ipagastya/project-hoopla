@@ -68,7 +68,7 @@ require_once("config.php");
 	    <div class="form-group">
 	        <label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
 	        <div class="col-sm-2">
-	        	<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="0" readonly>
+	        	<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="0">
 	           	<?php
 	          //  require("config.php");
 	          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
