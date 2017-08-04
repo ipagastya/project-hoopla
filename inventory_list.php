@@ -48,7 +48,7 @@
 	</div>
 	<!--============================-->
 	<div class="container">
-		<h4>Subscription Table</h4>
+		<h4>Inventory Table</h4>
 		<br>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -73,20 +73,20 @@
 						$today = date("Y-m-d");
 						if($date != "" && $status != "--All Status--"){
 							$query = "SELECT * FROM INVENTORY WHERE 
-									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%'";
+									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%' ORDER BY inventory_id DESC";
 						}
 						if($date != "" && $status == "--All Status--"){
-							$query = "SELECT * FROM INVENTORY WHERE return_date >= '$today' AND return_date <= '$date'";
+							$query = "SELECT * FROM INVENTORY WHERE return_date >= '$today' AND return_date <= '$date' ORDER BY inventory_id DESC";
 						}
 						if($date == "" && $status != "--All Status--"){
-							$query = "SELECT * FROM INVENTORY WHERE status LIKE '%$status%'";
+							$query = "SELECT * FROM INVENTORY WHERE status LIKE '%$status%' ORDER BY inventory_id DESC";
 						}
 						if($date == "" && $status == "--All Status--"){
-							$query = "SELECT * FROM INVENTORY";
+							$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
 						}
 					}
 					else{
-						$query = "SELECT * FROM INVENTORY";
+						$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
 					}
 					$offset = ($_GET['page'] - 1) * 10;
 					$result = mysqli_query($conn,"$query LIMIT 10 OFFSET $offset");
