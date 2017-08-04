@@ -43,6 +43,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Address</th>
+					<th>Home</th>>
+					<th>Mobile</th>
 				</tr>
 			</thead>
 			<tbody>
