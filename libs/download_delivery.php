@@ -1,10 +1,12 @@
 <?php
 	include "../config.php";
   
-	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address
-			FROM DELIVERY_LIST AS DL, CUSTOMER AS C
-			WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
-				AND DL.cust_id = C.cust_id
+	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
+				FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
+				WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
+					AND DL.cust_id = C.cust_id 
+					AND C.province_id = P.province_id 
+					AND C.city_id = CI.city_id
 			ORDER BY DL.delivery_date ASC";
 				
 	$result = mysqli_query($conn, $query);                          
@@ -47,7 +49,7 @@
 	}
 
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Name", "Address", "Toys", "Delivery Date");
+	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Toys", "Delivery Date");
 	$type = array("Type", "Delivery Report");
 	$date = array("Date", "".date("Y-m-d"));
 	$name = "delivery_report_".date("Y-m-d");

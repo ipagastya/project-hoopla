@@ -45,8 +45,8 @@
 					<th class="text-center">Address</th>
 					<th class="text-center">City</th>
 					<th class="text-center">Province</th>
-					<th class="text-center">Home</th>
-					<th class="text-center">Mobile</th>
+					<th class="text-center">Home Phone</th>
+					<th class="text-center">Mobile Phone</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,7 +62,9 @@
 					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
 							FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
 							WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
-								AND DL.cust_id = C.cust_id AND C.province_id = P.province_id AND C.city_id = CI.city_id
+								AND DL.cust_id = C.cust_id 
+								AND C.province_id = P.province_id 
+								AND C.city_id = CI.city_id
 							ORDER BY DL.delivery_date ASC";
 				
 					$result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");
