@@ -10,11 +10,16 @@ if (!isset($_GET['deliv_id'])) {
 	
 
 	while($row = mysqli_fetch_assoc($result)){
-	    $prod_code = $row['product_code'];
+		$prod_code = $row['product_code'];
 		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$prod_code'";
 		if (($res = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
 		}
+	}
+
+	$sql = "UPDATE DELIVERY_LIST SET status='returned' WHERE delivery_id='$deliv_id'";
+	if (($res = mysqli_query($conn, $sql)) ===  FALSE) {
+		echo "query to update delivery list fail";
 	}
 	header( "refresh:1;url=../subscription?page=1&subs_id=$subs_id" );
 }
