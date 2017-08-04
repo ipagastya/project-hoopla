@@ -199,18 +199,13 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						<th>No</th>
 						<th>Address</th>
 						<th>City</th>
-						<th>Province</th>
 						<th>Mobile Phone</th>
 						<th>Home Phone</th>
 						<th>Delivery Date</th>
 						<th>Pick Up Date</th>
-						<th>Actual Delivery Charge</th>
-						<th>Actual Pickup Charge</th>
-						<th>Payment Note</th>
-						<th>Note</th>
 						<th>Baby's Age</th>
 						<th>Box Name</th>
-						<th colspan="2">Details of Toys</th>
+						<th colspan="2">Details of Delivery</th>
 					</tr>
 					<?php 
 					$cust_id = $row['cust_id'];
@@ -228,21 +223,10 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							$result_city = mysqli_query($conn, $sql);
 							$row_city = mysqli_fetch_assoc($result_city);
 							?></td>
-							<td><?php
-								$province_id = $row_deliv['province_id'];
-								$sql = "SELECT * FROM PROVINCE WHERE province_id = '$province_id'";
-								$result_province = mysqli_query($conn, $sql);
-								$row_province = mysqli_fetch_assoc($result_province);
-								echo $row_province['province_name'];
-								?></td>
 								<td><?=$row_deliv['mobile_phone']?></td>
 								<td><?=$row_deliv['home_phone']?></td>
 								<td><?=$row_deliv['delivery_date']?></td>
 								<td><?=$row_deliv['pickup_date']?></td>
-								<td><?=$row_deliv['actual_delivery_charge']?></td>
-								<td><?=$row_deliv['actual_pickup_charge']?></td>
-								<td><?=$row_deliv['payment_note']?></td>
-								<td><?=$row_deliv['note']?></td>
 								<td><?=$row_deliv['baby_age']?></td>
 								<td><?=$row_deliv['box_name']?></td>
 								<td class="row"><a class="btn btn-info col-lg-5" href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
