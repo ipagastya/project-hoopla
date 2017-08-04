@@ -33,18 +33,20 @@
 	</form>
 	<h4>Expiring Subscriptions</h4>
 	<ul class="nav nav-tabs">
-		<li val ="0" class="weeknav active"><a href="#">Week 1</a></li>
-		<li val ="1" class="weeknav"><a href="#">Week 2</a></li>
-		<li val ="2" class="weeknav"><a href="#">Week 3</a></li>
-		<li val ="3" class="weeknav"><a href="#">Week 4</a></li>
+		<li val ="1" class="weeknav active"><a href="#">Week 1</a></li>
+		<li val ="2" class="weeknav"><a href="#">Week 2</a></li>
+		<li val ="3" class="weeknav"><a href="#">Week 3</a></li>
+		<li val ="4" class="weeknav"><a href="#">Week 4</a></li>
 	</ul>
 	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<th>Week</th>
+					<th>Week Range</th>
 					<th>Customer Name</th>
 					<th>Expiry Date</th>
-					<th>Subscription Status</th>
+					<th>Days Left</th>
 				</tr>
 			</thead>
 			<tbody id="expbody">
@@ -57,7 +59,7 @@
 						$offset = ($page - 1) * 10;
 					}
 
-					$query = "SELECT * FROM CUSTOMER_EXPIRY";
+					$query = "SELECT * FROM CUSTOMER_EXPIRY WHERE Week = 1";
 					$result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");
 					$resultFull = mysqli_query($conn, $query);                          
 
@@ -69,13 +71,16 @@
 					    die(mysqli_connect_error());
 					}
 
-					while($row = mysqli_fetch_row($result)) {
+					while($row = mysqli_fetch_row($result)){
 						echo "	<tr>
-								<td>".$row[0]."</td>
-								<td>".$row[1]."</td>
-								<td>".$row[2]."</td>
-							</tr>";
+									<td>".$row[0]."</td>
+									<td>".$row[1]."</td>
+									<td>".$row[2]."</td>
+									<td>".$row[3]."</td>
+									<td>".$row[4]."</td>
+								</tr>";
 					}
+
 				?>
 			</tbody>
 		</table>
@@ -143,24 +148,6 @@
 					$("#expbody").html(response);
 				}
 			});
-
-			/*$value = $(this).val();
-			if(!isNaN($value) && $value){
-				$tag = this;
-				$.ajax({
-					type: "POST",
-					data: {nominal: $value},
-					url: "libs/nominal.php",
-					success: function(response){
-						$value = response;
-						$($tag).val(response);
-					}
-				});
-			}
-			else{
-				$(this).val("");
-				$(this).attr("placeholder", "Please input number")
-			}*/
 		});
 	</script>
 <?php

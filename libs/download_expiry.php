@@ -9,9 +9,9 @@
 	}
  
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Customer Name", "Expiry Date", "Subscription Status");
+	$headers = array("Week", "Week Range", "Customer Name", "Expiry Date", "Days Left");
 	$type = array("Type", "Upcoming Expiry Report");
-	$date = array("Date", "".date("Y-m-d"));
+	$date = array("Date Retrieved", "".date("Y-m-d"));
 	$name = "expiry_report_".date("Y-m-d");
 
 	$fp = fopen('php://output', 'w');

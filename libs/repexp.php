@@ -3,26 +3,20 @@ session_start();
 include "../config.php";
 
 if(isset($_POST['week'])){
-	$dayfloor = $_POST['week'] * 7;
-	$dayceil = ($_POST['week'] + 1) * 7;
+	$week = $_POST['week'];
 
-	$sql = "SELECT * FROM CUSTOMER_EXPIRY 
-				WHERE Week = '$customer'";
+	$sql = "SELECT * FROM CUSTOMER_EXPIRY WHERE Week = '$week'";
 
-	$result = mysqli_query($conn ,$sql);
-	$row = mysqli_fetch_row($result);
-	$city_id = $row[0];
+    $result = mysqli_query($conn , $sql);
 
-	$sql = "SELECT price
-	FROM SHIPPING_COST
-	WHERE regional_id = '$city_id';";
-
-	$result = mysqli_query($conn ,$sql);
-	$row = mysqli_fetch_row($result);
-	$price = $row[0] - $promo;
-	if ($price < 0) {
-		$price = 0;
+	while($row = mysqli_fetch_row($result)){
+		echo "	<tr>
+					<td>".$row[0]."</td>
+					<td>".$row[1]."</td>
+					<td>".$row[2]."</td>
+					<td>".$row[3]."</td>
+					<td>".$row[4]."</td>
+				</tr>";
 	}
-	echo number_format($price, 2);
 }
 ?>
