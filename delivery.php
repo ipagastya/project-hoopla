@@ -49,7 +49,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 	<br><br><center><h2 class="leckerli">Create Delivery</h2></center>
 </div>
 <div class="container">
-	<form class="form-horizontal" method="POST" action="insertdelivery.php?cust_id=<?=$cust_id."&subs_id=".$subs_id ?>">
+	<form class="form-horizontal" method="POST" action="libs/insertdelivery.php?cust_id=<?=$cust_id."&subs_id=".$subs_id ?>">
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="address">Address :</label>
 			<div class="col-sm-5">

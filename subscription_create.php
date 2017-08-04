@@ -7,7 +7,7 @@ require_once("config.php");
 	<center><h2 class="leckerli">Create Subscription</h2></center>
 </div>
 <div class="container">
-	<form class="form-horizontal" action="insertsubscription.php" method="POST">
+	<form class="form-horizontal" id="form" action="libs/insertsubscription.php" method="POST">
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 			<div class="col-sm-5">
@@ -26,7 +26,7 @@ require_once("config.php");
 					?>
 				</select>
 			</div>
-			<div class="col-sm-3"></div>
+			<div class="col-sm-3" id="error-name"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="status">Subscription Type :</label>
@@ -36,7 +36,8 @@ require_once("config.php");
 			<div class="col-sm-2 radio">
 				<label><input type="radio" value="extension" name="status">Extension</label>
 			</div>
-			<div class="col-sm-4"></div>
+			<div class="col-sm-3" id="error-name"></div>
+			<div class="col-sm-1"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
@@ -49,7 +50,7 @@ require_once("config.php");
 			<div class="col-sm-2 radio">
 				<label><input type="radio" value="6" name="plan">6 Months</label>
 			</div>
-			<div class="col-sm-2"></div>
+			<div class="col-sm-2" id="error-name"></div>
 			<?php
 			$subs_type = "3 Months";
 			?>
@@ -62,7 +63,8 @@ require_once("config.php");
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
 			</div>
-			<div class="col-sm-4"></div>
+			<div class="col-sm-3" id="error-name"></div>
+			<div class="col-sm-1"></div>
 		</div>
 		<!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
 		<div class="form-group">
@@ -85,7 +87,7 @@ require_once("config.php");
 						currentPromo = currentPromo.replace(",", "");
 						$.ajax({
 							type: "POST",
-							url: "select_plan.php",
+							url: "libs/select_plan.php",
 							data: {plan: currentPlan,promo: currentPromo},
 							success: function(response){
 								$("#sub-price").val(response);
@@ -97,13 +99,15 @@ require_once("config.php");
 			<div class="col-sm-2">
 				<h4>Rupiah / Month</h4>
 			</div>
-			<div class="col-sm-4"></div>
+			<div class="col-sm-3" id="error-name"></div>
+			<div class="col-sm-1"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
 			<div class="col-sm-2">
 				<input type="number" class="form-control" id="toypermonth" name="toypermonth" value="0" required>
 			</div>
+			<div class="col-sm-3" id="error-name"></div>
 			<div class="col-sm-6"></div>
 		</div>
 		<div class="form-group">
@@ -179,7 +183,7 @@ require_once("config.php");
 		<div class="form-group">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<button class="addbutton" type="submit"><span class="
+				<button class="addbutton" type="submit" id="submit"><span class="
 					glyphicon glyphicon-ok"></span> Submit</button>
 				</div>
 				<div class="col-sm-4"></div>
@@ -220,6 +224,11 @@ require_once("config.php");
 					$("#deliv-price").val(response);
 				}
 			});
+		});
+		$("#submit").click(function(){
+			if($("#customerName").val == ""){
+
+			}
 		});
 	</script>
 

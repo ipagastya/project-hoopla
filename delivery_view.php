@@ -39,7 +39,7 @@ if (!isset($_GET['deliv_id'])) {
 		<br><br><center><h2 class="leckerli">View Delivery</h2></center>
 	</div>
 	<div class="container">
-		<form class="form-horizontal" method="POST" action="insertdelivery?subs_id=<?=$subs_id ?>">
+		<form class="form-horizontal" method="POST" action="libs/insertdelivery?subs_id=<?=$subs_id ?>">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="deliveryID">Delivery ID :</label>
 				<div class="col-sm-5">
