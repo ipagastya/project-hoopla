@@ -36,9 +36,9 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th colspan="2">Customer</th>
-					<th rowspan="2">Toys</th>
-					<th rowspan="2">Delivery Date</th>
+					<th colspan="4">Customer</th>
+					<th rowspan="1">Toys</th>
+					<th rowspan="1">Delivery Date</th>
 				</tr>
 				<tr>
 					<th>Name</th>
