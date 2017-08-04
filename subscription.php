@@ -210,7 +210,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						<th>Note</th>
 						<th>Baby's Age</th>
 						<th>Box Name</th>
-						<th>Details of Toys</th>
+						<th colspan="2">Details of Toys</th>
 					</tr>
 					<?php 
 					$cust_id = $row['cust_id'];
