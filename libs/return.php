@@ -1,6 +1,6 @@
 <?php 
 if (!isset($_GET['deliv_id'])) {
-	header('Location: susbscription_list');
+	header('Location: ../subscription_list.php?page=1');
 }else{
 	require_once('../config.php');
 	$deliv_id = $_GET['deliv_id'];
