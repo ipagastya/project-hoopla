@@ -10,7 +10,7 @@ if (!isset($_GET['deliv_id'])) {
 	$row = mysqli_fetch_assoc($result);
 	$prod_code = $row['product_code'];
 
-	while($row = mysqli_fetch_assoc($result)){
+	while($row){
 		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$prod_code'";
 		if (($res = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
