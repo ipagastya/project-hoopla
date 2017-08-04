@@ -22,7 +22,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 				<center><h2 class="leckerli">Subscription</h2></center>
 			</div>
 			<div class= "container">
-				<form class="form-horizontal" action="editsubscription?subs_id=<?=$subs_id?>" method="POST">
+				<form class="form-horizontal" action="libs/editsubscription?subs_id=<?=$subs_id?>" method="POST">
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="customerName">Customer Name :</label>
 						<div class="col-sm-5">
