@@ -36,7 +36,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th class="text-center" colspan="4">Customer</th>
+					<th class="text-center" colspan="6">Customer</th>
 					<th class="text-center" rowspan="2">Toys</th>
 					<th class="text-center" rowspan="2">Delivery Date</th>
 				</tr>
@@ -59,10 +59,10 @@
 						$offset = ($page - 1) * 10;
 					}
 
-					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile
-							FROM DELIVERY_LIST AS DL, CUSTOMER AS C
+					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
+							FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
 							WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
-								AND DL.cust_id = C.cust_id
+								AND DL.cust_id = C.cust_id AND C.province_id = P.province_id AND C.city_id = CI.city_id
 							ORDER BY DL.delivery_date ASC";
 				
 					$result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");
@@ -82,6 +82,8 @@
 						$address = $row[3];
 						$home= $row[4];
 						$mobile = $row[5];
+						$city = $row[6];
+						$province = $row[7];
 						$resultArr = [];
 						
 						$querySub = "SELECT I.toy_name
@@ -101,6 +103,8 @@
 							<td>$address</td>
 							<td>$home</td>
 							<td>$mobile</td>
+							<td>$city</td>
+							<td>$province</td>
 							<td>";
 						
 						while($rowSub = mysqli_fetch_row($resultSub)) {
