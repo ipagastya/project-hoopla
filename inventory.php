@@ -375,7 +375,7 @@
 								$resulthelper = mysqli_query($conn,$queryhelper);
 								$rowhelper = mysqli_fetch_row($resulthelper);
 								$product_code = $rowhelper[0];
-								$query = "SELECT * FROM INVENTORY_CARD WHERE product_code = '$product_code'";
+								$query = "SELECT * FROM INVENTORY_CARD WHERE product_code = '$product_code' ORDER BY date DESC";
 								$offset = ($_GET['page'] - 1) * 10;
 								$result = mysqli_query($conn,"$query LIMIT 10 OFFSET $offset");
 								//$result = mysqli_query($conn,$query);
