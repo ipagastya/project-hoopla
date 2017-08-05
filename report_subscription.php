@@ -21,15 +21,20 @@
                	}
 	}
 ?>
-<div class= "container">
+<div class="jumbotron">
+	<center>
+	<br><br><h2 class="leckerli">Report</h2><br>
 	<form action="libs/download_subscription">
 		<div class='form-group'>
-			<button class="greenbutton control-label" type="submit" name="download-sub">
-				<center>Download Report</center>
+			<button class="filterbtn control-label" type="submit" name="download-sub"><span class="glyphicon glyphicon-download"></span>
+				 Download Report
 			</button>
 		</div>
 	</form>
-   	<h4>Subscription Report</h4>
+	</center>
+</div>
+<div class= "container">
+	<h4>Subscription Report</h4>
 	<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
