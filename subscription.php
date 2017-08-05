@@ -229,13 +229,13 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								<td><?=$row_deliv['pickup_date']?></td>
 								<td><?=$row_deliv['baby_age']?></td>
 								<td><?=$row_deliv['box_name']?></td>
-								<td class="row"><a class="btn btn-info col-lg-5" href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
-								<div class="col-lg-2"></div>
+								<td class="row"><a class="btn btn-info col-sm-5" href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
+								<div class="col-sm-2"></div>
 								<?php if($row_deliv['status'] == 'rented'){ ?> 
-					                     <a class="btn btn-info col-lg-5" href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
+					                     <a class="btn btn-info col-sm-5" href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
 								<?php }
 								else{
-									echo "<div class='col-lg-5'></div>";
+									echo "<div class='col-sm-5'></div>";
 									} ?> </td>
 							</tr>
 							<?php } ?>
