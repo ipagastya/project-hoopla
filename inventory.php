@@ -10,7 +10,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="toyname" name="toyname">
+								<input type="text" class="form-control" id="toyname" name="toyname" required>
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
