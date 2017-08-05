@@ -23,14 +23,19 @@
 
 	
 ?>
-<div class= "container">
+<div class="jumbotron">
+	<center>
+	<br><br><h2 class="leckerli">Report</h2><br>
 	<form action="libs/download_expiry">
 		<div class='form-group'>
-			<button class="greenbutton control-label" type="submit" name="download-exp">
-				<center>Download Report</center>
+			<button class="filterbtn control-label" type="submit" name="download-exp"><span class="glyphicon glyphicon-download"></span>
+				 Download Report
 			</button>
 		</div>
 	</form>
+	</center>
+</div>
+<div class= "container">
 	<h4>Expiring Subscriptions</h4>
 	<ul class="nav nav-tabs">
 		<li val ="1" class="weeknav active"><a href="#">Week 1</a></li>
