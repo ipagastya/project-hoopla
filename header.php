@@ -91,7 +91,7 @@
 		if($dir == "report_inventory.php"){
 			echo"<script>document.getElementById('inventreport').classList.toggle('active');</script>";
 		}
-		/*if(strpos($dir, 'report') !== false){
-			echo"<script>document.getElementById('reportNav').classList.toggle('active');</script>";
-		}*/
+		if (!isset($_GET['username'])) {
+			header("location: index");
+		}
 	?>
