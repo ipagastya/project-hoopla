@@ -1,8 +1,8 @@
 <?php 
-require('header.php');
 if (!isset($_GET['page'])) {
 	header("location: welcome");
 }
+require('header.php');
 ?>
 <div class="jumbotron">
 	<br><br>

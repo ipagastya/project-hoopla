@@ -1,8 +1,9 @@
 <?php 
-require('header.php');
+
 if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET['subs_id']){
 	header("location: subscription_list?page=1");
 }else{
+	require('header.php');
 	$subs_id = $_GET['subs_id'];
 	include "config.php";
 	$sql = "SELECT * FROM SUBSCRIPTION AS S JOIN CUSTOMER AS C ON S.cust_id = C.cust_id WHERE subs_id = $subs_id";
