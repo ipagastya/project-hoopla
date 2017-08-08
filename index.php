@@ -29,7 +29,7 @@
 						<h3 class="leckerli" id="title-header" style="background-color:#f1592a;color:#fff; padding: 10px 50px; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-top: -60px;">Inventory System</h3>
 						<h4>Login</h4>
 						<br>
-						<form class="form" method="post" action="login.php">
+						<form class="form" method="post" action="./index">
 							<input type="text" class="form-control" name="id" placeholder="username"><br>
 							<input type="password" class="form-control" name="password" placeholder="password"><br>
 							<button  class="btn btn-primary" id="loginbutton" name="loginbutton" type="submit"><b>LOGIN</b></button>

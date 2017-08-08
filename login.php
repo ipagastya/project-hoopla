@@ -16,7 +16,7 @@ if(isset($_POST["loginbutton"])){
   if($username != "" || $password != ""){
     if($count == 1){
       $_SESSION['username'] = $username;
-      header("location: welcome");
+      echo"<script>document.location.href='welcome'</script>";
     }else{
       echo "<h5 id='errorLogin'><span class='glyphicon glyphicon-warning-sign'></span> Username or Password is Incorrect</h5>";
       echo"<script>alert('Login Failed !');</script>";
