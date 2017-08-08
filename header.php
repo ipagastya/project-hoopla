@@ -2,7 +2,7 @@
 <?php 
 	session_start();
 	if(!isset($_SERVER['HTTP_REFERER'])){
-		header('location: index.php');
+		echo "<script>document.location.href='index';</script>";
 		exit;
 	}	
 ?>
