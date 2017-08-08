@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<?php 
+<?php
 	session_start();
-	if(!isset($_SERVER['HTTP_REFERER'])){
-		echo "<script>document.location.href='index';</script>";
-		exit;
-	}	
 ?>
 <html>
 <head>
@@ -32,7 +28,7 @@
 				<li id="subsNav"><a href="subscription_list?page=1">Subscription</a></li>
 				<li id="payNav"><a href="#">Payment</a></li>
 				<li id="inventNav"><a href="inventory_list?page=1">Inventory</a></li>
-             	<li id="reportNav" class="dropdown">
+             	<li id="reportNav" class="dropdown">	
 			        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;">Report
 			        <span class="caret"></span></a>
 			        <ul class="dropdown-menu" id="drop">
