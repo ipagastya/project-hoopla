@@ -1,8 +1,5 @@
 <?php
 	session_start();
-	if(isset($_SESSION['username'])){
-		header("location: welcome");
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +17,6 @@
 	<div class= "container-fluid">
 		<div align= "center">
 			<center><img class="img-responsive" src="src/images/logo-1.png"></center>
-			<!--img class="img-responsive align-center" src="src/images/invent.png"-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4 col-md-4">
@@ -51,7 +47,6 @@
 				</div>
 				<div class="col-sm-4 col-md-4"></div>
 			</div>
-			
 		</div>
 	</div>
 </body>
