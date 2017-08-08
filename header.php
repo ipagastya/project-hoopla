@@ -92,6 +92,6 @@
 			echo"<script>document.getElementById('inventreport').classList.toggle('active');</script>";
 		}
 		if (!isset($_GET['username'])) {
-			header("location: index");
+			echo"<script>document.location.href='index'</script>";
 		}
 	?>
