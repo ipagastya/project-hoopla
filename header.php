@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 	session_start();
+	
 ?>
 <html>
 <head>
@@ -91,7 +92,5 @@
 		if($dir == "report_inventory.php"){
 			echo"<script>document.getElementById('inventreport').classList.toggle('active');</script>";
 		}
-		if (!isset($_GET['username'])) {
-			echo"<script>document.location.href='index'</script>";
-		}
+		
 	?>
