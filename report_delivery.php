@@ -26,6 +26,38 @@
 <div class="jumbotron">
 	<center>
 	<br><br><h2 class="leckerli">Report</h2><br>
+
+	<div class="container">
+		<form class="form-horizontal collapse" id="form-filter" method="get" action="report_delivery">
+			<input type="hidden" name="page" value="1" /> 
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="start-date">Delivery Date</label>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="start-date">Start Date</label>
+				<div class="col-sm-3">
+					<input type="date" class="form-control" id="start-date" name="start-date">
+				</div>
+				<label class="control-label col-sm-3" for="end-date">End Date</label>
+				<div class="col-sm-3">
+					<input type="date" class="form-control" id="end-date" name="end-date">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4"></div>
+				<button class="greenbutton control-label col-sm-4" type="submit" id="filtersubmit"><center>Submit</center></button>
+				<div class="col-sm-4"></div>
+			</div>
+		</form>
+		<br>
+		<div align="right">
+			<div class="btn-group" >
+				<button class="filterbtn" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+			</div>
+			
+		</div>
+	</div>
+
 	<form action="libs/download_delivery">
 		<div class='form-group'>
 			<button class="filterbtn control-label" type="submit" name="download-delivery"><span class="glyphicon glyphicon-download"></span>
@@ -56,6 +88,13 @@
 			</thead>
 			<tbody>
 				<?php
+					$datestart = date_format(date_create(),"Y-m-d");
+					$dateend = date_create();
+					date_add($dateend, date_interval_create_from_date_string('7 days'));
+					$dateend = date_format($dateend,"Y-m-d");
+					$filter = false;
+					
+
 					if(!isset($_GET['page'])) {
 						$offset = 0;
 						$page = 1;
@@ -66,9 +105,22 @@
 						$offset = ($page - 1) * 10;
 					}
 
+
+					if(isset($_GET['start-date']) && $_GET['start-date']){
+						$datestart = $_GET['start-date'];
+						$filter = true;
+					}
+					if (isset($_GET['end-date']) && $_GET['end-date']) {
+						$dateend = $_GET['end-date'];
+						$filter = true;
+					}
+
+					echo $datestart.' to '.$dateend;
+
 					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
 							FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
-							WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
+							WHERE DL.delivery_date >= DATE('$datestart')
+								AND DL.delivery_date <= DATE('$dateend')
 								AND DL.cust_id = C.cust_id 
 								AND C.province_id = P.province_id 
 								AND C.city_id = CI.city_id
@@ -145,34 +197,37 @@
                 } else {
                 	$pages = floor($rows / 10) + 1;
             	}
+            	if($filter) {
 
-            	if($pages > 1 && $page != 1) {
-            		$prev = $page - 1;
-            		echo "<li><a href='report_inventory?page=$prev'><</a></li>";
-            	} 
+            	} else {
+	            	if($pages > 1 && $page != 1) {
+	            		$prev = $page - 1;
+	            		echo "<li><a href='report_inventory?page=$prev&start-date=$datestart&end-date=$dateend'><</a></li>";
+	            	} 
 
-            	if($count != 1) {
-            		echo "<li><a href='report_inventory?page=1'>1</a></li>";
-            		echo "<li><a>...</a></li>";
-            	}
-            	while ($count <= $pages && $count <= ($page + 5)) {
-            		if($count == $page) {
-            			echo "<li class='active'><a href='report_inventory?page=$page'>$count</a></li>";
-            		} else {
-                		echo "<li><a href='report_inventory?page=$count'>$count</a></li>";
-              		}
-                	$count = $count + 1;
-                }
+	            	if($count != 1) {
+	            		echo "<li><a href='report_inventory?page=1&start-date=$datestart&end-date=$dateend'>1</a></li>";
+	            		echo "<li><a>...</a></li>";
+	            	}
+	            	while ($count <= $pages && $count <= ($page + 5)) {
+	            		if($count == $page) {
+	            			echo "<li class='active'><a href='report_inventory?page=$page&start-date=$datestart&end-date=$dateend'>$count</a></li>";
+	            		} else {
+	                		echo "<li><a href='report_inventory?page=$count&start-date=$datestart&end-date=$dateend'>$count</a></li>";
+	              		}
+	                	$count = $count + 1;
+	                }
 
-                if($count != $pages + 1) {
-                	echo "<li><a>...</a></li>";
-                	echo "<li><a href='report_inventory?page=$pages'>$pages</a></li>";
-                }
+	                if($count != $pages + 1) {
+	                	echo "<li><a>...</a></li>";
+	                	echo "<li><a href='report_inventory?page=$pages&start-date=$datestart&end-date=$dateend'>$pages</a></li>";
+	                }
 
-                if($pages > 1 && $page < $pages) {
-            		$next = $page + 1;
-            		echo "<li><a href='report_inventory?page=$next'>></a></li>";
-            	}
+	                if($pages > 1 && $page < $pages) {
+	            		$next = $page + 1;
+	            		echo "<li><a href='report_inventory?page=$next&start-date=$datestart&end-date=$dateend'>></a></li>";
+	            	}
+	            }
             ?>
         </ul>
     </div>	
