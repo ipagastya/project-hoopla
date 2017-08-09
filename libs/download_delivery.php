@@ -1,13 +1,24 @@
 <?php
 	include "../config.php";
   
-	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
+	$datestart = '';
+	$dateend = '';
+
+	if(isset($_POST['date-start']) && $_POST['date-start']){
+		$datestart = $_POST['date-start'];
+	}
+	if (isset($_POST['date-end']) && $_POST['date-end']) {
+		$dateend = $_POST['date-end'];
+	}
+
+	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name, DL.box_name
 				FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
-				WHERE YEARWEEK(NOW()) = YEARWEEK(DL.delivery_date)
+				WHERE DL.delivery_date >= DATE('$datestart')
+					AND DL.delivery_date <= DATE('$dateend')
 					AND DL.cust_id = C.cust_id 
 					AND C.province_id = P.province_id 
 					AND C.city_id = CI.city_id
-			ORDER BY DL.delivery_date ASC";
+				ORDER BY DL.delivery_date ASC";
 				
 	$result = mysqli_query($conn, $query);                          
 
@@ -28,6 +39,7 @@
 		$mobile = $row[5];
 		$city = $row[6];
 		$province = $row[7];
+		$boxname = $row[8];
 
 		$resultArr = [];
 		
@@ -49,6 +61,7 @@
 		$outputsub[] = $province;
 		$outputsub[] = "'".$home."'";
 		$outputsub[] = "'".$mobile."'";
+		$outputsub[] = $boxname;
 		while($rowSub = mysqli_fetch_row($resultSub)) {
 			$resultArr[] = $rowSub[0];
 		}
@@ -58,10 +71,10 @@
 	}
 
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Toys", "Delivery Date");
+	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Delivery Date");
 	$type = array("Type", "Delivery Report");
-	$date = array("Date", "".date("Y-m-d"));
-	$name = "delivery_report_".date("Y-m-d");
+	$date = array("Date", $datestart." to ".$dateend);
+	$name = "delivery_report_".$datestart."to".$dateend;
 
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {
