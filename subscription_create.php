@@ -84,7 +84,6 @@ require_once("config.php");
 						var currentPlan = $("input[name='plan']:checked").val();
 						currentPlan = currentPlan.replace(",", "");
 						var currentPromo = 0;
-						currentPromo = currentPromo.replace(",", "");
 						$.ajax({
 							type: "POST",
 							url: "libs/select_plan.php",
@@ -214,7 +213,6 @@ require_once("config.php");
 		$("#customerName").change(function(){
 			$customer = $("#customerName").val();
 			var deliv_promo = 0;
-			deliv_promo = deliv_promo.replace(",", "");
 			if(isNaN(deliv_promo)) deliv_promo = 0;
 			$.ajax({
 				type: "POST",
