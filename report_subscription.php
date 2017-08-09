@@ -67,6 +67,8 @@
 					if(!isset($_GET['page'])) {
 						$offset = 0;
 						$page = 1;
+					} else if ($_GET['page'] < 1) {
+						echo "<script>location.href='report_subscription?page=1';</script>";
 					} else {
 						$page = $_GET['page'];
 						$offset = ($page - 1) * 10;
