@@ -81,10 +81,10 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						?>
 						<script src="libs/jquery/dist/jquery.min.js"></script>
 						<script>
-							$("input[name=plan]:radio,#sub-promo").change(function () {
+							$("input[name=plan]:radio").change(function () {
 								$("#sub-price").empty();
 								var currentPlan = $("input[name='plan']:checked").val();
-								var currentPromo = $("#sub-promo").val();
+								var currentPromo = 0;
 								if(isNaN(currentPlan)) currentPlan = 0;
 								if(isNaN(currentPromo)) currentPromo = 0;
 								$.ajax({

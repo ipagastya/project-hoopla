@@ -79,11 +79,11 @@ require_once("config.php");
 				?>
 				<script src="libs/jquery/dist/jquery.min.js"></script>
 				<script>
-					$("input[name=plan]:radio,#sub-promo").change(function () {
+					$("input[name=plan]:radio").change(function () {
 						$("#sub-price").empty();
 						var currentPlan = $("input[name='plan']:checked").val();
 						currentPlan = currentPlan.replace(",", "");
-						var currentPromo = $("#sub-promo").val();
+						var currentPromo = 0;
 						currentPromo = currentPromo.replace(",", "");
 						$.ajax({
 							type: "POST",
@@ -211,9 +211,9 @@ require_once("config.php");
 				$(this).attr("placeholder", "Please input number")
 			}
 		});
-		$("#customerName, #deliv-promo").change(function(){
+		$("#customerName").change(function(){
 			$customer = $("#customerName").val();
-			var deliv_promo = $("#deliv-promo").val();
+			var deliv_promo = 0;
 			deliv_promo = deliv_promo.replace(",", "");
 			if(isNaN(deliv_promo)) deliv_promo = 0;
 			$.ajax({
