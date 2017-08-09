@@ -58,7 +58,26 @@
 		</div>
 	</div>
 
-	<form action="libs/download_delivery">
+	<?php
+		$datestart = date_format(date_create(),"Y-m-d");
+		$dateend = date_create();
+		date_add($dateend, date_interval_create_from_date_string('7 days'));
+		$dateend = date_format($dateend,"Y-m-d");
+		$filter = false;
+
+		if(isset($_GET['start-date']) && $_GET['start-date']){
+			$datestart = $_GET['start-date'];
+			$filter = true;
+		}
+		if (isset($_GET['end-date']) && $_GET['end-date']) {
+			$dateend = $_GET['end-date'];
+			$filter = true;
+		}
+	?>
+
+	<form action="libs/download_delivery" method="post">
+	<input type="hidden" name="date-start" value="<?php echo $datestart ?>" />
+	<input type="hidden" name="date-end" value="<?php echo $dateend ?>" />
 		<div class='form-group'>
 			<button class="filterbtn control-label" type="submit" name="download-delivery"><span class="glyphicon glyphicon-download"></span>
 				 Download Report
@@ -88,13 +107,6 @@
 			</thead>
 			<tbody>
 				<?php
-					$datestart = date_format(date_create(),"Y-m-d");
-					$dateend = date_create();
-					date_add($dateend, date_interval_create_from_date_string('7 days'));
-					$dateend = date_format($dateend,"Y-m-d");
-					$filter = false;
-					
-
 					if(!isset($_GET['page'])) {
 						$offset = 0;
 						$page = 1;
@@ -103,16 +115,6 @@
 					} else {
 						$page = $_GET['page'];
 						$offset = ($page - 1) * 10;
-					}
-
-
-					if(isset($_GET['start-date']) && $_GET['start-date']){
-						$datestart = $_GET['start-date'];
-						$filter = true;
-					}
-					if (isset($_GET['end-date']) && $_GET['end-date']) {
-						$dateend = $_GET['end-date'];
-						$filter = true;
 					}
 
 					echo $datestart.' to '.$dateend;
