@@ -210,7 +210,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 					</tr>
 					<?php 
 					$cust_id = $row['cust_id'];
-					$sql = "SELECT * FROM DELIVERY_LIST WHERE cust_id = '$cust_id'";
+					$sql = "SELECT * FROM DELIVERY_LIST WHERE cust_id = '$cust_id' ORDER BY delivery_id DESC";
 					$offset = ($_GET['page'] - 1) * 10;
 					$result = mysqli_query($conn, "$sql LIMIT 10 OFFSET $offset");
 					$resultFull = mysqli_query($conn, $sql);

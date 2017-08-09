@@ -129,6 +129,7 @@ require('header.php');
 				}
 
 			}
+			$sql = $sql." ORDER BY subs_id DESC";
 			$offset = ($_GET['page'] - 1) * 10;
 			if (($result = mysqli_query($conn, "$sql LIMIT 10 OFFSET $offset")) === FALSE){
 				echo "query failing";
