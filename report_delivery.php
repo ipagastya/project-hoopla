@@ -126,12 +126,12 @@
 		</table>
 	</div>
 	<div>
-		<ul class="pagination pagination-sm">
+		<ul class="pagination pagination-md">
 			<?php
             	$rows = mysqli_num_rows($resultFull);
                 $pages = 0;
-                if($page > 2) {
-                	$count = $page - 2;
+                if($page > 5) {
+                	$count = $page - 5;
            		} else {
            			$count = 1;
            		}
@@ -146,28 +146,30 @@
 
             	if($pages > 1 && $page != 1) {
             		$prev = $page - 1;
-            		echo "<li><a href='report_delivery?page=$prev'><</a></li>";
+            		echo "<li><a href='report_inventory?page=$prev'><</a></li>";
             	} 
 
             	if($count != 1) {
+            		echo "<li><a href='report_inventory?page=1'>1</a></li>";
             		echo "<li><a>...</a></li>";
             	}
-            	while ($count <= $pages && $count <= ($page + 2)) {
+            	while ($count <= $pages && $count <= ($page + 5)) {
             		if($count == $page) {
-            			echo "<li class='active'><a href='report_delivery?page=$page'>$count</a></li>";
+            			echo "<li class='active'><a href='report_inventory?page=$page'>$count</a></li>";
             		} else {
-                		echo "<li><a href='report_delivery?page=$count'>$count</a></li>";
+                		echo "<li><a href='report_inventory?page=$count'>$count</a></li>";
               		}
                 	$count = $count + 1;
                 }
 
                 if($count != $pages + 1) {
                 	echo "<li><a>...</a></li>";
+                	echo "<li><a href='report_inventory?page=$pages'>$pages</a></li>";
                 }
 
                 if($pages > 1 && $page < $pages) {
             		$next = $page + 1;
-            		echo "<li><a href='report_delivery?page=$next'>></a></li>";
+            		echo "<li><a href='report_inventory?page=$next'>></a></li>";
             	}
             ?>
         </ul>

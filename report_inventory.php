@@ -51,6 +51,8 @@
 					if(!isset($_GET['page'])) {
 						$offset = 0;
 						$page = 1;
+					} else if ($_GET['page'] < 1) {
+						echo "<script>location.href='report_inventory?page=1';</script>";
 					} else {
 						$page = $_GET['page'];
 						$offset = ($page - 1) * 10;
@@ -80,12 +82,12 @@
 		</table>
 	</div>	
 	<div>
-		<ul class="pagination pagination-sm">
+		<ul class="pagination pagination-md">
 			<?php
             	$rows = mysqli_num_rows($resultFull);
                 $pages = 0;
-                if($page > 2) {
-                	$count = $page - 2;
+                if($page > 5) {
+                	$count = $page - 5;
            		} else {
            			$count = 1;
            		}
@@ -104,9 +106,10 @@
             	} 
 
             	if($count != 1) {
+            		echo "<li><a href='report_inventory?page=1'>1</a></li>";
             		echo "<li><a>...</a></li>";
             	}
-            	while ($count <= $pages && $count <= ($page + 2)) {
+            	while ($count <= $pages && $count <= ($page + 5)) {
             		if($count == $page) {
             			echo "<li class='active'><a href='report_inventory?page=$page'>$count</a></li>";
             		} else {
@@ -117,6 +120,7 @@
 
                 if($count != $pages + 1) {
                 	echo "<li><a>...</a></li>";
+                	echo "<li><a href='report_inventory?page=$pages'>$pages</a></li>";
                 }
 
                 if($pages > 1 && $page < $pages) {
