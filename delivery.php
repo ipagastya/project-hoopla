@@ -214,13 +214,6 @@ $subscription = mysqli_fetch_assoc($result_subs);
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="deliv-schedule">Delivery Schedule :</label>
-			<div class="col-sm-5">
-				<input type="date" class="form-control" id="deliv-schedule" name="deliv-schedule" required>
-			</div>
-			<div class="col-sm-5"></div>
-		</div>
-		<div class="form-group">
 			<label class="control-label col-sm-2" for="favorite">Favorite Toys :</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="fav-toy" value="<?=$customer['favorite_toys']?>" name="favorite-toys" readonly>
