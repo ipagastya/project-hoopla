@@ -93,6 +93,7 @@
 			<thead>
 				<tr>
 					<th class="text-center" colspan="6">Customer</th>
+					<th class="text-center" rowspan="2">Box Name</th>
 					<th class="text-center" rowspan="2">Toys</th>
 					<th class="text-center" rowspan="2">Delivery Date</th>
 				</tr>
@@ -119,7 +120,7 @@
 
 					echo $datestart.' to '.$dateend;
 
-					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
+					$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name, DL.box_name
 							FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
 							WHERE DL.delivery_date >= DATE('$datestart')
 								AND DL.delivery_date <= DATE('$dateend')
@@ -147,6 +148,7 @@
 						$mobile = $row[5];
 						$city = $row[6];
 						$province = $row[7];
+						$boxname = $row[8];
 						$resultArr = [];
 						
 						$querySub = "SELECT I.toy_name
@@ -168,6 +170,7 @@
 							<td>$province</td>
 							<td>$home</td>
 							<td>$mobile</td>
+							<td>$boxname</td>
 							<td>";
 						
 						while($rowSub = mysqli_fetch_row($resultSub)) {

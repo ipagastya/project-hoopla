@@ -11,7 +11,7 @@
 		$dateend = $_POST['date-end'];
 	}
 
-	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name
+	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name, DL.box_name
 				FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
 				WHERE DL.delivery_date >= DATE('$datestart')
 					AND DL.delivery_date <= DATE('$dateend')
@@ -39,6 +39,7 @@
 		$mobile = $row[5];
 		$city = $row[6];
 		$province = $row[7];
+		$boxname = $row[8];
 
 		$resultArr = [];
 		
@@ -60,6 +61,7 @@
 		$outputsub[] = $province;
 		$outputsub[] = "'".$home."'";
 		$outputsub[] = "'".$mobile."'";
+		$outputsub[] = $boxname;
 		while($rowSub = mysqli_fetch_row($resultSub)) {
 			$resultArr[] = $rowSub[0];
 		}
@@ -69,7 +71,7 @@
 	}
 
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Toys", "Delivery Date");
+	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Delivery Date");
 	$type = array("Type", "Delivery Report");
 	$date = array("Date", $datestart." to ".$dateend);
 	$name = "delivery_report_".$datestart."to".$dateend;
