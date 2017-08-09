@@ -18,7 +18,7 @@ if (!isset($_GET['deliv_id'])) {
 
 		// insert table Inventory_card
 		$today = date("Y-m-d");
-		$sql_activity = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Rented';";
+		$sql_activity = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Returned';";
 		$row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql_activity));
 		$activity_name = $row2['activity_name'];
 		$activity_id = $row2['activity_id'];
