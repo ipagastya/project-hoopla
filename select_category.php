@@ -8,6 +8,12 @@ $count = 0;
 $sql = "SELECT * FROM INVENTORY WHERE ('$age' BETWEEN age_lower AND age_upper)";
 
 // skill
+if (isset($_POST['location'])) {
+	$location = $_POST['location'];
+}else{
+	$location = "jabodetabek";
+}
+
 
 if (isset($_POST['skill']) && $_POST['skill']) {
 	$sql = $sql." AND (";
@@ -56,7 +62,7 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." AND product_code NOT IN (SELECT product_code FROM TOYS_TRACKING WHERE customer_id = '$cust_id') AND status = 'available' ORDER BY toy_name ASC;";
+$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND status = 'available' AND location = '$location' ORDER BY toy_name ASC;";
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{

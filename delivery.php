@@ -266,6 +266,16 @@ $subscription = mysqli_fetch_assoc($result_subs);
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-2" for="select-location">Select Location :</label>
+			<div class="col-sm-5">
+				<select class="form-control selectpicker" data-live-search="true" id="select-location" name="select-location" required>
+					<option value="" disabled>Select Location</option>
+					<option value="jabodetabek">Jabodetabek</option>
+				</select>
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
 			<div class="col-sm-5">
 				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-max-options="<?=$subscription['num_ofToys']?>" multiple data-selected-text-format="count > 3" required>
@@ -278,63 +288,67 @@ $subscription = mysqli_fetch_assoc($result_subs);
 			<div class="col-sm-2"></div>
 			<div class="col-sm-5">
 				<button class="addbutton" type="submit"><span class="
-				glyphicon glyphicon-ok"></span> Submit</button>
+					glyphicon glyphicon-ok"></span> Submit</button>
+				</div>
+				<div class="col-sm-5"></div>
 			</div>
-			<div class="col-sm-5"></div>
-		</div>
-	</form>
-</div>
-<br>
-<br>
-<script src="libs/jquery/dist/jquery.min.js"></script>
-<script>
-	$("#provinceID").change(function(){
-		$("#cityID").empty();
-		var currentProvince = $(this).find(':selected').val();
-		var currentCity = "<?=$city ?>";
-		$.ajax({
-			type: "POST",
-			url: "select_city.php",
-			data: {province: currentProvince, delivery_city: currentCity},
-			success: function(response){
-				$("#cityID").html(response).selectpicker('refresh');
-			}
-		});
-	});
-	$("#select-category, #select-skill").change(function(){
-		$("#select-toy").empty().selectpicker('refresh');
-		var category = $("#select-category").selectpicker('val');
-		var skill = $("#select-skill").selectpicker('val');
-		var age = $("#age").val();
-		$.ajax({
-			type: "POST",
-			data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>},
-			url: "select_category.php",
-			success: function(response){
-				$("#select-toy").html(response).selectpicker('refresh');
-			}
-		});
-	});
-	$(".nominal-number").change(function(){
-		$value = $(this).val()
-		if(!isNaN($value) && $value){
-			$tag = this;
+		</form>
+	</div>
+	<br>
+	<br>
+	<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script>
+		$("#provinceID").change(function(){
+			$("#cityID").empty();
+			var currentProvince = $(this).find(':selected').val();
+			var currentCity = "<?=$city ?>";
 			$.ajax({
 				type: "POST",
-				data: {nominal: $value},
-				url: "libs/nominal.php",
+				url: "select_city.php",
+				data: {province: currentProvince, delivery_city: currentCity},
 				success: function(response){
-					$value = response;
-					$($tag).val(response);
+					$("#cityID").html(response).selectpicker('refresh');
 				}
 			});
-		}
-		else{
-			$(this).val("");
-			$(this).attr("placeholder", "Please input number")
-		}
-	});
-</script>
-<?php 
-require_once('footer.php');
-?>
+		});
+		$("#select-category, #select-skill, #select-location").change(function(){
+			$("#select-toy").empty().selectpicker('refresh');
+			var category = $("#select-category").selectpicker('val');
+			var skill = $("#select-skill").selectpicker('val');
+			var location = $("#select-location").selectpicker('val');
+			if(!location){
+				location = 'jabodetabek';
+			}
+			var age = $("#age").val();
+			$.ajax({
+				type: "POST",
+				data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>, location:location},
+				url: "select_category.php",
+				success: function(response){
+					$("#select-toy").html(response).selectpicker('refresh');
+				}
+			});
+		});
+		$(".nominal-number").change(function(){
+			$value = $(this).val()
+			if(!isNaN($value) && $value){
+				$tag = this;
+				$.ajax({
+					type: "POST",
+					data: {nominal: $value},
+					url: "libs/nominal.php",
+					success: function(response){
+						$value = response;
+						$($tag).val(response);
+					}
+				});
+			}
+			else{
+				$(this).val("");
+				$(this).attr("placeholder", "Please input number")
+			}
+		});
+	</script>
+	<?php 
+	require_once('footer.php');
+	?>
