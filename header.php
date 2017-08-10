@@ -38,7 +38,7 @@
 			          <li id="upreport"><a href="report_expiry">Upcoming Expiry Report</a></li>
 			          <li id="delivreport"><a href="report_delivery">Delivery Report</a></li>
 			          <li id="inventreport"><a href="report_inventory">Inventory Report</a></li>
-			          <li id="pickupreport"><a href="report_pickup">Pickup Report</a></li>
+			          <li id="pickupreport"><a href="report_pickup">Pick Up Report</a></li>
 		       		</ul>
 		      	</li>
 			</ul>
