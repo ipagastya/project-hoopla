@@ -94,7 +94,7 @@
 		if($dir == "report_inventory.php"){
 			echo"<script>document.getElementById('inventreport').classList.toggle('active');</script>";
 		}
-		if($dir == "report_pikup.php"){
+		if($dir == "report_pickup.php"){
 			echo"<script>document.getElementById('pickupreport').classList.toggle('active');</script>";
 		}
 		
