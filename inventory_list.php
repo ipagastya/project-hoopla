@@ -30,6 +30,13 @@
 					</div>
 					<div class="col-sm-7"></div>
 				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="agebaby">Baby's Age :</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="agebaby" name="agebaby">
+					</div>
+					<div class="col-sm-7"></div>
+				</div>
 				<br>
 				<div class="form-group">
 					<div class="col-sm-4"></div>
@@ -70,12 +77,53 @@
 					if(isset($_GET['filtersubmit'])){
 						$date = $_GET['dateinventory'];
 						$status = $_GET['status'];
+						$age = $_GET['agebaby'];
 						$today = date("Y-m-d");
-						if($date != "" && $status != "--All Status--"){
+						if($date != "" && $status != "--All Status--" && $age != ""){
 							$query = "SELECT * FROM INVENTORY WHERE 
-									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%' ORDER BY inventory_id DESC";
+									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%' AND age_lower <= '$age' AND age_upper >= '$age' ORDER BY inventory_id DESC";
+						}else{
+							if($date == "" && $status == "--All Status--" && $age == ""){
+								$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
+							}else{
+								$query = "SELECT * FROM INVENTORY";
+								$condition_date = "";
+								$condition_status = "";
+								$condition_age = "";
+								$condition = "";
+								$orderby = "ORDER BY inventory_id DESC";
+								$count = 0;
+								if($date != ""){
+									$condition_date = " return_date >= '$today' AND return_date <= '$date'";
+								}
+								if($status != "--All Status--"){
+									$condition_status = " status LIKE '%$status%'";
+								}
+								if($age != ""){
+									$condition_age = " age_lower <= '$age' AND age_upper >= '$age'";
+								}
+								if($condition_date != ""){
+									$condition = $condition.$condition_date;
+									$count++;
+								}
+								if($condition_status != ""){
+									if($count > 0){
+										$condition = $condition." AND";
+									}
+									$condition = $condition.$condition_status;
+									$count++;
+								}
+								if($condition_age != ""){
+									if($count > 0){
+										$condition = $condition."AND";
+									}
+									$condition = $condition.$condition_age;
+								}
+								$query = $query." WHERE".$condition.$orderby;
+							}
+							
 						}
-						if($date != "" && $status == "--All Status--"){
+						/*if($date != "" && $status == "--All Status--"){
 							$query = "SELECT * FROM INVENTORY WHERE return_date >= '$today' AND return_date <= '$date' ORDER BY inventory_id DESC";
 						}
 						if($date == "" && $status != "--All Status--"){
@@ -83,7 +131,7 @@
 						}
 						if($date == "" && $status == "--All Status--"){
 							$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
-						}
+						}*/
 					}
 					else{
 						$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
@@ -139,8 +187,8 @@
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								
-								echo "<li><a href='inventory_list?page=$pageBefore&dateinventory=$date&status=$status&filtersubmit='>Previous</a></li>";
+								$age = $_GET['agebaby'];
+								echo "<li><a href='inventory_list?page=$pageBefore&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Previous</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageBefore'>Previous</a></li>";
 							}
@@ -150,7 +198,8 @@
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								echo "<li><a href='inventory_list?page=$count&dateinventory=$date&status=$status&filtersubmit='>$count</a></li>";
+								$age = $_GET['agebaby'];
+								echo "<li><a href='inventory_list?page=$count&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>$count</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
 							}
@@ -161,8 +210,8 @@
 							if (isset($_GET['filtersubmit'])) {
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
-								
-								echo "<li><a href='inventory_list?page=$pageNext&dateinventory=$date&status=$status&filtersubmit='>Next</a></li>";
+								$age = $_GET['agebaby'];
+								echo "<li><a href='inventory_list?page=$pageNext&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Next</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageNext'>Next</a></li>";
 							}

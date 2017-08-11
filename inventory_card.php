@@ -50,6 +50,7 @@
 					<option>Under Service</option>
 					<option>Permanent Damaged</option>
 					<option>Donated</option>
+					<option>Inactive</option>
 				</select>
 			</div>
 			<div class="col-sm-4"></div>

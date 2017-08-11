@@ -29,7 +29,6 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li id="custNav"><a href="customer_list?page=1">Customer</a></li>
 				<li id="subsNav"><a href="subscription_list?page=1">Subscription</a></li>
-				<li id="payNav"><a href="#">Payment</a></li>
 				<li id="inventNav"><a href="inventory_list?page=1">Inventory</a></li>
              	<li id="reportNav" class="dropdown">	
 			        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;">Report
@@ -39,6 +38,7 @@
 			          <li id="upreport"><a href="report_expiry">Upcoming Expiry Report</a></li>
 			          <li id="delivreport"><a href="report_delivery">Delivery Report</a></li>
 			          <li id="inventreport"><a href="report_inventory">Inventory Report</a></li>
+			          <li id="pickupreport"><a href="report_pickup">Pick Up Report</a></li>
 		       		</ul>
 		      	</li>
 			</ul>
@@ -93,6 +93,9 @@
 		}
 		if($dir == "report_inventory.php"){
 			echo"<script>document.getElementById('inventreport').classList.toggle('active');</script>";
+		}
+		if($dir == "report_pickup.php"){
+			echo"<script>document.getElementById('pickupreport').classList.toggle('active');</script>";
 		}
 		
 	?>

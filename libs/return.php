@@ -18,11 +18,11 @@ if (!isset($_GET['deliv_id'])) {
 
 		// insert table Inventory_card
 		$today = date("Y-m-d");
-		$sql_activity = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Rented';";
+		$sql_activity = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Returned';";
 		$row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql_activity));
 		$activity_name = $row2['activity_name'];
 		$activity_id = $row2['activity_id'];
-		$sql_card = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$prod_code', '$today', '$activity_id', '$activity_name');";
+		$sql_card = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$prod_code', '$today', '$activity_id', 'Active');";
 		if (($result_activity = mysqli_query($conn, $sql_card)) ===  FALSE) {
 			echo "query to insert invent_card fail";
 		}

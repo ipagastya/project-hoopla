@@ -15,14 +15,14 @@
 		die;
 	}
 
-	$query = "SELECT DL.delivery_id, DL.delivery_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name, DL.box_name
+	$query = "SELECT DL.delivery_id, DL.pickup_date, C.cust_name, C.address, C.phone_home, C.phone_mobile, CI.city_name, P.province_name, DL.box_name
 				FROM DELIVERY_LIST AS DL, CUSTOMER AS C, CITY AS CI, PROVINCE AS P
-				WHERE DL.delivery_date >= DATE('$datestart')
-					AND DL.delivery_date <= DATE('$dateend')
+				WHERE DL.pickup_date >= DATE('$datestart')
+					AND DL.pickup_date <= DATE('$dateend')
 					AND DL.cust_id = C.cust_id 
 					AND C.province_id = P.province_id 
 					AND C.city_id = CI.city_id
-				ORDER BY DL.delivery_date ASC";
+				ORDER BY DL.pickup_date ASC";
 				
 	$result = mysqli_query($conn, $query);                          
 
@@ -75,10 +75,10 @@
 	}
 
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Delivery Date");
-	$type = array("Type", "Delivery Report");
+	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Pick Up Date");
+	$type = array("Type", "Pick Up Report");
 	$date = array("Date", $datestart." to ".$dateend);
-	$name = "delivery_report_".$datestart."to".$dateend;
+	$name = "pickup_report_".$datestart."to".$dateend;
 
 	$fp = fopen('php://output', 'w');
 	if ($fp && $result) {
