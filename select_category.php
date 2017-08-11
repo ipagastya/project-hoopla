@@ -9,7 +9,7 @@ $table = "DELIVERY_LIST AS DL RIGHT OUTER JOIN DELIVERY_TOYS AS DT ON DT.deliver
 $date = $_POST['date'];
 $before_date = strtotime('-2 day', strtotime($date));
 $before_date = date('Y-m-d', $before_date);
-$tambahanDate = "OR (DL.pickup_date BETWEEN '$before_date' AND '$date')";
+$tambahanDate = "OR (DL.pickup_date <= '$before_date')";
 }else{
 $table = "INVENTORY AS I";
 $tambahanDate = "";
