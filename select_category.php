@@ -4,8 +4,18 @@ $age = $_POST['age'];
 $cust_id = $_POST['cust_id'];
 $count = 0;
 
+if(isset($_POST['date']) && $_POST['date']){
+$table = "DELIVERY_LIST AS DL RIGHT OUTER JOIN DELIVERY_TOYS AS DT ON DT.delivery_id = DL.delivery_id RIGHT OUTER JOIN INVENTORY AS I ON I.product_code = DT.product_code";
+$date = $_POST['date'];
+$before_date = strtotime('-2 day', strtotime($date));
+$before_date = date('Y-m-d', $before_date);
+$tambahanDate = "OR (DL.pickup_date BETWEEN '$before_date' AND '$date')";
+}else{
+$table = "INVENTORY AS I";
+$tambahanDate = "";
+}
 //age
-$sql = "SELECT * FROM INVENTORY WHERE ('$age' BETWEEN age_lower AND age_upper)";
+$sql = "SELECT * FROM $table WHERE ('$age' BETWEEN age_lower AND age_upper)";
 
 // skill
 if (isset($_POST['location'])) {
@@ -62,12 +72,18 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND status = 'available' AND location = '$location' ORDER BY toy_name ASC;";
+$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND (I.status = 'available' $tambahanDate) AND location = '$location' ORDER BY toy_name ASC;";
+
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
 }else{
 	while($row = mysqli_fetch_assoc($result)){
-		echo "<option value='".$row['product_code']."' >".$row['toy_name']."</option>";
+		$text = "";
+		if($row['status'] != 'Available'){
+			$text = "data-subtext='Not Returned Yet' ";
+		} 
+		echo "<option value='".$row['product_code']."' $text.>".$row['toy_name']."</option>";
 	}
 }
+
 ?>

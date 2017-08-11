@@ -278,7 +278,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-toy" name="select-toy[]" multiple data-max-options="<?=$subscription['num_ofToys']?>" multiple data-selected-text-format="count > 3" required>
+				<select class="form-control selectpicker" data-live-search="true" id="select-toy" data-size="4" name="select-toy[]" multiple data-max-options="<?=$subscription['num_ofToys']?>" multiple data-selected-text-format="count > 3" required>
 					<option value="" disabled>Select Toy</option>
 				</select>
 			</div>
@@ -311,18 +311,19 @@ $subscription = mysqli_fetch_assoc($result_subs);
 				}
 			});
 		});
-		$("#select-category, #select-skill, #select-location").change(function(){
+		$("#select-category, #select-skill, #select-location, #deliv-date").change(function(){
 			$("#select-toy").empty().selectpicker('refresh');
 			var category = $("#select-category").selectpicker('val');
 			var skill = $("#select-skill").selectpicker('val');
 			var location = $("#select-location").selectpicker('val');
+			var date = $("#deliv-date").val();
 			if(!location){
 				location = 'jabodetabek';
 			}
 			var age = $("#age").val();
 			$.ajax({
 				type: "POST",
-				data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>, location:location},
+				data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>, location:location, date:date},
 				url: "select_category.php",
 				success: function(response){
 					$("#select-toy").html(response).selectpicker('refresh');
