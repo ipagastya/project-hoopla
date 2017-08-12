@@ -72,7 +72,7 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND (I.status = 'available' $tambahanDate) AND location = '$location' ORDER BY toy_name ASC;";
+$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND (I.status = 'available' $tambahanDate) AND location = '$location' GROUP BY toy_name ORDER BY I.status ASC, toy_name ASC;";
 
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
