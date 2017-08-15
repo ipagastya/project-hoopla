@@ -36,10 +36,13 @@ require_once("config.php");
 			<div class="col-sm-2 radio">
 				<label><input type="radio" value="extension" name="status">Extension</label>
 			</div>
-			<div class="col-sm-3" id="error-name"></div>
+			<div class="col-sm-2 radio">
+				<label><input type="radio" value="trial" name="status">Free Trial</label>
+			</div>
+			<div class="col-sm-1" id="error-name"></div>
 			<div class="col-sm-1"></div>
 		</div>
-		<div class="form-group">
+		<div class="form-group" id="plan-time">
 			<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
 			<div class="col-sm-2 radio">
 				<label><input type="radio" value="1" name="plan" required>1 Month</label>
@@ -77,23 +80,6 @@ require_once("config.php");
 	          //  $result = "guna";//mysqli_query($conn, $query);
 	          //  echo $result
 				?>
-				<script src="libs/jquery/dist/jquery.min.js"></script>
-				<script>
-					$("input[name=plan]:radio").change(function () {
-						$("#sub-price").empty();
-						var currentPlan = $("input[name='plan']:checked").val();
-						currentPlan = currentPlan.replace(",", "");
-						var currentPromo = 0;
-						$.ajax({
-							type: "POST",
-							url: "libs/select_plan.php",
-							data: {plan: currentPlan,promo: currentPromo},
-							success: function(response){
-								$("#sub-price").val(response);
-							}
-						});
-					});
-				</script>
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah / Month</h4>
@@ -191,6 +177,20 @@ require_once("config.php");
 	</div>
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script>
+		$( document ).ready(function() {
+			$("#plan-time").hide();
+			$("input[name=plan]:radio").prop("required", false);
+			$("input[name=status]:radio").change(function () {
+				$status = $("input[name='status']:checked").val();
+				if ($status != "trial") {
+					$("#plan-time").show();
+					$("input[name=plan]:radio").prop("required", true);
+				}else{
+					$("#plan-time").hide();
+					$("input[name=plan]:radio").prop("required", false);
+				}
+			});
+		});
 		$(".nominal-number").change(function(){
 			$value = $(this).val();
 			if(!isNaN($value) && $value){
@@ -228,6 +228,22 @@ require_once("config.php");
 
 			}
 		});
+		$("input[name=plan]:radio").change(function () {
+			$("#sub-price").empty();
+			var currentPlan = $("input[name='plan']:checked").val();
+			currentPlan = currentPlan.replace(",", "");
+			var currentPromo = 0;
+			$.ajax({
+				type: "POST",
+				url: "libs/select_plan.php",
+				data: {plan: currentPlan,promo: currentPromo},
+				success: function(response){
+					$("#sub-price").val(response);
+				}
+			});
+		});
+
+
 	</script>
 
 	<?php

@@ -2,7 +2,12 @@
 require("../config.php");
 $customer = $_POST['customerName'];
 $status = $_POST['status'];
-$plan = $_POST['plan'];
+if (isset($_POST['plan'])) {
+	$plan = $_POST['plan'];
+}
+else{
+	$plan = 0;
+}
 $day = $plan * 28;
 $toypermonth = $_POST['toypermonth'];
 $date = $_POST['first-deliv'];
