@@ -1,6 +1,6 @@
 <?php 
-	header('Cache-Control: no cache'); //no cache
-	session_cache_limiter('private_no_expire'); // works
+	/*header('Cache-Control: no cache'); //no cache
+	session_cache_limiter('private_no_expire'); // works*/
 	require('header.php');
 ?>
 	<div class="jumbotron">
@@ -10,6 +10,17 @@
 			<!--FILTER AREA-->
 			<form class="form-horizontal collapse" id="form-filter" method="get" action="inventory_list"><br>
 				<input type="hidden" name="page" value="1" /> 
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="toysname">Toy's Name :</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="toysname" name="toysname">
+					</div>
+					<label class="control-label col-sm-2" for="codesearch">Product Code :</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="codesearch" name="codesearch">
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="dateinventory">Date :</label>
 					<div class="col-sm-3">
@@ -75,24 +86,36 @@
 				<?php
 					include "config.php";
 					if(isset($_GET['filtersubmit'])){
+						$toysname = $_GET['toysname'];
+						$codesearch = $_GET['codesearch'];
 						$date = $_GET['dateinventory'];
 						$status = $_GET['status'];
 						$age = $_GET['agebaby'];
 						$today = date("Y-m-d");
-						if($date != "" && $status != "--All Status--" && $age != ""){
+
+						if($date != "" && $status != "--All Status--" && $age != "" && $toysname != "" && $codesearch != ""){
 							$query = "SELECT * FROM INVENTORY WHERE 
+									toy_name LIKE '%$toysname%' AND product_code LIKE '%$codesearch%' AND
 									return_date >= '$today' AND return_date <= '$date' AND status LIKE '%$status%' AND age_lower <= '$age' AND age_upper >= '$age' ORDER BY inventory_id DESC";
 						}else{
-							if($date == "" && $status == "--All Status--" && $age == ""){
+							if($date == "" && $status == "--All Status--" && $age == "" && $toysname == "" && $codesearch == ""){
 								$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
 							}else{
 								$query = "SELECT * FROM INVENTORY";
+								$condition_name = "";
+								$condition_code = "";
 								$condition_date = "";
 								$condition_status = "";
 								$condition_age = "";
 								$condition = "";
 								$orderby = "ORDER BY inventory_id DESC";
 								$count = 0;
+								if($toysname != ""){
+									$condition_name = " toy_name LIKE '%$toysname%'";
+								}
+								if($codesearch != ""){
+									$condition_code = " product_code LIKE '%$codesearch%'";
+								}
 								if($date != ""){
 									$condition_date = " return_date >= '$today' AND return_date <= '$date'";
 								}
@@ -102,8 +125,23 @@
 								if($age != ""){
 									$condition_age = " age_lower <= '$age' AND age_upper >= '$age'";
 								}
+
 								if($condition_date != ""){
 									$condition = $condition.$condition_date;
+									$count++;
+								}
+								if($condition_name != ""){
+									if($count > 0){
+										$condition = $condition." AND";
+									}
+									$condition = $condition.$condition_name;
+									$count++;
+								}
+								if($condition_code != ""){
+									if($count > 0){
+										$condition = $condition." AND";
+									}
+									$condition = $condition.$condition_code;
 									$count++;
 								}
 								if($condition_status != ""){
@@ -120,18 +158,10 @@
 									$condition = $condition.$condition_age;
 								}
 								$query = $query." WHERE".$condition.$orderby;
+								
 							}
 							
 						}
-						/*if($date != "" && $status == "--All Status--"){
-							$query = "SELECT * FROM INVENTORY WHERE return_date >= '$today' AND return_date <= '$date' ORDER BY inventory_id DESC";
-						}
-						if($date == "" && $status != "--All Status--"){
-							$query = "SELECT * FROM INVENTORY WHERE status LIKE '%$status%' ORDER BY inventory_id DESC";
-						}
-						if($date == "" && $status == "--All Status--"){
-							$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
-						}*/
 					}
 					else{
 						$query = "SELECT * FROM INVENTORY ORDER BY inventory_id DESC";
@@ -185,10 +215,12 @@
 						$pageNext = $pageNow + 1;
 						if ($pageNow > 1) {
 							if (isset($_GET['filtersubmit'])) {
+								$toysname = $_GET['toysname'];
+								$codesearch = $_GET['codesearch'];
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
 								$age = $_GET['agebaby'];
-								echo "<li><a href='inventory_list?page=$pageBefore&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Previous</a></li>";
+								echo "<li><a href='inventory_list?page=$pageBefore&toysname=$toysname&codesearch=$codesearch&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Previous</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageBefore'>Previous</a></li>";
 							}
@@ -196,10 +228,12 @@
 						$x = 1;
 						while ($count <= $pages && $x <= 5) {
 							if (isset($_GET['filtersubmit'])) {
+								$toysname = $_GET['toysname'];
+								$codesearch = $_GET['codesearch'];
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
 								$age = $_GET['agebaby'];
-								echo "<li><a href='inventory_list?page=$count&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>$count</a></li>";
+								echo "<li><a href='inventory_list?page=$count&toysname=$toysname&codesearch=$codesearch&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>$count</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$count'>$count</a></li>";
 							}
@@ -208,10 +242,12 @@
 						}
 						if ($pageNow < $pages) {
 							if (isset($_GET['filtersubmit'])) {
+								$toysname = $_GET['toysname'];
+								$codesearch = $_GET['codesearch'];
 								$date = $_GET['dateinventory'];
 								$status = $_GET['status'];
 								$age = $_GET['agebaby'];
-								echo "<li><a href='inventory_list?page=$pageNext&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Next</a></li>";
+								echo "<li><a href='inventory_list?page=$pageNext&toysname=$toysname&codesearch=$codesearch&dateinventory=$date&status=$status&agebaby=$age&filtersubmit='>Next</a></li>";
 							}else{
 								echo "<li><a href='inventory_list?page=$pageNext'>Next</a></li>";
 							}
