@@ -80,6 +80,7 @@
 						<th>Hoopla Age</th>
 						<th>Status</th>
 						<th>Details</th>
+						<th>Instruction Card</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -181,7 +182,7 @@
 			        	$resultName2 = mysqli_query($conn, $queryName2);
 			        	$rowName2 = mysqli_fetch_row($resultName2);
 			        	echo "<tr>
-			        			<td>".$row[2]."</td>
+			        			<td>".$row[2]."</a></td>
 			        			<td>".$row[1]."</td>
 			        			<td>".$row[3]."</td>
 			        			<td>".$rowName1[0]."</td>
@@ -189,6 +190,7 @@
 			        			<td>".$row[10]."-".$row[11]."</td>
 			        			<td>".$row[4]."</td>
 			        			<td>"."<a method='get' href='inventory?page=1&id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
+			        			<td><a href='libs/download_instruction_card.php?link=$row[2].pdf' class='btn btn-default'>Download</a></td>
 			        		</tr>";
 			        }
 			        $resultFull = mysqli_query($conn , $query);
