@@ -8,16 +8,16 @@ if (!isset($_GET['deliv_id'])) {
 	$sql = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	$result = mysqli_query($conn, $sql);
 	
+	$today = date("Y-m-d");
 
 	while($row = mysqli_fetch_assoc($result)){
 		$prod_code = $row['product_code'];
-		$sql_inventory = "UPDATE INVENTORY SET status='Available' WHERE product_code='$prod_code'";
+		$sql_inventory = "UPDATE INVENTORY SET status='Available', return_date='$today' WHERE product_code='$prod_code'";
 		if (($res = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
 		}
 
 		// insert table Inventory_card
-		$today = date("Y-m-d");
 		$sql_activity = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Returned';";
 		$row2 = mysqli_fetch_assoc(mysqli_query($conn, $sql_activity));
 		$activity_name = $row2['activity_name'];
