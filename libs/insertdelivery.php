@@ -74,7 +74,13 @@ else{
 		$id = $result['delivery_id'];
 	}
 	foreach ($arr as &$value) {
-		$sql_deliv_toy = "INSERT INTO DELIVERY_TOYS (delivery_id, product_code) VALUES ('$id', '$value');";
+		$verif = 1;
+		$sql_check = "SELECT * FROM INVENTORY WHERE product_code='$value' AND STATUS != 'Available'";
+		$result = mysqli_query($conn, $sql_check);
+		if(mysqli_num_rows($result)){
+			$verif = 0;
+		}
+		$sql_deliv_toy = "INSERT INTO DELIVERY_TOYS (delivery_id, product_code, verification) VALUES ('$id', '$value', '$verif');";
 		if (($result = mysqli_query($conn, $sql_deliv_toy)) ===  FALSE) {
 			echo "query to insert delivery toy fail";
 		}
