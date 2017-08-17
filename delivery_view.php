@@ -29,14 +29,21 @@ if (!isset($_GET['deliv_id'])) {
 	$sql_toy = "SELECT * FROM DELIVERY_TOYS AS D JOIN INVENTORY AS I ON D.product_code = I.product_code WHERE delivery_id = '$deliv_id'";
 	$result = mysqli_query($conn, $sql_toy);
 	$count = 0;
+	$verif = "Verified";
 	while ($row = mysqli_fetch_assoc($result)) {
+		$status_toy = "glyphicon-ok";
+		if ($row['verification'] == 0) {
+			$verif = "Some Items not Returned Yet";
+			$status_toy = 'glyphicon-remove';
+		}
 		$toy_name = $row['toy_name'];
-		$toy = $toy."<option disabled selected>$toy_name</option>";
+		$toy = $toy."<option disabled data-icon=$status_toy>$toy_name</option>";
 	}
 	$province_id = "";
 	?>
 	<div class="jumbotron">
 		<br><br><center><h2 class="leckerli">View Delivery</h2></center>
+		<br><br><center><h3 class="leckerli"><span class='label label-danger'><?=$verif?></span></h5></center>
 	</div>
 	<div class="container">
 		<form class="form-horizontal" method="POST" action="libs/insertdelivery?subs_id=<?=$subs_id ?>">
