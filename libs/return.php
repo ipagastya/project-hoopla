@@ -26,6 +26,13 @@ if (!isset($_GET['deliv_id'])) {
 		if (($result_activity = mysqli_query($conn, $sql_card)) ===  FALSE) {
 			echo "query to insert invent_card fail";
 		}
+
+		// verifying other delivery toys those were not verified yet
+		$sql_verify = "UPDATE DELIVERY_TOYS SET verification = '1' WHERE product_code = '$prod_code' AND verification='0' ORDER BY delivery_id ASC LIMIT 1";
+		if (($result_activity = mysqli_query($conn, $sql_verify)) ===  FALSE) {
+			echo "query to verify fail";
+		}
+
 	}
 }
 $sql = "UPDATE DELIVERY_LIST SET status='returned' WHERE delivery_id='$deliv_id'";
