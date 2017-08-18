@@ -217,9 +217,18 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						$offset = ($_GET['page'] - 1) * 10;
 						$result = mysqli_query($conn, "$sql LIMIT 10 OFFSET $offset");
 						$resultFull = mysqli_query($conn, $sql);
-						while ($row_deliv = mysqli_fetch_assoc($result)) { ?> 
+
+						while ($row_deliv = mysqli_fetch_assoc($result)) {
+							$deliv_id = $row_deliv['delivery_id'];
+							$sql_verify = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id ='$deliv_id' AND verification = '0'";
+							$result_verify = mysqli_query($conn, $sql_verify);
+							$verified = true;
+							if (mysqli_num_rows($result_verify)) {
+								$verified = false;
+							}
+						?> 
 						<tr>
-							<td><?=$row_deliv['delivery_id']?></td>
+							<td><?=$deliv_id?></td>
 							<td><?=$row_deliv['address']?></td>
 							<td><?php
 								$city_id =$row_deliv['city_id'];
@@ -235,9 +244,12 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								<td><?=$row_deliv['box_name']?></td>
 								<td class="row"><a class="btn btn-info col-sm-5" href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
 									<div class="col-sm-2"></div>
-									<?php if($row_deliv['status'] == 'rented'){ ?> 
+									<?php if($row_deliv['status'] == 'rented' && $verified){ ?> 
 									<a class="btn btn-info col-sm-5" href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
 									<?php }
+									elseif ($verified == false) {
+										echo "<button class='btn btn-danger col-sm-5' disabled>Not Verified</button>";
+									}
 									else{
 										echo "<div class='col-sm-5'></div>";
 									} ?> </td>
