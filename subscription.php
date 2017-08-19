@@ -199,17 +199,23 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 				<h4>Delivery Schedule</h4>
 				<div class="table-responsive">
 					<table class="table table-hover">
-						<tr>
-							<th>No</th>
-							<th>Address</th>
-							<th>City</th>
-							<th>Mobile Phone</th>
-							<th>Home Phone</th>
-							<th>Delivery Date</th>
-							<th>Pick Up Date</th>
-							<th>Baby's Age</th>
-							<th>Box Name</th>
-							<th colspan="2">Details of Delivery</th>
+						<tr class="row">
+							<div class="col-sm-3">
+								<th>No</th>
+								<th>Address</th>
+								<th>City</th>
+							</div>
+							<div class="col-sm-1">
+								<th>Mobile Phone</th>
+								<th>Home Phone</th>
+							</div>
+							<div class="col-sm-3">
+								<th>Delivery Date</th>
+								<th>Pick Up Date</th>
+								<th>Baby's Age</th>
+								<th>Box Name</th>
+							</div>
+							<th class="col-sm-5">Details of Delivery</th>
 						</tr>
 						<?php 
 						$cust_id = $row['cust_id'];
@@ -226,28 +232,36 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							if (mysqli_num_rows($result_verify)) {
 								$verified = false;
 							}
-						?> 
-						<tr>
-							<td><?=$deliv_id?></td>
-							<td><?=$row_deliv['address']?></td>
-							<td><?php
-								$city_id =$row_deliv['city_id'];
-								$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
-								$result_city = mysqli_query($conn, $sql);
-								$row_city = mysqli_fetch_assoc($result_city);
-								?></td>
-								<td><?=$row_deliv['mobile_phone']?></td>
-								<td><?=$row_deliv['home_phone']?></td>
-								<td><?=$row_deliv['delivery_date']?></td>
-								<td><?=$row_deliv['pickup_date']?></td>
-								<td><?=$row_deliv['baby_age']?></td>
-								<td><?=$row_deliv['box_name']?></td>
-								<td class="row"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
+							?> 
+							<tr class="row">
+								<div class="col-sm-3">
+									<td><?=$deliv_id?></td>
+									<td><?=$row_deliv['address']?></td>
+									<td><?php
+										$city_id =$row_deliv['city_id'];
+										$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
+										$result_city = mysqli_query($conn, $sql);
+										$row_city = mysqli_fetch_assoc($result_city);
+										echo $row_city['city_name']
+										?>
+									</td>
+								</div>
+								<div class="col-sm-1">
+									<td><?=$row_deliv['mobile_phone']?></td>
+									<td><?=$row_deliv['home_phone']?></td>
+								</div>
+								<div class="col-sm-3">
+									<td><?=$row_deliv['delivery_date']?></td>
+									<td><?=$row_deliv['pickup_date']?></td>
+									<td><?=$row_deliv['baby_age']?></td>
+									<td><?=$row_deliv['box_name']?></td>
+								</div>
+								<td class="row col-sm-5"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
 									<div class="col-sm-1"></div>
 									<?php if($row_deliv['status'] == 'rented' && $verified){ ?> 
 									<a class="btn btn-info col-sm-4" id='btn-toys' href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
 									<div class="col-sm-1"></div>
-									<a class='btn btn-danger col-sm-3' id='btn-toys' href='#'><span class='glyphicon glyphicon-remove'></span> Delete</a>;
+									<a class='btn btn-danger col-sm-3' id='btn-toys' href='#'><span class='glyphicon glyphicon-remove'></span> Delete</a>
 									<?php }
 									elseif ($verified == false) {
 										echo "<button class='btn btn-danger col-sm-4' id='btn-toys' disabled>Not Verified</button>";
@@ -259,52 +273,52 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 										echo '<div class="col-sm-4"></div>';
 									} ?> 
 								</td>
-								</tr>
-								<?php } ?>
-							</table>
-						</div>
-						<center>
-							<div>
-								<ul class="pagination pagination-sm">
-									<?php
-									$rows = mysqli_num_rows($resultFull);
-									$pages = 0;
-									$pageNow = $_GET['page'];
-									$count = $pageNow;
-									if($rows <= 10) {
-										$pages = 1;
-									} else if (($rows % 10 ) == 0) {
-										$pages = $rows / 10;
-									} else {
-										$pages = floor($rows / 10) + 1;
-									}
-									$x = 1;
-									if ($pageNow > 1) {
-										$pageBefore = $pageNow - 1;
-										echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
-									}
-									while ($count <= $pages && $x <= 5) {
-										echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
-										$count = $count + 1;
-										$x = $x + 1;
-									}
-									if ($pageNow < $pages) {
-										$pageNext = $pageNow + 1;
-										echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
-									}
-									?>
-								</ul>
-							</div>
-						</center>
-						<?php 
-
-						?>
+							</tr>
+							<?php } ?>
+						</table>
 					</div>
-					<script>
-						$( document ).ready(function() {
-							<?php if($row['status'] == 'trial'){ ?>
-								$("#plan-time").hide();
-								$("input[name=plan]:radio").prop("required", false);
+					<center>
+						<div>
+							<ul class="pagination pagination-sm">
+								<?php
+								$rows = mysqli_num_rows($resultFull);
+								$pages = 0;
+								$pageNow = $_GET['page'];
+								$count = $pageNow;
+								if($rows <= 10) {
+									$pages = 1;
+								} else if (($rows % 10 ) == 0) {
+									$pages = $rows / 10;
+								} else {
+									$pages = floor($rows / 10) + 1;
+								}
+								$x = 1;
+								if ($pageNow > 1) {
+									$pageBefore = $pageNow - 1;
+									echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
+								}
+								while ($count <= $pages && $x <= 5) {
+									echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
+									$count = $count + 1;
+									$x = $x + 1;
+								}
+								if ($pageNow < $pages) {
+									$pageNext = $pageNow + 1;
+									echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
+								}
+								?>
+							</ul>
+						</div>
+					</center>
+					<?php 
+
+					?>
+				</div>
+				<script>
+					$( document ).ready(function() {
+						<?php if($row['status'] == 'trial'){ ?>
+							$("#plan-time").hide();
+							$("input[name=plan]:radio").prop("required", false);
 							<?php } ?>
 							$("input[name=status]:radio").change(function () {
 								$status = $("input[name='status']:checked").val();
@@ -317,29 +331,29 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								}
 							});
 						});
-						$(".nominal-number").change(function(){
-							$value = $(this).val()
-							if(!isNaN($value) && $value){
-								$tag = this;
-								$.ajax({
-									type: "POST",
-									data: {nominal: $value},
-									url: "libs/nominal.php",
-									success: function(response){
-										$value = response;
-										$($tag).val(response);
-									}
-								});
-							}
-							else{
-								$(this).val("");
-								$(this).attr("placeholder", "Please input number")
-							}
-						})
-					</script>
-					<?php
-				}
+					$(".nominal-number").change(function(){
+						$value = $(this).val()
+						if(!isNaN($value) && $value){
+							$tag = this;
+							$.ajax({
+								type: "POST",
+								data: {nominal: $value},
+								url: "libs/nominal.php",
+								success: function(response){
+									$value = response;
+									$($tag).val(response);
+								}
+							});
+						}
+						else{
+							$(this).val("");
+							$(this).attr("placeholder", "Please input number")
+						}
+					})
+				</script>
+				<?php
 			}
 		}
-		require('footer.php');
-		?>
+	}
+	require('footer.php');
+	?>
