@@ -71,17 +71,11 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
-				<!--TODO: Price otomatis ke generate ketika subs plan dipilih and (subs promo on hold)-->
+				
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="<?=number_format($row['subs_price'],2)?>">
-						<?php
-          //  require("config.php");
-          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
-          //  $result = "guna";//mysqli_query($conn, $query);
-          //  echo $result
-						?>
 						<script src="libs/jquery/dist/jquery.min.js"></script>
 						<script>
 							$("input[name=plan]:radio").change(function () {
