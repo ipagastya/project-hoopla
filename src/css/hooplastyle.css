@@ -1,3 +1,4 @@
+#btn-toy{white-space: normal;}
 body, html{height:100%;margin:0;}
 .index{background-image:url(../images/background1.png);background-size:cover;background-repeat:no-repeat;background-attachment:fixed;}
 .container{margin-top:5%;}

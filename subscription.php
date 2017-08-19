@@ -242,17 +242,20 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								<td><?=$row_deliv['pickup_date']?></td>
 								<td><?=$row_deliv['baby_age']?></td>
 								<td><?=$row_deliv['box_name']?></td>
-								<td class="row"><a class="btn btn-info col-sm-5" href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
-									<div class="col-sm-2"></div>
+								<td class="row"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
+									<div class="col-sm-1"></div>
 									<?php if($row_deliv['status'] == 'rented' && $verified){ ?> 
-									<a class="btn btn-info col-sm-5" href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
+									<a class="btn btn-info col-sm-4" id='btn-toys' href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
 									<?php }
 									elseif ($verified == false) {
-										echo "<button class='btn btn-danger col-sm-5' disabled>Not Verified</button>";
+										echo "<button class='btn btn-danger col-sm-4' id='btn-toys' disabled>Not Verified</button>";
 									}
 									else{
-										echo "<div class='col-sm-5'></div>";
-									} ?> </td>
+										echo "<button class='btn btn-info col-sm-4' id='btn-toys' disabled>Returned</button>";
+									} ?> 
+									<div class="col-sm-1"></div>
+									<a class='btn btn-danger col-sm-3' id='btn-toys' href="#"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+								</td>
 								</tr>
 								<?php } ?>
 							</table>
