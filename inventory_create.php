@@ -323,9 +323,12 @@
 					}else{
 						$practical_life = false;
 					}
+					/*for last modified*/
+					date_default_timezone_set('Asia/Jakarta');
+					$today_date = date('y-m-d H:i:s');
 
-					$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store) 
-							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store');";
+					$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store,last_modified) 
+							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store','$today_date');";
 
 					$result = mysqli_query($conn, $query);
 					if($result){

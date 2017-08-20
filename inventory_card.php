@@ -94,6 +94,12 @@
 		$notes = $_POST['notes'];
 		$query="INSERT INTO INVENTORY_CARD(product_code,date,activity_id,Status,note) VALUES('$product_code','$date','$activities','$status','$notes')";
 		$result=mysqli_query($conn,$query);
+		/*for last modified*/
+		date_default_timezone_set('Asia/Jakarta');
+		$today_date = date('y-m-d H:i:s');
+		$updtmod = "UPDATE INVENTORY SET last_modified='$today_date' WHERE product_code= '$product_code'";
+		$resultMod=mysqli_query($conn,$updtmod);
+		/***************/
 		?>
 		<script>alert('Successfully Updated Inventory Card');window.location.href='inventory?page=1&id=<?=$inventory_id?>';</script>";
 		<?php

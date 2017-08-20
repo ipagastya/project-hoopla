@@ -98,6 +98,7 @@
 						<th>Status</th>
 						<th>Details</th>
 						<th>Instruction Card</th>
+						<th>Last Modified</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -208,6 +209,7 @@
 			        			<td>".$row[4]."</td>
 			        			<td>"."<a method='get' href='inventory?page=1&id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        			<td><a href='libs/download_instruction_card.php?link=$row[2].pdf' class='btn btn-default'>Download</a></td>
+			        			<td><h6>".$row[23]."</h6></td>
 			        		</tr>";
 			        }
 			        $resultFull = mysqli_query($conn , $query);
