@@ -41,6 +41,22 @@ if (isset($_GET['deliv_id'])) {
 			echo "Inserting to Inventory Card Error";
 		}
 	}
+
+	// update inventory
+	while ($row = mysqli_fetch_assoc($result_getToys)) {
+		if($row['verification'] == 1){
+			$product_code = $row['product_code'];
+			$sql_updateInventory = "UPDATE INVENTORY SET status='Availale' WHERE product_code='$product_code'";
+			mysqli_query($conn, $sql_updateInventory);
+		}
+	}
+
+	// delete delivery toys
+	$sql_deleteDelivToys = "DELETE FROM DELIVERY TOYS WHERE delivery_id = '$deliv_id'";
+	if (mysqli_query($conn, $sql_deleteDelivToys) === FALSE) {
+		echo "Delete from delivery toys error";
+	}
+
 }else{
 	header( "refresh:1;url=../subscription_list?page=1" );
 }
