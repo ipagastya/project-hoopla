@@ -9,10 +9,16 @@ if (!isset($_GET['deliv_id'])) {
 	$result = mysqli_query($conn, $sql);
 	
 	$today = date("Y-m-d");
-
+	if(isset($_SESSION['adminID'])){
+		$adminID = $_SESSION['adminID'];
+	}
+	else{
+		$adminID = 1;
+	}
 	while($row = mysqli_fetch_assoc($result)){
+		// Update inventory
 		$prod_code = $row['product_code'];
-		$sql_inventory = "UPDATE INVENTORY SET status='Available', return_date='$today' WHERE product_code='$prod_code'";
+		$sql_inventory = "UPDATE INVENTORY SET status='Available', return_date='$today', last_modified = now(), modified_by='$adminID' WHERE product_code='$prod_code'";
 		if (($res = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
 		}

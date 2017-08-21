@@ -17,6 +17,12 @@ if (isset($_GET['deliv_id'])) {
 	$activity_name = $row['activity_name'];
 	$activity_id = $row['activity_id'];
 
+	if(isset($_SESSION['adminID'])){
+		$adminID = $_SESSION['adminID'];
+	}
+	else{
+		$adminID = 1;
+	}
 	while ($row = mysqli_fetch_assoc($result_getToys)) {
 		$product_code = $row['product_code'];
 		$sql_updateCard = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$product_code', '$today', '$activity_id', '$activity_name')";
@@ -25,7 +31,7 @@ if (isset($_GET['deliv_id'])) {
 		}
 		if($row['verification'] == 1){
 			$product_code = $row['product_code'];
-			$sql_updateInventory = "UPDATE INVENTORY SET status='Available', last_modified=now() WHERE product_code='$product_code'";
+			$sql_updateInventory = "UPDATE INVENTORY SET status='Available', last_modified=now(), modified_by='$adminID' WHERE product_code='$product_code'";
 			if(mysqli_query($conn, $sql_updateInventory) === FALSE){
 				echo "Update Inventory Error<br>";
 			}

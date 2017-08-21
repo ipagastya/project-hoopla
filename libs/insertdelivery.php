@@ -35,6 +35,7 @@ if (isset($_POST['submit-edit'])) {
 	}
 }
 else{
+	session_start();
 	//insert table delivery_list
 	$cust_id = $_GET['cust_id'];
 	$address = $_POST['address'];
@@ -112,8 +113,14 @@ else{
 	}
 
 	// update table inventory
+	if(isset($_SESSION['adminID'])){
+		$adminID = $_SESSION['adminID'];
+	}
+	else{
+		$adminID = 1;
+	}
 	foreach ($arr as &$value) {
-		$sql_inventory = "UPDATE INVENTORY SET status='Rented' WHERE product_code='$value';";
+		$sql_inventory = "UPDATE INVENTORY SET status='Rented', last_modified= now(), modified_by='$adminID' WHERE product_code='$value';";
 		if (($result = mysqli_query($conn, $sql_inventory)) ===  FALSE) {
 			echo "query to update inventory fail";
 		}
