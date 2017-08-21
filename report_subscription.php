@@ -45,6 +45,7 @@
 					<th colspan="4">Extending Subscription</th>
 					<th>Nett Subscribers</th>
 					<th rowspan="2">Subscription Commited</th>
+					<th colspan="3">Recurring Customer</th>
 			    </tr>
 			    <tr>
 					<th>Total</th>
@@ -60,6 +61,9 @@
 					<th>3 MO</th>
 					<th>6 MO</th>
 					<th>Total</th>
+					<th>New</th>
+					<th>Expire</th>
+					<th>Extension</th>
 			    </tr>
 			</thead>
 			<tbody>
@@ -74,7 +78,7 @@
 						$offset = ($page - 1) * 10;
 					}
 
-					$query = "SELECT * FROM CUSTOMER_REPORT";
+					$query = "SELECT CP.*, CR.New, CR.Extension FROM CUSTOMER_REPORT AS CP, CUSTOMER_RECURRING AS CR WHERE CR.month = CP.month AND CR.year = CP.year";
 					$result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");
 					$resultFull = mysqli_query($conn, $query);                          
 
@@ -103,6 +107,9 @@
 							<td>".$row[13]."</td>
 							<td>".$row[14]."</td>
 							<td>".$row[15]."</td>
+							<td>".$row[16]."</td>
+							<td>0</td>
+							<td>".$row[17]."</td>
 						</tr>";
 				}
 			    ?>

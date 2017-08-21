@@ -1,7 +1,7 @@
 <?php
 	include "../config.php";
   
-	$query = 'SELECT * FROM CUSTOMER_REPORT';
+	$query = "SELECT CP.*, CR.New AS NewRec, CR.Extension AS ExtRec FROM CUSTOMER_REPORT AS CP, CUSTOMER_RECURRING AS CR WHERE CR.month = CP.month AND CR.year = CP.year";
 	$result = mysqli_query($conn, $query);                          
 	if(!$result) {
 		print("Couldn't execute query");
