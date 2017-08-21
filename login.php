@@ -11,6 +11,15 @@ if(isset($_POST['loginbutton'])){
     if($stmt->num_rows == 1)  //To check if the row exists
     {
       $_SESSION['username'] = $username;
+      /*session for id admin*/
+      $idAdmin = 0;
+      $querySearchIdAdmin = "SELECT admin_id FROM ADMIN WHERE username = '$username'";
+      $resultIDAdmin = mysqli_query($conn, $querySearchIdAdmin);
+      while($rowIDAdmin = mysqli_fetch_row($resultIDAdmin)){
+        $idAdmin = $rowIDAdmin[0];
+      }
+      $_SESSION['adminID'] = $idAdmin;
+      /***************/
       echo"<script>document.location.href='welcome'</script>";
       exit();
     }
