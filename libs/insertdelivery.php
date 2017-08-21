@@ -14,8 +14,17 @@ if (isset($_POST['submit-edit'])) {
 	$deliv_charge = str_replace(",", "", $deliv_charge);
 	$pick_charge = $_POST['pick-charge'];
 	$pick_charge = str_replace(",", "", $pick_charge);
-	$payment_note = $_POST['pay-note'];
-	$note = $_POST['note'];
+	if (isset($_POST['pay-note'])) {
+		$payment_note = $_POST['pay-note'];
+	}else{
+		$payment_note = "";
+	}
+	if (isset($_POST['note'])) {
+		$note = $_POST['note'];
+	}else{
+		$note = "";
+	}
+	
 
 	$sql_update = "UPDATE DELIVERY_LIST SET address='$address', city_id='$city_id', province_id='$province_id', mobile_phone='$mobile', home_phone='$home', delivery_date='$deliv_date', pickup_date='$pick_date', actual_delivery_charge='$deliv_charge', actual_pickup_charge='$pick_charge', payment_note='$payment_note', note='$note'";
 	$result = mysqli_query($conn, $sql_update);
@@ -39,8 +48,16 @@ else{
 	$actual_delivery_charge = str_replace(",", "", $actual_delivery_charge);
 	$actual_pickup_charge = $_POST['pick-charge'];
 	$actual_pickup_charge = str_replace(",", "", $actual_pickup_charge);
-	$payment_note = $_POST['pay-note'];
-	$note = $_POST['note'];
+	if (isset($_POST['pay-note'])) {
+		$payment_note = $_POST['pay-note'];
+	}else{
+		$payment_note = "";
+	}
+	if (isset($_POST['note'])) {
+		$note = $_POST['note'];
+	}else{
+		$note = "";
+	}
 	$baby_age = $_POST['age'];
 	$box_name = $_POST['box-name'];
 	$sql_deliv = "INSERT INTO DELIVERY_LIST (cust_id, address, city_id, province_id, mobile_phone, home_phone, delivery_date, pickup_date, actual_delivery_charge, actual_pickup_charge, payment_note, note, baby_age, box_name

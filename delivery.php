@@ -153,14 +153,14 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pay-note">Payment Note :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="pay-note" name="pay-note" required>
+				<input type="text" class="form-control" id="pay-note" name="pay-note">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="note">Note :</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="note" name="note" required>
+				<input type="text" class="form-control" id="note" name="note">
 			</div>
 			<div class="col-sm-5"></div>
 		</div>
