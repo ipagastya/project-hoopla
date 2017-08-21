@@ -13,16 +13,16 @@ if (isset($_GET['deliv_id'])) {
 
 	// Delete from toys tracking
 	$sql_track = "DELETE FROM TOYS_TRACKING WHERE delivery_id = '$deliv_id'";
-	if (mysqli_query($conn, $sql_track)) {
+	if (mysqli_query($conn, $sql_track) === FALSE) {
 		echo "Deleting from toys tracking error";
 	}else{
-		echo "Deleting from toys tracking success"
+		echo "Deleting from toys tracking success";
 	}
 
 	// Getting data delivery toys
 	$sql_getToys = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	$result_getToys = mysqli_query($conn, $sql_getToys);
-	if (result === FALSE) {
+	if ($result_getToys === FALSE) {
 		echo "Getting data from delivery toys error";
 	}else{
 		echo "Getting data from delivery toys success";
@@ -37,7 +37,7 @@ if (isset($_GET['deliv_id'])) {
 
 	while ($row = mysqli_fetch_assoc($result_getToys)) {
 		$product_code = $row['product_code'];
-		$sql_updateCard = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$product_code', '$today', '$activity_id', '$activity_name')"
+		$sql_updateCard = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$product_code', '$today', '$activity_id', '$activity_name')";
 		if (mysqli_query($conn, $sql_updateCard) === FALSE) {
 			echo "Inserting to Inventory Card Error";
 		}
@@ -53,7 +53,7 @@ if (isset($_GET['deliv_id'])) {
 	}
 
 	// delete delivery toys
-	$sql_deleteDelivToys = "DELETE FROM DELIVERY TOYS WHERE delivery_id = '$deliv_id'";
+	$sql_deleteDelivToys = "DELETE FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	if (mysqli_query($conn, $sql_deleteDelivToys) === FALSE) {
 		echo "Delete from delivery toys error";
 	}
