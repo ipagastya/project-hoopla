@@ -88,7 +88,7 @@ else{
 
 	//insert table toys_tracking
 	foreach ($arr as &$value) {
-		$sql_track = "INSERT INTO TOYS_TRACKING (customer_id, delivery_id, product_code) VALUES ('$cust_id', '$deliv_id', '$value');";
+		$sql_track = "INSERT INTO TOYS_TRACKING (customer_id, delivery_id, product_code) VALUES ('$cust_id', '$id', '$value');";
 		if (($result = mysqli_query($conn, $sql_track)) ===  FALSE) {
 			echo "query to insert tracking fail";
 		}
