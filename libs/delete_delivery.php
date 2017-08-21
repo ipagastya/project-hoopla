@@ -20,7 +20,6 @@ if (isset($_GET['deliv_id'])) {
 	while ($row = mysqli_fetch_assoc($result_getToys)) {
 		$product_code = $row['product_code'];
 		$sql_updateCard = "INSERT INTO INVENTORY_CARD (product_code, date, activity_id, Status) VALUES ('$product_code', '$today', '$activity_id', '$activity_name')";
-		echo $sql_updateCard."<br>";
 		if (mysqli_query($conn, $sql_updateCard) === FALSE) {
 			echo "Inserting to Inventory Card Error<br>";
 		}

@@ -195,7 +195,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 					<table class="table table-hover">
 						<tr class="row">
 							<div class="col-sm-3">
-								<th>No</th>
+								<th>ID</th>
 								<th>Address</th>
 								<th>City</th>
 							</div>
