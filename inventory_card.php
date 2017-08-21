@@ -97,7 +97,8 @@
 		/*for last modified*/
 		date_default_timezone_set('Asia/Jakarta');
 		$today_date = date('y-m-d H:i:s');
-		$updtmod = "UPDATE INVENTORY SET last_modified='$today_date' WHERE product_code= '$product_code'";
+		$adminID = $_SESSION['adminID'];
+		$updtmod = "UPDATE INVENTORY SET last_modified='$today_date', modified_by = '$adminID' WHERE product_code= '$product_code'";
 		$resultMod=mysqli_query($conn,$updtmod);
 		/***************/
 		?>
