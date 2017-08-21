@@ -82,7 +82,7 @@ if(($result = mysqli_query($conn, $sql)) === FALSE){
 		if($row['status'] != 'Available'){
 			$text = "data-subtext='(Not Returned Yet)' ";
 		} 
-		echo "<option value='".$row['product_code']."' $text.>".$row['toy_name']."</option>";
+		echo "<option value='".$row['product_code']."' $text.>".$row['toy_name']." (".$row['product_code'].")"."</option>";
 	}
 }
 

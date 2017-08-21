@@ -37,7 +37,8 @@ if (!isset($_GET['deliv_id'])) {
 			$status_toy = 'glyphicon-remove';
 		}
 		$toy_name = $row['toy_name'];
-		$toy = $toy."<option disabled data-icon=$status_toy>$toy_name</option>";
+		$product_code = $row['product_code'];
+		$toy = $toy."<option disabled data-icon=$status_toy>$toy_name ($product_code)</option>";
 	}
 	$province_id = "";
 	?>
