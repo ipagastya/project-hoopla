@@ -12,14 +12,14 @@ if (isset($_GET['deliv_id'])) {
 	}
 
 	// Delete from toys tracking
-	$sql_track = "DELETE FROM YOYS_TRACKING WHERE delivery_id = '$deliv_id'";
+	$sql_track = "DELETE FROM TOYS_TRACKING WHERE delivery_id = '$deliv_id'";
 	if (mysqli_query($conn, $sql_track)) {
 		echo "Deleting from toys tracking error";
 	}else{
 		echo "Deleting from toys tracking success"
 	}
 
-	// Insert inventory card
+	// Getting data delivery toys
 	$sql_getToys = "SELECT * FROM DELIVERY_TOYS WHERE delivery_id = '$deliv_id'";
 	$result_getToys = mysqli_query($conn, $sql_getToys);
 	if (result === FALSE) {
@@ -28,6 +28,7 @@ if (isset($_GET['deliv_id'])) {
 		echo "Getting data from delivery toys success";
 	}
 
+	// Insert inventory card
 	$today = date("Y-m-d");
 	$sql = "SELECT * FROM INVENTORY_ACTIVITY WHERE activity_name = 'Returned';";
 	$row = mysqli_fetch_assoc(mysqli_query($conn, $sql));
@@ -46,7 +47,7 @@ if (isset($_GET['deliv_id'])) {
 	while ($row = mysqli_fetch_assoc($result_getToys)) {
 		if($row['verification'] == 1){
 			$product_code = $row['product_code'];
-			$sql_updateInventory = "UPDATE INVENTORY SET status='Availale' WHERE product_code='$product_code'";
+			$sql_updateInventory = "UPDATE INVENTORY SET status='Available', last_modified=now() WHERE product_code='$product_code'";
 			mysqli_query($conn, $sql_updateInventory);
 		}
 	}
