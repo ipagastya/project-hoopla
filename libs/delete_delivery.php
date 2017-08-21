@@ -57,7 +57,8 @@ if (isset($_GET['deliv_id'])) {
 	if (mysqli_query($conn, $sql_deleteDelivToys) === FALSE) {
 		echo "Delete from delivery toys error";
 	}
-
+	$subs_id = $_POST['subs_id'];
+	header( "refresh:1;url=../subscription?page=1&subs_id=$subs_id" );
 }else{
 	header( "refresh:1;url=../subscription_list?page=1" );
 }
