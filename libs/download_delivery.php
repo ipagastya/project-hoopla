@@ -47,7 +47,7 @@
 
 		$resultArr = [];
 		
-		$querySub = "SELECT I.toy_name
+		$querySub = "SELECT I.toy_name, DT.verification
 				FROM DELIVERY_TOYS AS DT, INVENTORY AS I
 				WHERE DT.delivery_id = '$deliveryid'
 					AND DT.product_code = I.product_code";
@@ -59,6 +59,8 @@
 		    die(mysqli_connect_error());
 		}
 		
+		
+
 		$outputsub[] = $name;
 		$outputsub[] = $address;
 		$outputsub[] = $city;
@@ -66,16 +68,22 @@
 		$outputsub[] = "'".$home."'";
 		$outputsub[] = "'".$mobile."'";
 		$outputsub[] = $boxname;
+
+		$verified = "Verified";
 		while($rowSub = mysqli_fetch_row($resultSub)) {
 			$resultArr[] = $rowSub[0];
+			if($verified == 'Verified' && !($rowSub[1])) {
+				$verified = 'Unverified';
+			}
 		}
 		$outputsub[] = implode (", ", $resultArr);
 		$outputsub[] = $date;
+		$outputsub[] = $verified;
 		$output[] = $outputsub;
 	}
 
 	$num_fields = mysqli_num_fields($result);
-	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Delivery Date");
+	$headers = array("Name", "Address", "City", "Province", "Home Phone", "Mobile Phone", "Box Name", "Toys", "Delivery Date", "Status");
 	$type = array("Type", "Delivery Report");
 	$date = array("Date", $datestart." to ".$dateend);
 	$name = "delivery_report_".$datestart."to".$dateend;
