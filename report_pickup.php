@@ -38,9 +38,9 @@
 
 		if(isset($_GET['start-date']) && $_GET['start-date']){
 			$datestart = $_GET['start-date'];
-			//$dateend = new DateTime($datestart);
-			//date_add($dateend, date_interval_create_from_date_string('7 days'));
-			//$dateend = date_format($dateend,"Y-m-d");
+			$dateend = new DateTime($datestart);
+			date_add($dateend, date_interval_create_from_date_string('7 days'));
+			$dateend = date_format($dateend,"Y-m-d");
 
 			$start = true;
 			$filter = true;
@@ -48,6 +48,12 @@
 		if (isset($_GET['end-date']) && $_GET['end-date']) {
 			$dateend = $_GET['end-date'];
 			
+			if(!($start)) {
+				$datestart = new DateTime($dateend);
+				date_sub($datestart, date_interval_create_from_date_string('7 days'));
+				$datestart = date_format($datestart,"Y-m-d");
+			}
+
 			$end = true;
 			$filter = true;
 		}
