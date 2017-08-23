@@ -6,7 +6,7 @@
 					<center><h2 class="leckerli">View Inventory</h2></center>
 				</div>
 				<div class="container">
-					<form class="form-horizontal" method="post" action="./inventory">
+					<form class="form-horizontal" method="post" action="./inventory"  enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
@@ -189,6 +189,13 @@
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="upload">Instruction Card File :</label>
+							<div class="col-sm-5">
+								<input type="file" id="upload" name="upload">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
 						<br>
 						<div class="form-group">
 							<div class="col-sm-4"></div>
@@ -339,14 +346,14 @@
 							/*for last modified*/
 							date_default_timezone_set('Asia/Jakarta');
 							$today_date = date('y-m-d H:i:s');
-
 							$adminID = $_SESSION['adminID'];
-
 							$updtquery = "	UPDATE INVENTORY
 											SET toy_name= '$toy_name', manufacturer= '$manufacturer', status= '$status', return_date= '$return', battery= '$battery', category_1= '$category_1', category_2= '$category_2', manufacturing_age= '$mf_age', age_lower= '$age_lower', age_upper= '$age_upper', fine_motor= '$fine_motor', linguistic= '$linguistic',cognitive= '$cognitive', social_emotional= '$social_emotional', imagination= '$imagination', practical= '$practical_life', acquisition_price= '$acquisition_price', retail_price= '$retail_price', retail_store= '$retail_store', last_modified = '$today_date', modified_by = '$adminID'
 											WHERE product_code= '$product_code'";
 
 							$updtresult = mysqli_query($conn, $updtquery);
+							//For Upload File Instruction Card
+							include"libs/upload_instruction_card.php";
 							if($updtresult){
 								echo"<script>
 									alert('Update Inventory Success');

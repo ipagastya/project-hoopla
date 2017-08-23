@@ -55,31 +55,13 @@
 					<div class="col-sm-4"></div>
 				</div>
 			</form>
-			<!--fORM UPLOAD INSTRUCTION-->
-			<form class="form-horizontal collapse" id="form-upload" method="post" action="libs/upload_instruction_card" enctype="multipart/form-data"><br>
-				<input type="hidden" name="page" value="1" /> 
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="upload">Instruction Card File :</label>
-					<div class="col-sm-3">
-						<input type="file" id="upload" name="upload">
-					</div>
-					<div class="col-sm-7"></div>
-				</div>
-				<br>
-				<div class="form-group">
-					<div class="col-sm-3"></div>
-					<button class="greenbutton control-label col-sm-2" type="submit" name="uploadsubmit" id="uploadsubmit"><center>Submit</center></button>
-				</div>
-			</form>
 			<div align="right">
 				<div class="btn-group" >
 					<button class="filterbtn" data-toggle="collapse" data-target="#form-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
 					<a href="inventory_create"><button class="addbutton" type="button"><span class="glyphicon glyphicon-plus"></span> Add Inventory</button></a>
-					<button class="addbutton" data-toggle="collapse" data-target="#form-upload"><span class="glyphicon glyphicon-upload"></span> Upload</button>
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<!--============================-->
 	<div class="container">
