@@ -380,6 +380,7 @@
 								<th>Activities</th>
 								<th>Status</th>
 								<th>Notes</th>
+								<th>Details</th>
 							</tr>
 							<?php
 								include"config.php";
@@ -401,11 +402,13 @@
 		        					$queryAct = "SELECT activity_name FROM INVENTORY_ACTIVITY WHERE activity_id = '".$row['activity_id']."'";
 		        					$resultAct = mysqli_query($conn, $queryAct);
 		        					$rowAct = mysqli_fetch_row($resultAct);
+		        					$cardID= $row['card_id'];
 		        					echo "<tr>
 						        			<td>".$row['date']."</td>
 						        			<td>".$rowAct[0]."</td>
 						        			<td>".$row['Status']."</td>
 						        			<td>".$row['note']."</td>
+						        			<td>"."<a method='get' href='inventory_card_edit?page=1&card=$cardID&id=$inventory_id' class='btn btn-default' name='editCard'>Edit</a>"."</td>
 						        		</tr>";
 		        				}
 		        				$resultFull = mysqli_query($conn , $query);
