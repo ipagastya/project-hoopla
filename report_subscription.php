@@ -1,25 +1,7 @@
 <?php
 	require('header.php');
 	include "config.php";
-
-	$queryTest = "SELECT *
-			FROM MONTH AS M
-			WHERE MONTH(NOW()) = M.month AND YEAR(NOW()) = M.year";
-				
-	$resultTest = mysqli_query($conn, $queryTest);                          
-
-	if(!$resultTest) {
-		print("Couldn't execute test query");
-		die(mysqli_connect_error());
-	}
-
-	if(mysqli_num_rows($resultTest) < 1) {
-		$queryInsert = "INSERT INTO MONTH VALUES (DEFAULT, MONTH(NOW()), YEAR(NOW()))";
-		if(!($resultInsert = mysqli_query($conn, $queryInsert))){
-			print("Month Error");
-			die(mysqli_connect_error());
-               	}
-	}
+	include "libs/month_update.php";	
 ?>
 <div class="jumbotron">
 	<center>
@@ -87,6 +69,15 @@
 					    die(mysqli_connect_error());
 					} else if(!$resultFull) {
 					    print("Couldn't execute complete subscription query");
+					    die(mysqli_connect_error());
+					}
+
+					if(!$result1) {
+					    print("Couldn't execute expiry query 1");
+					    die(mysqli_connect_error());
+					}
+					if(!$result2) {
+					    print("Couldn't execute complete expiry query 2");
 					    die(mysqli_connect_error());
 					}
 
