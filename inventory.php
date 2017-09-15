@@ -95,6 +95,25 @@
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
+							<label class="control-label col-sm-4" for="cat2">Toy Category 3 :</label>
+							<div class="col-sm-5">
+								<select class="form-control selectpicker" data-live-search="true" id="cat3" name="cat3">
+									<option>--No Category--</option>
+								<?php
+									include "config.php";
+									$query = "SELECT * FROM CATEGORY";
+									$result = mysqli_query($conn,$query);
+									while($row = mysqli_fetch_row($result))
+							        {
+							        	echo "<option value='".$row[0]."'>".$row[1]."</option>";
+							        }
+								?>
+								</select>
+							
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
 							<label class="control-label col-sm-4" for="mfage">Manufacturing Age :</label>
 							<div class="col-sm-5">
 								<input type="text" class="form-control" id="mfage" name="mfage">
@@ -212,7 +231,7 @@
 						include "config.php";
 						$inventory_id = $_GET['id'];
 						/*QUERY AND ECHO FOR INPUT AND DROPDOWN FORM*/
-						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store,battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,product_code
+						$query = "SELECT toy_name,status,return_date,manufacturer,category_1,category_2,manufacturing_age,age_lower,age_upper,acquisition_price,retail_price,retail_store,battery,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,product_code,category_3
 						FROM INVENTORY 
 						WHERE inventory_id=$inventory_id";
 						$result = mysqli_query($conn, $query);
@@ -226,6 +245,7 @@
 							document.getElementById('manufacturer').value='".$row[3]."';
 							document.getElementById('cat1').value='".$row[4]."';
 							document.getElementById('cat2').value='".$row[5]."';
+							document.getElementById('cat3').value='".$row[20]."';
 							document.getElementById('mfage').value='".$row[6]."';
 							document.getElementById('hooplaage').value='".$row[7]."-".$row[8]."';
 							document.getElementById('acquisition').value='".$row[9]."';
@@ -250,6 +270,7 @@
 							$battery = $_POST["batteryopt"];
 							$category_1 = $_POST["cat1"];
 							$category_2 = $_POST["cat2"];
+							$category_3 = $_POST["cat3"];
 							$mf_age = $_POST["mfage"];
 							$hoopla_age = $_POST["hooplaage"];
 							$fine_motor = $_POST["motorskill"];
@@ -282,6 +303,9 @@
 							if($category_2 == "--No Category--"){
 								$category_2 = NULL;
 							}
+							if($category_3 == "--No Category--"){
+								$category_3 = NULL;
+							}
 
 							/*Category Id Search*/
 							if($category_1 != "--No Category--"){
@@ -297,6 +321,14 @@
 								$resultCat2 = mysqli_query($conn, $searchqueryCat2);
 								while($row2 = mysqli_fetch_row($resultCat2)){
 									$category_2 = $row2[0];
+								}
+								
+							}
+							if($category_3 != "--No Category--"){
+								$searchqueryCat3 = "SELECT category_id FROM CATEGORY WHERE category_name = '".$category_3."'";
+								$resultCat3 = mysqli_query($conn, $searchqueryCat3);
+								while($row3 = mysqli_fetch_row($resultCat3)){
+									$category_3 = $row3[0];
 								}
 								
 							}
@@ -348,7 +380,7 @@
 							$today_date = date('y-m-d H:i:s');
 							$adminID = $_SESSION['adminID'];
 							$updtquery = "	UPDATE INVENTORY
-											SET toy_name= '$toy_name', manufacturer= '$manufacturer', status= '$status', return_date= '$return', battery= '$battery', category_1= '$category_1', category_2= '$category_2', manufacturing_age= '$mf_age', age_lower= '$age_lower', age_upper= '$age_upper', fine_motor= '$fine_motor', linguistic= '$linguistic',cognitive= '$cognitive', social_emotional= '$social_emotional', imagination= '$imagination', practical= '$practical_life', acquisition_price= '$acquisition_price', retail_price= '$retail_price', retail_store= '$retail_store', last_modified = '$today_date', modified_by = '$adminID'
+											SET toy_name= '$toy_name', manufacturer= '$manufacturer', status= '$status', return_date= '$return', battery= '$battery', category_1= '$category_1', category_2= '$category_2', category_3= '$category_3', manufacturing_age= '$mf_age', age_lower= '$age_lower', age_upper= '$age_upper', fine_motor= '$fine_motor', linguistic= '$linguistic',cognitive= '$cognitive', social_emotional= '$social_emotional', imagination= '$imagination', practical= '$practical_life', acquisition_price= '$acquisition_price', retail_price= '$retail_price', retail_store= '$retail_store', last_modified = '$today_date', modified_by = '$adminID'
 											WHERE product_code= '$product_code'";
 
 							$updtresult = mysqli_query($conn, $updtquery);
