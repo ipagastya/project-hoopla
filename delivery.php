@@ -169,7 +169,10 @@ $subscription = mysqli_fetch_assoc($result_subs);
 			<div class="col-sm-5">
 				<input type="number" class="form-control" id="age" value="<?=$baby_age?>" name="age" readonly>
 			</div>
-			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<input type="checkbox" id="ignore-age" name="ignore-age" value="ignore"> Ignore Baby Age<br>
+			</div>
+			<div class="col-sm-3"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="name">Baby's Name :</label>
@@ -282,7 +285,10 @@ $subscription = mysqli_fetch_assoc($result_subs);
 					<option value="" disabled>Select Toy</option>
 				</select>
 			</div>
-			<div class="col-sm-5"></div>
+			<div class="col-sm-3">
+				<input type="checkbox" id="ignore-history" name="ignore-history" value="ignore"> Ignore delivery history<br>
+			</div>
+			<div class="col-sm-2"></div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-2"></div>
@@ -311,19 +317,27 @@ $subscription = mysqli_fetch_assoc($result_subs);
 				}
 			});
 		});
-		$("#select-category, #select-skill, #select-location, #deliv-date").change(function(){
+		$("#select-category, #select-skill, #select-location, #deliv-date, #ignore-age, #ignore-history").change(function(){
 			$("#select-toy").empty().selectpicker('refresh');
 			var category = $("#select-category").selectpicker('val');
 			var skill = $("#select-skill").selectpicker('val');
 			var location = $("#select-location").selectpicker('val');
 			var date = $("#deliv-date").val();
+			if ($("#ignore-age").is(":checked"))
+			{
+				var ignore_age = true
+			}
+			if ($("#ignore-history").is(":checked"))
+			{
+				var ignore_history = true
+			}
 			if(!location){
 				location = 'jabodetabek';
 			}
 			var age = $("#age").val();
 			$.ajax({
 				type: "POST",
-				data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>, location:location, date:date},
+				data: {category:category, skill:skill, age:age, cust_id:<?="$cust_id"?>, location:location, date:date, ignore_history:ignore_history, ignore_age:ignore_age},
 				url: "select_category.php",
 				success: function(response){
 					$("#select-toy").html(response).selectpicker('refresh');

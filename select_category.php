@@ -14,8 +14,17 @@ $tambahanDate = "OR (DL.pickup_date <= '$before_date')";
 $table = "INVENTORY AS I";
 $tambahanDate = "";
 }
-//age
-$sql = "SELECT * FROM $table WHERE ('$age' BETWEEN age_lower AND age_upper)";
+
+// tambahan constraint
+$check_track = "AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id')";
+$check_age = "AND ('$age' BETWEEN age_lower AND age_upper)";
+if (isset($_POST['ignore_age'])) {
+	$check_age = "";
+}
+if (isset($_POST['ignore_history'])) {
+	$check_track = "";
+}
+
 
 // skill
 if (isset($_POST['location'])) {
@@ -23,7 +32,7 @@ if (isset($_POST['location'])) {
 }else{
 	$location = "jabodetabek";
 }
-
+$sql = "SELECT * FROM $table WHERE location = '$location'";
 
 if (isset($_POST['skill']) && $_POST['skill']) {
 	$sql = $sql." AND (";
@@ -72,7 +81,7 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." AND toy_name NOT IN (SELECT toy_name FROM TOYS_TRACKING AS T JOIN INVENTORY AS J ON T.product_code = J.product_code WHERE customer_id = '$cust_id') AND (I.status = 'available' $tambahanDate) AND location = '$location' GROUP BY toy_name ORDER BY I.status ASC, toy_name ASC;";
+$sql = $sql." $check_track AND (I.status = 'available' $tambahanDate) $check_age GROUP BY toy_name ORDER BY I.status ASC, toy_name ASC;";
 
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
