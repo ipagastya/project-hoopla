@@ -18,6 +18,7 @@
 					<th>No</th>
 					<th>Customer's Name</th>
 					<th>Baby's Name</th>
+					<th>Baby's Gender</th>
 					<th>Baby's Date of Birth</th>
 					<th>Baby's Age</th>
 					<th>Details</th>
@@ -27,7 +28,7 @@
 					include "config.php";
 					$offset = ($_GET['page'] - 1) * 10;
 					
-                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_dob FROM CUSTOMER AS c";
+                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_gender, c.baby_dob FROM CUSTOMER AS c";
                             $result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");                          
 							$resultFull = mysqli_query($conn , $query);
 						   if(!$result){
@@ -36,7 +37,7 @@
                             }
                             while($row = mysqli_fetch_row($result)){
 
-								$from = new DateTime($row[3]);
+								$from = new DateTime($row[4]);
 								$to   = new DateTime('today');
 								$diff = $from->diff($to);
                                 $months = ($diff-> m) + 12 * $diff-> y ;
@@ -44,13 +45,14 @@
 											echo"<td>" . $row[1] . "<br></td>";
 											echo"<td>" . $row[2] . "<br></td>";
 											echo"<td>" . $row[3] . "<br></td>";
+											echo"<td>" . $row[4] . "<br></td>";
 											echo"<td>" . $months . " months<br></td>";
 											echo"<td>"."<a method='get' href='customer_view?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td></tr></tbody>";
                             } 
 				?>
 			</table>
 		</div>
-	<!-- belom ada pagination -->
+	<!-- pagination -->
 		<div>
 			<ul class="pagination pagination-sm">
 				<?php

@@ -8,59 +8,69 @@
 <div class="container">
 		<form class="form-horizontal" method="post" action="./customer.php">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="customerID">Customer's Name :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="customerID">Customer's Name :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="customerID" name="customerID" placeholder="Customer's Name" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="babyID">Baby's Name :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="babyID">Baby's Name :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="babyID" name="babyID" placeholder="Baby's Name" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="status">Baby's Gender :</label>
+			<div class="col-sm-2 radio">
+				<label><input type="radio" value="Male" id="babyGenderID" name="babyGenderID" required>Male</label>
+			</div>
+			<div class="col-sm-2 radio">
+				<label><input type="radio" value="Female" id="babyGenderID" name="babyGenderID">Female</label>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="dobID">Baby's Date of Birth :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="dobID">Baby's Date of Birth :</label>
+				<div class="col-sm-4">
 					<input type="date" class="form-control" id="dobID" name="dobID" placeholder="YYYY-MM-DD" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="numberID">Home Number / Mobile Number (WA) :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="numberID">Home Number / Mobile Number (WA) :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="homeNumberID" name="homeNumberID" placeholder="Home Number" required>
 				</div>
-				<div class="col-sm-5">
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="mobileNumberID" name="mobileNumberID" placeholder="Mobile Number" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="lineID">Line ID :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="lineID">Line ID :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="lineID" name="lineID" placeholder="Line ID">
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Email :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="email">Email :</label>
+				<div class="col-sm-4">
 					<input type="email" class="form-control" id="emailID" name="emailID" placeholder="Email" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="address">Address :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="address">Address :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="addressID" name="addressID" placeholder="Address" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="province">Province :</label>
-				<div class="col-sm-5">	
+				<label class="control-label col-sm-4" for="province">Province :</label>
+				<div class="col-sm-4">	
 					<select class="form-control selectpicker show-tick" data-live-search="true" id="provinceID" name="provinceID" required>
 						<option value='' >Select Province</option>
 						<?php
@@ -95,37 +105,37 @@
 				            ?>
 					</select>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="city">City :</label>
-				<div class="col-sm-5">	
+				<label class="control-label col-sm-4" for="city">City :</label>
+				<div class="col-sm-4">	
 					<select class="form-control selectpicker show-tick" data-live-search="true" id="cityID" name="cityID" required>
 						<option value=''>Select City</option>
 					</select>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="zip">ZIP :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="zip">ZIP :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="zipID" name="zipID" placeholder="ZIP Code" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="favorite">Favorite/Least Favorite Toys :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="favorite">Favorite/Least Favorite Toys :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="favoriteID" name="favoriteID" placeholder="Favorite" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="milestone">Milestones to be developed :</label>
-				<div class="col-sm-5">
+				<label class="control-label col-sm-4" for="milestone">Milestones to be developed :</label>
+				<div class="col-sm-4">
 					<input type="text" class="form-control" id="milestoneID" name="milestoneID" placeholder="Milestones" required>
 				</div>
-				<div class="col-sm-5"></div>
+				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-4"></div>
@@ -144,6 +154,7 @@
 		{
         		$customerID = $_POST["customerID"];
         		$babyID = $_POST["babyID"];
+				$babyGenderID = $_POST["babyGenderID"];
         		$dobID = $_POST["dobID"];
 				$homeNumberID = $_POST["homeNumberID"];
 				$mobileNumberID = $_POST["mobileNumberID"];
@@ -156,8 +167,8 @@
 				$favoriteID = $_POST["favoriteID"];
 				$milestoneID = $_POST["milestoneID"];
 
-               	$query = "INSERT INTO CUSTOMER(cust_name,baby_name,baby_dob,phone_home,phone_mobile,line_id,email,address,city_id,province_id,zip_code,favorite_toys,milestones) 
-						VALUES('$customerID','$babyID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
+               	$query = "INSERT INTO CUSTOMER(cust_name,baby_name,baby_gender,baby_dob,phone_home,phone_mobile,line_id,email,address,city_id,province_id,zip_code,favorite_toys,milestones) 
+						VALUES('$customerID','$babyID','$babyGenderID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
 						
                	if($result = mysqli_query($conn, $query)){
 					print "<script>alert('Customer Telah Berhasil Didaftarkan');
