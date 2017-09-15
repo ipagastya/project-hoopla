@@ -76,6 +76,7 @@
 						<th>Manufacturer</th>
 						<th>Toy Category 1</th>
 						<th>Toy Category 2</th>
+						<th>Toy Category 3</th>
 						<th>Hoopla Age</th>
 						<th>Status</th>
 						<th>Details</th>
@@ -181,7 +182,10 @@
 			        	$queryName2 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[8]."'";
 			        	$resultName2 = mysqli_query($conn, $queryName2);
 			        	$rowName2 = mysqli_fetch_row($resultName2);
-			        	$queryIDAdmin = "SELECT username FROM ADMIN WHERE admin_id = '".$row[24]."'";
+			        	$queryName3 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[9]."'";
+			        	$resultName3 = mysqli_query($conn, $queryName3);
+			        	$rowName3 = mysqli_fetch_row($resultName3);
+			        	$queryIDAdmin = "SELECT username FROM ADMIN WHERE admin_id = '".$row[25]."'";
 			        	$resultIDAdmin = mysqli_query($conn, $queryIDAdmin);
 			        	$rowUser = mysqli_fetch_row($resultIDAdmin);
 			        	echo "<tr>
@@ -190,11 +194,12 @@
 			        			<td>".$row[3]."</td>
 			        			<td>".$rowName1[0]."</td>
 			        			<td>".$rowName2[0]."</td>
-			        			<td>".$row[10]."-".$row[11]."</td>
+			        			<td>".$rowName3[0]."</td>
+			        			<td>".$row[11]."-".$row[12]."</td>
 			        			<td>".$row[4]."</td>
 			        			<td>"."<a method='get' href='inventory?page=1&id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        			<td><a href='libs/download_instruction_card.php?link=$row[2].pdf' class='btn btn-default'>Download</a></td>
-			        			<td><h6>".$row[23]." By ".$rowUser[0]."</h6></td>
+			        			<td><h6>".$row[24]." By ".$rowUser[0]."</h6></td>
 			        		</tr>";
 			        }
 			        $resultFull = mysqli_query($conn , $query);
