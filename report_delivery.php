@@ -1,27 +1,7 @@
 <?php
 	require('header.php');
 	include "config.php";
-
-	$queryTest = "SELECT *
-			FROM MONTH AS M
-			WHERE MONTH(NOW()) = M.month AND YEAR(NOW()) = M.year";
-				
-	$resultTest = mysqli_query($conn, $queryTest);
-
-	if(!$resultTest) {
-		print("Couldn't execute test query");
-		die(mysqli_connect_error());
-	}
-
-	if(mysqli_num_rows($resultTest) < 1) {
-		$queryInsert = "INSERT INTO MONTH VALUES (DEFAULT, MONTH(NOW()), YEAR(NOW()))";
-		if(!($resultInsert = mysqli_query($conn, $queryInsert))){
-			print("Month Error");
-			die(mysqli_connect_error());
-               	}
-	}
-
-	
+	include "libs/month_update.php";	
 ?>
 <div class="jumbotron">
 	<center>
@@ -33,14 +13,33 @@
 		date_add($dateend, date_interval_create_from_date_string('7 days'));
 		$dateend = date_format($dateend,"Y-m-d");
 		$filter = false;
+		$start = false;
+		$end = false;
 
 		if(isset($_GET['start-date']) && $_GET['start-date']){
 			$datestart = $_GET['start-date'];
+			$dateend = new DateTime($datestart);
+			date_add($dateend, date_interval_create_from_date_string('7 days'));
+			$dateend = date_format($dateend,"Y-m-d");
+
+			$start = true;
 			$filter = true;
 		}
 		if (isset($_GET['end-date']) && $_GET['end-date']) {
 			$dateend = $_GET['end-date'];
+			
+			if(!($start)) {
+				$datestart = new DateTime($dateend);
+				date_sub($datestart, date_interval_create_from_date_string('7 days'));
+				$datestart = date_format($datestart,"Y-m-d");
+			}
+
+			$end = true;
 			$filter = true;
+		}
+
+		if($dateend < $datestart) {
+			$datestart = $dateend;
 		}
 	?>
 
@@ -96,6 +95,7 @@
 					<th class="text-center" rowspan="2">Box Name</th>
 					<th class="text-center" rowspan="2">Toys</th>
 					<th class="text-center" rowspan="2">Delivery Date</th>
+					<th class="text-center" rowspan="2">Status</th>
 				</tr>
 				<tr>
 					<th class="text-center">Name</th>
@@ -151,7 +151,7 @@
 						$boxname = $row[8];
 						$resultArr = [];
 						
-						$querySub = "SELECT I.toy_name
+						$querySub = "SELECT I.toy_name, DT.verification
 								FROM DELIVERY_TOYS AS DT, INVENTORY AS I
 								WHERE DT.delivery_id = '$deliveryid'
 									AND DT.product_code = I.product_code";
@@ -173,12 +173,16 @@
 							<td>$boxname</td>
 							<td>";
 						
+						$verified = 'Verified';
 						while($rowSub = mysqli_fetch_row($resultSub)) {
 							$resultArr[] = $rowSub[0];
+							if($verified == 'Verified' && !($rowSub[1])) {
+								$verified = 'Unverified';
+							}
 						}
 						echo implode (", ", $resultArr);
 
-						echo "</td><td>$date</td></tr>";
+						echo "</td><td>$date</td><td>$verified</td></tr>";
 					}
 				?>
 			</tbody>
@@ -202,9 +206,8 @@
                 } else {
                 	$pages = floor($rows / 10) + 1;
             	}
-            	if($filter) {
 
-            	} else {
+            	if($filter) {
 	            	if($pages > 1 && $page != 1) {
 	            		$prev = $page - 1;
 	            		echo "<li><a href='report_delivery?page=$prev&start-date=$datestart&end-date=$dateend'><</a></li>";
@@ -231,6 +234,35 @@
 	                if($pages > 1 && $page < $pages) {
 	            		$next = $page + 1;
 	            		echo "<li><a href='report_delivery?page=$next&start-date=$datestart&end-date=$dateend'>></a></li>";
+	            	}
+
+            	} else {
+	            	if($pages > 1 && $page != 1) {
+	            		$prev = $page - 1;
+	            		echo "<li><a href='report_delivery?page=$prev'><</a></li>";
+	            	} 
+
+	            	if($count != 1) {
+	            		echo "<li><a href='report_delivery?page=1'>1</a></li>";
+	            		echo "<li><a>...</a></li>";
+	            	}
+	            	while ($count <= $pages && $count <= ($page + 5)) {
+	            		if($count == $page) {
+	            			echo "<li class='active'><a href='report_delivery?page=$page'>$count</a></li>";
+	            		} else {
+	                		echo "<li><a href='report_delivery?page=$count'>$count</a></li>";
+	              		}
+	                	$count = $count + 1;
+	                }
+
+	                if($count != $pages + 1) {
+	                	echo "<li><a>...</a></li>";
+	                	echo "<li><a href='report_delivery?page=$pages'>$pages</a></li>";
+	                }
+
+	                if($pages > 1 && $page < $pages) {
+	            		$next = $page + 1;
+	            		echo "<li><a href='report_delivery?page=$next'>></a></li>";
 	            	}
 	            }
             ?>

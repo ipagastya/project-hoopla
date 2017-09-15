@@ -1,45 +1,45 @@
 <?php
 	require('header.php');
 	include "config.php";
-
-	$queryTest = "SELECT *
-			FROM MONTH AS M
-			WHERE MONTH(NOW()) = M.month AND YEAR(NOW()) = M.year";
-				
-	$resultTest = mysqli_query($conn, $queryTest);
-
-	if(!$resultTest) {
-		print("Couldn't execute test query");
-		die(mysqli_connect_error());
-	}
-
-	if(mysqli_num_rows($resultTest) < 1) {
-		$queryInsert = "INSERT INTO MONTH VALUES (DEFAULT, MONTH(NOW()), YEAR(NOW()))";
-		if(!($resultInsert = mysqli_query($conn, $queryInsert))){
-			print("Month Error");
-			die(mysqli_connect_error());
-               	}
-	}
-
-	
+	include "libs/month_update.php";	
 ?>
 <div class="jumbotron">
 	<center>
 	<br><br><h2 class="leckerli">Report</h2><br>
+	
 	<?php
 		$datestart = date_format(date_create(),"Y-m-d");
 		$dateend = date_create();
 		date_add($dateend, date_interval_create_from_date_string('7 days'));
 		$dateend = date_format($dateend,"Y-m-d");
 		$filter = false;
+		$start = false;
+		$end = false;
 
 		if(isset($_GET['start-date']) && $_GET['start-date']){
 			$datestart = $_GET['start-date'];
+			$dateend = new DateTime($datestart);
+			date_add($dateend, date_interval_create_from_date_string('7 days'));
+			$dateend = date_format($dateend,"Y-m-d");
+
+			$start = true;
 			$filter = true;
 		}
 		if (isset($_GET['end-date']) && $_GET['end-date']) {
 			$dateend = $_GET['end-date'];
+			
+			if(!($start)) {
+				$datestart = new DateTime($dateend);
+				date_sub($datestart, date_interval_create_from_date_string('7 days'));
+				$datestart = date_format($datestart,"Y-m-d");
+			}
+
+			$end = true;
 			$filter = true;
+		}
+
+		if($dateend < $datestart) {
+			$datestart = $dateend;
 		}
 	?>
 
@@ -202,8 +202,6 @@
                 	$pages = floor($rows / 10) + 1;
             	}
             	if($filter) {
-
-            	} else {
 	            	if($pages > 1 && $page != 1) {
 	            		$prev = $page - 1;
 	            		echo "<li><a href='report_pickup?page=$prev&start-date=$datestart&end-date=$dateend'><</a></li>";
@@ -230,6 +228,35 @@
 	                if($pages > 1 && $page < $pages) {
 	            		$next = $page + 1;
 	            		echo "<li><a href='report_pickup?page=$next&start-date=$datestart&end-date=$dateend'>></a></li>";
+	            	}
+
+            	} else {
+	            	if($pages > 1 && $page != 1) {
+	            		$prev = $page - 1;
+	            		echo "<li><a href='report_pickup?page=$prev'><</a></li>";
+	            	} 
+
+	            	if($count != 1) {
+	            		echo "<li><a href='report_pickup?page=1'>1</a></li>";
+	            		echo "<li><a>...</a></li>";
+	            	}
+	            	while ($count <= $pages && $count <= ($page + 5)) {
+	            		if($count == $page) {
+	            			echo "<li class='active'><a href='report_pickup?page=$page'>$count</a></li>";
+	            		} else {
+	                		echo "<li><a href='report_pickup?page=$count'>$count</a></li>";
+	              		}
+	                	$count = $count + 1;
+	                }
+
+	                if($count != $pages + 1) {
+	                	echo "<li><a>...</a></li>";
+	                	echo "<li><a href='report_pickup?page=$pages'>$pages</a></li>";
+	                }
+
+	                if($pages > 1 && $page < $pages) {
+	            		$next = $page + 1;
+	            		echo "<li><a href='report_pickup?page=$next'>></a></li>";
 	            	}
 	            }
             ?>

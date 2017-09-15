@@ -6,7 +6,7 @@
 					<center><h2 class="leckerli">Create Inventory</h2></center>
 				</div>
 				<div class="container">
-					<form class="form-horizontal" method="post" action="./inventory_create">
+					<form class="form-horizontal" method="post" action="./inventory_create" enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="toyname">Toy Name :</label>
 							<div class="col-sm-5">
@@ -189,6 +189,13 @@
 							</div>
 							<div class="col-sm-3"></div>
 						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4" for="upload">Instruction Card File :</label>
+							<div class="col-sm-5">
+								<input type="file" id="upload" name="upload">
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
 						<br>
 						<div class="form-group">
 							<div class="col-sm-4"></div>
@@ -331,6 +338,8 @@
 							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store','$today_date','$adminID');";
 
 					$result = mysqli_query($conn, $query);
+					//For Upload File Instruction Card
+					include"libs/upload_instruction_card.php";
 					if($result){
 						echo"<script>alert('Successfully Added Inventory');</script>";
 					}
