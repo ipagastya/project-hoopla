@@ -72,15 +72,6 @@
 					    die(mysqli_connect_error());
 					}
 
-					if(!$result1) {
-					    print("Couldn't execute expiry query 1");
-					    die(mysqli_connect_error());
-					}
-					if(!$result2) {
-					    print("Couldn't execute complete expiry query 2");
-					    die(mysqli_connect_error());
-					}
-
 				while($row = mysqli_fetch_row($result)) {
 					echo "	<tr>
 							<td>".$row[0]."/".$row[1]."</td>
