@@ -28,7 +28,7 @@
 					include "config.php";
 					$offset = ($_GET['page'] - 1) * 10;
 					
-                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_gender, c.baby_dob FROM CUSTOMER AS c";
+                            $query = "SELECT c.cust_id, c.cust_name, c.baby_name, c.baby_gender, c.baby_dob FROM CUSTOMER AS c ORDER BY cust_id ASC";
                             $result = mysqli_query($conn, "$query LIMIT 10 OFFSET $offset");                          
 							$resultFull = mysqli_query($conn , $query);
 						   if(!$result){
