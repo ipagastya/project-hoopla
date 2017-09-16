@@ -26,8 +26,8 @@ require('header.php');
 <div class= "container-fluid">
 	<div class="container">
 		<br>
-		<div class="table-responsive">
-			<table class="table table-hover" id="tableID">
+		<div class="table-responsive" id= "tableID">
+			<table class="table table-hover">
 				<tr>
 					<th>No</th>
 					<th>Customer's Name</th>
@@ -65,7 +65,6 @@ require('header.php');
 				} 
 				?>
 			</table>
-		</div>
 		<!-- pagination -->
 		<div>
 			<ul class="pagination pagination-sm">
@@ -86,6 +85,7 @@ require('header.php');
 				}
 				?>
 			</ul>
+		</div>
 		</div>
 	</div>
 </div>
