@@ -145,7 +145,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 			<div class="col-sm-2">
-				<input type="date" class="form-control" id="refund-date" name="refund-date" required>
+				<input type="date" class="form-control" id="refund-date" name="refund-date">
 			</div>
 			<div class="col-sm-6"></div>
 		</div>

@@ -157,7 +157,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="refund-date">Deposit Refund Date :</label>
 					<div class="col-sm-2">
-						<input type="date" class="form-control" id="refund-date" name="refund-date" value=<?php echo date('Y-m-d',strtotime($row['deposit_refund'])) ?> required>
+						<input type="date" class="form-control" id="refund-date" name="refund-date" value=<?php echo date('Y-m-d',strtotime($row['deposit_refund'])) ?>>
 					</div>
 					<div class="col-sm-6"></div>
 				</div>
