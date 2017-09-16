@@ -77,26 +77,35 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 					<div class="col-sm-2">
 						<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="<?=number_format($row['subs_price'],2)?>">
 						<script src="libs/jquery/dist/jquery.min.js"></script>
-						<script>
-							$("input[name=plan]:radio").change(function () {
-								$("#sub-price").empty();
-								var currentPlan = $("input[name='plan']:checked").val();
-								var currentPromo = 0;
-								if(isNaN(currentPlan)) currentPlan = 0;
-								if(isNaN(currentPromo)) currentPromo = 0;
-								$.ajax({
-									type: "POST",
-									url: "libs/select_plan.php",
-									data: {plan: currentPlan,promo: currentPromo},
-									success: function(response){
-										$("#sub-price").val(response);
-									}
-								});
-							});
-						</script>
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah / Month</h4>
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="total-payment">Monthly Payment :</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control nominal-number" id="monthly-payment" name="monthly-payment" value="<?php
+						$monthly = $row['subs_price'] + $row['deliv_price'];
+						echo number_format("$monthly", 2);
+						?>" readonly>
+					</div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="total-payment">Total Payment :</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control nominal-number" id="total-payment" name="total-payment" value="<?php
+						$total_payment = ($row['subs_price'] + $row['deliv_price'])*$row['subs_plan'] - $row['subs_promo'];
+						echo number_format("$total_payment", 2);
+						?>" readonly>
+					</div>
+					<div class="col-sm-2">
+						<h4>Rupiah</h4>
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
@@ -344,6 +353,30 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							$(this).attr("placeholder", "Please input number")
 						}
 					})
+					$("input[name=plan]:radio, #sub-promo, #deliv-price").change(function () {
+						$("#sub-price").empty();
+						$("#total-payment").empty();
+						$('#monthly-payment').empty();
+						var currentPlan = $("input[name='plan']:checked").val();
+						var currentPromo = $('#sub-promo').val();
+						currentPromo = currentPromo.replace(",","")
+						var deliveryPrice = $('#deliv-price').val();
+						deliveryPrice = deliveryPrice.replace(",","")
+						if(isNaN(currentPlan)) currentPlan = 0;
+						if(isNaN(currentPromo)) currentPromo = 0;
+
+						$.ajax({
+							type: "POST",
+							url: "libs/select_plan.php",
+							data: {plan: currentPlan,promo: currentPromo, deliv:deliveryPrice},
+							success: function(response){
+								$("#sub-price").val(response['price']);
+								$("#total-payment").val(response['total']);
+								$('#monthly-payment').val(response['monthly']);
+							},
+							dataType:"json"
+						});
+					});
 				</script>
 				<?php
 			}

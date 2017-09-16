@@ -73,7 +73,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="sub-price">Subscription Price :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="0">
+				<input type="text" class="form-control nominal-number" id="sub-price" name="sub-price" value="0.00">
 				<?php
 	          //  require("config.php");
 	          //  $query = "SELECT st.price FROM subscription_type st WHERE st.type = " + $subs_type;
@@ -86,6 +86,26 @@ require_once("config.php");
 			</div>
 			<div class="col-sm-3" id="error-name"></div>
 			<div class="col-sm-1"></div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="total-payment">Monthly Payment :</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control nominal-number" id="monthly-payment" name="monthly-payment" value="0.00" readonly>
+			</div>
+			<div class="col-sm-2">
+				<h4>Rupiah</h4>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-4" for="total-payment">Total Payment :</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control nominal-number" id="total-payment" name="total-payment" value="0.00" readonly>
+			</div>
+			<div class="col-sm-2">
+				<h4>Rupiah</h4>
+			</div>
+			<div class="col-sm-4"></div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="toypermonth">No of Toys/Month :</label>
@@ -210,7 +230,12 @@ require_once("config.php");
 				$(this).attr("placeholder", "Please input number")
 			}
 		});
-		$("#customerName").change(function(){
+		$("#submit").click(function(){
+			if($("#customerName").val == ""){
+
+			}
+		});
+		$("input[name=plan]:radio, #sub-promo, #deliv-price, #customerName").change(function () {
 			$customer = $("#customerName").val();
 			var deliv_promo = 0;
 			if(isNaN(deliv_promo)) deliv_promo = 0;
@@ -220,29 +245,33 @@ require_once("config.php");
 				url: "libs/deliv_price.php",
 				success: function(response){
 					$("#deliv-price").val(response);
+					$("#sub-price").empty();
+					$("#total-payment").empty();
+					$('#monthly-payment').empty();
+					var currentPlan = $("input[name='plan']:checked").val();
+					var currentPromo = $('#sub-promo').val();
+					currentPromo = currentPromo.replace(",","")
+					var deliveryPrice = $('#deliv-price').val();
+					deliveryPrice = deliveryPrice.replace(",","")
+					alert(deliveryPrice);
+					if(isNaN(currentPlan)) currentPlan = 0;
+					if(isNaN(currentPromo)) currentPromo = 0;
+
+					$.ajax({
+						type: "POST",
+						url: "libs/select_plan.php",
+						data: {plan: currentPlan,promo: currentPromo, deliv:deliveryPrice},
+						success: function(response){
+							$("#sub-price").val(response['price']);
+							$("#total-payment").val(response['total']);
+							$('#monthly-payment').val(response['monthly']);
+						},
+						dataType:"json"
+					});
 				}
 			});
+			
 		});
-		$("#submit").click(function(){
-			if($("#customerName").val == ""){
-
-			}
-		});
-		$("input[name=plan]:radio").change(function () {
-			$("#sub-price").empty();
-			var currentPlan = $("input[name='plan']:checked").val();
-			currentPlan = currentPlan.replace(",", "");
-			var currentPromo = 0;
-			$.ajax({
-				type: "POST",
-				url: "libs/select_plan.php",
-				data: {plan: currentPlan,promo: currentPromo},
-				success: function(response){
-					$("#sub-price").val(response);
-				}
-			});
-		});
-
 
 	</script>
 
