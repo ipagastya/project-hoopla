@@ -253,7 +253,6 @@ require_once("config.php");
 					currentPromo = currentPromo.replace(",","")
 					var deliveryPrice = $('#deliv-price').val();
 					deliveryPrice = deliveryPrice.replace(",","")
-					alert(deliveryPrice);
 					if(isNaN(currentPlan)) currentPlan = 0;
 					if(isNaN(currentPromo)) currentPromo = 0;
 
