@@ -261,7 +261,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								</div>
 								<td class="row col-sm-5"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
 									<div class="col-sm-1"></div>
-									<?php if($row_deliv['status'] == 'rented' && $verified){ ?> 
+									<?php if(strtolower($row_deliv['status']) == 'rented' && $verified){ ?> 
 									<a class="btn btn-warning col-sm-4" id='btn-toys' href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
 									<div class="col-sm-1"></div>
 									<a class='btn btn-danger col-sm-3' id='btn-toys' href='libs/delete_delivery?deliv_id=<?=$deliv_id."&subs_id=".$subs_id ?>'><span class='glyphicon glyphicon-remove'></span> Delete</a>
