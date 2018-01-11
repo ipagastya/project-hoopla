@@ -259,6 +259,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 				<select class="form-control selectpicker" data-live-search="true" id="select-skill" data-actions-box="true" name="select-skill[]" multiple data-selected-text-format="count > 3">
 					<option value="" disabled>Select Category</option>
 					<option value="fine_motor">Fine Motor</option>
+					<option value="gross_motor">Gross Motor</option>
 					<option value="linguistic">Linguistic</option>
 					<option value="cognitive">Cognitive</option>
 					<option value="social_emotional">Social Emotional</option>

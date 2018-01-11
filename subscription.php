@@ -318,22 +318,6 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 					?>
 				</div>
 				<script>
-					$( document ).ready(function() {
-						<?php if($row['status'] == 'trial'){ ?>
-							$("#plan-time").hide();
-							$("input[name=plan]:radio").prop("required", false);
-							<?php } ?>
-							$("input[name=status]:radio").change(function () {
-								$status = $("input[name='status']:checked").val();
-								if ($status != "trial") {
-									$("#plan-time").show();
-									$("input[name=plan]:radio").prop("required", true);
-								}else{
-									$("#plan-time").hide();
-									$("input[name=plan]:radio").prop("required", false);
-								}
-							});
-						});
 					$(".nominal-number").change(function(){
 						$value = $(this).val()
 						if(!isNaN($value) && $value){
@@ -353,7 +337,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							$(this).attr("placeholder", "Please input number")
 						}
 					})
-					$("input[name=plan]:radio, #sub-promo, #deliv-price").change(function () {
+					$("input[name=plan]:radio").change(function () {
 						$("#sub-price").empty();
 						$("#total-payment").empty();
 						$('#monthly-payment').empty();
@@ -375,6 +359,42 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								$('#monthly-payment').val(response['monthly']);
 							},
 							dataType:"json"
+						});
+					});
+					$("#sub-price, #sub-promo, #sub-price, #deliv-price").change(function (){
+						$customer = $("#customerName").val();
+						var deliv_promo = 0;
+						if(isNaN(deliv_promo)) deliv_promo = 0;
+						$.ajax({
+							type: "POST",
+							data: {customer: $customer, promo: deliv_promo},
+							url: "libs/deliv_price.php",
+							success: function(response){
+								$("#deliv-price").val(response);
+								$("#sub-price").empty();
+								$("#total-payment").empty();
+								$('#monthly-payment').empty();
+								var currentPlan = $("input[name='plan']:checked").val();
+								var currentPromo = $('#sub-promo').val();
+								currentPromo = currentPromo.replace(/,/g, "")
+								var deliveryPrice = $('#deliv-price').val();
+								deliveryPrice = deliveryPrice.replace(/,/g, "");
+								var subPrice = $('#sub-price').val();
+								subPrice = subPrice.replace(/,/g, "");
+								if(isNaN(currentPlan)) currentPlan = 0;
+								if(isNaN(currentPromo)) currentPromo = 0;
+
+								$.ajax({
+									type: "POST",
+									url: "libs/select_plan.php",
+									data: {promo: currentPromo, deliv:deliveryPrice, subPrice:subPrice, time:currentPlan},
+									success: function(response){
+										$("#total-payment").val(response['total']);
+										$('#monthly-payment').val(response['monthly']);
+									},
+									dataType:"json"
+								});
+							}
 						});
 					});
 				</script>

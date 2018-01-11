@@ -17,34 +17,34 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="babyID">Baby's Name :</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="babyID" name="babyID" placeholder="Baby's Name" required>
+					<input type="text" class="form-control" id="babyID" name="babyID" placeholder="Baby's Name">
 				</div>
 				<div class="col-sm-4"></div>
 			</div>
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="status">Baby's Gender :</label>
 			<div class="col-sm-2 radio">
-				<label><input type="radio" value="Male" id="babyGenderID" name="babyGenderID" required>Male</label>
+				<label><input type="radio" value="M" id="babyGenderID" name="babyGenderID">Male</label>
 			</div>
 			<div class="col-sm-2 radio">
-				<label><input type="radio" value="Female" id="babyGenderID" name="babyGenderID">Female</label>
+				<label><input type="radio" value="F" id="babyGenderID" name="babyGenderID">Female</label>
 			</div>
 			<div class="col-sm-4"></div>
 		</div>
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="dobID">Baby's Date of Birth :</label>
 				<div class="col-sm-4">
-					<input type="date" class="form-control" id="dobID" name="dobID" placeholder="YYYY-MM-DD" required>
+					<input type="date" class="form-control" id="dobID" name="dobID" placeholder="YYYY-MM-DD">
 				</div>
 				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="numberID">Home Number / Mobile Number (WA) :</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="homeNumberID" name="homeNumberID" placeholder="Home Number" required>
+					<input type="text" class="form-control" id="homeNumberID" name="homeNumberID" placeholder="Home Number">
 				</div>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="mobileNumberID" name="mobileNumberID" placeholder="Mobile Number" required>
+					<input type="text" class="form-control" id="mobileNumberID" name="mobileNumberID" placeholder="Mobile Number">
 				</div>
 			</div>
 			<div class="form-group">
@@ -126,14 +126,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="favorite">Favorite/Least Favorite Toys :</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="favoriteID" name="favoriteID" placeholder="Favorite" required>
+					<input type="text" class="form-control" id="favoriteID" name="favoriteID" placeholder="Favorite">
 				</div>
 				<div class="col-sm-4"></div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="milestone">Milestones to be developed :</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="milestoneID" name="milestoneID" placeholder="Milestones" required>
+					<input type="text" class="form-control" id="milestoneID" name="milestoneID" placeholder="Milestones">
 				</div>
 				<div class="col-sm-4"></div>
 			</div>

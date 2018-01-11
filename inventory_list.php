@@ -185,7 +185,7 @@
 			        	$queryName3 = "SELECT category_name FROM CATEGORY WHERE category_id = '".$row[9]."'";
 			        	$resultName3 = mysqli_query($conn, $queryName3);
 			        	$rowName3 = mysqli_fetch_row($resultName3);
-			        	$queryIDAdmin = "SELECT username FROM ADMIN WHERE admin_id = '".$row[25]."'";
+			        	$queryIDAdmin = "SELECT username FROM ADMIN WHERE admin_id = '".$row[26]."'";
 			        	$resultIDAdmin = mysqli_query($conn, $queryIDAdmin);
 			        	$rowUser = mysqli_fetch_row($resultIDAdmin);
 			        	echo "<tr>
@@ -199,7 +199,7 @@
 			        			<td>".$row[4]."</td>
 			        			<td>"."<a method='get' href='inventory?page=1&id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td>
 			        			<td><a href='libs/download_instruction_card.php?link=$row[2].pdf' class='btn btn-default'>Download</a></td>
-			        			<td><h6>".$row[24]." By ".$rowUser[0]."</h6></td>
+			        			<td><h6>".$row[25]." By ".$rowUser[0]."</h6></td>
 			        		</tr>";
 			        }
 			        $resultFull = mysqli_query($conn , $query);

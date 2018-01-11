@@ -138,6 +138,16 @@
 							<div class="col-sm-3"></div>
 						</div>
 						<div class="form-group">
+							<label class="control-label col-sm-4" for="grossmotorskill">Gross Motor Skill :</label>
+							<div class="col-sm-5">
+								<select class="form-control" id="grossmotorskill" name="grossmotorskill">
+								    <option>Yes</option>
+								    <option>No</option>
+								 </select>
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						<div class="form-group">
 							<label class="control-label col-sm-4" for="linguisticskill">Linguistic Skill :</label>
 							<div class="col-sm-5">
 								<select class="form-control" id="linguisticskill" name="linguisticskill">
@@ -241,6 +251,7 @@
 				$mf_age = $_POST["mfage"];
 				$hoopla_age = $_POST["hooplaage"];
 				$fine_motor = $_POST["motorskill"];
+				$gross_motor = $_POST["grossmotorskill"];
 				$linguistic = $_POST["linguisticskill"];
 				$cognitive = $_POST["cognitiveskill"];
 				$social_emotional = $_POST["socialskill"];
@@ -329,6 +340,12 @@
 						$fine_motor = false;
 					}
 
+					if($gross_motor =="Yes"){
+						$gross_motor = true;
+					}else{
+						$gross_motor = false;
+					}
+
 					if($linguistic =="Yes"){
 						$linguistic = true;
 					}else{
@@ -362,8 +379,8 @@
 					date_default_timezone_set('Asia/Jakarta');
 					$today_date = date('y-m-d H:i:s');
 					$adminID = $_SESSION['adminID'];
-					$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,category_3,manufacturing_age,age_lower,age_upper,fine_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store,last_modified,modified_by) 
-							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$category_3','$mf_age','$age_lower','$age_upper','$fine_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store','$today_date','$adminID');";
+					$query = "INSERT INTO INVENTORY(product_code,toy_name,manufacturer,status,return_date,battery,category_1,category_2,category_3,manufacturing_age,age_lower,age_upper,fine_motor,gross_motor,linguistic,cognitive,social_emotional,imagination,practical,acquisition_price,retail_price,retail_store,last_modified,modified_by) 
+							VALUES('$product_code','$toy_name','$manufacturer','$status','$return','$battery','$category_1','$category_2','$category_3','$mf_age','$age_lower','$age_upper','$fine_motor','$gross_motor','$linguistic','$cognitive','$social_emotional','$imagination','$practical_life','$acquisition_price','$retail_price','$retail_store','$today_date','$adminID');";
 
 					$result = mysqli_query($conn, $query);
 					//For Upload File Instruction Card

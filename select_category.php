@@ -61,6 +61,9 @@ if (isset($_POST['skill']) && $_POST['skill']) {
 		elseif ($value == "practical") {
 			$sql = $sql." practical = '1'";
 		}
+		elseif ($value == "gross_motor") {
+			$sql = $sql." gross_motor = '1'";
+		}
 	}
 	$sql = $sql.")";
 }

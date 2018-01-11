@@ -45,7 +45,7 @@ require_once("config.php");
 		<div class="form-group" id="plan-time">
 			<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
 			<div class="col-sm-2 radio">
-				<label><input type="radio" value="1" name="plan" required>1 Month</label>
+				<label><input type="radio" value="1" name="plan" checked required>1 Month</label>
 			</div>
 			<div class="col-sm-2 radio">
 				<label><input type="radio" value="3" name="plan">3 Months</label>
@@ -197,20 +197,7 @@ require_once("config.php");
 	</div>
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script>
-		$( document ).ready(function() {
-			$("#plan-time").hide();
-			$("input[name=plan]:radio").prop("required", false);
-			$("input[name=status]:radio").change(function () {
-				$status = $("input[name='status']:checked").val();
-				if ($status != "trial") {
-					$("#plan-time").show();
-					$("input[name=plan]:radio").prop("required", true);
-				}else{
-					$("#plan-time").hide();
-					$("input[name=plan]:radio").prop("required", false);
-				}
-			});
-		});
+		
 		$(".nominal-number").change(function(){
 			$value = $(this).val();
 			if(!isNaN($value) && $value){
@@ -235,7 +222,7 @@ require_once("config.php");
 
 			}
 		});
-		$("input[name=plan]:radio, #sub-promo, #deliv-price, #customerName").change(function () {
+		$("input[name=plan]:radio").change(function () {
 			$customer = $("#customerName").val();
 			var deliv_promo = 0;
 			if(isNaN(deliv_promo)) deliv_promo = 0;
@@ -269,9 +256,43 @@ require_once("config.php");
 					});
 				}
 			});
-			
 		});
+		$("#sub-price, #sub-promo, #sub-price, #deliv-price").change(function (){
+			$customer = $("#customerName").val();
+			var deliv_promo = 0;
+			if(isNaN(deliv_promo)) deliv_promo = 0;
+			$.ajax({
+				type: "POST",
+				data: {customer: $customer, promo: deliv_promo},
+				url: "libs/deliv_price.php",
+				success: function(response){
+					$("#deliv-price").val(response);
+					$("#sub-price").empty();
+					$("#total-payment").empty();
+					$('#monthly-payment').empty();
+					var currentPlan = $("input[name='plan']:checked").val();
+					var currentPromo = $('#sub-promo').val();
+					currentPromo = currentPromo.replace(/,/g, "")
+					var deliveryPrice = $('#deliv-price').val();
+					deliveryPrice = deliveryPrice.replace(/,/g, "");
+					var subPrice = $('#sub-price').val();
+					subPrice = subPrice.replace(/,/g, "");
+					if(isNaN(currentPlan)) currentPlan = 0;
+					if(isNaN(currentPromo)) currentPromo = 0;
 
+					$.ajax({
+						type: "POST",
+						url: "libs/select_plan.php",
+						data: {promo: currentPromo, deliv:deliveryPrice, subPrice:subPrice, time:currentPlan},
+						success: function(response){
+							$("#total-payment").val(response['total']);
+							$('#monthly-payment').val(response['monthly']);
+						},
+						dataType:"json"
+					});
+				}
+			});
+		});
 	</script>
 
 	<?php
