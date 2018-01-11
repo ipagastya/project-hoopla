@@ -61,7 +61,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="sub-promo">Subscription Promo :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="sub-promo" name="sub-promo" value="0" required>
+				<input type="text" class="form-control nominal-number" id="sub-promo" name="sub-promo" value="0.00" required>
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -90,7 +90,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="total-payment">Monthly Payment :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="monthly-payment" name="monthly-payment" value="0.00" readonly>
+				<input type="text" class="form-control nominal-number" id="monthly-payment" name="monthly-payment" value="0.00">
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -100,7 +100,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="total-payment">Total Payment :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="total-payment" name="total-payment" value="0.00" readonly>
+				<input type="text" class="form-control nominal-number" id="total-payment" name="total-payment" value="0.00">
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -125,7 +125,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="deliv-promo">Delivery Promo :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="deliv-promo" value="0" name="deliv-promo" required>
+				<input type="text" class="form-control nominal-number" id="deliv-promo" value="0.00" name="deliv-promo" required>
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -135,7 +135,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="deliv-price">Delivery Price :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="deliv-price" value="0" name="deliv-price" required>
+				<input type="text" class="form-control nominal-number" id="deliv-price" value="0.00" name="deliv-price" required>
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -145,7 +145,7 @@ require_once("config.php");
 		<div class="form-group">
 			<label class="control-label col-sm-4" for="deposit">Deposit Amount :</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control nominal-number" id="deposit" value="0" name="deposit" required>
+				<input type="text" class="form-control nominal-number" id="deposit" value="0.00" name="deposit" required>
 			</div>
 			<div class="col-sm-2">
 				<h4>Rupiah</h4>
@@ -197,100 +197,130 @@ require_once("config.php");
 	</div>
 	<script src="libs/jquery/dist/jquery.min.js"></script>
 	<script>
-		
-		$(".nominal-number").change(function(){
-			$value = $(this).val();
-			if(!isNaN($value) && $value){
-				$tag = this;
-				$.ajax({
-					type: "POST",
-					data: {nominal: $value},
-					url: "libs/nominal.php",
-					success: function(response){
-						$value = response;
-						$($tag).val(response);
-					}
-				});
-			}
-			else{
-				$(this).val("");
-				$(this).attr("placeholder", "Please input number")
-			}
-		});
-		$("#submit").click(function(){
-			if($("#customerName").val == ""){
-
-			}
-		});
-		$("input[name=plan]:radio").change(function () {
-			$customer = $("#customerName").val();
-			var deliv_promo = 0;
-			if(isNaN(deliv_promo)) deliv_promo = 0;
-			$.ajax({
-				type: "POST",
-				data: {customer: $customer, promo: deliv_promo},
-				url: "libs/deliv_price.php",
-				success: function(response){
-					$("#deliv-price").val(response);
-					$("#sub-price").empty();
-					$("#total-payment").empty();
-					$('#monthly-payment').empty();
-					var currentPlan = $("input[name='plan']:checked").val();
-					var currentPromo = $('#sub-promo').val();
-					currentPromo = currentPromo.replace(",","")
-					var deliveryPrice = $('#deliv-price').val();
-					deliveryPrice = deliveryPrice.replace(",","")
-					if(isNaN(currentPlan)) currentPlan = 0;
-					if(isNaN(currentPromo)) currentPromo = 0;
-
+		$(document).ready(function(){
+			$(".nominal-number").change(function(){
+				$value = $(this).val();
+				$value = $value.replace(/,/g, "");
+				if(!isNaN($value) && $value){
+					$tag = this;
 					$.ajax({
 						type: "POST",
-						url: "libs/select_plan.php",
-						data: {plan: currentPlan,promo: currentPromo, deliv:deliveryPrice},
+						data: {nominal: $value},
+						url: "libs/nominal.php",
 						success: function(response){
-							$("#sub-price").val(response['price']);
-							$("#total-payment").val(response['total']);
-							$('#monthly-payment').val(response['monthly']);
-						},
-						dataType:"json"
+							$value = response;
+							$($tag).val(response);
+						}
 					});
+				}
+				else{
+					$(this).val("0.00");
 				}
 			});
-		});
-		$("#sub-price, #sub-promo, #sub-price, #deliv-price").change(function (){
-			$customer = $("#customerName").val();
-			var deliv_promo = 0;
-			if(isNaN(deliv_promo)) deliv_promo = 0;
-			$.ajax({
-				type: "POST",
-				data: {customer: $customer, promo: deliv_promo},
-				url: "libs/deliv_price.php",
-				success: function(response){
-					$("#deliv-price").val(response);
-					$("#sub-price").empty();
-					$("#total-payment").empty();
-					$('#monthly-payment').empty();
-					var currentPlan = $("input[name='plan']:checked").val();
-					var currentPromo = $('#sub-promo').val();
-					currentPromo = currentPromo.replace(/,/g, "")
-					var deliveryPrice = $('#deliv-price').val();
-					deliveryPrice = deliveryPrice.replace(/,/g, "");
-					var subPrice = $('#sub-price').val();
-					subPrice = subPrice.replace(/,/g, "");
-					if(isNaN(currentPlan)) currentPlan = 0;
-					if(isNaN(currentPromo)) currentPromo = 0;
+			$("#submit").click(function(){
+				if($("#customerName").val == ""){
 
-					$.ajax({
-						type: "POST",
-						url: "libs/select_plan.php",
-						data: {promo: currentPromo, deliv:deliveryPrice, subPrice:subPrice, time:currentPlan},
-						success: function(response){
-							$("#total-payment").val(response['total']);
-							$('#monthly-payment').val(response['monthly']);
-						},
-						dataType:"json"
-					});
 				}
+			});
+			$("#customerName").change(function () {
+				$customer = $("#customerName").val();
+				var deliv_promo = $("#deliv-promo").val();
+				deliv_promo = deliv_promo.replace(/,/g, "");
+				if(isNaN(deliv_promo)) deliv_promo = 0;
+				$.ajax({
+					type: "POST",
+					data: {customer: $customer, promo: deliv_promo},
+					url: "libs/deliv_price.php",
+					success: function(response){
+						$("#deliv-price").val(response);
+						$("#sub-price").empty();
+						$("#total-payment").empty();
+						$('#monthly-payment').empty();
+						var currentPlan = $("input[name='plan']:checked").val();
+						var currentPromo = $('#sub-promo').val();
+						currentPromo = currentPromo.replace(",","")
+						var deliveryPrice = $('#deliv-price').val();
+						deliveryPrice = deliveryPrice.replace(",","")
+						var deliv_promo = $("#deliv-promo").val();
+						deliv_promo = deliv_promo.replace(/,/g, "");
+						if(isNaN(currentPlan)) currentPlan = 0;
+						if(isNaN(currentPromo)) currentPromo = 0;
+
+						$.ajax({
+							type: "POST",
+							url: "libs/select_plan.php",
+							data: {plan: currentPlan,promo: currentPromo, delivPromo:deliv_promo, deliv:deliveryPrice},
+							success: function(response){
+								$("#sub-price").val(response['price']);
+								$("#total-payment").val(response['total']);
+								$('#monthly-payment').val(response['monthly']);
+							},
+							dataType:"json"
+						});
+					}
+				});
+			});
+			$("#sub-price, #sub-promo, #sub-price").change(function (){
+				$customer = $("#customerName").val();
+				var deliv_promo = $("#deliv-promo").val();
+				deliv_promo = deliv_promo.replace(/,/g, "");
+				if(isNaN(deliv_promo)) deliv_promo = 0;
+				$.ajax({
+					type: "POST",
+					data: {customer: $customer, promo: deliv_promo},
+					url: "libs/deliv_price.php",
+					success: function(response){
+						$("#deliv-price").val(response);
+						$("#sub-price").empty();
+						$("#total-payment").empty();
+						$('#monthly-payment').empty();
+						var currentPlan = $("input[name='plan']:checked").val();
+						var currentPromo = $('#sub-promo').val();
+						currentPromo = currentPromo.replace(/,/g, "")
+						var deliveryPrice = $('#deliv-price').val();
+						deliveryPrice = deliveryPrice.replace(/,/g, "");
+						var subPrice = $('#sub-price').val();
+						subPrice = subPrice.replace(/,/g, "");
+						if(isNaN(currentPlan)) currentPlan = 0;
+						if(isNaN(currentPromo)) currentPromo = 0;
+
+						$.ajax({
+							type: "POST",
+							url: "libs/select_plan.php",
+							data: {promo: currentPromo, deliv:deliveryPrice, delivPromo:deliv_promo,subPrice:subPrice, time:currentPlan},
+							success: function(response){
+								$("#total-payment").val(response['total']);
+								$('#monthly-payment').val(response['monthly']);
+							},
+							dataType:"json"
+						});
+					}
+				});
+			});
+
+			$("#deliv-price, #deliv-promo").change(function(){
+				var deliv_promo = $("#deliv-promo").val();
+				deliv_promo = deliv_promo.replace(/,/g, "");
+				var currentPlan = $("input[name='plan']:checked").val();
+				var currentPromo = $('#sub-promo').val();
+				currentPromo = currentPromo.replace(/,/g, "")
+				var deliveryPrice = $('#deliv-price').val();
+				deliveryPrice = deliveryPrice.replace(/,/g, "");
+				var subPrice = $('#sub-price').val();
+				subPrice = subPrice.replace(/,/g, "");
+				if(isNaN(currentPlan)) currentPlan = 0;
+				if(isNaN(currentPromo)) currentPromo = 0;
+
+				$.ajax({
+					type: "POST",
+					url: "libs/select_plan.php",
+					data: {promo: currentPromo, deliv:deliveryPrice, delivPromo:deliv_promo, subPrice:subPrice, time:currentPlan},
+					success: function(response){
+						$("#total-payment").val(response['total']);
+						$('#monthly-payment').val(response['monthly']);
+					},
+					dataType:"json"
+				});
 			});
 		});
 	</script>

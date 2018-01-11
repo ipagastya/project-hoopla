@@ -89,7 +89,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						<input type="text" class="form-control nominal-number" id="monthly-payment" name="monthly-payment" value="<?php
 						$monthly = $row['subs_price'] + $row['deliv_price'];
 						echo number_format("$monthly", 2);
-						?>" readonly>
+						?>" >
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -102,7 +102,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 						<input type="text" class="form-control nominal-number" id="total-payment" name="total-payment" value="<?php
 						$total_payment = ($row['subs_price'] + $row['deliv_price'])*$row['subs_plan'] - $row['subs_promo'];
 						echo number_format("$total_payment", 2);
-						?>" readonly>
+						?>" >
 					</div>
 					<div class="col-sm-2">
 						<h4>Rupiah</h4>
@@ -241,85 +241,87 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 									<td><?=$deliv_id?></td>
 									<td><?=$row_deliv['address']?></td>
 									<td><?php
-										$city_id =$row_deliv['city_id'];
-										$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
-										$result_city = mysqli_query($conn, $sql);
-										$row_city = mysqli_fetch_assoc($result_city);
-										echo $row_city['city_name']
-										?>
-									</td>
-								</div>
-								<div class="col-sm-1">
-									<td><?=$row_deliv['mobile_phone']?></td>
-									<td><?=$row_deliv['home_phone']?></td>
-								</div>
-								<div class="col-sm-3">
-									<td><?=$row_deliv['delivery_date']?></td>
-									<td><?=$row_deliv['pickup_date']?></td>
-									<td><?=$row_deliv['baby_age']?></td>
-									<td><?=$row_deliv['box_name']?></td>
-								</div>
-								<td class="row col-sm-5"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
-									<div class="col-sm-1"></div>
-									<?php if(strtolower($row_deliv['status']) == 'rented' && $verified){ ?> 
-									<a class="btn btn-warning col-sm-4" id='btn-toys' href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
-									<div class="col-sm-1"></div>
-									<a class='btn btn-danger col-sm-3' id='btn-toys' href='libs/delete_delivery?deliv_id=<?=$deliv_id."&subs_id=".$subs_id ?>'><span class='glyphicon glyphicon-remove'></span> Delete</a>
-									<?php }
-									elseif ($verified == false) {
-										echo "<button class='btn btn-danger col-sm-4' id='btn-toys' disabled>Not Verified</button>";
-										echo '<div class="col-sm-1"></div>';
-										echo "<a class='btn btn-danger col-sm-3' id='btn-toys' href='libs/delete_delivery?deliv_id=$deliv_id&subs_id=$subs_id'><span class='glyphicon glyphicon-remove'></span> Delete</a>";
-									}
-									else{
-										echo "<button class='btn btn-warning col-sm-4' id='btn-toys' disabled>Returned</button>";
-										echo '<div class="col-sm-4"></div>';
-									} ?> 
+									$city_id =$row_deliv['city_id'];
+									$sql = "SELECT * FROM CITY WHERE city_id = '$city_id'";
+									$result_city = mysqli_query($conn, $sql);
+									$row_city = mysqli_fetch_assoc($result_city);
+									echo $row_city['city_name']
+									?>
 								</td>
-							</tr>
-							<?php } ?>
-						</table>
-					</div>
-					<center>
-						<div>
-							<ul class="pagination pagination-sm">
-								<?php
-								$rows = mysqli_num_rows($resultFull);
-								$pages = 0;
-								$pageNow = $_GET['page'];
-								$count = $pageNow;
-								if($rows <= 10) {
-									$pages = 1;
-								} else if (($rows % 10 ) == 0) {
-									$pages = $rows / 10;
-								} else {
-									$pages = floor($rows / 10) + 1;
+							</div>
+							<div class="col-sm-1">
+								<td><?=$row_deliv['mobile_phone']?></td>
+								<td><?=$row_deliv['home_phone']?></td>
+							</div>
+							<div class="col-sm-3">
+								<td><?=$row_deliv['delivery_date']?></td>
+								<td><?=$row_deliv['pickup_date']?></td>
+								<td><?=$row_deliv['baby_age']?></td>
+								<td><?=$row_deliv['box_name']?></td>
+							</div>
+							<td class="row col-sm-5"><a class="btn btn-info col-sm-3" id='btn-toys' href="delivery_view?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>" target="_blank">Details</a>
+								<div class="col-sm-1"></div>
+								<?php if(strtolower($row_deliv['status']) == 'rented' && $verified){ ?> 
+								<a class="btn btn-warning col-sm-4" id='btn-toys' href="libs/return?deliv_id=<?php echo $row_deliv['delivery_id']; ?>&subs_id=<?=$subs_id?>">Return</a>
+								<div class="col-sm-1"></div>
+								<a class='btn btn-danger col-sm-3' id='btn-toys' href='libs/delete_delivery?deliv_id=<?=$deliv_id."&subs_id=".$subs_id ?>'><span class='glyphicon glyphicon-remove'></span> Delete</a>
+								<?php }
+								elseif ($verified == false) {
+									echo "<button class='btn btn-danger col-sm-4' id='btn-toys' disabled>Not Verified</button>";
+									echo '<div class="col-sm-1"></div>';
+									echo "<a class='btn btn-danger col-sm-3' id='btn-toys' href='libs/delete_delivery?deliv_id=$deliv_id&subs_id=$subs_id'><span class='glyphicon glyphicon-remove'></span> Delete</a>";
 								}
-								$x = 1;
-								if ($pageNow > 1) {
-									$pageBefore = $pageNow - 1;
-									echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
-								}
-								while ($count <= $pages && $x <= 5) {
-									echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
-									$count = $count + 1;
-									$x = $x + 1;
-								}
-								if ($pageNow < $pages) {
-									$pageNext = $pageNow + 1;
-									echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
-								}
-								?>
-							</ul>
-						</div>
-					</center>
-					<?php 
-
-					?>
+								else{
+									echo "<button class='btn btn-warning col-sm-4' id='btn-toys' disabled>Returned</button>";
+									echo '<div class="col-sm-4"></div>';
+								} ?> 
+							</td>
+						</tr>
+						<?php } ?>
+					</table>
 				</div>
-				<script>
+				<center>
+					<div>
+						<ul class="pagination pagination-sm">
+							<?php
+							$rows = mysqli_num_rows($resultFull);
+							$pages = 0;
+							$pageNow = $_GET['page'];
+							$count = $pageNow;
+							if($rows <= 10) {
+								$pages = 1;
+							} else if (($rows % 10 ) == 0) {
+								$pages = $rows / 10;
+							} else {
+								$pages = floor($rows / 10) + 1;
+							}
+							$x = 1;
+							if ($pageNow > 1) {
+								$pageBefore = $pageNow - 1;
+								echo "<li><a href='subscription?page=$pageBefore&subs_id=$subs_id'>Previous</a></li>";
+							}
+							while ($count <= $pages && $x <= 5) {
+								echo "<li><a href='subscription?page=$count&subs_id=$subs_id'>$count</a></li>";
+								$count = $count + 1;
+								$x = $x + 1;
+							}
+							if ($pageNow < $pages) {
+								$pageNext = $pageNow + 1;
+								echo "<li><a href='subscription?page=$pageNext&subs_id=$subs_id'>Next</a></li>";
+							}
+							?>
+						</ul>
+					</div>
+				</center>
+				<?php 
+
+				?>
+			</div>
+			<script>
+				$(document).ready(function(){
 					$(".nominal-number").change(function(){
-						$value = $(this).val()
+						$value = $(this).val();
+						$value = $value.replace(/,/g, "");
 						if(!isNaN($value) && $value){
 							$tag = this;
 							$.ajax({
@@ -333,37 +335,56 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							});
 						}
 						else{
-							$(this).val("");
-							$(this).attr("placeholder", "Please input number")
+							$(this).val("0.00");
 						}
-					})
-					$("input[name=plan]:radio").change(function () {
-						$("#sub-price").empty();
-						$("#total-payment").empty();
-						$('#monthly-payment').empty();
-						var currentPlan = $("input[name='plan']:checked").val();
-						var currentPromo = $('#sub-promo').val();
-						currentPromo = currentPromo.replace(",","")
-						var deliveryPrice = $('#deliv-price').val();
-						deliveryPrice = deliveryPrice.replace(",","")
-						if(isNaN(currentPlan)) currentPlan = 0;
-						if(isNaN(currentPromo)) currentPromo = 0;
+					});
+					$("#submit").click(function(){
+						if($("#customerName").val == ""){
 
+						}
+					});
+					$("#customerName").change(function () {
+						$customer = $("#customerName").val();
+						var deliv_promo = $("#deliv-promo").val();
+						deliv_promo = deliv_promo.replace(/,/g, "");
+						if(isNaN(deliv_promo)) deliv_promo = 0;
 						$.ajax({
 							type: "POST",
-							url: "libs/select_plan.php",
-							data: {plan: currentPlan,promo: currentPromo, deliv:deliveryPrice},
+							data: {customer: $customer, promo: deliv_promo},
+							url: "libs/deliv_price.php",
 							success: function(response){
-								$("#sub-price").val(response['price']);
-								$("#total-payment").val(response['total']);
-								$('#monthly-payment').val(response['monthly']);
-							},
-							dataType:"json"
+								$("#deliv-price").val(response);
+								$("#sub-price").empty();
+								$("#total-payment").empty();
+								$('#monthly-payment').empty();
+								var currentPlan = $("input[name='plan']:checked").val();
+								var currentPromo = $('#sub-promo').val();
+								currentPromo = currentPromo.replace(",","")
+								var deliveryPrice = $('#deliv-price').val();
+								deliveryPrice = deliveryPrice.replace(",","")
+								var deliv_promo = $("#deliv-promo").val();
+								deliv_promo = deliv_promo.replace(/,/g, "");
+								if(isNaN(currentPlan)) currentPlan = 0;
+								if(isNaN(currentPromo)) currentPromo = 0;
+
+								$.ajax({
+									type: "POST",
+									url: "libs/select_plan.php",
+									data: {plan: currentPlan,promo: currentPromo, delivPromo:deliv_promo, deliv:deliveryPrice},
+									success: function(response){
+										$("#sub-price").val(response['price']);
+										$("#total-payment").val(response['total']);
+										$('#monthly-payment').val(response['monthly']);
+									},
+									dataType:"json"
+								});
+							}
 						});
 					});
-					$("#sub-price, #sub-promo, #sub-price, #deliv-price").change(function (){
+					$("#sub-price, #sub-promo, #sub-price").change(function (){
 						$customer = $("#customerName").val();
-						var deliv_promo = 0;
+						var deliv_promo = $("#deliv-promo").val();
+						deliv_promo = deliv_promo.replace(/,/g, "");
 						if(isNaN(deliv_promo)) deliv_promo = 0;
 						$.ajax({
 							type: "POST",
@@ -387,7 +408,7 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 								$.ajax({
 									type: "POST",
 									url: "libs/select_plan.php",
-									data: {promo: currentPromo, deliv:deliveryPrice, subPrice:subPrice, time:currentPlan},
+									data: {promo: currentPromo, deliv:deliveryPrice, delivPromo:deliv_promo,subPrice:subPrice, time:currentPlan},
 									success: function(response){
 										$("#total-payment").val(response['total']);
 										$('#monthly-payment').val(response['monthly']);
@@ -397,10 +418,36 @@ if(!isset($_GET['subs_id']) || !isset($_GET['page']) || !$_GET['page'] || !$_GET
 							}
 						});
 					});
-				</script>
-				<?php
-			}
+
+					$("#deliv-price, #deliv-promo").change(function(){
+						var deliv_promo = $("#deliv-promo").val();
+						deliv_promo = deliv_promo.replace(/,/g, "");
+						var currentPlan = $("input[name='plan']:checked").val();
+						var currentPromo = $('#sub-promo').val();
+						currentPromo = currentPromo.replace(/,/g, "")
+						var deliveryPrice = $('#deliv-price').val();
+						deliveryPrice = deliveryPrice.replace(/,/g, "");
+						var subPrice = $('#sub-price').val();
+						subPrice = subPrice.replace(/,/g, "");
+						if(isNaN(currentPlan)) currentPlan = 0;
+						if(isNaN(currentPromo)) currentPromo = 0;
+
+						$.ajax({
+							type: "POST",
+							url: "libs/select_plan.php",
+							data: {promo: currentPromo, deliv:deliveryPrice, delivPromo:deliv_promo, subPrice:subPrice, time:currentPlan},
+							success: function(response){
+								$("#total-payment").val(response['total']);
+								$('#monthly-payment').val(response['monthly']);
+							},
+							dataType:"json"
+						});
+					});
+				});
+			</script>
+			<?php
 		}
 	}
-	require('footer.php');
-	?>
+}
+require('footer.php');
+?>

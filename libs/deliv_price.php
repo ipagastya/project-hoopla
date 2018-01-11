@@ -2,10 +2,9 @@
 session_start();
 include "../config.php";
 
-if(isset($_POST['customer']) && isset($_POST['promo'])){
+if(isset($_POST['customer'])){
 	$customer = $_POST['customer'];
-	$promo = $_POST['promo'];
-
+	
 	$sql = "SELECT city_id
 	FROM CUSTOMER
 	WHERE cust_id = '$customer'";
@@ -20,7 +19,7 @@ if(isset($_POST['customer']) && isset($_POST['promo'])){
 
 	$result = mysqli_query($conn ,$sql);
 	$row = mysqli_fetch_row($result);
-	$price = $row[0] - $promo;
+	$price = $row[0];
 	if ($price < 0) {
 		$price = 0;
 	}
