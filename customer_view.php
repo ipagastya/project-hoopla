@@ -253,7 +253,7 @@
 								province_id='$provinceID', zip_code='$zipID', favorite_toys='$favoriteID', milestones='$milestoneID' 
 								WHERE cust_id='$id'";
 						if($result = mysqli_query($conn, $query2)){
-						print "<script>alert('Customer Telah Berhasil Diperbaharui');
+						print "<script>alert('Customer has been updated');
 								window.location.href='customer_list?page=1';
 								</script>";
 						}

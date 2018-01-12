@@ -45,6 +45,9 @@ require_once("config.php");
 		<div class="form-group" id="plan-time">
 			<label class="control-label col-sm-4" for="plan">Subscription Plan :</label>
 			<div class="col-sm-2 radio">
+				<label><input type="radio" value="0" name="plan" checked>2 Weeks</label>
+			</div>
+			<div class="col-sm-2 radio">
 				<label><input type="radio" value="1" name="plan" checked required>1 Month</label>
 			</div>
 			<div class="col-sm-2 radio">

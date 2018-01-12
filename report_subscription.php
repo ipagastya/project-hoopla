@@ -22,7 +22,7 @@
 			<thead>
 			    <tr>
 					<th rowspan="2">Month/Year</th>
-					<th colspan="4">New Customer</th>
+					<th colspan="5">New Customer</th>
 					<th colspan="4">Expired Subscription</th>
 					<th colspan="4">Extending Subscription</th>
 					<th>Nett Subscribers</th>
@@ -31,6 +31,7 @@
 			    </tr>
 			    <tr>
 					<th>Total</th>
+					<th>Trial</th>
 					<th>1 MO</th>
 					<th>3 MO</th>
 					<th>6 MO</th>
@@ -90,8 +91,9 @@
 							<td>".$row[14]."</td>
 							<td>".$row[15]."</td>
 							<td>".$row[16]."</td>
-							<td>0</td>
 							<td>".$row[17]."</td>
+							<td>0</td>
+							<td>".$row[18]."</td>
 						</tr>";
 				}
 			    ?>
