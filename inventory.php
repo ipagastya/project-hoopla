@@ -246,9 +246,11 @@
 						WHERE inventory_id=$inventory_id";
 						$result = mysqli_query($conn, $query);
 						$row = mysqli_fetch_row($result);
+						echo'<script>
+							document.getElementById("toyname").value="'.$row[0].'";
+						</script>';
 						echo"
 						<script>
-							document.getElementById('toyname').value='".$row[0]."';
 							document.getElementById('prodcode').value='".$row[19]."';
 							document.getElementById('status').value='".$row[1]."';
 							document.getElementById('datereturn').value='".$row[2]."';
