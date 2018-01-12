@@ -171,7 +171,7 @@
 						VALUES('$customerID','$babyID','$babyGenderID','$dobID','$homeNumberID','$mobileNumberID','$lineID','$emailID','$addressID','$cityID','$provinceID','$zipID','$favoriteID','$milestoneID')";
 						
                	if($result = mysqli_query($conn, $query)){
-					print "<script>alert('Customer Telah Berhasil Didaftarkan');
+					print "<script>alert('Customer has been created');
 					window.location.href='customer_list?page=1';
 					</script>";
                	}
