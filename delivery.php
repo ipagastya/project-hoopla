@@ -282,7 +282,7 @@ $subscription = mysqli_fetch_assoc($result_subs);
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="select-toy">Select Toy :</label>
 			<div class="col-sm-5">
-				<select class="form-control selectpicker" data-live-search="true" id="select-toy" data-size="4" name="select-toy[]" multiple data-max-options="<?=$subscription['num_ofToys']?>" multiple data-selected-text-format="count > 3" required>
+				<select class="form-control selectpicker" data-live-search="true" id="select-toy" data-size="20" name="select-toy[]" multiple data-max-options="<?=$subscription['num_ofToys']?>" multiple data-selected-text-format="count > 3" required>
 					<option value="" disabled>Select Toy</option>
 				</select>
 			</div>
