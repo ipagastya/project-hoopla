@@ -51,6 +51,8 @@
 					<option value="Permanent Damaged">Permanent Damaged</option>
 					<option value="Donated">Donated</option>
 					<option value="Inactive">Inactive</option>
+					<option value="Sold">Sold</option>
+					<option value="Bali">Bali</option>
 				</select>
 			</div>
 			<div class="col-sm-4"></div>
