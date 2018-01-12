@@ -58,8 +58,10 @@ if (isset($_GET['deliv_id'])) {
 		echo "Delete from delivery toys error<br>";
 	}
 	$subs_id = $_GET['subs_id'];
+	ob_start();
 	echo "<h1>Please wait, Deleting.....</h1>";
 	header( "refresh:1;url=../subscription?page=1&subs_id=$subs_id" );
+	ob_end_flush();
 }else{
 	header( "refresh:1;url=../subscription_list?page=1" );
 }
