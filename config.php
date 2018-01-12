@@ -1,4 +1,4 @@
-<?php 
+<?php
 $servername = "103.200.7.114";
 $username = "hooplaid_admin";
 $password = "adminhooplaid";

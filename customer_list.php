@@ -12,9 +12,8 @@ require('header.php');
 					<input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Search Customer Name...">
 				</div>
 			</div>
-			<div align="right">
+			<div align="right" class="col-sm-8">
 				<div class="btn-group" >
-					
 					<button class="addbutton" type="submit"><a href='customer.php' style='text-decoration: none; color:white;'><span class="glyphicon glyphicon-plus"></span> Add Customer</a></button>
 				</div>
 			</div>
@@ -22,7 +21,6 @@ require('header.php');
 	</div>
 	<!--============================-->
 </div>
-
 <div class= "container-fluid">
 	<div class="container">
 		<br>
@@ -36,6 +34,7 @@ require('header.php');
 					<th>Baby's Date of Birth</th>
 					<th>Baby's Age</th>
 					<th>Details</th>
+					<th>Delete</th>
 				</tr>
 				<?php
 					// loop untuk isi db
@@ -61,7 +60,8 @@ require('header.php');
 					echo"<td>" . $row[3] . "<br></td>";
 					echo"<td>" . $row[4] . "<br></td>";
 					echo"<td>" . $months . " months<br></td>";
-					echo"<td>"."<a method='get' href='customer_view?id=$row[0]' class='btn btn-default' name='view'>View</a>"."</td></tr></tbody>";
+					echo"<td>"."<a method='get' href='customer_view?id=$row[0]' class='btn btn-default' name='view'> View </a>"."</td>";
+					echo"<td>"."<a method='get' class='btn btn-danger' name='delete'  href='libs/delete_customer?id=$row[0]'> <span class='glyphicon glyphicon-remove'></span> Delete </a>"."</td></tr></tbody>";
 				} 
 				?>
 			</table>
