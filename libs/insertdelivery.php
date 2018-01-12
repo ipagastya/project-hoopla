@@ -26,7 +26,7 @@ if (isset($_POST['submit-edit'])) {
 	}
 	
 
-	$sql_update = "UPDATE DELIVERY_LIST SET address='$address', city_id='$city_id', province_id='$province_id', mobile_phone='$mobile', home_phone='$home', delivery_date='$deliv_date', pickup_date='$pick_date', actual_delivery_charge='$deliv_charge', actual_pickup_charge='$pick_charge', payment_note='$payment_note', note='$note'";
+	$sql_update = "UPDATE DELIVERY_LIST SET address='$address', city_id='$city_id', province_id='$province_id', mobile_phone='$mobile', home_phone='$home', delivery_date='$deliv_date', pickup_date='$pick_date', actual_delivery_charge='$deliv_charge', actual_pickup_charge='$pick_charge', payment_note='$payment_note', note='$note' WHERE delivery_id='$deliv_id'";
 	$result = mysqli_query($conn, $sql_update);
 	if($result === false){
 		die("Query Fail");
