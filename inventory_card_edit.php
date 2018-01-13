@@ -58,6 +58,13 @@
 			<div class="col-sm-4"></div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-3" for="selling">Selling Price :</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="selling" name="selling">
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-3" for="notes">Notes :</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="notes" name="notes">
@@ -84,7 +91,7 @@
 	$rowhelper = mysqli_fetch_row($resulthelper);
 	$product_code = $rowhelper[0];
 	$cardIDEdit = $_GET['card'];
-	$query = "SELECT date,activity_id,Status,note FROM INVENTORY_CARD WHERE card_id='$cardIDEdit'";
+	$query = "SELECT date,activity_id,Status,note,selling_price FROM INVENTORY_CARD WHERE card_id='$cardIDEdit'";
 	$result = mysqli_query($conn, $query);
 	$row = mysqli_fetch_row($result);
 	echo"
@@ -93,14 +100,16 @@
 			document.getElementById('activities').value='".$row[1]."';
 			document.getElementById('statustext').value='".$row[2]."';
 			document.getElementById('notes').value='".$row[3]."';
+			document.getElementById('selling').value='".$row[4]."';
 		</script>";
 	if(isset($_POST['cardsubmit'])){
 		$date = $_POST['dateCard'];
 		$activities = $_POST['activities'];
 		$status = $_POST['statustext'];
+		$selling = $_POST['selling'];
 		$notes = $_POST['notes'];
 		$queryEdit = "UPDATE INVENTORY_CARD 
-						SET date='$date',activity_id='$activities',Status='$status',note='$notes' 
+						SET date='$date',activity_id='$activities',Status='$status',note='$notes',selling_price='$selling' 
 						WHERE card_id='$cardIDEdit'";
 		$resultEdit=mysqli_query($conn,$queryEdit);
 		date_default_timezone_set('Asia/Jakarta');

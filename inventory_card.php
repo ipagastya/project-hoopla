@@ -58,6 +58,13 @@
 			<div class="col-sm-4"></div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-3" for="selling">Selling Price :</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="selling" name="selling">
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-3" for="notes">Notes :</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="notes" name="notes">
@@ -93,8 +100,9 @@
 		$date = $_POST['dateCard'];
 		$activities = $_POST['activities'];
 		$status = $_POST['statustext'];
+		$selling = $_POST['selling'];
 		$notes = $_POST['notes'];
-		$query="INSERT INTO INVENTORY_CARD(product_code,date,activity_id,Status,note) VALUES('$product_code','$date','$activities','$status','$notes')";
+		$query="INSERT INTO INVENTORY_CARD(product_code,date,activity_id,Status,note,selling_price) VALUES('$product_code','$date','$activities','$status','$notes','$selling')";
 		$result=mysqli_query($conn,$query);
 		/*for last modified*/
 		date_default_timezone_set('Asia/Jakarta');
