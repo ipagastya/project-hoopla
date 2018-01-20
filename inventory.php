@@ -431,6 +431,7 @@
 								<th>Date</th>
 								<th>Activities</th>
 								<th>Status</th>
+								<th>Selling Price</th>
 								<th>Notes</th>
 								<th>Details</th>
 							</tr>
@@ -459,6 +460,7 @@
 						        			<td>".$row['date']."</td>
 						        			<td>".$rowAct[0]."</td>
 						        			<td>".$row['Status']."</td>
+						        			<td>".$row['selling_price']."</td>
 						        			<td>".$row['note']."</td>
 						        			<td>"."<a method='get' href='inventory_card_edit?page=1&card=$cardID&id=$inventory_id' class='btn btn-default' name='editCard'>Edit</a>"."</td>
 						        		</tr>";
