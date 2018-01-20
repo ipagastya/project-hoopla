@@ -84,17 +84,17 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." $check_track AND (I.status = 'available' $tambahanDate) $check_age GROUP BY product_code ORDER BY I.status ASC, toy_name ASC;";
+$sql = $sql." $check_track AND (I.status = 'available' $tambahanDate) $check_age GROUP BY I.product_code ORDER BY I.status ASC, toy_name ASC;";
 
 if(($result = mysqli_query($conn, $sql)) === FALSE){
-	echo 'query fail';
+	echo 'query fail '.$sql;
 }else{
 	while($row = mysqli_fetch_assoc($result)){
 		$text = "";
 		if($row['status'] != 'Available'){
-			$text = "data-subtext='(Not Returned Yet)' ";
+			$text = "data-subtext='( Not Returned Yet.)' ";
 		} 
-		echo "<option value='".$row['product_code']."' $text.>".$row['toy_name']." (".$row['product_code'].")"."</option>";
+		echo "<option value='".$row['product_code']."'$text>".$row['toy_name']." (".$row['product_code'].")"."</option>";
 	}
 }
 
