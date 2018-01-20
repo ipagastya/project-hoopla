@@ -40,6 +40,7 @@ else{
 	//insert table delivery_list
 	$cust_id = $_GET['cust_id'];
 	$address = $_POST['address'];
+	$address = mysqli_real_escape_string($conn,$address);
 	$city_id = $_POST['cityID'];
 	$province_id = $_POST['province'];
 	$mobile_phone = $_POST['mobile'];
