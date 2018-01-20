@@ -35,6 +35,7 @@ if (isset($_POST['submit-edit'])) {
 	}
 }
 else{
+	ob_start();
 	session_start();
 	//insert table delivery_list
 	$cust_id = $_GET['cust_id'];
@@ -126,6 +127,7 @@ else{
 		}
 	}
 	header( "refresh:1;url=../subscription?page=1&subs_id=$subs_id" );
+	ob_end_flush();
 }
 
 ?>
