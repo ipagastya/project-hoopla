@@ -84,7 +84,7 @@ if (isset($_POST['category']) && $_POST['category']) {
 }
 
 //customer and ascending
-$sql = $sql." $check_track AND (I.status = 'available' $tambahanDate) $check_age GROUP BY toy_name ORDER BY I.status ASC, toy_name ASC;";
+$sql = $sql." $check_track AND (I.status = 'available' $tambahanDate) $check_age GROUP BY product_code ORDER BY I.status ASC, toy_name ASC;";
 
 if(($result = mysqli_query($conn, $sql)) === FALSE){
 	echo 'query fail';
