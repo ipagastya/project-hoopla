@@ -277,6 +277,7 @@
 						if(isset($_POST['update'])){
 							$product_code = $_POST['prodcode'];
 							$toy_name = $_POST["toyname"];
+							$toy_name = mysqli_real_escape_string($conn,$toy_name);
 							$status = $_POST["status"];
 							$return = $_POST["datereturn"];
 							$manufacturer = $_POST["manufacturer"];

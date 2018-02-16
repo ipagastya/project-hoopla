@@ -240,6 +240,7 @@
 			include"config.php";
 			if(isset($_POST['submit'])){
 				$toy_name = $_POST["toyname"];
+				$toy_name = mysqli_real_escape_string($conn,$toy_name);
 				$product_code = $_POST["prodcode"];
 				$status = $_POST["status"];
 				$return = $_POST["datereturn"];

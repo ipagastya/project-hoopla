@@ -4,6 +4,7 @@ $subs_id = $_GET['subs_id'];
 if (isset($_POST['submit-edit'])) {
 	$deliv_id = $_POST['deliveryID'];
 	$address = $_POST['address'];
+	$address = mysqli_real_escape_string($conn,$address);
 	$province_id = $_POST['province'];
 	$city_id = $_POST['cityID'];
 	$mobile = $_POST['mobile'];
